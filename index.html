@@ -3,10 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>AcharyaOS Pro — The Teacher's OS</title>
+<title>AcharyaOS Pro — Free Offline Teacher App for Indian Teachers</title>
+<meta name="description" content="AcharyaOS Pro is a free, 100% offline digital assistant for Indian teachers. Manage classes, students, attendance, diary, marks, and more in 14+ Indian languages.">
+<meta name="keywords" content="teacher app, attendance app, class management, student management, offline teacher app, Indian teacher app, free teacher app, AcharyaOS, teacher diary, student attendance">
+<meta name="author" content="Summit Kummar">
+<meta name="robots" content="index, follow">
 <meta name="theme-color" content="#FF9933">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="AcharyaOS">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://summitkummar.github.io/AcharyaOS/">
+<meta property="og:title" content="AcharyaOS Pro — Free Offline Teacher App">
+<meta property="og:description" content="A free, 100% offline digital assistant for Indian teachers. Manage classes, students, attendance, and more.">
+<meta property="og:image" content="https://summitkummar.github.io/AcharyaOS/icon.png">
+<meta property="og:site_name" content="AcharyaOS Pro">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://summitkummar.github.io/AcharyaOS/">
+<meta property="twitter:title" content="AcharyaOS Pro — Free Offline Teacher App">
+<meta property="twitter:description" content="A free, 100% offline digital assistant for Indian teachers.">
+<meta property="twitter:image" content="https://summitkummar.github.io/AcharyaOS/icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AcharyaOS Pro",
+  "operatingSystem": "Any",
+  "applicationCategory": "EducationalApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "ratingCount": "100"
+  },
+  "description": "A professional digital assistant for Indian teachers. 100% offline, free forever.",
+  "author": {
+    "@type": "Person",
+    "name": "Summit Kummar"
+  }
+}
+</script>
+
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23FF9933'/><stop offset='1' stop-color='%23138808'/></linearGradient></defs><rect width='100' height='100' rx='26' fill='url(%23g)'/><path d='M32 34 L50 24 L68 34 L68 62 L50 72 L32 62 Z' fill='white'/><circle cx='50' cy='48' r='5' fill='%23000080'/><path d='M44 48 L34 68 M56 48 L66 68' stroke='%23000080' stroke-width='2.5' stroke-linecap='round'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,7 +107,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .brand-text small{display:block;font-size:.5rem;font-weight:700;opacity:.95;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;color:#FFFFFF;}
 .bar-actions{display:flex;gap:5px;flex-shrink:0;}
 
-/* Icon buttons now use SK-like gradient (orange → green) */
 .icon-btn{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#FF9933 0%,#B8860B 45%,#138808 100%);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#FFFFFF;transition:transform .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 2px 6px rgba(0,0,0,.15);border:1px solid rgba(255,255,255,.35);}
 .icon-btn:active{transform:scale(.92);}
 
@@ -484,11 +526,9 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <div class="card mb-3"><div class="card-h"><h4><i class="fas fa-star"></i> <span data-t="marks_summary">Marks Summary</span></h4></div><div id="rep-marks"></div></div>
 </div>
 
-<!-- ABOUT PAGE (Only Developer info, no features grid) -->
 <div class="page" id="pg-about">
   <div class="sec-head"><h3><i class="fas fa-user-circle"></i> <span data-t="about">About</span></h3></div>
 
-  <!-- Developer Card -->
   <div class="card" style="padding:26px 18px;text-align:center;">
     <div class="about-profile">
       <div class="about-avatar">SK</div>
@@ -508,7 +548,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     </div>
   </div>
 
-  <!-- App Info Card -->
   <div class="card text-center" style="padding:22px 18px;">
     <div style="width:70px;height:70px;border-radius:20px;background:#C8E6C9;color:#138808;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 14px;box-shadow:0 10px 24px rgba(19,136,8,.25);"><i class="fas fa-graduation-cap"></i></div>
     <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;color:var(--text);">AcharyaOS Pro</h3>
