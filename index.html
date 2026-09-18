@@ -15,19 +15,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-/* ============ INDIAN FLAG (TRICOLOR) DESIGN SYSTEM ============ */
+/* ============ TRICOLOR DESIGN SYSTEM ============ */
 :root{
-  --primary:#FF9933; /* Saffron */
-  --primary-2:#E65100;
-  --primary-3:#FFB74D;
-  --pink:#000080; /* Navy Blue (Ashoka Chakra) */
-  --rose:#000080;
-  --success:#138808; /* Green */
-  --success-d:#0D5E05;
-  --warning:#FF9933;
-  --warning-d:#E65100;
-  --danger:#EF4444;
-  --danger-d:#DC2626;
+  --primary:#FF9933;--primary-2:#E65100;--primary-3:#FFB74D;
+  --pink:#000080;--rose:#000080;
+  --success:#138808;--success-d:#0D5E05;
+  --warning:#FF9933;--warning-d:#E65100;
+  --danger:#EF4444;--danger-d:#DC2626;
   --info:#000080;
   --bg:#F8F9FA;--bg-2:#F1F3F5;--bg-3:#E9ECEF;
   --card:#FFFFFF;--card-2:#FCFCFC;
@@ -38,15 +32,16 @@
   --sh-md:0 4px 12px rgba(0,0,0,.06),0 2px 4px rgba(0,0,0,.04);
   --sh-lg:0 12px 28px rgba(0,0,0,.08),0 4px 8px rgba(0,0,0,.04);
   --sh-xl:0 24px 48px rgba(0,0,0,.12);
-  --r:16px;--r-lg:22px;--r-xl:28px;
-  --nav-h:74px;
+  --r:16px;--r-lg:22px;--r-xl:28px;--nav-h:74px;
 }
 [data-theme="dark"]{
-  --bg:#121212;--bg-2:#1E1E1E;--bg-3:#2D2D2D;
-  --card:#1E1E1E;--card-2:#2D2D2D;
-  --border:#333333;--border-2:#444444;
-  --text:#F8F9FA;--text-2:#CED4DA;--text-3:#6C757D;--text-4:#495057;
-  --sh-sm:0 2px 4px rgba(0,0,0,.2);--sh-md:0 4px 12px rgba(0,0,0,.25);--sh-lg:0 12px 28px rgba(0,0,0,.3);--sh-xl:0 24px 48px rgba(0,0,0,.4);
+  --bg:#0F1419;--bg-2:#1A2332;--bg-3:#252F42;
+  --card:#1A2332;--card-2:#222D40;
+  --border:#2E3A52;--border-2:#3D4A66;
+  --text:#F1F5F9;--text-2:#CBD5E1;--text-3:#8896B0;--text-4:#5A6884;
+  --primary:#FFA94D;--primary-2:#FF7A00;
+  --success:#2ECC71;--success-d:#1E9E55;
+  --sh-sm:0 2px 4px rgba(0,0,0,.3);--sh-md:0 4px 12px rgba(0,0,0,.35);--sh-lg:0 12px 28px rgba(0,0,0,.4);--sh-xl:0 24px 48px rgba(0,0,0,.5);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s;}
@@ -68,14 +63,27 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 @keyframes splBar{to{width:100%;}}
 .splash-made{position:absolute;bottom:38px;color:#000080;font-size:.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;}
 
-/* APP BAR */
+/* ============ BLINK & GLOW ANIMATIONS ============ */
+@keyframes blinkPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,153,51,.5); }
+  50% { opacity: 0.85; box-shadow: 0 0 0 10px rgba(255,153,51,0); }
+}
+.blink { animation: blinkPulse 1.8s ease-in-out infinite; }
+@keyframes logoBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.82; transform: scale(0.99); }
+}
+.logo-click { cursor: pointer; animation: logoBlink 2s ease-in-out infinite; transition: transform .15s; }
+.logo-click:active { transform: scale(.96); }
+
+/* ============ APP BAR ============ */
 .app-bar{background:linear-gradient(135deg,#FF9933 0%,#E65100 100%);padding:14px 14px 72px;position:relative;border-radius:0 0 34px 34px;box-shadow:0 12px 40px rgba(255,153,51,.35);overflow:hidden;padding-top:calc(14px + env(safe-area-inset-top));}
 .app-bar::before{content:'';position:absolute;top:-80px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%);border-radius:50%;pointer-events:none;}
 .app-bar::after{content:'';position:absolute;bottom:-100px;left:-50px;width:220px;height:220px;background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%);border-radius:50%;pointer-events:none;}
 .bar-row{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;gap:8px;}
 .brand{display:flex;align-items:center;gap:9px;color:#fff;min-width:0;flex:1;}
 .brand-icon{width:38px;height:38px;background:rgba(255,255,255,.25);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4);flex-shrink:0;}
-.brand-text{font-weight:800;font-size:1.05rem;letter-spacing:-.4px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#000080;}
+.brand-text{font-weight:800;font-size:1.05rem;letter-spacing:-.4px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#000080;text-shadow:0 1px 2px rgba(255,255,255,.4);}
 .brand-text small{display:block;font-size:.5rem;font-weight:700;opacity:.92;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;white-space:nowrap;color:#000080;}
 .bar-actions{display:flex;gap:5px;flex-shrink:0;}
 .icon-btn{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#000080;backdrop-filter:blur(10px);transition:transform .15s,background .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.3);position:relative;}
@@ -106,10 +114,10 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .stat-value{font-size:1.75rem;font-weight:800;color:var(--text);line-height:1;letter-spacing:-1px;}
 
 /* SECTION */
-.sec-head{display:flex;justify-content:space-between;align-items:center;margin:24px 4px 12px;}
-.sec-head h3{font-size:1rem;font-weight:800;color:var(--text);letter-spacing:-.3px;display:flex;align-items:center;gap:9px;}
-.sec-head h3 i{color:var(--primary);font-size:.85rem;width:28px;height:28px;border-radius:9px;background:rgba(255,153,51,.1);display:flex;align-items:center;justify-content:center;}
-.sec-head .link{font-size:.74rem;font-weight:700;color:var(--primary);padding:8px 12px;border-radius:10px;background:rgba(255,153,51,.08);display:flex;align-items:center;gap:5px;}
+.sec-head{display:flex;justify-content:space-between;align-items:center;margin:24px 4px 12px;gap:10px;}
+.sec-head h3{font-size:1rem;font-weight:800;color:var(--text);letter-spacing:-.3px;display:flex;align-items:center;gap:9px;flex:1;min-width:0;}
+.sec-head h3 i{color:var(--primary);font-size:.85rem;width:28px;height:28px;border-radius:9px;background:rgba(255,153,51,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sec-head .link{font-size:.72rem;font-weight:800;color:#fff;padding:9px 14px;border-radius:11px;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(255,153,51,.4);border:1px solid rgba(255,255,255,.2);white-space:nowrap;}
 
 /* QUICK */
 .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px;}
@@ -120,6 +128,19 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .quick.o i{background:linear-gradient(135deg,rgba(255,153,51,.1),rgba(230,81,0,.1));color:var(--warning);}
 .quick.pk i{background:linear-gradient(135deg,rgba(0,0,128,.1),rgba(0,0,80,.1));color:var(--pink);}
 .quick.cy i{background:linear-gradient(135deg,rgba(0,0,128,.1),rgba(0,0,80,.1));color:var(--info);}
+
+/* MORE GRID */
+.more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:8px;}
+.more-card{background:var(--card);border-radius:var(--r-lg);padding:20px 14px;box-shadow:var(--sh-sm);border:1px solid var(--border);display:flex;align-items:center;gap:14px;transition:transform .15s;text-align:left;}
+.more-card:active{transform:scale(.97);}
+.more-card i{font-size:1.3rem;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(255,153,51,.12),rgba(230,81,0,.12));color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.more-card.g i{background:linear-gradient(135deg,rgba(19,136,8,.12),rgba(13,94,5,.12));color:var(--success);}
+.more-card.o i{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--warning);}
+.more-card.pk i{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--pink);}
+.more-card.cy i{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--info);}
+.more-card .mc-body{flex:1;min-width:0;}
+.more-card .mc-body h4{font-size:.85rem;font-weight:800;color:var(--text);line-height:1.2;}
+.more-card .mc-body p{font-size:.65rem;color:var(--text-3);font-weight:600;margin-top:2px;}
 
 /* CARDS */
 .card{background:var(--card);border-radius:var(--r-lg);padding:18px;box-shadow:var(--sh-sm);border:1px solid var(--border);margin-bottom:14px;}
@@ -140,10 +161,10 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .li-body p{font-size:.74rem;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;}
 .li-meta{display:flex;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap;}
 .li-chip{font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:7px;background:var(--bg-2);color:var(--text-2);}
-.li-chip.g{background:rgba(19,136,8,.1);color:var(--success);}
-.li-chip.o{background:rgba(255,153,51,.1);color:var(--warning);}
-.li-chip.r{background:rgba(239,68,68,.1);color:var(--danger);}
-.li-chip.pk{background:rgba(0,0,128,.1);color:var(--pink);}
+.li-chip.g{background:rgba(19,136,8,.12);color:var(--success);}
+.li-chip.o{background:rgba(255,153,51,.12);color:var(--warning);}
+.li-chip.r{background:rgba(239,68,68,.12);color:var(--danger);}
+.li-chip.pk{background:rgba(0,0,128,.12);color:var(--pink);}
 .li-arrow{color:var(--text-4);font-size:.85rem;flex-shrink:0;}
 
 /* BUTTONS */
@@ -162,7 +183,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 
 /* NAV */
 .nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(24px) saturate(180%);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:10px 6px calc(12px + env(safe-area-inset-bottom));z-index:200;box-shadow:0 -8px 30px rgba(0,0,0,.06);}
-[data-theme="dark"] .nav{background:rgba(30,30,30,.95);}
+[data-theme="dark"] .nav{background:rgba(26,35,50,.95);}
 .nav-btn{flex:1;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--text-3);border-radius:12px;transition:color .2s;position:relative;}
 .nav-btn i{font-size:1.15rem;transition:transform .2s;}
 .nav-btn.active{color:var(--primary);}
@@ -180,13 +201,13 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .field label .req{color:var(--danger);}
 .inp,.sel,.txa{width:100%;padding:14px 16px;border:1.5px solid var(--border-2);border-radius:13px;background:var(--bg);outline:none;transition:border .2s,background .2s;font-size:.92rem;font-weight:600;color:var(--text);}
 [data-theme="dark"] .inp,[data-theme="dark"] .sel,[data-theme="dark"] .txa{background:var(--bg-2);}
-.inp:focus,.sel:focus,.txa:focus{border-color:var(--primary);background:var(--card);box-shadow:0 0 0 4px rgba(255,153,51,.1);}
+.inp:focus,.sel:focus,.txa:focus{border-color:var(--primary);background:var(--card);box-shadow:0 0 0 4px rgba(255,153,51,.15);}
 .txa{resize:vertical;min-height:88px;line-height:1.6;font-weight:500;}
 .inp::placeholder,.txa::placeholder{color:var(--text-4);font-weight:500;}
 
 /* EMPTY */
 .empty{text-align:center;padding:48px 20px;color:var(--text-3);}
-.empty-ill{width:92px;height:92px;margin:0 auto 18px;border-radius:28px;background:linear-gradient(135deg,rgba(255,153,51,.08),rgba(19,136,8,.08));display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:var(--primary);opacity:.75;}
+.empty-ill{width:92px;height:92px;margin:0 auto 18px;border-radius:28px;background:linear-gradient(135deg,rgba(255,153,51,.1),rgba(19,136,8,.1));display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:var(--primary);opacity:.85;}
 .empty h4{font-size:.98rem;font-weight:800;color:var(--text-2);margin-bottom:6px;}
 .empty p{font-size:.78rem;line-height:1.6;max-width:260px;margin:0 auto;}
 
@@ -223,8 +244,8 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .dialog-inner{background:var(--card);border-radius:24px;padding:26px 22px 22px;width:100%;max-width:360px;box-shadow:var(--sh-xl);animation:popIn .3s cubic-bezier(.16,1,.3,1);text-align:center;}
 @keyframes popIn{from{opacity:0;transform:scale(.9);}to{opacity:1;transform:scale(1);}}
 .dialog-icon{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(244,63,94,.12));color:var(--danger);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 16px;}
-.dialog-icon.warn{background:linear-gradient(135deg,rgba(255,153,51,.12),rgba(230,81,0,.12));color:var(--warning);}
-.dialog-icon.info{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--info);}
+.dialog-icon.warn{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--warning);}
+.dialog-icon.info{background:linear-gradient(135deg,rgba(0,0,128,.15),rgba(0,0,80,.15));color:var(--info);}
 .dialog h3{font-size:1.08rem;font-weight:800;margin-bottom:8px;}
 .dialog p{font-size:.82rem;color:var(--text-2);line-height:1.6;margin-bottom:22px;font-weight:500;white-space:pre-line;}
 
@@ -260,7 +281,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .d-date{font-size:.68rem;font-weight:700;color:var(--text-3);display:flex;align-items:center;gap:5px;}
 .d-title{font-size:.92rem;font-weight:700;margin-bottom:6px;line-height:1.4;padding-left:10px;}
 .d-desc{font-size:.78rem;color:var(--text-2);line-height:1.6;padding-left:10px;font-weight:500;}
-.d-hw{margin-top:10px;padding:10px 12px;background:linear-gradient(135deg,rgba(255,153,51,.08),rgba(230,81,0,.08));border-radius:12px;display:flex;gap:8px;align-items:flex-start;margin-left:10px;}
+.d-hw{margin-top:10px;padding:10px 12px;background:linear-gradient(135deg,rgba(255,153,51,.1),rgba(230,81,0,.1));border-radius:12px;display:flex;gap:8px;align-items:flex-start;margin-left:10px;}
 .d-hw i{color:var(--warning);font-size:.8rem;margin-top:2px;}
 .d-hw div{font-size:.76rem;color:var(--text-2);font-weight:600;line-height:1.4;}
 
@@ -292,7 +313,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .tt-slot .cls{font-size:.72rem;color:var(--text-3);margin-top:3px;font-weight:500;}
 
 /* NOTE */
-.note{padding:15px;border-radius:14px;background:linear-gradient(135deg,rgba(255,153,51,.06),rgba(230,81,0,.06));border:1px solid rgba(255,153,51,.15);margin-bottom:10px;}
+.note{padding:15px;border-radius:14px;background:linear-gradient(135deg,rgba(255,153,51,.08),rgba(230,81,0,.08));border:1px solid rgba(255,153,51,.2);margin-bottom:10px;}
 .note h5{font-size:.9rem;font-weight:700;margin-bottom:6px;}
 .note p{font-size:.78rem;color:var(--text-2);line-height:1.55;font-weight:500;}
 .note .date{font-size:.65rem;color:var(--text-3);margin-top:8px;font-weight:600;}
@@ -353,7 +374,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 <!-- APP BAR -->
 <div class="app-bar">
   <div class="bar-row">
-    <div class="brand">
+    <div class="brand logo-click" onclick="location.reload()" title="Tap to Refresh">
       <div class="brand-icon"><i class="fas fa-graduation-cap"></i></div>
       <div class="brand-text">AcharyaOS<small>The Teacher's OS</small></div>
     </div>
@@ -371,13 +392,9 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 
 <!-- HOME -->
 <div class="page active" id="pg-home">
-  <!-- Install Banner -->
   <div class="install-banner" id="install-banner" style="display:none;">
     <i class="fas fa-mobile-alt"></i>
-    <div class="ib-body">
-      <h4>Install AcharyaOS App</h4>
-      <p>Add to home screen for the best experience</p>
-    </div>
+    <div class="ib-body"><h4>Install AcharyaOS App</h4><p>Add to home screen for the best experience</p></div>
     <button onclick="installApp()">Install</button>
   </div>
 
@@ -418,29 +435,27 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     <button class="quick o" onclick="openModal('diary')"><i class="fas fa-book-open"></i> <span data-t="diary">Diary</span></button>
     <button class="quick pk" onclick="openModal('marks')"><i class="fas fa-star"></i> <span data-t="marks">Marks</span></button>
   </div>
-  <div class="sec-head"><h3><i class="fas fa-chart-line"></i> <span data-t="weekly_attendance">Weekly Attendance</span></h3><span class="link" onclick="switchPage('reports')"><i class="fas fa-file-alt"></i> <span data-t="reports">Reports</span></span></div>
-  <div class="card">
-    <div class="chart-container" id="weekly-chart"></div>
-  </div>
+  <div class="sec-head"><h3><i class="fas fa-chart-line"></i> <span data-t="weekly_attendance">Weekly Attendance</span></h3><span class="link blink" onclick="switchPage('reports')"><i class="fas fa-file-alt"></i> <span data-t="reports">Reports</span></span></div>
+  <div class="card"><div class="chart-container" id="weekly-chart"></div></div>
   <div class="sec-head"><h3><i class="fas fa-clock"></i> <span data-t="recent">Recent Activity</span></h3></div>
   <div id="recent"></div>
 </div>
 
 <!-- CLASSES -->
 <div class="page" id="pg-classes">
-  <div class="sec-head"><h3><i class="fas fa-users"></i> <span data-t="my_classes">My Classes</span></h3><button class="link" onclick="openModal('class')"><i class="fas fa-plus"></i> <span data-t="add_class">Add Class</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-users"></i> <span data-t="my_classes">My Classes</span></h3><button class="link blink" onclick="openModal('class')"><i class="fas fa-plus"></i> <span data-t="add_class">Add Class</span></button></div>
   <div id="list-classes"></div>
 </div>
 
 <!-- STUDENTS -->
 <div class="page" id="pg-students">
-  <div class="sec-head"><h3><i class="fas fa-user-graduate"></i> <span data-t="all_students">All Students</span></h3><button class="link" onclick="openModal('student')"><i class="fas fa-plus"></i> <span data-t="add_student">Add Student</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-user-graduate"></i> <span data-t="all_students">All Students</span></h3><button class="link blink" onclick="openModal('student')"><i class="fas fa-plus"></i> <span data-t="add_student">Add Student</span></button></div>
   <div id="list-students"></div>
 </div>
 
 <!-- ATTENDANCE -->
 <div class="page" id="pg-attendance">
-  <div class="sec-head"><h3><i class="fas fa-user-check"></i> <span data-t="attendance">Attendance</span></h3><span class="link" onclick="switchPage('reports')"><i class="fas fa-chart-pie"></i> <span data-t="reports">Reports</span></span></div>
+  <div class="sec-head"><h3><i class="fas fa-user-check"></i> <span data-t="attendance">Attendance</span></h3><span class="link blink" onclick="switchPage('reports')"><i class="fas fa-chart-pie"></i> <span data-t="reports">Reports</span></span></div>
   <div class="card mb-3">
     <div class="flex gap-2 items-center">
       <input type="date" id="att-date" class="inp" style="flex:1;" onchange="renderAttendance()">
@@ -452,105 +467,99 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 
 <!-- DIARY -->
 <div class="page" id="pg-diary">
-  <div class="sec-head"><h3><i class="fas fa-book"></i> <span data-t="diary">Diary</span></h3><button class="link" onclick="openModal('diary')"><i class="fas fa-plus"></i> <span data-t="new_entry">New Entry</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-book"></i> <span data-t="diary">Diary</span></h3><button class="link blink" onclick="openModal('diary')"><i class="fas fa-plus"></i> <span data-t="new_entry">New Entry</span></button></div>
   <div id="list-diary"></div>
 </div>
 
 <!-- MARKS -->
 <div class="page" id="pg-marks">
-  <div class="sec-head"><h3><i class="fas fa-star"></i> <span data-t="marks">Marks</span></h3><button class="link" onclick="openModal('marks')"><i class="fas fa-plus"></i> <span data-t="add_marks">Add Marks</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-star"></i> <span data-t="marks">Marks</span></h3><button class="link blink" onclick="openModal('marks')"><i class="fas fa-plus"></i> <span data-t="add_marks">Add Marks</span></button></div>
   <div id="list-marks"></div>
 </div>
 
 <!-- HOMEWORK -->
 <div class="page" id="pg-homework">
-  <div class="sec-head"><h3><i class="fas fa-pencil-alt"></i> <span data-t="homework">Homework</span></h3><button class="link" onclick="openModal('homework')"><i class="fas fa-plus"></i> <span data-t="new_hw">New HW</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-pencil-alt"></i> <span data-t="homework">Homework</span></h3><button class="link blink" onclick="openModal('homework')"><i class="fas fa-plus"></i> <span data-t="new_hw">New HW</span></button></div>
   <div id="list-hw"></div>
 </div>
 
 <!-- TIMETABLE -->
 <div class="page" id="pg-timetable">
-  <div class="sec-head"><h3><i class="fas fa-calendar-alt"></i> <span data-t="timetable">Timetable</span></h3><button class="link" onclick="openModal('period')"><i class="fas fa-plus"></i> <span data-t="add_period">Add Period</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-calendar-alt"></i> <span data-t="timetable">Timetable</span></h3><button class="link blink" onclick="openModal('period')"><i class="fas fa-plus"></i> <span data-t="add_period">Add Period</span></button></div>
   <div class="tt-grid" id="tt-days"></div>
   <div id="list-periods"></div>
 </div>
 
 <!-- FEES -->
 <div class="page" id="pg-fees">
-  <div class="sec-head"><h3><i class="fas fa-file-invoice-dollar"></i> <span data-t="fee_tracker">Fee Tracker</span></h3><button class="link" onclick="openModal('fee')"><i class="fas fa-plus"></i> <span data-t="add_fee">Add Fee</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-file-invoice-dollar"></i> <span data-t="fee_tracker">Fee Tracker</span></h3><button class="link blink" onclick="openModal('fee')"><i class="fas fa-plus"></i> <span data-t="add_fee">Add Fee</span></button></div>
   <div id="list-fees"></div>
 </div>
 
 <!-- EXAMS -->
 <div class="page" id="pg-exams">
-  <div class="sec-head"><h3><i class="fas fa-file-alt"></i> <span data-t="exams">Exams</span></h3><button class="link" onclick="openModal('exam')"><i class="fas fa-plus"></i> <span data-t="add_exam">Add Exam</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-file-alt"></i> <span data-t="exams">Exams</span></h3><button class="link blink" onclick="openModal('exam')"><i class="fas fa-plus"></i> <span data-t="add_exam">Add Exam</span></button></div>
   <div id="list-exams"></div>
 </div>
 
 <!-- LESSONS -->
 <div class="page" id="pg-lessons">
-  <div class="sec-head"><h3><i class="fas fa-chalkboard"></i> <span data-t="lessons">Lesson Plans</span></h3><button class="link" onclick="openModal('lesson')"><i class="fas fa-plus"></i> <span data-t="add_lesson">Add Lesson</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-chalkboard"></i> <span data-t="lessons">Lesson Plans</span></h3><button class="link blink" onclick="openModal('lesson')"><i class="fas fa-plus"></i> <span data-t="add_lesson">Add Lesson</span></button></div>
   <div id="list-lessons"></div>
 </div>
 
 <!-- REMINDERS -->
 <div class="page" id="pg-reminders">
-  <div class="sec-head"><h3><i class="fas fa-bell"></i> <span data-t="reminders">Reminders</span></h3><button class="link" onclick="openModal('reminder')"><i class="fas fa-plus"></i> <span data-t="add_reminder">Add Reminder</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-bell"></i> <span data-t="reminders">Reminders</span></h3><button class="link blink" onclick="openModal('reminder')"><i class="fas fa-plus"></i> <span data-t="add_reminder">Add Reminder</span></button></div>
   <div id="list-reminders"></div>
 </div>
 
 <!-- HOLIDAYS -->
 <div class="page" id="pg-holidays">
-  <div class="sec-head"><h3><i class="fas fa-umbrella-beach"></i> <span data-t="holidays">Holidays</span></h3><button class="link" onclick="openModal('holiday')"><i class="fas fa-plus"></i> <span data-t="add_holiday">Add Holiday</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-umbrella-beach"></i> <span data-t="holidays">Holidays</span></h3><button class="link blink" onclick="openModal('holiday')"><i class="fas fa-plus"></i> <span data-t="add_holiday">Add Holiday</span></button></div>
   <div id="list-holidays"></div>
 </div>
 
-<!-- SYLLABUS (NEW) -->
+<!-- SYLLABUS -->
 <div class="page" id="pg-syllabus">
-  <div class="sec-head"><h3><i class="fas fa-book-reader"></i> <span data-t="syllabus">Syllabus Tracker</span></h3><button class="link" onclick="openModal('syllabus')"><i class="fas fa-plus"></i> <span data-t="add_syllabus">Add Chapter</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-book-reader"></i> <span data-t="syllabus">Syllabus Tracker</span></h3><button class="link blink" onclick="openModal('syllabus')"><i class="fas fa-plus"></i> <span data-t="add_syllabus">Add Chapter</span></button></div>
   <div id="list-syllabus"></div>
 </div>
 
-<!-- TO-DO (NEW) -->
+<!-- TO-DO -->
 <div class="page" id="pg-todo">
-  <div class="sec-head"><h3><i class="fas fa-tasks"></i> <span data-t="todo">To-Do List</span></h3><button class="link" onclick="openModal('todo')"><i class="fas fa-plus"></i> <span data-t="add_todo">Add Task</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-tasks"></i> <span data-t="todo">To-Do List</span></h3><button class="link blink" onclick="openModal('todo')"><i class="fas fa-plus"></i> <span data-t="add_todo">Add Task</span></button></div>
   <div id="list-todo"></div>
 </div>
 
-<!-- SEATING PLAN (NEW) -->
+<!-- SEATING -->
 <div class="page" id="pg-seating">
-  <div class="sec-head"><h3><i class="fas fa-chair"></i> <span data-t="seating">Seating Plan</span></h3><button class="link" onclick="openModal('seating')"><i class="fas fa-plus"></i> <span data-t="add_seat">Assign Seat</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-chair"></i> <span data-t="seating">Seating Plan</span></h3><button class="link blink" onclick="openModal('seating')"><i class="fas fa-plus"></i> <span data-t="add_seat">Assign Seat</span></button></div>
   <div id="list-seating"></div>
 </div>
 
 <!-- NOTES -->
 <div class="page" id="pg-notes">
-  <div class="sec-head"><h3><i class="fas fa-sticky-note"></i> <span data-t="notes">Notes</span></h3><button class="link" onclick="openModal('note')"><i class="fas fa-plus"></i> <span data-t="new_note">New Note</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-sticky-note"></i> <span data-t="notes">Notes</span></h3><button class="link blink" onclick="openModal('note')"><i class="fas fa-plus"></i> <span data-t="new_note">New Note</span></button></div>
   <div id="list-notes"></div>
 </div>
 
 <!-- REPORTS -->
 <div class="page" id="pg-reports">
-  <div class="sec-head"><h3><i class="fas fa-chart-bar"></i> <span data-t="reports">Reports</span></h3><button class="link" onclick="window.print()"><i class="fas fa-print"></i> <span data-t="print">Print</span></button></div>
-  <div class="card mb-3">
-    <div class="card-h"><h4><i class="fas fa-user-check"></i> <span data-t="attendance_summary">Attendance Summary</span></h4></div>
-    <div id="rep-att"></div>
-  </div>
-  <div class="card mb-3">
-    <div class="card-h"><h4><i class="fas fa-star"></i> <span data-t="marks_summary">Marks Summary</span></h4></div>
-    <div id="rep-marks"></div>
-  </div>
+  <div class="sec-head"><h3><i class="fas fa-chart-bar"></i> <span data-t="reports">Reports</span></h3><button class="link blink" onclick="window.print()"><i class="fas fa-print"></i> <span data-t="print">Print</span></button></div>
+  <div class="card mb-3"><div class="card-h"><h4><i class="fas fa-user-check"></i> <span data-t="attendance_summary">Attendance Summary</span></h4></div><div id="rep-att"></div></div>
+  <div class="card mb-3"><div class="card-h"><h4><i class="fas fa-star"></i> <span data-t="marks_summary">Marks Summary</span></h4></div><div id="rep-marks"></div></div>
 </div>
 
 <!-- MORE -->
 <div class="page" id="pg-more">
   <div class="sec-head"><h3><i class="fas fa-th-large"></i> <span data-t="all_features">All Features</span></h3></div>
-  <div class="grid-2" id="more-grid"></div>
+  <div class="more-grid" id="more-grid"></div>
   <div class="sec-head"><h3><i class="fas fa-info-circle"></i> <span data-t="about">About</span></h3></div>
   <div class="card text-center" style="padding:24px 18px;">
     <div style="width:76px;height:76px;border-radius:22px;background:linear-gradient(135deg,#FF9933,#138808);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px;box-shadow:0 10px 24px rgba(255,153,51,.4);"><i class="fas fa-graduation-cap"></i></div>
     <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;">AcharyaOS Pro</h3>
-    <p style="font-size:.78rem;color:var(--text-3);font-weight:600;">Version 7.0.0</p>
+    <p style="font-size:.78rem;color:var(--text-3);font-weight:600;">Version 8.0.0</p>
     <p style="font-size:.82rem;color:var(--text-2);margin-top:14px;line-height:1.6;" data-t="about_desc">A professional digital assistant for Indian teachers.</p>
     <p style="font-size:.72rem;color:var(--text-3);margin-top:12px;">Made with ❤️ in India 🇮🇳</p>
   </div>
@@ -602,7 +611,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     </div>
     <div class="set-row" onclick="showAbout()">
       <div class="set-ic"><i class="fas fa-info-circle"></i></div>
-      <div class="set-body"><h4 data-t="about">About</h4><p>Version 7.0.0</p></div>
+      <div class="set-body"><h4 data-t="about">About</h4><p>Version 8.0.0</p></div>
       <i class="fas fa-chevron-right set-arrow"></i>
     </div>
   </div>
@@ -663,99 +672,56 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 <div class="toast-wrap" id="toasts"></div>
 
 <script>
-/* ============ LANGUAGES ============ */
 const LANGS = [
-  {code:'hi',name:'Hindi',native:'हिन्दी',num:'01'},
-  {code:'en',name:'English',native:'English',num:'02'},
-  {code:'bn',name:'Bengali',native:'বাংলা',num:'03'},
-  {code:'mr',name:'Marathi',native:'मराठी',num:'04'},
-  {code:'te',name:'Telugu',native:'తెలుగు',num:'05'},
-  {code:'ta',name:'Tamil',native:'தமிழ்',num:'06'},
-  {code:'gu',name:'Gujarati',native:'ગુજરાતી',num:'07'},
-  {code:'ur',name:'Urdu',native:'اردو',num:'08'},
-  {code:'kn',name:'Kannada',native:'ಕನ್ನಡ',num:'09'},
-  {code:'or',name:'Odia',native:'ଓଡ଼ିଆ',num:'10'},
-  {code:'ml',name:'Malayalam',native:'മലയാളം',num:'11'},
-  {code:'pa',name:'Punjabi',native:'ਪੰਜਾਬੀ',num:'12'},
-  {code:'as',name:'Assamese',native:'অসমীয়া',num:'13'},
-  {code:'ne',name:'Nepali',native:'नेपाली',num:'14'}
+  {code:'hi',name:'Hindi',native:'हिन्दी',num:'01'},{code:'en',name:'English',native:'English',num:'02'},
+  {code:'bn',name:'Bengali',native:'বাংলা',num:'03'},{code:'mr',name:'Marathi',native:'मराठी',num:'04'},
+  {code:'te',name:'Telugu',native:'తెలుగు',num:'05'},{code:'ta',name:'Tamil',native:'தமிழ்',num:'06'},
+  {code:'gu',name:'Gujarati',native:'ગુજરાતી',num:'07'},{code:'ur',name:'Urdu',native:'اردو',num:'08'},
+  {code:'kn',name:'Kannada',native:'ಕನ್ನಡ',num:'09'},{code:'or',name:'Odia',native:'ଓଡ଼ିଆ',num:'10'},
+  {code:'ml',name:'Malayalam',native:'മലയാളം',num:'11'},{code:'pa',name:'Punjabi',native:'ਪੰਜਾਬੀ',num:'12'},
+  {code:'as',name:'Assamese',native:'অসমীয়া',num:'13'},{code:'ne',name:'Nepali',native:'नेपाली',num:'14'}
 ];
 
-/* ============ I18N (Extended) ============ */
 const T = {
-  hi: {home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'आपकी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',all_features:'सभी फीचर्स',about:'ऐप के बारे में',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',empty_exam:'कोई परीक्षा नहीं',empty_lesson:'कोई पाठ नहीं',empty_rem:'कोई रिमाइंडर नहीं',empty_hol:'कोई छुट्टी नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',mark:'उपस्थिति',subject_lbl:'विषय',fees:'फीस',fee_tracker:'फीस ट्रैकर',add_fee:'फीस जोड़ें',paid:'जमा',unpaid:'बकाया',month:'महीना',amount:'रकम',status:'स्थिति',student_profile:'स्टूडेंट प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'मार्क्स हिस्ट्री',install_app:'ऐप इंस्टॉल करें',install_desc:'होम स्क्रीन पर AcharyaOS जोड़ें',install_success:'ऐप इंस्टॉल हो गया!',install_already:'ऐप पहले से इंस्टॉल है या ब्राउज़र सपोर्ट नहीं करता।',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lessons:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',syllabus:'पाठ्यक्रम ट्रैकर',add_syllabus:'अध्याय जोड़ें',chapter:'अध्याय',completed:'पूरा हुआ',pending:'बाकी',todo:'कार्य सूची',add_todo:'कार्य जोड़ें',task:'कार्य',priority:'प्राथमिकता',high:'उच्च',medium:'मध्यम',low:'निम्न',seating:'बैठने की व्यवस्था',add_seat:'सीट असाइन करें',seat_no:'सीट नंबर',row:'पंक्ति',col:'स्तंभ'},
-  en: {home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',all_features:'All Features',about:'About',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap the button above to add your first class.',empty_students:'No Students',empty_students_d:'Tap the button above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',empty_exam:'No Exams',empty_lesson:'No Lessons',empty_rem:'No Reminders',empty_hol:'No Holidays',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',mark:'Mark',subject_lbl:'Subject',fees:'Fees',fee_tracker:'Fee Tracker',add_fee:'Add Fee',paid:'Paid',unpaid:'Unpaid',month:'Month',amount:'Amount',status:'Status',student_profile:'Student Profile',attendance_pct:'Overall Attendance',marks_history:'Marks History',install_app:'Install App',install_desc:'Add AcharyaOS to your home screen',install_success:'App installed successfully!',install_already:'App is already installed or browser does not support auto-install.',exams:'Exams',add_exam:'Add Exam',lessons:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',syllabus:'Syllabus Tracker',add_syllabus:'Add Chapter',chapter:'Chapter',completed:'Completed',pending:'Pending',todo:'To-Do List',add_todo:'Add Task',task:'Task',priority:'Priority',high:'High',medium:'Medium',low:'Low',seating:'Seating Plan',add_seat:'Assign Seat',seat_no:'Seat No.',row:'Row',col:'Column'}
+  hi:{home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'आपकी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',all_features:'सभी फीचर्स',about:'ऐप के बारे में',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',empty_exam:'कोई परीक्षा नहीं',empty_lesson:'कोई पाठ नहीं',empty_rem:'कोई रिमाइंडर नहीं',empty_hol:'कोई छुट्टी नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',mark:'उपस्थिति',subject_lbl:'विषय',fees:'फीस',fee_tracker:'फीस ट्रैकर',add_fee:'फीस जोड़ें',paid:'जमा',unpaid:'बकाया',month:'महीना',amount:'रकम',status:'स्थिति',student_profile:'स्टूडेंट प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'मार्क्स हिस्ट्री',install_app:'ऐप इंस्टॉल करें',install_desc:'होम स्क्रीन पर जोड़ें',install_success:'ऐप इंस्टॉल हो गया!',install_already:'ऐप पहले से इंस्टॉल है या ब्राउज़र सपोर्ट नहीं करता।',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lessons:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',syllabus:'पाठ्यक्रम ट्रैकर',add_syllabus:'अध्याय जोड़ें',chapter:'अध्याय',completed:'पूरा हुआ',pending:'बाकी',todo:'कार्य सूची',add_todo:'कार्य जोड़ें',task:'कार्य',priority:'प्राथमिकता',high:'उच्च',medium:'मध्यम',low:'निम्न',seating:'बैठने की व्यवस्था',add_seat:'सीट असाइन करें',seat_no:'सीट नंबर',row:'पंक्ति',col:'स्तंभ'},
+  en:{home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',all_features:'All Features',about:'About',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap the button above to add your first class.',empty_students:'No Students',empty_students_d:'Tap the button above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',empty_exam:'No Exams',empty_lesson:'No Lessons',empty_rem:'No Reminders',empty_hol:'No Holidays',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',mark:'Mark',subject_lbl:'Subject',fees:'Fees',fee_tracker:'Fee Tracker',add_fee:'Add Fee',paid:'Paid',unpaid:'Unpaid',month:'Month',amount:'Amount',status:'Status',student_profile:'Student Profile',attendance_pct:'Overall Attendance',marks_history:'Marks History',install_app:'Install App',install_desc:'Add to home screen',install_success:'App installed!',install_already:'App already installed or not supported.',exams:'Exams',add_exam:'Add Exam',lessons:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',syllabus:'Syllabus Tracker',add_syllabus:'Add Chapter',chapter:'Chapter',completed:'Completed',pending:'Pending',todo:'To-Do List',add_todo:'Add Task',task:'Task',priority:'Priority',high:'High',medium:'Medium',low:'Low',seating:'Seating Plan',add_seat:'Assign Seat',seat_no:'Seat No.',row:'Row',col:'Column'}
 };
 
 let LANG = localStorage.getItem('aos_lang') || 'hi';
 function t(key) { return (T[LANG] && T[LANG][key]) || T.hi[key] || T.en[key] || key; }
 
-/* ============ SAFE PARSE ============ */
-function safeParse(key, fallback) {
-  try { const val = localStorage.getItem(key); return val ? JSON.parse(val) : fallback; } catch(e) { return fallback; }
-}
+function safeParse(key, fallback) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch(e) { return fallback; } }
 
-/* ============ STATE ============ */
 let S = {
-  profile: safeParse('aos_profile', { name:'', school:'' }),
-  classes: safeParse('aos_classes', []),
-  students: safeParse('aos_students', []),
-  attendance: safeParse('aos_att', {}),
-  diary: safeParse('aos_diary', []),
-  marks: safeParse('aos_marks', []),
-  homework: safeParse('aos_hw', []),
-  periods: safeParse('aos_periods', []),
-  notes: safeParse('aos_notes', []),
-  fees: safeParse('aos_fees', []),
-  exams: safeParse('aos_exams', []),
-  lessons: safeParse('aos_lessons', []),
-  reminders: safeParse('aos_reminders', []),
-  holidays: safeParse('aos_holidays', []),
-  syllabus: safeParse('aos_syllabus', []),
-  todos: safeParse('aos_todos', []),
-  seating: safeParse('aos_seating', [])
+  profile: safeParse('aos_profile',{name:'',school:''}), classes: safeParse('aos_classes',[]), students: safeParse('aos_students',[]),
+  attendance: safeParse('aos_att',{}), diary: safeParse('aos_diary',[]), marks: safeParse('aos_marks',[]),
+  homework: safeParse('aos_hw',[]), periods: safeParse('aos_periods',[]), notes: safeParse('aos_notes',[]),
+  fees: safeParse('aos_fees',[]), exams: safeParse('aos_exams',[]), lessons: safeParse('aos_lessons',[]),
+  reminders: safeParse('aos_reminders',[]), holidays: safeParse('aos_holidays',[]), syllabus: safeParse('aos_syllabus',[]),
+  todos: safeParse('aos_todos',[]), seating: safeParse('aos_seating',[])
 };
 function save() { Object.keys(S).forEach(k => localStorage.setItem('aos_' + k, JSON.stringify(S[k]))); }
 
-let currentModal = 'class';
-let currentPage = 'home';
-let selectedDay = 'Monday';
-let deferredPrompt = null;
-
-/* ============ UTIL ============ */
+let currentModal = 'class', currentPage = 'home', selectedDay = 'Monday', deferredPrompt = null;
 function $(id) { return document.getElementById(id); }
 function val(id) { const e = $(id); return e ? e.value.trim() : ''; }
 
-/* ============ PWA INSTALL ============ */
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault(); deferredPrompt = e;
-  const banner = $('install-banner'); if (banner) banner.style.display = 'flex';
-});
+window.addEventListener('beforeinstallprompt',(e) => { e.preventDefault(); deferredPrompt = e; const b = $('install-banner'); if (b) b.style.display = 'flex'; });
 function installApp() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((r) => {
-      if (r.outcome === 'accepted') toast(t('install_success'), 'AcharyaOS added to home screen', 'ok');
-      deferredPrompt = null; const banner = $('install-banner'); if (banner) banner.style.display = 'none';
-    });
-  } else { toast(t('install_app'), t('install_already'), 'info'); }
+  if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.then((r) => { if (r.outcome === 'accepted') toast(t('install_success'),'','ok'); deferredPrompt = null; const b = $('install-banner'); if (b) b.style.display = 'none'; }); }
+  else toast(t('install_app'), t('install_already'), 'info');
 }
 
-/* ============ TOAST ============ */
 function toast(title, msg, type) {
-  type = type || 'info';
-  const icons = { ok:'fa-check', err:'fa-times', warn:'fa-exclamation', info:'fa-info' };
+  type = type || 'info'; const icons = {ok:'fa-check',err:'fa-times',warn:'fa-exclamation',info:'fa-info'};
   const e = document.createElement('div'); e.className = 'toast ' + type;
   e.innerHTML = `<div class="toast-icon"><i class="fas ${icons[type]}"></i></div><div class="toast-body"><h5>${title}</h5>${msg ? '<p>'+msg+'</p>' : ''}</div>`;
-  $('toasts').appendChild(e);
-  setTimeout(() => { e.classList.add('out'); setTimeout(() => e.remove(), 300); }, 2600);
+  $('toasts').appendChild(e); setTimeout(() => { e.classList.add('out'); setTimeout(() => e.remove(), 300); }, 2600);
 }
 
-/* ============ DIALOG ============ */
 let dCB = null;
 function confirmD(title, desc, cb, type) {
-  type = type || 'err';
-  const icons = { err:'fa-exclamation-triangle', warn:'fa-exclamation-circle', info:'fa-question-circle' };
+  type = type || 'err'; const icons = {err:'fa-exclamation-triangle',warn:'fa-exclamation-circle',info:'fa-question-circle'};
   $('d-title').innerText = title; $('d-desc').innerText = desc;
   $('d-icon').className = 'dialog-icon ' + (type === 'warn' ? 'warn' : type === 'info' ? 'info' : '');
   $('d-icon').innerHTML = `<i class="fas ${icons[type]}"></i>`; dCB = cb; $('dialog').classList.add('open');
@@ -763,10 +729,9 @@ function confirmD(title, desc, cb, type) {
 function closeDialog() { $('dialog').classList.remove('open'); dCB = null; }
 $('d-confirm').addEventListener('click', () => { if (dCB) dCB(); closeDialog(); });
 
-/* ============ LANGUAGE ============ */
 function renderLangList() {
   $('lang-list').innerHTML = LANGS.map(l => `
-    <div class="li" style="cursor:pointer; ${l.code === LANG ? 'border-color:var(--primary);background:rgba(255,153,51,.04);' : ''}" onclick="selectLang('${l.code}')">
+    <div class="li" style="cursor:pointer; ${l.code === LANG ? 'border-color:var(--primary);background:rgba(255,153,51,.05);' : ''}" onclick="selectLang('${l.code}')">
       <div class="li-icon" style="width:40px;height:40px;font-size:.75rem;font-weight:800;">${l.num}</div>
       <div class="li-body"><h4>${l.native}</h4><p>${l.name}</p></div>
       ${l.code === LANG ? '<i class="fas fa-check-circle" style="color:var(--primary);"></i>' : ''}
@@ -774,23 +739,15 @@ function renderLangList() {
 }
 function openLangModal() { renderLangList(); $('lang-modal').classList.add('open'); }
 function closeLangModal() { $('lang-modal').classList.remove('open'); }
-function selectLang(code) {
-  LANG = code; localStorage.setItem('aos_lang', code); closeLangModal(); applyI18n();
-  toast(t('saved'), LANGS.find(l => l.code === code).native, 'ok');
-}
+function selectLang(code) { LANG = code; localStorage.setItem('aos_lang', code); closeLangModal(); applyI18n(); toast(t('saved'), LANGS.find(l => l.code === code).native, 'ok'); }
 
-/* ============ I18N ============ */
 function applyI18n() {
   document.querySelectorAll('[data-t]').forEach(e => { e.innerText = t(e.dataset.t); });
-  document.querySelectorAll('.nav-btn').forEach(b => {
-    const k = b.dataset.page === 'home' ? 'home' : b.dataset.page === 'classes' ? 'classes' : b.dataset.page === 'attendance' ? 'attend' : b.dataset.page === 'diary' ? 'diary' : 'more';
-    const s = b.querySelector('span'); if (s) s.innerText = t(k);
-  });
+  document.querySelectorAll('.nav-btn').forEach(b => { const k = b.dataset.page === 'home' ? 'home' : b.dataset.page === 'classes' ? 'classes' : b.dataset.page === 'attendance' ? 'attend' : b.dataset.page === 'diary' ? 'diary' : 'more'; const s = b.querySelector('span'); if (s) s.innerText = t(k); });
   $('lang-sub').innerText = LANGS.find(l => l.code === LANG).native;
   updateGreet(); renderAll();
 }
 
-/* ============ THEME ============ */
 function toggleTheme() {
   const h = document.documentElement; const b = $('theme-btn');
   if (h.getAttribute('data-theme') === 'dark') { h.removeAttribute('data-theme'); b.innerHTML = '<i class="fas fa-moon"></i>'; localStorage.setItem('aos_theme','light'); }
@@ -798,7 +755,6 @@ function toggleTheme() {
 }
 if (localStorage.getItem('aos_theme') === 'dark') { document.documentElement.setAttribute('data-theme','dark'); $('theme-btn').innerHTML = '<i class="fas fa-sun"></i>'; }
 
-/* ============ NAVIGATION ============ */
 function switchPage(p, btn) {
   currentPage = p;
   document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
@@ -808,13 +764,11 @@ function switchPage(p, btn) {
   else { const nb = document.querySelector(`.nav-btn[data-page="${p}"]`); if (nb) nb.classList.add('active'); }
   window.scrollTo({ top:0, behavior:'smooth' }); renderAll();
 }
-
 function smartFab() {
-  const map = { home:'class', classes:'class', students:'student', attendance:'student', diary:'diary', marks:'marks', homework:'homework', timetable:'period', fees:'fee', exams:'exam', lessons:'lesson', reminders:'reminder', holidays:'holiday', notes:'note', syllabus:'syllabus', todo:'todo', seating:'seating' };
+  const map = {home:'class',classes:'class',students:'student',attendance:'student',diary:'diary',marks:'marks',homework:'homework',timetable:'period',fees:'fee',exams:'exam',lessons:'lesson',reminders:'reminder',holidays:'holiday',notes:'note',syllabus:'syllabus',todo:'todo',seating:'seating'};
   openModal(map[currentPage] || 'class');
 }
 
-/* ============ STUDENT PROFILE ============ */
 function openStudentProfile(id) {
   const s = S.students.find(x => x.id === id); if (!s) return;
   let totalDays = 0, presentDays = 0;
@@ -823,7 +777,7 @@ function openStudentProfile(id) {
   const attCls = attPct >= 75 ? 'g' : attPct >= 50 ? 'o' : 'r';
   const studentMarks = S.marks.filter(m => m.name === s.name);
   $('pm-name').innerText = s.name; $('pm-sub').innerText = `${t('roll')}: ${s.roll || '-'} • ${s.cls || ''}`;
-  let marksHtml = studentMarks.length === 0 ? `<p style="font-size:.8rem;color:var(--text-3);text-align:center;padding:10px 0;">${t('marks_history')}: —</p>` : 
+  let marksHtml = studentMarks.length === 0 ? `<p style="font-size:.8rem;color:var(--text-3);text-align:center;padding:10px 0;">${t('marks_history')}: —</p>` :
     studentMarks.map(m => { const pct = Math.round((m.score / m.total) * 100); const cls = pct >= 75 ? 'g' : pct >= 40 ? 'o' : 'r';
       return `<div class="li" style="margin-bottom:8px;padding:10px;"><div class="li-body"><h4>${m.exam || t('exam')} <span style="font-size:.7rem;font-weight:500;color:var(--text-3);">${m.subject || ''}</span></h4><div class="li-meta"><span class="li-chip ${cls}">${m.score}/${m.total} • ${pct}%</span></div></div></div>`; }).join('');
   $('pm-content').innerHTML = `
@@ -834,7 +788,7 @@ function openStudentProfile(id) {
     </div>
     <div class="card" style="margin-bottom:14px;background:var(--bg-2);">
       <div class="flex justify-between items-center">
-        <div><p style="font-size:.68rem;color:var(--text-3);font-weight:700;">${t('phone')}</p><p style="font-size:.85rem;font-weight:700;color:var(--text-1);">${s.phone || '—'}</p></div>
+        <div><p style="font-size:.68rem;color:var(--text-3);font-weight:700;">${t('phone')}</p><p style="font-size:.85rem;font-weight:700;">${s.phone || '—'}</p></div>
         ${s.phone ? `<a href="https://wa.me/91${s.phone}" target="_blank" class="btn g sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>` : ''}
       </div>
     </div>
@@ -843,188 +797,65 @@ function openStudentProfile(id) {
 }
 function closeProfileModal() { $('profile-modal').classList.remove('open'); }
 
-/* ============ MODAL ============ */
 function openModal(type) {
   currentModal = type; const fields = $('m-fields'); let html = ''; const tt = (key) => t(key);
-  const titleMap = { class:'add_class', student:'add_student', diary:'new_entry', marks:'add_marks', homework:'new_hw', period:'add_period', note:'new_note', profile:'profile', fee:'add_fee', exam:'add_exam', lesson:'add_lesson', reminder:'add_reminder', holiday:'add_holiday', syllabus:'add_syllabus', todo:'add_todo', seating:'add_seat' };
+  const titleMap = {class:'add_class',student:'add_student',diary:'new_entry',marks:'add_marks',homework:'new_hw',period:'add_period',note:'new_note',profile:'profile',fee:'add_fee',exam:'add_exam',lesson:'add_lesson',reminder:'add_reminder',holiday:'add_holiday',syllabus:'add_syllabus',todo:'add_todo',seating:'add_seat'};
   $('m-title').innerText = tt(titleMap[type] || 'add');
 
-  if (type === 'class') {
-    html = `<div class="field"><label>${tt('name')} <span class="req">*</span></label><input type="text" id="f-name" class="inp" placeholder="Class 10 - A"></div>
-      <div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp" placeholder="Mathematics"></div>
-      <div class="field"><label>${tt('room')}</label><input type="text" id="f-room" class="inp" placeholder="Room 204"></div>`;
-  } else if (type === 'student') {
-    const opts = S.classes.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
-    html = `<div class="field"><label>${tt('name')} <span class="req">*</span></label><input type="text" id="f-name" class="inp" placeholder="Rahul Sharma"></div>
-      <div class="field"><label>${tt('roll')}</label><input type="text" id="f-roll" class="inp" placeholder="01"></div>
-      <div class="field"><label>${tt('select_class')}</label><select id="f-cls" class="sel"><option value="">-- ${tt('select_class')} --</option>${opts}</select></div>
-      <div class="field"><label>${tt('phone')}</label><input type="tel" id="f-ph" class="inp" placeholder="9876543210"></div>`;
-  } else if (type === 'diary') {
-    html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 5 - Trigonometry"></div>
-      <div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa" placeholder="Today's topic..."></textarea></div>
-      <div class="field"><label>${tt('hw')}</label><input type="text" id="f-hw" class="inp" placeholder="Exercise 5.2 Q1-10"></div>`;
-  } else if (type === 'marks') {
-    const opts = S.students.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
-    html = `<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${opts}</select></div>
-      <div class="field"><label>${tt('exam')}</label><input type="text" id="f-exam" class="inp" placeholder="Unit Test 1"></div>
-      <div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp" placeholder="Maths"></div>
-      <div class="grid-2">
-        <div class="field"><label>${tt('score')} <span class="req">*</span></label><input type="number" id="f-score" class="inp" placeholder="85"></div>
-        <div class="field"><label>${tt('total')}</label><input type="number" id="f-total" class="inp" placeholder="100"></div>
-      </div>`;
-  } else if (type === 'homework') {
-    html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Maths Worksheet 5"></div>
-      <div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>
-      <div class="grid-2">
-        <div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp"></div>
-        <div class="field"><label>${tt('due')}</label><input type="date" id="f-due" class="inp"></div>
-      </div>`;
-  } else if (type === 'period') {
-    html = `<div class="field"><label>${tt('day')}</label><select id="f-day" class="sel"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select></div>
-      <div class="grid-2">
-        <div class="field"><label>${tt('time')} <span class="req">*</span></label><input type="text" id="f-time" class="inp" placeholder="09:00"></div>
-        <div class="field"><label>${tt('subject')} <span class="req">*</span></label><input type="text" id="f-sub" class="inp" placeholder="Maths"></div>
-      </div>
-      <div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp" placeholder="Class 10 - A"></div>`;
-  } else if (type === 'note') {
-    html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp"></div>
-      <div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>`;
-  } else if (type === 'profile') {
-    html = `<div class="field"><label>${tt('name')}</label><input type="text" id="f-name" class="inp" value="${S.profile.name}" placeholder="Your Name"></div>
-      <div class="field"><label>${tt('school')}</label><input type="text" id="f-school" class="inp" value="${S.profile.school}" placeholder="School Name"></div>`;
-  } else if (type === 'fee') {
-    const opts = S.students.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
-    html = `<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${opts}</select></div>
-      <div class="grid-2">
-        <div class="field"><label>${tt('month')} <span class="req">*</span></label><input type="month" id="f-month" class="inp" value="${new Date().toISOString().slice(0,7)}"></div>
-        <div class="field"><label>${tt('amount')} <span class="req">*</span></label><input type="number" id="f-amount" class="inp" placeholder="500"></div>
-      </div>
-      <div class="field"><label>${tt('status')}</label><select id="f-status" class="sel"><option value="Paid">${tt('paid')}</option><option value="Unpaid">${tt('unpaid')}</option></select></div>`;
-  } else if (type === 'exam') {
-    html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Half Yearly Exam"></div>
-      <div class="grid-2">
-        <div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div>
-        <div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp"></div>
-      </div>
-      <div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp"></div>`;
-  } else if (type === 'lesson') {
-    html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 5 - Trigonometry"></div>
-      <div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp"></div>
-      <div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa" placeholder="Objectives, resources, activities..."></textarea></div>`;
-  } else if (type === 'reminder') {
-    html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Parent-Teacher Meeting"></div>
-      <div class="field"><label>${tt('date')}</label><input type="datetime-local" id="f-date" class="inp"></div>
-      <div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>`;
-  } else if (type === 'holiday') {
-    html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Independence Day"></div>
-      <div class="grid-2">
-        <div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div>
-        <div class="field"><label>To</label><input type="date" id="f-date2" class="inp"></div>
-      </div>`;
-  } else if (type === 'syllabus') {
-    html = `<div class="field"><label>${tt('subject')} <span class="req">*</span></label><input type="text" id="f-sub" class="inp" placeholder="Mathematics"></div>
-      <div class="field"><label>${tt('chapter')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 1: Real Numbers"></div>
-      <div class="grid-2">
-        <div class="field"><label>Total</label><input type="number" id="f-total" class="inp" value="1"></div>
-        <div class="field"><label>${tt('completed')}</label><input type="number" id="f-done" class="inp" value="0"></div>
-      </div>`;
-  } else if (type === 'todo') {
-    html = `<div class="field"><label>${tt('task')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Check homework copies"></div>
-      <div class="field"><label>${tt('priority')}</label><select id="f-priority" class="sel"><option value="High">${tt('high')}</option><option value="Medium">${tt('medium')}</option><option value="Low">${tt('low')}</option></select></div>
-      <div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div>`;
-  } else if (type === 'seating') {
-    const opts = S.students.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
-    html = `<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${opts}</select></div>
-      <div class="grid-2">
-        <div class="field"><label>${tt('row')}</label><input type="number" id="f-row" class="inp" placeholder="1"></div>
-        <div class="field"><label>${tt('col')}</label><input type="number" id="f-col" class="inp" placeholder="1"></div>
-      </div>`;
-  }
+  if (type === 'class') html = `<div class="field"><label>${tt('name')} <span class="req">*</span></label><input type="text" id="f-name" class="inp" placeholder="Class 10 - A"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp" placeholder="Mathematics"></div><div class="field"><label>${tt('room')}</label><input type="text" id="f-room" class="inp" placeholder="Room 204"></div>`;
+  else if (type === 'student') { const opts = S.classes.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+    html = `<div class="field"><label>${tt('name')} <span class="req">*</span></label><input type="text" id="f-name" class="inp" placeholder="Rahul Sharma"></div><div class="field"><label>${tt('roll')}</label><input type="text" id="f-roll" class="inp" placeholder="01"></div><div class="field"><label>${tt('select_class')}</label><select id="f-cls" class="sel"><option value="">-- ${tt('select_class')} --</option>${opts}</select></div><div class="field"><label>${tt('phone')}</label><input type="tel" id="f-ph" class="inp" placeholder="9876543210"></div>`; }
+  else if (type === 'diary') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 5 - Trigonometry"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa" placeholder="Today's topic..."></textarea></div><div class="field"><label>${tt('hw')}</label><input type="text" id="f-hw" class="inp" placeholder="Exercise 5.2 Q1-10"></div>`;
+  else if (type === 'marks') { const opts = S.students.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
+    html = `<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${opts}</select></div><div class="field"><label>${tt('exam')}</label><input type="text" id="f-exam" class="inp" placeholder="Unit Test 1"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp" placeholder="Maths"></div><div class="grid-2"><div class="field"><label>${tt('score')} <span class="req">*</span></label><input type="number" id="f-score" class="inp" placeholder="85"></div><div class="field"><label>${tt('total')}</label><input type="number" id="f-total" class="inp" placeholder="100"></div></div>`; }
+  else if (type === 'homework') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Maths Worksheet 5"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div><div class="grid-2"><div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp"></div><div class="field"><label>${tt('due')}</label><input type="date" id="f-due" class="inp"></div></div>`;
+  else if (type === 'period') html = `<div class="field"><label>${tt('day')}</label><select id="f-day" class="sel"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select></div><div class="grid-2"><div class="field"><label>${tt('time')} <span class="req">*</span></label><input type="text" id="f-time" class="inp" placeholder="09:00"></div><div class="field"><label>${tt('subject')} <span class="req">*</span></label><input type="text" id="f-sub" class="inp" placeholder="Maths"></div></div><div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp" placeholder="Class 10 - A"></div>`;
+  else if (type === 'note') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>`;
+  else if (type === 'profile') html = `<div class="field"><label>${tt('name')}</label><input type="text" id="f-name" class="inp" value="${S.profile.name}" placeholder="Your Name"></div><div class="field"><label>${tt('school')}</label><input type="text" id="f-school" class="inp" value="${S.profile.school}" placeholder="School Name"></div>`;
+  else if (type === 'fee') { const opts = S.students.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
+    html = `<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${opts}</select></div><div class="grid-2"><div class="field"><label>${tt('month')} <span class="req">*</span></label><input type="month" id="f-month" class="inp" value="${new Date().toISOString().slice(0,7)}"></div><div class="field"><label>${tt('amount')} <span class="req">*</span></label><input type="number" id="f-amount" class="inp" placeholder="500"></div></div><div class="field"><label>${tt('status')}</label><select id="f-status" class="sel"><option value="Paid">${tt('paid')}</option><option value="Unpaid">${tt('unpaid')}</option></select></div>`; }
+  else if (type === 'exam') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Half Yearly Exam"></div><div class="grid-2"><div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp"></div></div><div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp"></div>`;
+  else if (type === 'lesson') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 5 - Trigonometry"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa" placeholder="Objectives, resources, activities..."></textarea></div>`;
+  else if (type === 'reminder') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Parent-Teacher Meeting"></div><div class="field"><label>${tt('date')}</label><input type="datetime-local" id="f-date" class="inp"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>`;
+  else if (type === 'holiday') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Independence Day"></div><div class="grid-2"><div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div><div class="field"><label>To</label><input type="date" id="f-date2" class="inp"></div></div>`;
+  else if (type === 'syllabus') html = `<div class="field"><label>${tt('subject')} <span class="req">*</span></label><input type="text" id="f-sub" class="inp" placeholder="Mathematics"></div><div class="field"><label>${tt('chapter')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 1: Real Numbers"></div><div class="grid-2"><div class="field"><label>Total</label><input type="number" id="f-total" class="inp" value="1"></div><div class="field"><label>${tt('completed')}</label><input type="number" id="f-done" class="inp" value="0"></div></div>`;
+  else if (type === 'todo') html = `<div class="field"><label>${tt('task')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Check homework copies"></div><div class="field"><label>${tt('priority')}</label><select id="f-priority" class="sel"><option value="High">${tt('high')}</option><option value="Medium">${tt('medium')}</option><option value="Low">${tt('low')}</option></select></div><div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div>`;
+  else if (type === 'seating') { const opts = S.students.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
+    html = `<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${opts}</select></div><div class="grid-2"><div class="field"><label>${tt('row')}</label><input type="number" id="f-row" class="inp" placeholder="1"></div><div class="field"><label>${tt('col')}</label><input type="number" id="f-col" class="inp" placeholder="1"></div></div>`; }
   fields.innerHTML = html; $('modal').classList.add('open');
   setTimeout(() => { const f = fields.querySelector('input,select,textarea'); if (f) f.focus(); }, 250);
 }
 function closeModal() { $('modal').classList.remove('open'); }
 
-/* ============ SAVE ============ */
 function saveData() {
   const v = val;
-  if (currentModal === 'class') {
-    if (!v('f-name')) return toast(t('fill_required'), '', 'err');
-    S.classes.push({ id: Date.now(), name: v('f-name'), subject: v('f-sub'), room: v('f-room') });
-    toast(t('saved'), v('f-name'), 'ok');
-  } else if (currentModal === 'student') {
-    if (!v('f-name')) return toast(t('fill_required'), '', 'err');
-    S.students.push({ id: Date.now(), name: v('f-name'), roll: v('f-roll'), cls: v('f-cls'), phone: v('f-ph') });
-    toast(t('saved'), v('f-name'), 'ok');
-  } else if (currentModal === 'diary') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.diary.unshift({ id: Date.now(), title: v('f-title'), desc: v('f-desc'), hw: v('f-hw'), date: new Date().toLocaleDateString() });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'marks') {
-    if (!v('f-name') || !v('f-score')) return toast(t('fill_required'), '', 'err');
-    S.marks.unshift({ id: Date.now(), name: v('f-name'), exam: v('f-exam'), subject: v('f-sub'), score: parseInt(v('f-score')), total: parseInt(v('f-total')) || 100 });
-    toast(t('saved'), v('f-name'), 'ok');
-  } else if (currentModal === 'homework') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.homework.unshift({ id: Date.now(), title: v('f-title'), desc: v('f-desc'), cls: v('f-cls'), due: v('f-due'), done: false });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'period') {
-    if (!v('f-sub') || !v('f-time')) return toast(t('fill_required'), '', 'err');
-    S.periods.push({ id: Date.now(), day: v('f-day'), time: v('f-time'), sub: v('f-sub'), cls: v('f-cls') });
-    toast(t('saved'), v('f-sub'), 'ok');
-  } else if (currentModal === 'note') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.notes.unshift({ id: Date.now(), title: v('f-title'), desc: v('f-desc'), date: new Date().toLocaleDateString() });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'fee') {
-    if (!v('f-name') || !v('f-amount')) return toast(t('fill_required'), '', 'err');
-    S.fees.unshift({ id: Date.now(), name: v('f-name'), month: v('f-month'), amount: parseInt(v('f-amount')), status: v('f-status') });
-    toast(t('saved'), v('f-name'), 'ok');
-  } else if (currentModal === 'exam') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.exams.unshift({ id: Date.now(), title: v('f-title'), date: v('f-date'), sub: v('f-sub'), cls: v('f-cls') });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'lesson') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.lessons.unshift({ id: Date.now(), title: v('f-title'), sub: v('f-sub'), desc: v('f-desc'), date: new Date().toLocaleDateString() });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'reminder') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.reminders.unshift({ id: Date.now(), title: v('f-title'), date: v('f-date'), desc: v('f-desc') });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'holiday') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.holidays.unshift({ id: Date.now(), title: v('f-title'), date: v('f-date'), date2: v('f-date2') });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'syllabus') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.syllabus.unshift({ id: Date.now(), sub: v('f-sub'), title: v('f-title'), total: parseInt(v('f-total')) || 1, done: parseInt(v('f-done')) || 0 });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'todo') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.todos.unshift({ id: Date.now(), title: v('f-title'), priority: v('f-priority'), date: v('f-date'), done: false });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'seating') {
-    if (!v('f-name')) return toast(t('fill_required'), '', 'err');
-    S.seating.push({ id: Date.now(), name: v('f-name'), row: parseInt(v('f-row')) || 1, col: parseInt(v('f-col')) || 1 });
-    toast(t('saved'), v('f-name'), 'ok');
-  } else if (currentModal === 'profile') {
-    S.profile.name = v('f-name') || S.profile.name || 'Teacher'; S.profile.school = v('f-school');
-    toast(t('saved'), '', 'ok');
-  }
+  if (currentModal === 'class') { if (!v('f-name')) return toast(t('fill_required'),'','err'); S.classes.push({id:Date.now(),name:v('f-name'),subject:v('f-sub'),room:v('f-room')}); toast(t('saved'),v('f-name'),'ok'); }
+  else if (currentModal === 'student') { if (!v('f-name')) return toast(t('fill_required'),'','err'); S.students.push({id:Date.now(),name:v('f-name'),roll:v('f-roll'),cls:v('f-cls'),phone:v('f-ph')}); toast(t('saved'),v('f-name'),'ok'); }
+  else if (currentModal === 'diary') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.diary.unshift({id:Date.now(),title:v('f-title'),desc:v('f-desc'),hw:v('f-hw'),date:new Date().toLocaleDateString()}); toast(t('saved'),v('f-title'),'ok'); }
+  else if (currentModal === 'marks') { if (!v('f-name') || !v('f-score')) return toast(t('fill_required'),'','err'); S.marks.unshift({id:Date.now(),name:v('f-name'),exam:v('f-exam'),subject:v('f-sub'),score:parseInt(v('f-score')),total:parseInt(v('f-total')) || 100}); toast(t('saved'),v('f-name'),'ok'); }
+  else if (currentModal === 'homework') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.homework.unshift({id:Date.now(),title:v('f-title'),desc:v('f-desc'),cls:v('f-cls'),due:v('f-due'),done:false}); toast(t('saved'),v('f-title'),'ok'); }
+  else if (currentModal === 'period') { if (!v('f-sub') || !v('f-time')) return toast(t('fill_required'),'','err'); S.periods.push({id:Date.now(),day:v('f-day'),time:v('f-time'),sub:v('f-sub'),cls:v('f-cls')}); toast(t('saved'),v('f-sub'),'ok'); }
+  else if (currentModal === 'note') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.notes.unshift({id:Date.now(),title:v('f-title'),desc:v('f-desc'),date:new Date().toLocaleDateString()}); toast(t('saved'),v('f-title'),'ok'); }
+  else if (currentModal === 'fee') { if (!v('f-name') || !v('f-amount')) return toast(t('fill_required'),'','err'); S.fees.unshift({id:Date.now(),name:v('f-name'),month:v('f-month'),amount:parseInt(v('f-amount')),status:v('f-status')}); toast(t('saved'),v('f-name'),'ok'); }
+  else if (currentModal === 'exam') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.exams.unshift({id:Date.now(),title:v('f-title'),date:v('f-date'),sub:v('f-sub'),cls:v('f-cls')}); toast(t('saved'),v('f-title'),'ok'); }
+  else if (currentModal === 'lesson') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.lessons.unshift({id:Date.now(),title:v('f-title'),sub:v('f-sub'),desc:v('f-desc'),date:new Date().toLocaleDateString()}); toast(t('saved'),v('f-title'),'ok'); }
+  else if (currentModal === 'reminder') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.reminders.unshift({id:Date.now(),title:v('f-title'),date:v('f-date'),desc:v('f-desc')}); toast(t('saved'),v('f-title'),'ok'); }
+  else if (currentModal === 'holiday') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.holidays.unshift({id:Date.now(),title:v('f-title'),date:v('f-date'),date2:v('f-date2')}); toast(t('saved'),v('f-title'),'ok'); }
+  else if (currentModal === 'syllabus') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.syllabus.unshift({id:Date.now(),sub:v('f-sub'),title:v('f-title'),total:parseInt(v('f-total')) || 1,done:parseInt(v('f-done')) || 0}); toast(t('saved'),v('f-title'),'ok'); }
+  else if (currentModal === 'todo') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.todos.unshift({id:Date.now(),title:v('f-title'),priority:v('f-priority'),date:v('f-date'),done:false}); toast(t('saved'),v('f-title'),'ok'); }
+  else if (currentModal === 'seating') { if (!v('f-name')) return toast(t('fill_required'),'','err'); S.seating.push({id:Date.now(),name:v('f-name'),row:parseInt(v('f-row')) || 1,col:parseInt(v('f-col')) || 1}); toast(t('saved'),v('f-name'),'ok'); }
+  else if (currentModal === 'profile') { S.profile.name = v('f-name') || S.profile.name || 'Teacher'; S.profile.school = v('f-school'); toast(t('saved'),'','ok'); }
   save(); closeModal(); renderAll();
 }
 
-/* ============ DELETE ============ */
 function del(type, id) {
   confirmD(t('del_confirm'), t('del_desc'), () => {
-    const map = { class:'classes', student:'students', diary:'diary', marks:'marks', homework:'homework', period:'periods', note:'notes', fee:'fees', exam:'exams', lesson:'lessons', reminder:'reminders', holiday:'holidays', syllabus:'syllabus', todo:'todos', seating:'seating' };
+    const map = {class:'classes',student:'students',diary:'diary',marks:'marks',homework:'homework',period:'periods',note:'notes',fee:'fees',exam:'exams',lesson:'lessons',reminder:'reminders',holiday:'holidays',syllabus:'syllabus',todo:'todos',seating:'seating'};
     const k = map[type]; if (k) S[k] = S[k].filter(x => x.id !== id);
-    save(); renderAll(); toast(t('deleted'), '', 'ok');
+    save(); renderAll(); toast(t('deleted'),'','ok');
   });
 }
 
-/* ============ RENDER ALL ============ */
 function renderAll() {
   renderStats(); renderChart(); renderRecent(); renderClasses(); renderStudents(); renderAttendance();
   renderDiary(); renderMarks(); renderHomework(); renderDays(); renderPeriods(); renderNotes();
@@ -1032,7 +863,6 @@ function renderAll() {
   renderSyllabus(); renderTodos(); renderSeating(); renderReports(); renderMore(); renderProfileSub();
 }
 
-/* ============ HOME ============ */
 function renderStats() {
   $('st-classes').innerText = S.classes.length; $('st-students').innerText = S.students.length; $('st-diary').innerText = S.diary.length;
   const today = new Date().toLocaleDateString(); const a = S.attendance[today] || {};
@@ -1044,7 +874,7 @@ function renderStats() {
 function renderChart() {
   const wrap = $('weekly-chart'); const days = ['S','M','T','W','T','F','S']; const data = [];
   for (let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); const a = S.attendance[d.toLocaleDateString()] || {};
-    data.push({ label: days[d.getDay()], value: Object.values(a).filter(v => v === 'P').length }); }
+    data.push({label:days[d.getDay()], value:Object.values(a).filter(v => v === 'P').length}); }
   const max = Math.max(...data.map(d => d.value), 5);
   const bars = data.map(d => { const h = (d.value / max) * 100; const isEmpty = d.value === 0;
     return `<div class="chart-col"><div class="chart-value" style="${isEmpty ? 'opacity:0' : ''}">${d.value}</div><div class="chart-bar ${isEmpty ? 'empty' : ''}" style="height:${Math.max(h, 4)}%"></div><div class="chart-label">${d.label}</div></div>`; }).join('');
@@ -1053,30 +883,27 @@ function renderChart() {
 
 function renderRecent() {
   const e = $('recent'); let items = [];
-  S.diary.slice(0, 2).forEach(d => items.push({ i:'fa-book', c:'', t:d.title, s:t('diary') + ' • ' + d.date, p:'diary' }));
-  S.marks.slice(0, 2).forEach(m => items.push({ i:'fa-star', c:'pk', t:m.name + ' — ' + m.score, s:(m.exam || t('exam')) + ' • ' + (m.subject || ''), p:'marks' }));
-  S.homework.slice(0, 2).forEach(h => items.push({ i:'fa-pencil-alt', c:'o', t:h.title, s:t('homework'), p:'homework' }));
-  S.fees.slice(0, 2).forEach(f => items.push({ i:'fa-file-invoice-dollar', c:'g', t:f.name, s:t('fees') + ' • ' + f.month + ' • ' + (f.status === 'Paid' ? t('paid') : t('unpaid')), p:'fees' }));
+  S.diary.slice(0,2).forEach(d => items.push({i:'fa-book',c:'',t:d.title,s:t('diary')+' • '+d.date,p:'diary'}));
+  S.marks.slice(0,2).forEach(m => items.push({i:'fa-star',c:'pk',t:m.name+' — '+m.score,s:(m.exam || t('exam'))+' • '+(m.subject || ''),p:'marks'}));
+  S.homework.slice(0,2).forEach(h => items.push({i:'fa-pencil-alt',c:'o',t:h.title,s:t('homework'),p:'homework'}));
+  S.fees.slice(0,2).forEach(f => items.push({i:'fa-file-invoice-dollar',c:'g',t:f.name,s:t('fees')+' • '+f.month+' • '+(f.status === 'Paid' ? t('paid') : t('unpaid')),p:'fees'}));
   if (!items.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-seedling"></i></div><h4>${t('recent')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = items.slice(0, 4).map(x => `<div class="li" onclick="switchPage('${x.p}')"><div class="li-icon ${x.c}"><i class="fas ${x.i}"></i></div><div class="li-body"><h4>${x.t}</h4><p>${x.s}</p></div><i class="fas fa-chevron-right li-arrow"></i></div>`).join('');
+  e.innerHTML = items.slice(0,4).map(x => `<div class="li" onclick="switchPage('${x.p}')"><div class="li-icon ${x.c}"><i class="fas ${x.i}"></i></div><div class="li-body"><h4>${x.t}</h4><p>${x.s}</p></div><i class="fas fa-chevron-right li-arrow"></i></div>`).join('');
 }
 
-/* ============ CLASSES ============ */
 function renderClasses() {
   const e = $('list-classes');
   if (!S.classes.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-chalkboard"></i></div><h4>${t('empty_classes')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
   e.innerHTML = S.classes.map(c => { const n = S.students.filter(s => s.cls === c.name).length;
-    return `<div class="li"><div class="li-icon"><i class="fas fa-chalkboard-teacher"></i></div><div class="li-body"><h4>${c.name}</h4><p>${c.subject || ''} ${c.room ? '• ' + c.room : ''}</p><div class="li-meta"><span class="li-chip">${n} ${t('students')}</span></div></div><button onclick="event.stopPropagation();del('class',${c.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`; }).join('');
+    return `<div class="li"><div class="li-icon"><i class="fas fa-chalkboard-teacher"></i></div><div class="li-body"><h4>${c.name}</h4><p>${c.subject || ''} ${c.room ? '• '+c.room : ''}</p><div class="li-meta"><span class="li-chip">${n} ${t('students')}</span></div></div><button onclick="event.stopPropagation();del('class',${c.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`; }).join('');
 }
 
-/* ============ STUDENTS ============ */
 function renderStudents() {
   const e = $('list-students');
   if (!S.students.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-users"></i></div><h4>${t('empty_students')}</h4><p>${t('empty_students_d')}</p></div>`; return; }
-  e.innerHTML = S.students.map(s => `<div class="li" onclick="openStudentProfile(${s.id})" style="cursor:pointer;"><div class="li-icon g">${s.name.charAt(0).toUpperCase()}</div><div class="li-body"><h4>${s.name}</h4><p>${t('roll')}: ${s.roll || '-'} ${s.cls ? '• ' + s.cls : ''}</p>${s.phone ? `<div class="li-meta"><span class="li-chip"><i class="fas fa-phone" style="font-size:.6rem;"></i> ${s.phone}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('student',${s.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+  e.innerHTML = S.students.map(s => `<div class="li" onclick="openStudentProfile(${s.id})" style="cursor:pointer;"><div class="li-icon g">${s.name.charAt(0).toUpperCase()}</div><div class="li-body"><h4>${s.name}</h4><p>${t('roll')}: ${s.roll || '-'} ${s.cls ? '• '+s.cls : ''}</p>${s.phone ? `<div class="li-meta"><span class="li-chip"><i class="fas fa-phone" style="font-size:.6rem;"></i> ${s.phone}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('student',${s.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-/* ============ ATTENDANCE ============ */
 function renderAttendance() {
   const e = $('list-att'); const dInp = $('att-date'); if (!dInp.value) dInp.value = new Date().toISOString().split('T')[0];
   const key = new Date(dInp.value).toLocaleDateString(); const a = S.attendance[key] || {};
@@ -1084,40 +911,29 @@ function renderAttendance() {
   e.innerHTML = S.students.map(s => { const st = a[s.id] || '';
     return `<div class="att"><div class="li-icon g" style="width:42px;height:42px;font-size:.88rem;border-radius:12px;">${s.name.charAt(0).toUpperCase()}</div><div class="li-body"><h4>${s.name}</h4><p>${t('roll')}: ${s.roll || '-'}</p></div><div class="att-btns"><button class="att-b P ${st === 'P' ? 'on' : ''}" onclick="markAtt('${s.id}','P')">P</button><button class="att-b A ${st === 'A' ? 'on' : ''}" onclick="markAtt('${s.id}','A')">A</button><button class="att-b L ${st === 'L' ? 'on' : ''}" onclick="markAtt('${s.id}','L')">L</button></div></div>`; }).join('');
 }
-function markAtt(id, status) {
-  const key = new Date($('att-date').value).toLocaleDateString(); if (!S.attendance[key]) S.attendance[key] = {};
-  S.attendance[key][id] = status; save(); renderAttendance(); renderStats(); renderChart();
-}
-function markAllPresent() {
-  const key = new Date($('att-date').value).toLocaleDateString(); if (!S.attendance[key]) S.attendance[key] = {};
-  S.students.forEach(s => S.attendance[key][s.id] = 'P'); save(); renderAttendance(); renderStats(); renderChart();
-  toast(t('mark_all'), S.students.length + ' ' + t('students'), 'ok');
-}
+function markAtt(id, status) { const key = new Date($('att-date').value).toLocaleDateString(); if (!S.attendance[key]) S.attendance[key] = {}; S.attendance[key][id] = status; save(); renderAttendance(); renderStats(); renderChart(); }
+function markAllPresent() { const key = new Date($('att-date').value).toLocaleDateString(); if (!S.attendance[key]) S.attendance[key] = {}; S.students.forEach(s => S.attendance[key][s.id] = 'P'); save(); renderAttendance(); renderStats(); renderChart(); toast(t('mark_all'), S.students.length + ' ' + t('students'), 'ok'); }
 
-/* ============ DIARY ============ */
 function renderDiary() {
   const e = $('list-diary');
   if (!S.diary.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-book"></i></div><h4>${t('empty_diary')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
   e.innerHTML = S.diary.map(d => `<div class="d-item"><div class="d-head"><div class="d-date"><i class="far fa-calendar-alt"></i> ${d.date}</div></div><div class="d-title">${d.title}</div>${d.desc ? `<div class="d-desc">${d.desc}</div>` : ''}${d.hw ? `<div class="d-hw"><i class="fas fa-pencil-alt"></i><div><b>${t('hw')}:</b> ${d.hw}</div></div>` : ''}<button onclick="del('diary',${d.id})" style="margin-top:10px;margin-left:10px;color:var(--danger);font-size:.74rem;font-weight:700;"><i class="fas fa-trash"></i> ${t('delete')}</button></div>`).join('');
 }
 
-/* ============ MARKS ============ */
 function renderMarks() {
   const e = $('list-marks');
   if (!S.marks.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-star"></i></div><h4>${t('empty_marks')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
   e.innerHTML = S.marks.map(m => { const pct = Math.round((m.score / m.total) * 100); const cls = pct >= 75 ? 'g' : pct >= 40 ? 'o' : 'r';
-    return `<div class="li"><div class="li-icon pk"><i class="fas fa-star"></i></div><div class="li-body"><h4>${m.name}</h4><p>${m.exam || t('exam')} ${m.subject ? '• ' + m.subject : ''}</p><div class="li-meta"><span class="li-chip ${cls}">${m.score}/${m.total} • ${pct}%</span></div></div><button onclick="event.stopPropagation();del('marks',${m.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`; }).join('');
+    return `<div class="li"><div class="li-icon pk"><i class="fas fa-star"></i></div><div class="li-body"><h4>${m.name}</h4><p>${m.exam || t('exam')} ${m.subject ? '• '+m.subject : ''}</p><div class="li-meta"><span class="li-chip ${cls}">${m.score}/${m.total} • ${pct}%</span></div></div><button onclick="event.stopPropagation();del('marks',${m.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`; }).join('');
 }
 
-/* ============ HOMEWORK ============ */
 function renderHomework() {
   const e = $('list-hw');
   if (!S.homework.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-pencil-alt"></i></div><h4>${t('empty_hw')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.homework.map(h => `<div class="li"><div class="li-icon o"><i class="fas fa-pencil-alt"></i></div><div class="li-body"><h4 style="${h.done ? 'text-decoration:line-through;opacity:.6;' : ''}">${h.title}</h4><p>${h.cls || ''} ${h.due ? '• ' + h.due : ''}</p></div><button onclick="event.stopPropagation();toggleHw(${h.id})" style="width:36px;height:36px;border-radius:11px;background:${h.done ? 'rgba(19,136,8,.1)' : 'var(--bg-2)'};color:${h.done ? 'var(--success)' : 'var(--text-3)'};border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-${h.done ? 'check' : 'circle'}"></i></button><button onclick="event.stopPropagation();del('homework',${h.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:5px;"><i class="fas fa-trash"></i></button></div>`).join('');
+  e.innerHTML = S.homework.map(h => `<div class="li"><div class="li-icon o"><i class="fas fa-pencil-alt"></i></div><div class="li-body"><h4 style="${h.done ? 'text-decoration:line-through;opacity:.6;' : ''}">${h.title}</h4><p>${h.cls || ''} ${h.due ? '• '+h.due : ''}</p></div><button onclick="event.stopPropagation();toggleHw(${h.id})" style="width:36px;height:36px;border-radius:11px;background:${h.done ? 'rgba(19,136,8,.1)' : 'var(--bg-2)'};color:${h.done ? 'var(--success)' : 'var(--text-3)'};border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-${h.done ? 'check' : 'circle'}"></i></button><button onclick="event.stopPropagation();del('homework',${h.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:5px;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 function toggleHw(id) { const h = S.homework.find(x => x.id === id); if (h) { h.done = !h.done; save(); renderHomework(); } }
 
-/* ============ TIMETABLE ============ */
 const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 function renderDays() { $('tt-days').innerHTML = DAYS.map(d => `<div class="tt-day ${d === selectedDay ? 'on' : ''}" onclick="selectDay('${d}')">${d.slice(0,3)}</div>`).join(''); }
 function selectDay(d) { selectedDay = d; renderDays(); renderPeriods(); }
@@ -1127,7 +943,6 @@ function renderPeriods() {
   e.innerHTML = f.map(p => `<div class="tt-slot"><div class="flex justify-between items-center"><div><div class="time">${p.time}</div><div class="sub">${p.sub}</div><div class="cls">${p.cls || ''}</div></div><button onclick="del('period',${p.id})" style="color:var(--danger);padding:6px;"><i class="fas fa-trash"></i></button></div></div>`).join('');
 }
 
-/* ============ FEES ============ */
 function renderFees() {
   const e = $('list-fees');
   if (!S.fees.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-file-invoice-dollar"></i></div><h4>${t('fee_tracker')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
@@ -1135,63 +950,45 @@ function renderFees() {
     return `<div class="li"><div class="li-icon ${isPaid ? 'g' : 'r'}"><i class="fas ${isPaid ? 'check' : 'exclamation'}"></i></div><div class="li-body"><h4>${f.name}</h4><p>${t('month')}: ${f.month} • ${t('amount')}: ₹${f.amount}</p><div class="li-meta"><span class="li-chip ${isPaid ? 'g' : 'r'}">${isPaid ? t('paid') : t('unpaid')}</span></div></div><button onclick="event.stopPropagation();del('fee',${f.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`; }).join('');
 }
 
-/* ============ EXAMS ============ */
 function renderExams() {
   const e = $('list-exams');
   if (!S.exams.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-file-alt"></i></div><h4>${t('empty_exam')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.exams.map(x => `<div class="li"><div class="li-icon"><i class="fas fa-file-alt"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.sub || ''} ${x.date ? '• ' + x.date : ''}</p>${x.cls ? `<div class="li-meta"><span class="li-chip">${x.cls}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('exam',${x.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+  e.innerHTML = S.exams.map(x => `<div class="li"><div class="li-icon"><i class="fas fa-file-alt"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.sub || ''} ${x.date ? '• '+x.date : ''}</p>${x.cls ? `<div class="li-meta"><span class="li-chip">${x.cls}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('exam',${x.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-/* ============ LESSONS ============ */
 function renderLessons() {
   const e = $('list-lessons');
   if (!S.lessons.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-chalkboard"></i></div><h4>${t('empty_lesson')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
   e.innerHTML = S.lessons.map(l => `<div class="li"><div class="li-icon"><i class="fas fa-chalkboard"></i></div><div class="li-body"><h4>${l.title}</h4><p>${l.sub || ''} • ${l.date}</p>${l.desc ? `<div class="li-meta"><span class="li-chip">${l.desc.slice(0, 50)}${l.desc.length > 50 ? '…' : ''}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('lesson',${l.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-/* ============ REMINDERS ============ */
 function renderReminders() {
   const e = $('list-reminders');
   if (!S.reminders.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-bell"></i></div><h4>${t('empty_rem')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
   e.innerHTML = S.reminders.map(r => `<div class="li"><div class="li-icon o"><i class="fas fa-bell"></i></div><div class="li-body"><h4>${r.title}</h4><p>${r.date ? new Date(r.date).toLocaleString() : ''}</p>${r.desc ? `<div class="li-meta"><span class="li-chip">${r.desc.slice(0, 60)}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('reminder',${r.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-/* ============ HOLIDAYS ============ */
 function renderHolidays() {
   const e = $('list-holidays');
   if (!S.holidays.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-umbrella-beach"></i></div><h4>${t('empty_hol')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.holidays.map(h => `<div class="li"><div class="li-icon pk"><i class="fas fa-umbrella-beach"></i></div><div class="li-body"><h4>${h.title}</h4><p>${h.date || ''} ${h.date2 ? '→ ' + h.date2 : ''}</p></div><button onclick="event.stopPropagation();del('holiday',${h.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+  e.innerHTML = S.holidays.map(h => `<div class="li"><div class="li-icon pk"><i class="fas fa-umbrella-beach"></i></div><div class="li-body"><h4>${h.title}</h4><p>${h.date || ''} ${h.date2 ? '→ '+h.date2 : ''}</p></div><button onclick="event.stopPropagation();del('holiday',${h.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-/* ============ SYLLABUS ============ */
 function renderSyllabus() {
   const e = $('list-syllabus');
   if (!S.syllabus.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-book-reader"></i></div><h4>${t('syllabus')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.syllabus.map(s => {
-    const pct = Math.round((s.done / s.total) * 100);
-    const cls = pct >= 75 ? 'g' : pct >= 40 ? 'o' : 'r';
-    return `<div class="card" style="margin-bottom:12px;padding:15px;">
-      <div class="flex justify-between items-center mb-2">
-        <div><h4 style="font-size:.9rem;font-weight:700;">${s.title}</h4><p style="font-size:.72rem;color:var(--text-3);">${s.sub || ''}</p></div>
-        <button onclick="del('syllabus',${s.id})" style="color:var(--danger);font-size:.8rem;padding:6px;"><i class="fas fa-trash"></i></button>
-      </div>
-      <div class="flex justify-between" style="font-size:.72rem;font-weight:700;color:var(--text-2);margin-bottom:6px;"><span>${t('completed')}: ${s.done}/${s.total}</span><span>${pct}%</span></div>
-      <div class="progress"><div class="progress-inner ${cls}" style="width:${pct}%"></div></div>
-    </div>`;
-  }).join('');
+  e.innerHTML = S.syllabus.map(s => { const pct = Math.round((s.done / s.total) * 100); const cls = pct >= 75 ? 'g' : pct >= 40 ? 'o' : 'r';
+    return `<div class="card" style="margin-bottom:12px;padding:15px;"><div class="flex justify-between items-center mb-2"><div><h4 style="font-size:.9rem;font-weight:700;">${s.title}</h4><p style="font-size:.72rem;color:var(--text-3);">${s.sub || ''}</p></div><button onclick="del('syllabus',${s.id})" style="color:var(--danger);font-size:.8rem;padding:6px;"><i class="fas fa-trash"></i></button></div><div class="flex justify-between" style="font-size:.72rem;font-weight:700;color:var(--text-2);margin-bottom:6px;"><span>${t('completed')}: ${s.done}/${s.total}</span><span>${pct}%</span></div><div class="progress"><div class="progress-inner ${cls}" style="width:${pct}%"></div></div></div>`; }).join('');
 }
 
-/* ============ TO-DO ============ */
 function renderTodos() {
   const e = $('list-todo');
   if (!S.todos.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-tasks"></i></div><h4>${t('todo')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.todos.map(x => {
-    const pCls = x.priority === 'High' ? 'r' : x.priority === 'Medium' ? 'o' : 'g';
+  e.innerHTML = S.todos.map(x => { const pCls = x.priority === 'High' ? 'r' : x.priority === 'Medium' ? 'o' : 'g';
     return `<div class="li"><div class="li-icon ${pCls}"><i class="fas fa-tasks"></i></div><div class="li-body"><h4 style="${x.done ? 'text-decoration:line-through;opacity:.6;' : ''}">${x.title}</h4><p>${x.date || ''} • ${t('priority')}: ${x.priority}</p></div><button onclick="event.stopPropagation();toggleTodo(${x.id})" style="width:36px;height:36px;border-radius:11px;background:${x.done ? 'rgba(19,136,8,.1)' : 'var(--bg-2)'};color:${x.done ? 'var(--success)' : 'var(--text-3)'};border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-${x.done ? 'check' : 'circle'}"></i></button><button onclick="event.stopPropagation();del('todo',${x.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:5px;"><i class="fas fa-trash"></i></button></div>`; }).join('');
 }
 function toggleTodo(id) { const x = S.todos.find(t => t.id === id); if (x) { x.done = !x.done; save(); renderTodos(); } }
 
-/* ============ SEATING ============ */
 function renderSeating() {
   const e = $('list-seating');
   if (!S.seating.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-chair"></i></div><h4>${t('seating')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
@@ -1199,14 +996,12 @@ function renderSeating() {
   e.innerHTML = sorted.map(s => `<div class="li"><div class="li-icon cy"><i class="fas fa-chair"></i></div><div class="li-body"><h4>${s.name}</h4><p>${t('row')}: ${s.row} • ${t('col')}: ${s.col}</p></div><button onclick="event.stopPropagation();del('seating',${s.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-/* ============ NOTES ============ */
 function renderNotes() {
   const e = $('list-notes');
   if (!S.notes.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-sticky-note"></i></div><h4>${t('empty_note')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
   e.innerHTML = S.notes.map(n => `<div class="note"><h5>${n.title}</h5>${n.desc ? `<p>${n.desc}</p>` : ''}<div class="date"><i class="far fa-clock"></i> ${n.date}</div><button onclick="del('note',${n.id})" style="margin-top:8px;color:var(--danger);font-size:.72rem;font-weight:700;"><i class="fas fa-trash"></i> ${t('delete')}</button></div>`).join('');
 }
 
-/* ============ REPORTS ============ */
 function renderReports() {
   const aEl = $('rep-att');
   if (!S.students.length) aEl.innerHTML = '<p style="font-size:.82rem;color:var(--text-3);">—</p>';
@@ -1226,52 +1021,48 @@ function renderReports() {
   }
 }
 
-/* ============ MORE ============ */
 const MORE_FEATURES = [
-  { k:'homework', i:'fa-pencil-alt', c:'' },
-  { k:'timetable', i:'fa-calendar-alt', c:'g' },
-  { k:'fees', i:'fa-file-invoice-dollar', c:'pk' },
-  { k:'notes', i:'fa-sticky-note', c:'o' },
-  { k:'exams', i:'fa-file-alt', c:'cy' },
-  { k:'lessons', i:'fa-chalkboard', c:'' },
-  { k:'reminders', i:'fa-bell', c:'g' },
-  { k:'holidays', i:'fa-umbrella-beach', c:'pk' },
-  { k:'syllabus', i:'fa-book-reader', c:'o' },
-  { k:'todo', i:'fa-tasks', c:'cy' },
-  { k:'seating', i:'fa-chair', c:'' },
-  { k:'settings', i:'fa-cog', c:'g' }
+  {k:'homework',i:'fa-pencil-alt',c:'',d:'Track assignments'},
+  {k:'timetable',i:'fa-calendar-alt',c:'g',d:'Weekly schedule'},
+  {k:'fees',i:'fa-file-invoice-dollar',c:'pk',d:'Fee collection'},
+  {k:'exams',i:'fa-file-alt',c:'cy',d:'Exam planner'},
+  {k:'lessons',i:'fa-chalkboard',c:'',d:'Lesson plans'},
+  {k:'reminders',i:'fa-bell',c:'g',d:'Important alerts'},
+  {k:'holidays',i:'fa-umbrella-beach',c:'pk',d:'Holiday list'},
+  {k:'syllabus',i:'fa-book-reader',c:'o',d:'Course progress'},
+  {k:'todo',i:'fa-tasks',c:'cy',d:'Daily tasks'},
+  {k:'seating',i:'fa-chair',c:'',d:'Class seating'},
+  {k:'notes',i:'fa-sticky-note',c:'g',d:'Quick notes'},
+  {k:'settings',i:'fa-cog',c:'pk',d:'App settings'}
 ];
 function renderMore() {
-  $('more-grid').innerHTML = MORE_FEATURES.map(f => `<button class="quick ${f.c}" style="padding:20px 10px;" onclick="${f.k === 'settings' ? "switchPage('settings')" : "switchPage('" + f.k + "')"}"><i class="fas ${f.i}"></i> ${t(f.k)}</button>`).join('');
+  $('more-grid').innerHTML = MORE_FEATURES.map(f => `<button class="more-card ${f.c}" onclick="${f.k === 'settings' ? "switchPage('settings')" : "switchPage('" + f.k + "')"}"><i class="fas ${f.i}"></i><div class="mc-body"><h4>${t(f.k)}</h4><p>${f.d}</p></div></button>`).join('');
 }
 function renderProfileSub() { $('prof-sub').innerText = S.profile.school || t('set_name_school'); }
 
-/* ============ SEARCH ============ */
 function openSearch() { $('search-ov').classList.add('open'); setTimeout(() => $('search-inp').focus(), 200); }
 function closeSearch() { $('search-ov').classList.remove('open'); $('search-inp').value = ''; $('search-res').innerHTML = ''; }
 function doSearch() {
   const q = $('search-inp').value.toLowerCase().trim(); const r = $('search-res');
   if (!q) { r.innerHTML = '<p style="text-align:center;color:var(--text-3);padding:40px;font-size:.84rem;">' + t('home') + '...</p>'; return; }
   let items = [];
-  S.classes.forEach(c => { if (c.name.toLowerCase().includes(q) || (c.subject || '').toLowerCase().includes(q)) items.push({ i:'fa-users', t:c.name, s:t('class') + ' • ' + (c.subject || ''), p:'classes' }); });
-  S.students.forEach(s => { if (s.name.toLowerCase().includes(q) || (s.roll || '').includes(q)) items.push({ i:'fa-user-graduate', t:s.name, s:t('student') + ' • ' + t('roll') + ' ' + (s.roll || '-'), p:'students' }); });
-  S.diary.forEach(d => { if (d.title.toLowerCase().includes(q) || (d.desc || '').toLowerCase().includes(q)) items.push({ i:'fa-book', t:d.title, s:t('diary') + ' • ' + d.date, p:'diary' }); });
-  S.notes.forEach(n => { if (n.title.toLowerCase().includes(q) || (n.desc || '').toLowerCase().includes(q)) items.push({ i:'fa-sticky-note', t:n.title, s:t('notes'), p:'notes' }); });
+  S.classes.forEach(c => { if (c.name.toLowerCase().includes(q) || (c.subject || '').toLowerCase().includes(q)) items.push({i:'fa-users',t:c.name,s:t('class')+' • '+(c.subject || ''),p:'classes'}); });
+  S.students.forEach(s => { if (s.name.toLowerCase().includes(q) || (s.roll || '').includes(q)) items.push({i:'fa-user-graduate',t:s.name,s:t('student')+' • '+t('roll')+' '+(s.roll || '-'),p:'students'}); });
+  S.diary.forEach(d => { if (d.title.toLowerCase().includes(q) || (d.desc || '').toLowerCase().includes(q)) items.push({i:'fa-book',t:d.title,s:t('diary')+' • '+d.date,p:'diary'}); });
+  S.notes.forEach(n => { if (n.title.toLowerCase().includes(q) || (n.desc || '').toLowerCase().includes(q)) items.push({i:'fa-sticky-note',t:n.title,s:t('notes'),p:'notes'}); });
   if (!items.length) { r.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-search"></i></div><h4>—</h4><p>${t('home')}</p></div>`; return; }
   r.innerHTML = items.map(x => `<div class="li" onclick="closeSearch();switchPage('${x.p}')"><div class="li-icon"><i class="fas ${x.i}"></i></div><div class="li-body"><h4>${x.t}</h4><p>${x.s}</p></div><i class="fas fa-chevron-right li-arrow"></i></div>`).join('');
 }
 
-/* ============ SHARE ============ */
 function shareApp() {
-  const d = { title:'AcharyaOS Pro — The Teacher\'s OS', text:'A professional digital assistant for Indian teachers in 14+ languages.', url: window.location.href };
+  const d = {title:'AcharyaOS Pro — The Teacher\'s OS', text:'A professional digital assistant for Indian teachers in 14+ languages.', url: window.location.href};
   if (navigator.share) navigator.share(d).catch(() => {});
   else { navigator.clipboard.writeText(window.location.href); toast(t('share'), t('share_desc'), 'ok'); }
 }
 
-/* ============ BACKUP ============ */
 function exportData() {
-  const data = { ...S, version:'7.0.0', lang: LANG, exportedAt: new Date().toISOString() };
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+  const data = {...S, version:'8.0.0', lang:LANG, exportedAt:new Date().toISOString()};
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
   const url = URL.createObjectURL(blob); const a = document.createElement('a');
   a.href = url; a.download = `acharyaos-backup-${new Date().toISOString().split('T')[0]}.json`;
   a.click(); URL.revokeObjectURL(url); toast(t('backup'), 'Downloaded', 'ok');
@@ -1288,11 +1079,8 @@ function importData(ev) {
   rd.readAsText(f); ev.target.value = '';
 }
 function confirmReset() { confirmD(t('reset_confirm'), t('reset_desc2'), () => { localStorage.clear(); location.reload(); }); }
+function showAbout() { confirmD('AcharyaOS Pro', 'Version 8.0.0\n\n' + t('about_desc') + '\n\n14+ Indian Languages\n100% Offline & Free\n\nMade with ❤️ in India 🇮🇳', () => {}, 'info'); }
 
-/* ============ ABOUT ============ */
-function showAbout() { confirmD('AcharyaOS Pro', 'Version 7.0.0\n\n' + t('about_desc') + '\n\n14+ Indian Languages\n100% Offline & Free\n\nMade with ❤️ in India 🇮🇳', () => {}, 'info'); }
-
-/* ============ GREET ============ */
 function updateGreet() {
   const h = new Date().getHours(); const nm = S.profile.name || t('home');
   let g = LANG === 'hi' ? 'नमस्ते' : 'Hello';
@@ -1303,9 +1091,8 @@ function updateGreet() {
   $('greet-sub').innerText = S.profile.school || (LANG === 'hi' ? 'आज का दिन शुभ हो' : 'Have a great day');
 }
 
-/* ============ INIT ============ */
 document.addEventListener('DOMContentLoaded', () => {
-  const dOpt = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+  const dOpt = {weekday:'long', year:'numeric', month:'long', day:'numeric'};
   $('cur-date').innerText = new Date().toLocaleDateString(LANG === 'hi' ? 'hi-IN' : LANG, dOpt);
   applyI18n(); renderAll();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
@@ -1315,7 +1102,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* ============ BOOT ============ */
 window.addEventListener('load', () => {
   setTimeout(() => {
     $('splash').classList.add('hide');
