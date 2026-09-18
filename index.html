@@ -16,7 +16,7 @@
 <style>
 :root{
   --primary:#FF9933;--primary-2:#E65100;
-  --navy:#000080;--green:#138808;--green-d:#0D5E05;
+  --navy:#000080;--green:#138808;--green-d:#0D5E05;--green-light:#8BC34A;
   --danger:#EF4444;--danger-d:#DC2626;
   --bg:#F8F9FA;--bg-2:#F1F3F5;--bg-3:#E9ECEF;
   --card:#FFFFFF;--border:#DEE2E6;--border-2:#CED4DA;
@@ -32,7 +32,7 @@
   --bg:#0F1419;--bg-2:#1A2332;--bg-3:#252F42;
   --card:#1A2332;--border:#2E3A52;--border-2:#3D4A66;
   --text:#F1F5F9;--text-2:#CBD5E1;--text-3:#8896B0;--text-4:#5A6884;
-  --primary:#FFA94D;--primary-2:#FF7A00;--green:#2ECC71;--green-d:#1E9E55;--navy:#7986CB;
+  --primary:#FFA94D;--primary-2:#FF7A00;--green:#2ECC71;--green-d:#1E9E55;--navy:#7986CB;--green-light:#66BB6A;
   --sh-sm:0 2px 4px rgba(0,0,0,.3);--sh-md:0 4px 12px rgba(0,0,0,.35);--sh-lg:0 12px 28px rgba(0,0,0,.4);--sh-xl:0 24px 48px rgba(0,0,0,.5);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
@@ -43,34 +43,33 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 ::selection{background:var(--primary);color:#fff;}
 ::-webkit-scrollbar{width:0;height:0;}
 
-@keyframes blinkGreen {
-  0%, 100% { color: #FFFFFF; text-shadow: 0 1px 3px rgba(0,0,0,.2); }
-  50% { color: #C8FACC; text-shadow: 0 0 12px #138808, 0 0 22px rgba(19,136,8,.7); }
-}
-.blink-green { animation: blinkGreen 1.8s ease-in-out infinite; }
-
 .splash{position:fixed;inset:0;background:linear-gradient(135deg,#FF9933 0%,#FFFFFF 50%,#138808 100%);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;}
 .splash.hide{opacity:0;visibility:hidden;pointer-events:none;}
-.splash-logo{width:120px;height:120px;border-radius:32px;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;font-size:3.2rem;color:#000080;backdrop-filter:blur(20px);box-shadow:0 24px 60px rgba(0,0,0,.15);animation:splIn 1s cubic-bezier(.16,1,.3,1) forwards;opacity:0;transform:scale(.5);}
+.splash-logo{width:120px;height:120px;border-radius:32px;background:rgba(200,230,201,.9);display:flex;align-items:center;justify-content:center;font-size:3.2rem;color:#138808;box-shadow:0 24px 60px rgba(0,0,0,.15);animation:splIn 1s cubic-bezier(.16,1,.3,1) forwards;opacity:0;transform:scale(.5);}
 @keyframes splIn{to{opacity:1;transform:scale(1);}}
 .splash-name{margin-top:26px;font-size:2rem;font-weight:800;color:#000080;letter-spacing:-.8px;animation:splIn .8s .2s cubic-bezier(.16,1,.3,1) forwards;opacity:0;}
 .splash-tag{font-size:.72rem;color:#000080;margin-top:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;animation:splIn .8s .35s cubic-bezier(.16,1,.3,1) forwards;opacity:0;}
 .splash-bar{width:180px;height:3px;background:rgba(0,0,0,.15);border-radius:3px;margin-top:48px;overflow:hidden;animation:splIn .8s .5s ease forwards;opacity:0;}
-.splash-bar-inner{height:100%;background:#000080;border-radius:3px;animation:splBar 2.2s ease-out forwards;width:0;}
+.splash-bar-inner{height:100%;background:#138808;border-radius:3px;animation:splBar 2.2s ease-out forwards;width:0;}
 @keyframes splBar{to{width:100%;}}
 .splash-made{position:absolute;bottom:38px;color:#000080;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
 
+/* APP BAR - Light green icon buttons */
 .app-bar{background:linear-gradient(135deg,#FF9933 0%,#E65100 100%);padding:14px 14px 68px;position:relative;border-radius:0 0 32px 32px;box-shadow:0 12px 40px rgba(255,153,51,.4);overflow:hidden;padding-top:calc(14px + env(safe-area-inset-top));}
 .app-bar::before{content:'';position:absolute;top:-80px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%);border-radius:50%;pointer-events:none;}
 .app-bar::after{content:'';position:absolute;bottom:-100px;left:-50px;width:220px;height:220px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%;pointer-events:none;}
 .bar-row{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;gap:8px;}
 .brand{display:flex;align-items:center;gap:9px;color:#fff;min-width:0;flex:1;}
-.brand-icon{width:38px;height:38px;background:rgba(255,255,255,.3);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4);flex-shrink:0;color:#FFFFFF;border:1px solid rgba(255,255,255,.3);}
+
+/* Logo with light green bg + dark green icon (matching screenshot 2) */
+.brand-icon{width:40px;height:40px;background:#C8E6C9;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;color:#138808;box-shadow:inset 0 1px 0 rgba(255,255,255,.5);}
 .brand-text{font-weight:800;font-size:1.05rem;letter-spacing:-.4px;line-height:1.1;color:#FFFFFF;text-shadow:0 1px 3px rgba(0,0,0,.15);}
 .brand-text small{display:block;font-size:.5rem;font-weight:700;opacity:.95;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;color:#FFFFFF;}
 .bar-actions{display:flex;gap:5px;flex-shrink:0;}
-.icon-btn{width:36px;height:36px;border-radius:10px;background:#138808;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#FFFFFF;transition:transform .15s,background .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.25);}
-.icon-btn:active{transform:scale(.92);background:#0D5E05;}
+
+/* Light green icon buttons with white icons */
+.icon-btn{width:36px;height:36px;border-radius:10px;background:#8BC34A;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#FFFFFF;transition:transform .15s,background .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.35);}
+.icon-btn:active{transform:scale(.92);background:#7CB342;}
 
 .wrap{padding:0 14px;max-width:720px;margin:-52px auto 0;position:relative;z-index:2;}
 
@@ -270,6 +269,16 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .more-card .mc-title{font-size:.88rem;font-weight:800;color:var(--text);line-height:1.2;}
 .more-card .mc-desc{font-size:.68rem;color:var(--text-3);font-weight:600;margin-top:2px;}
 
+.about-profile{text-align:center;padding:16px 0 8px;}
+.about-avatar{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#FF9933,#138808);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:800;margin:0 auto 14px;box-shadow:0 12px 32px rgba(255,153,51,.4);border:4px solid var(--card);}
+.about-name{font-size:1.4rem;font-weight:800;color:var(--text);letter-spacing:-.4px;}
+.about-role{font-size:.82rem;color:var(--text-3);font-weight:600;margin-top:4px;}
+.social-row{display:flex;gap:12px;justify-content:center;margin:18px 0 8px;}
+.social-btn{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;text-decoration:none;transition:transform .15s;box-shadow:0 6px 16px rgba(0,0,0,.15);}
+.social-btn:active{transform:scale(.92);}
+.social-btn.fb{background:linear-gradient(135deg,#1877F2,#0C63D4);}
+.social-btn.ig{background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF,#515BD4);}
+
 .hidden{display:none!important;}
 .text-center{text-align:center;}
 .mb-2{margin-bottom:8px;}.mb-3{margin-bottom:12px;}.mt-2{margin-top:8px;}.mt-3{margin-top:12px;}
@@ -387,7 +396,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   </div>
   <div class="sec-head">
     <h3><i class="fas fa-chart-line"></i> <span data-t="weekly_attendance">Weekly Attendance</span></h3>
-    <span class="link blink-green" onclick="switchPage('reports')"><i class="fas fa-file-alt"></i> <span data-t="reports">Reports</span></span>
+    <span class="link" onclick="switchPage('reports')"><i class="fas fa-file-alt"></i> <span data-t="reports">Reports</span></span>
   </div>
   <div class="card"><div class="chart-container" id="weekly-chart"></div></div>
   <div class="sec-head"><h3><i class="fas fa-clock"></i> <span data-t="recent">Recent Activity</span></h3></div>
@@ -395,17 +404,17 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 </div>
 
 <div class="page" id="pg-classes">
-  <div class="sec-head"><h3><i class="fas fa-users"></i> <span data-t="my_classes">My Classes</span></h3><button class="link blink-green" onclick="openModal('class')"><i class="fas fa-plus"></i> <span data-t="add_class">Add Class</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-users"></i> <span data-t="my_classes">My Classes</span></h3><button class="link" onclick="openModal('class')"><i class="fas fa-plus"></i> <span data-t="add_class">Add Class</span></button></div>
   <div id="list-classes"></div>
 </div>
 
 <div class="page" id="pg-students">
-  <div class="sec-head"><h3><i class="fas fa-user-graduate"></i> <span data-t="all_students">All Students</span></h3><button class="link blink-green" onclick="openModal('student')"><i class="fas fa-plus"></i> <span data-t="add_student">Add Student</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-user-graduate"></i> <span data-t="all_students">All Students</span></h3><button class="link" onclick="openModal('student')"><i class="fas fa-plus"></i> <span data-t="add_student">Add Student</span></button></div>
   <div id="list-students"></div>
 </div>
 
 <div class="page" id="pg-attendance">
-  <div class="sec-head"><h3><i class="fas fa-user-check"></i> <span data-t="attendance">Attendance</span></h3><span class="link blink-green" onclick="switchPage('reports')"><i class="fas fa-chart-pie"></i> <span data-t="reports">Reports</span></span></div>
+  <div class="sec-head"><h3><i class="fas fa-user-check"></i> <span data-t="attendance">Attendance</span></h3><span class="link" onclick="switchPage('reports')"><i class="fas fa-chart-pie"></i> <span data-t="reports">Reports</span></span></div>
   <div class="card mb-3">
     <div class="flex gap-2 items-center">
       <input type="date" id="att-date" class="inp" style="flex:1;" onchange="renderAttendance()">
@@ -416,88 +425,113 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 </div>
 
 <div class="page" id="pg-diary">
-  <div class="sec-head"><h3><i class="fas fa-book"></i> <span data-t="diary">Diary</span></h3><button class="link blink-green" onclick="openModal('diary')"><i class="fas fa-plus"></i> <span data-t="new_entry">New Entry</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-book"></i> <span data-t="diary">Diary</span></h3><button class="link" onclick="openModal('diary')"><i class="fas fa-plus"></i> <span data-t="new_entry">New Entry</span></button></div>
   <div id="list-diary"></div>
 </div>
 
 <div class="page" id="pg-marks">
-  <div class="sec-head"><h3><i class="fas fa-star"></i> <span data-t="marks">Marks</span></h3><button class="link blink-green" onclick="openModal('marks')"><i class="fas fa-plus"></i> <span data-t="add_marks">Add Marks</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-star"></i> <span data-t="marks">Marks</span></h3><button class="link" onclick="openModal('marks')"><i class="fas fa-plus"></i> <span data-t="add_marks">Add Marks</span></button></div>
   <div id="list-marks"></div>
 </div>
 
 <div class="page" id="pg-homework">
-  <div class="sec-head"><h3><i class="fas fa-pencil-alt"></i> <span data-t="homework">Homework</span></h3><button class="link blink-green" onclick="openModal('homework')"><i class="fas fa-plus"></i> <span data-t="new_hw">New HW</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-pencil-alt"></i> <span data-t="homework">Homework</span></h3><button class="link" onclick="openModal('homework')"><i class="fas fa-plus"></i> <span data-t="new_hw">New HW</span></button></div>
   <div id="list-hw"></div>
 </div>
 
 <div class="page" id="pg-timetable">
-  <div class="sec-head"><h3><i class="fas fa-calendar-alt"></i> <span data-t="timetable">Timetable</span></h3><button class="link blink-green" onclick="openModal('period')"><i class="fas fa-plus"></i> <span data-t="add_period">Add Period</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-calendar-alt"></i> <span data-t="timetable">Timetable</span></h3><button class="link" onclick="openModal('period')"><i class="fas fa-plus"></i> <span data-t="add_period">Add Period</span></button></div>
   <div class="tt-grid" id="tt-days"></div>
   <div id="list-periods"></div>
 </div>
 
 <div class="page" id="pg-fees">
-  <div class="sec-head"><h3><i class="fas fa-file-invoice-dollar"></i> <span data-t="fee_tracker">Fee Tracker</span></h3><button class="link blink-green" onclick="openModal('fee')"><i class="fas fa-plus"></i> <span data-t="add_fee">Add Fee</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-file-invoice-dollar"></i> <span data-t="fee_tracker">Fee Tracker</span></h3><button class="link" onclick="openModal('fee')"><i class="fas fa-plus"></i> <span data-t="add_fee">Add Fee</span></button></div>
   <div id="list-fees"></div>
 </div>
 
 <div class="page" id="pg-exams">
-  <div class="sec-head"><h3><i class="fas fa-file-alt"></i> <span data-t="exams">Exams</span></h3><button class="link blink-green" onclick="openModal('exam')"><i class="fas fa-plus"></i> <span data-t="add_exam">Add Exam</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-file-alt"></i> <span data-t="exams">Exams</span></h3><button class="link" onclick="openModal('exam')"><i class="fas fa-plus"></i> <span data-t="add_exam">Add Exam</span></button></div>
   <div id="list-exams"></div>
 </div>
 
 <div class="page" id="pg-lessons">
-  <div class="sec-head"><h3><i class="fas fa-chalkboard"></i> <span data-t="lessons">Lesson Plans</span></h3><button class="link blink-green" onclick="openModal('lesson')"><i class="fas fa-plus"></i> <span data-t="add_lesson">Add Lesson</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-chalkboard"></i> <span data-t="lessons">Lesson Plans</span></h3><button class="link" onclick="openModal('lesson')"><i class="fas fa-plus"></i> <span data-t="add_lesson">Add Lesson</span></button></div>
   <div id="list-lessons"></div>
 </div>
 
 <div class="page" id="pg-reminders">
-  <div class="sec-head"><h3><i class="fas fa-bell"></i> <span data-t="reminders">Reminders</span></h3><button class="link blink-green" onclick="openModal('reminder')"><i class="fas fa-plus"></i> <span data-t="add_reminder">Add Reminder</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-bell"></i> <span data-t="reminders">Reminders</span></h3><button class="link" onclick="openModal('reminder')"><i class="fas fa-plus"></i> <span data-t="add_reminder">Add Reminder</span></button></div>
   <div id="list-reminders"></div>
 </div>
 
 <div class="page" id="pg-holidays">
-  <div class="sec-head"><h3><i class="fas fa-umbrella-beach"></i> <span data-t="holidays">Holidays</span></h3><button class="link blink-green" onclick="openModal('holiday')"><i class="fas fa-plus"></i> <span data-t="add_holiday">Add Holiday</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-umbrella-beach"></i> <span data-t="holidays">Holidays</span></h3><button class="link" onclick="openModal('holiday')"><i class="fas fa-plus"></i> <span data-t="add_holiday">Add Holiday</span></button></div>
   <div id="list-holidays"></div>
 </div>
 
 <div class="page" id="pg-syllabus">
-  <div class="sec-head"><h3><i class="fas fa-book-reader"></i> <span data-t="syllabus">Syllabus Tracker</span></h3><button class="link blink-green" onclick="openModal('syllabus')"><i class="fas fa-plus"></i> <span data-t="add_syllabus">Add Chapter</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-book-reader"></i> <span data-t="syllabus">Syllabus Tracker</span></h3><button class="link" onclick="openModal('syllabus')"><i class="fas fa-plus"></i> <span data-t="add_syllabus">Add Chapter</span></button></div>
   <div id="list-syllabus"></div>
 </div>
 
 <div class="page" id="pg-todo">
-  <div class="sec-head"><h3><i class="fas fa-tasks"></i> <span data-t="todo">To-Do List</span></h3><button class="link blink-green" onclick="openModal('todo')"><i class="fas fa-plus"></i> <span data-t="add_todo">Add Task</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-tasks"></i> <span data-t="todo">To-Do List</span></h3><button class="link" onclick="openModal('todo')"><i class="fas fa-plus"></i> <span data-t="add_todo">Add Task</span></button></div>
   <div id="list-todo"></div>
 </div>
 
 <div class="page" id="pg-seating">
-  <div class="sec-head"><h3><i class="fas fa-chair"></i> <span data-t="seating">Seating Plan</span></h3><button class="link blink-green" onclick="openModal('seating')"><i class="fas fa-plus"></i> <span data-t="add_seat">Assign Seat</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-chair"></i> <span data-t="seating">Seating Plan</span></h3><button class="link" onclick="openModal('seating')"><i class="fas fa-plus"></i> <span data-t="add_seat">Assign Seat</span></button></div>
   <div id="list-seating"></div>
 </div>
 
 <div class="page" id="pg-notes">
-  <div class="sec-head"><h3><i class="fas fa-sticky-note"></i> <span data-t="notes">Notes</span></h3><button class="link blink-green" onclick="openModal('note')"><i class="fas fa-plus"></i> <span data-t="new_note">New Note</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-sticky-note"></i> <span data-t="notes">Notes</span></h3><button class="link" onclick="openModal('note')"><i class="fas fa-plus"></i> <span data-t="new_note">New Note</span></button></div>
   <div id="list-notes"></div>
 </div>
 
 <div class="page" id="pg-reports">
-  <div class="sec-head"><h3><i class="fas fa-chart-bar"></i> <span data-t="reports">Reports</span></h3><button class="link blink-green" onclick="window.print()"><i class="fas fa-print"></i> <span data-t="print">Print</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-chart-bar"></i> <span data-t="reports">Reports</span></h3><button class="link" onclick="window.print()"><i class="fas fa-print"></i> <span data-t="print">Print</span></button></div>
   <div class="card mb-3"><div class="card-h"><h4><i class="fas fa-user-check"></i> <span data-t="attendance_summary">Attendance Summary</span></h4></div><div id="rep-att"></div></div>
   <div class="card mb-3"><div class="card-h"><h4><i class="fas fa-star"></i> <span data-t="marks_summary">Marks Summary</span></h4></div><div id="rep-marks"></div></div>
 </div>
 
-<div class="page" id="pg-more">
-  <div class="sec-head"><h3><i class="fas fa-th-large"></i> <span>More Tools</span></h3></div>
-  <div class="more-grid" id="more-grid"></div>
-  <div class="sec-head"><h3><i class="fas fa-info-circle"></i> <span data-t="about">About</span></h3></div>
-  <div class="card text-center" style="padding:24px 18px;">
-    <div style="width:76px;height:76px;border-radius:22px;background:linear-gradient(135deg,#FF9933,#138808);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px;box-shadow:0 10px 24px rgba(255,153,51,.4);"><i class="fas fa-graduation-cap"></i></div>
+<!-- ABOUT PAGE (Replaced "More") -->
+<div class="page" id="pg-about">
+  <div class="sec-head"><h3><i class="fas fa-user-circle"></i> <span data-t="about">About</span></h3></div>
+
+  <!-- Developer Card -->
+  <div class="card" style="padding:24px 18px;text-align:center;">
+    <div class="about-profile">
+      <div class="about-avatar">SK</div>
+      <div class="about-name">Summit Kummar</div>
+      <div class="about-role">Developer & Creator of AcharyaOS</div>
+      <p style="font-size:.82rem;color:var(--text-2);line-height:1.6;margin-top:14px;">"A professional digital assistant built with ❤️ for Indian Teachers. 100% offline, free forever."</p>
+
+      <div class="social-row">
+        <a href="https://www.facebook.com/share/1EvemNMEzf/" target="_blank" rel="noopener" class="social-btn fb" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/summitkummar?stkn=MTY1ZTJkbmp5ZG5pag==" target="_blank" rel="noopener" class="social-btn ig" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <p style="font-size:.68rem;color:var(--text-3);font-weight:600;">Follow for updates & new features</p>
+    </div>
+  </div>
+
+  <!-- App Info Card -->
+  <div class="card text-center" style="padding:22px 18px;">
+    <div style="width:70px;height:70px;border-radius:20px;background:#C8E6C9;color:#138808;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 14px;box-shadow:0 10px 24px rgba(19,136,8,.25);"><i class="fas fa-graduation-cap"></i></div>
     <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;color:var(--text);">AcharyaOS Pro</h3>
-    <p style="font-size:.78rem;color:var(--text-3);font-weight:600;">Version 9.0.0</p>
+    <p style="font-size:.78rem;color:var(--text-3);font-weight:600;">Version 10.0.0</p>
     <p style="font-size:.82rem;color:var(--text-2);margin-top:14px;line-height:1.6;" data-t="about_desc">A professional digital assistant for Indian teachers.</p>
     <p style="font-size:.72rem;color:var(--text-3);margin-top:12px;">Made with ❤️ in India 🇮🇳</p>
   </div>
+
+  <!-- All Features Grid -->
+  <div class="sec-head"><h3><i class="fas fa-th-large"></i> <span>All Features</span></h3></div>
+  <div class="more-grid" id="more-grid"></div>
 </div>
 
 <div class="page" id="pg-settings">
@@ -543,9 +577,9 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
       <div class="set-body"><h4 data-t="share">Share App</h4><p data-t="share_desc">Send to friends on WhatsApp</p></div>
       <i class="fas fa-chevron-right set-arrow"></i>
     </div>
-    <div class="set-row" onclick="showAbout()">
+    <div class="set-row" onclick="switchPage('about')">
       <div class="set-ic"><i class="fas fa-info-circle"></i></div>
-      <div class="set-body"><h4 data-t="about">About</h4><p>Version 9.0.0</p></div>
+      <div class="set-body"><h4 data-t="about">About</h4><p>Version 10.0.0</p></div>
       <i class="fas fa-chevron-right set-arrow"></i>
     </div>
   </div>
@@ -560,7 +594,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <button class="nav-btn" data-page="classes" onclick="switchPage('classes',this)"><i class="fas fa-users"></i><span data-t="classes">Classes</span></button>
   <button class="nav-btn" data-page="attendance" onclick="switchPage('attendance',this)"><i class="fas fa-user-check"></i><span data-t="attend">Attend</span></button>
   <button class="nav-btn" data-page="diary" onclick="switchPage('diary',this)"><i class="fas fa-book"></i><span data-t="diary">Diary</span></button>
-  <button class="nav-btn" data-page="more" onclick="switchPage('more',this)"><i class="fas fa-th-large"></i><span data-t="more">More</span></button>
+  <button class="nav-btn" data-page="about" onclick="switchPage('about',this)"><i class="fas fa-user-circle"></i><span data-t="about">About</span></button>
 </div>
 
 <div class="modal" id="modal">
@@ -611,8 +645,8 @@ const LANGS=[
 ];
 
 const T={
-  hi:{home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'मेरी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',about:'ऐप के बारे में',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',empty_exam:'कोई परीक्षा नहीं',empty_lesson:'कोई पाठ नहीं',empty_rem:'कोई रिमाइंडर नहीं',empty_hol:'कोई छुट्टी नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',fees:'फीस',fee_tracker:'फीस ट्रैकर',add_fee:'फीस जोड़ें',paid:'जमा',unpaid:'बकाया',month:'महीना',amount:'रकम',status:'स्थिति',student_profile:'स्टूडेंट प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'मार्क्स हिस्ट्री',install_app:'ऐप इंस्टॉल',install_desc:'होम स्क्रीन पर जोड़ें',install_success:'ऐप इंस्टॉल हो गया!',install_already:'ऐप पहले से इंस्टॉल है या ब्राउज़र सपोर्ट नहीं करता।',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lessons:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',syllabus:'पाठ्यक्रम ट्रैकर',add_syllabus:'अध्याय जोड़ें',chapter:'अध्याय',completed:'पूरा हुआ',pending:'बाकी',todo:'कार्य सूची',add_todo:'कार्य जोड़ें',task:'कार्य',priority:'प्राथमिकता',high:'उच्च',medium:'मध्यम',low:'निम्न',seating:'बैठने की व्यवस्था',add_seat:'सीट असाइन करें',seat_no:'सीट नंबर',row:'पंक्ति',col:'स्तंभ',report_cards:'रिपोर्ट कार्ड',analytics:'क्लास एनालिटिक्स'},
-  en:{home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',about:'About',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap above to add your first class.',empty_students:'No Students',empty_students_d:'Tap above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',empty_exam:'No Exams',empty_lesson:'No Lessons',empty_rem:'No Reminders',empty_hol:'No Holidays',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',fees:'Fees',fee_tracker:'Fee Tracker',add_fee:'Add Fee',paid:'Paid',unpaid:'Unpaid',month:'Month',amount:'Amount',status:'Status',student_profile:'Student Profile',attendance_pct:'Overall Attendance',marks_history:'Marks History',install_app:'Install App',install_desc:'Add to home screen',install_success:'App installed!',install_already:'App already installed or not supported.',exams:'Exams',add_exam:'Add Exam',lessons:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',syllabus:'Syllabus Tracker',add_syllabus:'Add Chapter',chapter:'Chapter',completed:'Completed',pending:'Pending',todo:'To-Do List',add_todo:'Add Task',task:'Task',priority:'Priority',high:'High',medium:'Medium',low:'Low',seating:'Seating Plan',add_seat:'Assign Seat',seat_no:'Seat No.',row:'Row',col:'Column',report_cards:'Report Cards',analytics:'Class Analytics'}
+  hi:{home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',about:'परिचय',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'मेरी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',empty_exam:'कोई परीक्षा नहीं',empty_lesson:'कोई पाठ नहीं',empty_rem:'कोई रिमाइंडर नहीं',empty_hol:'कोई छुट्टी नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',fees:'फीस',fee_tracker:'फीस ट्रैकर',add_fee:'फीस जोड़ें',paid:'जमा',unpaid:'बकाया',month:'महीना',amount:'रकम',status:'स्थिति',student_profile:'स्टूडेंट प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'मार्क्स हिस्ट्री',install_app:'ऐप इंस्टॉल',install_desc:'होम स्क्रीन पर जोड़ें',install_success:'ऐप इंस्टॉल हो गया!',install_already:'ऐप पहले से इंस्टॉल है या ब्राउज़र सपोर्ट नहीं करता।',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lessons:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',syllabus:'पाठ्यक्रम ट्रैकर',add_syllabus:'अध्याय जोड़ें',chapter:'अध्याय',completed:'पूरा हुआ',pending:'बाकी',todo:'कार्य सूची',add_todo:'कार्य जोड़ें',task:'कार्य',priority:'प्राथमिकता',high:'उच्च',medium:'मध्यम',low:'निम्न',seating:'बैठने की व्यवस्था',add_seat:'सीट असाइन करें',seat_no:'सीट नंबर',row:'पंक्ति',col:'स्तंभ',report_cards:'रिपोर्ट कार्ड',analytics:'क्लास एनालिटिक्स'},
+  en:{home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',about:'About',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap above to add your first class.',empty_students:'No Students',empty_students_d:'Tap above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',empty_exam:'No Exams',empty_lesson:'No Lessons',empty_rem:'No Reminders',empty_hol:'No Holidays',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',fees:'Fees',fee_tracker:'Fee Tracker',add_fee:'Add Fee',paid:'Paid',unpaid:'Unpaid',month:'Month',amount:'Amount',status:'Status',student_profile:'Student Profile',attendance_pct:'Overall Attendance',marks_history:'Marks History',install_app:'Install App',install_desc:'Add to home screen',install_success:'App installed!',install_already:'App already installed or not supported.',exams:'Exams',add_exam:'Add Exam',lessons:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',syllabus:'Syllabus Tracker',add_syllabus:'Add Chapter',chapter:'Chapter',completed:'Completed',pending:'Pending',todo:'To-Do List',add_todo:'Add Task',task:'Task',priority:'Priority',high:'High',medium:'Medium',low:'Low',seating:'Seating Plan',add_seat:'Assign Seat',seat_no:'Seat No.',row:'Row',col:'Column',report_cards:'Report Cards',analytics:'Class Analytics'}
 };
 
 let LANG=localStorage.getItem('aos_lang')||'hi';
@@ -667,7 +701,7 @@ function selectLang(code){LANG=code;localStorage.setItem('aos_lang',code);closeL
 
 function applyI18n(){
   document.querySelectorAll('[data-t]').forEach(e=>{e.innerText=t(e.dataset.t);});
-  document.querySelectorAll('.nav-btn').forEach(b=>{const k=b.dataset.page==='home'?'home':b.dataset.page==='classes'?'classes':b.dataset.page==='attendance'?'attend':b.dataset.page==='diary'?'diary':'more';const s=b.querySelector('span');if(s)s.innerText=t(k);});
+  document.querySelectorAll('.nav-btn').forEach(b=>{const k=b.dataset.page==='home'?'home':b.dataset.page==='classes'?'classes':b.dataset.page==='attendance'?'attend':b.dataset.page==='diary'?'diary':'about';const s=b.querySelector('span');if(s)s.innerText=t(k);});
   const ls=LANGS.find(l=>l.code===LANG);if(ls)$('lang-sub').innerText=ls.native;
   updateGreet();renderAll();
 }
@@ -945,15 +979,13 @@ const MORE_FEATURES=[
   {k:'timetable',i:'fa-calendar-alt',c:'g',p:'timetable',d:'Weekly class schedule'},
   {k:'fees',i:'fa-file-invoice-dollar',c:'pk',p:'fees',d:'Fee collection status'},
   {k:'exams',i:'fa-file-alt',c:'o',p:'exams',d:'Exam planner'},
-  {k:'lessons',i:'fa-chalkboard',c:'cy',p:'lessons',d:'Daily lesson plans'},
-  {k:'reminders',i:'fa-bell',c:'',p:'reminders',d:'Important alerts'},
-  {k:'holidays',i:'fa-umbrella-beach',c:'g',p:'holidays',d:'Holiday calendar'},
-  {k:'syllabus',i:'fa-book-reader',c:'pk',p:'syllabus',d:'Course completion'},
-  {k:'todo',i:'fa-tasks',c:'o',p:'todo',d:'Daily task manager'},
-  {k:'seating',i:'fa-chair',c:'cy',p:'seating',d:'Classroom seating plan'},
-  {k:'notes',i:'fa-sticky-note',c:'',p:'notes',d:'Quick notes & ideas'},
-  {k:'report_cards',i:'fa-id-card',c:'g',p:'report_cards',d:'Student report cards'},
-  {k:'analytics',i:'fa-chart-pie',c:'pk',p:'analytics',d:'Class performance'},
+  {k:'lessons',i:'fa-chalkboard',c:'',p:'lessons',d:'Daily lesson plans'},
+  {k:'reminders',i:'fa-bell',c:'g',p:'reminders',d:'Important alerts'},
+  {k:'holidays',i:'fa-umbrella-beach',c:'pk',p:'holidays',d:'Holiday calendar'},
+  {k:'syllabus',i:'fa-book-reader',c:'o',p:'syllabus',d:'Course completion'},
+  {k:'todo',i:'fa-tasks',c:'',p:'todo',d:'Daily task manager'},
+  {k:'seating',i:'fa-chair',c:'g',p:'seating',d:'Classroom seating plan'},
+  {k:'notes',i:'fa-sticky-note',c:'pk',p:'notes',d:'Quick notes & ideas'},
   {k:'settings',i:'fa-cog',c:'o',p:'settings',d:'App preferences'}
 ];
 
@@ -987,7 +1019,7 @@ function shareApp(){
 }
 
 function exportData(){
-  const data={...S,version:'9.0.0',lang:LANG,exportedAt:new Date().toISOString()};
+  const data={...S,version:'10.0.0',lang:LANG,exportedAt:new Date().toISOString()};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);const a=document.createElement('a');
   a.href=url;a.download=`acharyaos-backup-${new Date().toISOString().split('T')[0]}.json`;
@@ -1005,7 +1037,6 @@ function importData(ev){
   rd.readAsText(f);ev.target.value='';
 }
 function confirmReset(){confirmD(t('reset_confirm'),t('reset_desc2'),()=>{localStorage.clear();location.reload();});}
-function showAbout(){confirmD('AcharyaOS Pro','Version 9.0.0\n\n'+t('about_desc')+'\n\n14+ Indian Languages\n100% Offline & Free\n\nMade with ❤️ in India 🇮🇳',()=>{},'info');}
 
 function updateGreet(){
   const h=new Date().getHours();const nm=S.profile.name||t('home');
