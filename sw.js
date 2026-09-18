@@ -1,8 +1,9 @@
-const CACHE_NAME = 'acharya-os-v4';
+const CACHE_NAME = 'acharya-os-v8';
 const ASSETS = [
   '/',
   '/index.html',
-  '/manifest.json'
+  '/manifest.json',
+  '/sw.js'
 ];
 
 // Install Event
@@ -14,7 +15,7 @@ self.addEventListener('install', (e) => {
   );
 });
 
-// Activate Event (Cleanup old caches)
+// Activate Event (Old cache cleanup)
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keys) => {
@@ -29,7 +30,7 @@ self.addEventListener('activate', (e) => {
   );
 });
 
-// Fetch Event (Network first, fallback to cache)
+// Fetch Event
 self.addEventListener('fetch', (e) => {
   e.respondWith(
     fetch(e.request).catch(() => {
