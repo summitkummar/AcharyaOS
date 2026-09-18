@@ -3,46 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>AcharyaOS Pro — The Teacher's Operating System</title>
-<meta name="description" content="AcharyaOS Pro — Professional digital assistant for Indian teachers in 14+ languages. 100% offline, free forever.">
-<meta name="theme-color" content="#6366f1">
+<title>AcharyaOS Pro — The Teacher's OS</title>
+<meta name="description" content="AcharyaOS Pro — Premium digital assistant for Indian teachers. 100% offline, free forever.">
+<meta name="theme-color" content="#4F46E5">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="AcharyaOS">
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='.5' stop-color='%238b5cf6'/><stop offset='1' stop-color='%23ec4899'/></linearGradient></defs><rect width='100' height='100' rx='26' fill='url(%23g)'/><path d='M32 34 L50 24 L68 34 L68 62 L50 72 L32 62 Z' fill='white'/><circle cx='50' cy='48' r='5' fill='%236366f1'/><path d='M44 48 L34 68 M56 48 L66 68' stroke='%236366f1' stroke-width='2.5' stroke-linecap='round'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%234F46E5'/><stop offset='1' stop-color='%23DB2777'/></linearGradient></defs><rect width='100' height='100' rx='26' fill='url(%23g)'/><path d='M32 34 L50 24 L68 34 L68 62 L50 72 L32 62 Z' fill='white'/><circle cx='50' cy='48' r='5' fill='%234F46E5'/><path d='M44 48 L34 68 M56 48 L66 68' stroke='%234F46E5' stroke-width='2.5' stroke-linecap='round'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
+/* ============ PREMIUM DESIGN SYSTEM ============ */
 :root{
-  --p:#6366f1;--p2:#8b5cf6;--pink:#ec4899;--rose:#f43f5e;
-  --ok:#10b981;--ok-d:#059669;--warn:#f59e0b;--warn-d:#d97706;
-  --err:#ef4444;--err-d:#dc2626;--info:#06b6d4;
-  --bg:#f8fafc;--bg2:#f1f5f9;--bg3:#e2e8f0;
-  --card:#fff;--bd:#eef2f7;--bd2:#e2e8f0;--bd3:#cbd5e1;
-  --t1:#0f172a;--t2:#475569;--t3:#94a3b8;--t4:#cbd5e1;
+  --primary:#4F46E5;--primary-2:#7C3AED;--primary-3:#A78BFA;
+  --pink:#DB2777;--rose:#F43F5E;
+  --success:#10B981;--success-d:#059669;
+  --warning:#F59E0B;--warning-d:#D97706;
+  --danger:#EF4444;--danger-d:#DC2626;
+  --info:#06B6D4;
+  --bg:#F4F6FB;--bg-2:#EEF1F8;--bg-3:#E2E8F0;
+  --card:#FFFFFF;--card-2:#FBFCFE;
+  --border:#E2E8F0;--border-2:#CBD5E1;
+  --text:#0F172A;--text-2:#475569;--text-3:#94A3B8;--text-4:#CBD5E1;
   --sh-xs:0 1px 2px rgba(15,23,42,.04);
   --sh-sm:0 2px 4px rgba(15,23,42,.04),0 1px 2px rgba(15,23,42,.06);
-  --sh-md:0 4px 12px rgba(15,23,42,.06);
-  --sh-lg:0 12px 28px rgba(15,23,42,.08);
+  --sh-md:0 4px 12px rgba(15,23,42,.06),0 2px 4px rgba(15,23,42,.04);
+  --sh-lg:0 12px 28px rgba(15,23,42,.08),0 4px 8px rgba(15,23,42,.04);
   --sh-xl:0 24px 48px rgba(15,23,42,.12);
-  --r:16px;--r-lg:22px;--r-xl:28px;--nav-h:76px;
+  --r:16px;--r-lg:22px;--r-xl:28px;
+  --nav-h:74px;
 }
 [data-theme="dark"]{
-  --bg:#0b1020;--bg2:#131a2e;--bg3:#1a2340;--card:#151d33;--bd:#1e2a48;--bd2:#243257;--bd3:#334155;
-  --t1:#f1f5f9;--t2:#cbd5e1;--t3:#94a3b8;--t4:#64748b;
+  --bg:#0B1020;--bg-2:#131A2E;--bg-3:#1A2340;
+  --card:#151D33;--card-2:#1A2340;
+  --border:#1E2A48;--border-2:#334155;
+  --text:#F1F5F9;--text-2:#CBD5E1;--text-3:#94A3B8;--text-4:#64748B;
   --sh-sm:0 2px 4px rgba(0,0,0,.2);--sh-md:0 4px 12px rgba(0,0,0,.25);--sh-lg:0 12px 28px rgba(0,0,0,.3);--sh-xl:0 24px 48px rgba(0,0,0,.4);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;background:var(--bg);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s;}
-body{padding-bottom:calc(var(--nav-h) + 20px);min-height:100vh;line-height:1.5;}
+html,body{font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s;}
+body{padding-bottom:calc(var(--nav-h) + 24px);min-height:100vh;line-height:1.5;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;font-weight:inherit;font-size:inherit;}
 input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
-::selection{background:var(--p);color:#fff;}
+::selection{background:var(--primary);color:#fff;}
 ::-webkit-scrollbar{width:0;height:0;}
 
 /* SPLASH */
-.splash{position:fixed;inset:0;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 50%,#ec4899 100%);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;}
+.splash{position:fixed;inset:0;background:linear-gradient(135deg,#4F46E5 0%,#7C3AED 50%,#DB2777 100%);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;}
 .splash.hide{opacity:0;visibility:hidden;pointer-events:none;}
 .splash-logo{width:120px;height:120px;border-radius:32px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:3.2rem;color:#fff;backdrop-filter:blur(20px);box-shadow:0 24px 60px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.4);animation:splIn 1s cubic-bezier(.16,1,.3,1) forwards;opacity:0;transform:scale(.5);}
 @keyframes splIn{to{opacity:1;transform:scale(1);}}
@@ -53,21 +62,8 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 @keyframes splBar{to{width:100%;}}
 .splash-made{position:absolute;bottom:38px;color:rgba(255,255,255,.85);font-size:.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;}
 
-/* LANG PICKER */
-.lang-pick{position:fixed;inset:0;background:var(--bg);z-index:9998;display:none;flex-direction:column;padding:24px;padding-top:calc(60px + env(safe-area-inset-top));overflow-y:auto;}
-.lang-pick.show{display:flex;animation:fade .4s;}
-.lang-pick h2{font-size:1.5rem;font-weight:800;letter-spacing:-.5px;margin-bottom:8px;text-align:center;}
-.lang-pick p{font-size:.85rem;color:var(--t2);text-align:center;margin-bottom:24px;font-weight:500;}
-.lang-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding-bottom:30px;}
-.lang-card{background:var(--card);border-radius:16px;padding:16px 14px;border:1.5px solid var(--bd);display:flex;align-items:center;gap:12px;transition:all .2s;cursor:pointer;}
-.lang-card:active{transform:scale(.97);}
-.lang-card.on{border-color:var(--p);background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.08));box-shadow:0 4px 14px rgba(99,102,241,.15);}
-.lang-code{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;flex-shrink:0;}
-.lang-name{font-weight:700;font-size:.88rem;color:var(--t1);line-height:1.2;}
-.lang-native{font-size:.72rem;color:var(--t3);margin-top:2px;font-weight:500;}
-
 /* APP BAR */
-.app-bar{background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 55%,#ec4899 130%);padding:16px 18px 72px;position:relative;border-radius:0 0 34px 34px;box-shadow:0 12px 40px rgba(99,102,241,.35);overflow:hidden;padding-top:calc(16px + env(safe-area-inset-top));}
+.app-bar{background:linear-gradient(135deg,#4F46E5 0%,#7C3AED 55%,#DB2777 130%);padding:16px 18px 76px;position:relative;border-radius:0 0 34px 34px;box-shadow:0 12px 40px rgba(79,70,229,.35);overflow:hidden;padding-top:calc(16px + env(safe-area-inset-top));}
 .app-bar::before{content:'';position:absolute;top:-80px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%);border-radius:50%;pointer-events:none;}
 .app-bar::after{content:'';position:absolute;bottom:-100px;left:-50px;width:220px;height:220px;background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%);border-radius:50%;pointer-events:none;}
 .bar-row{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
@@ -78,92 +74,93 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .bar-actions{display:flex;gap:8px;}
 .icon-btn{width:42px;height:42px;border-radius:13px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:.95rem;color:#fff;backdrop-filter:blur(10px);transition:transform .15s,background .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.3);position:relative;}
 .icon-btn:active{transform:scale(.92);background:rgba(255,255,255,.34);}
+.icon-btn .badge{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--danger);color:#fff;font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid #fff;}
 
 /* WRAP */
 .wrap{padding:0 16px;max-width:720px;margin:-58px auto 0;position:relative;z-index:2;}
 
 /* GREETING */
-.greet{background:var(--card);border-radius:var(--r-xl);padding:22px;box-shadow:var(--sh-lg);margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;border:1px solid var(--bd);}
-.greet h1{font-size:1.22rem;font-weight:800;letter-spacing:-.4px;color:var(--t1);margin-bottom:6px;line-height:1.25;}
-.greet p{font-size:.84rem;color:var(--t2);font-weight:500;}
-.greet-date{font-size:.72rem;color:var(--t3);margin-top:12px;display:inline-flex;align-items:center;gap:7px;font-weight:600;background:var(--bg2);padding:6px 12px;border-radius:100px;}
-.greet-date i{color:var(--p);}
-.greet-avatar{width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,var(--p),var(--pink));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;box-shadow:0 10px 24px rgba(99,102,241,.4);position:relative;cursor:pointer;}
-.greet-avatar::after{content:'';position:absolute;bottom:2px;right:2px;width:15px;height:15px;background:var(--ok);border-radius:50%;border:3px solid var(--card);}
+.greet{background:var(--card);border-radius:var(--r-xl);padding:22px;box-shadow:var(--sh-lg);margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;border:1px solid var(--border);}
+.greet h1{font-size:1.22rem;font-weight:800;letter-spacing:-.4px;color:var(--text);margin-bottom:6px;line-height:1.25;}
+.greet p{font-size:.84rem;color:var(--text-2);font-weight:500;}
+.greet-date{font-size:.72rem;color:var(--text-3);margin-top:12px;display:inline-flex;align-items:center;gap:7px;font-weight:600;background:var(--bg-2);padding:6px 12px;border-radius:100px;}
+.greet-date i{color:var(--primary);}
+.greet-avatar{width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,var(--primary),var(--pink));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;box-shadow:0 10px 24px rgba(79,70,229,.4);position:relative;cursor:pointer;}
+.greet-avatar::after{content:'';position:absolute;bottom:2px;right:2px;width:15px;height:15px;background:var(--success);border-radius:50%;border:3px solid var(--card);}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;}
-.stat{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--sh-sm);border:1px solid var(--bd);transition:transform .15s;cursor:pointer;}
+.stat{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--sh-sm);border:1px solid var(--border);transition:transform .15s;cursor:pointer;}
 .stat:active{transform:scale(.98);}
 .stat-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
-.stat-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(139,92,246,.12));color:var(--p);}
-.stat.g .stat-icon{background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(5,150,105,.12));color:var(--ok);}
-.stat.o .stat-icon{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(217,119,6,.12));color:var(--warn);}
-.stat.pk .stat-icon{background:linear-gradient(135deg,rgba(236,72,153,.12),rgba(244,63,94,.12));color:var(--pink);}
-.stat-label{font-size:.66rem;color:var(--t3);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
-.stat-value{font-size:1.75rem;font-weight:800;color:var(--t1);line-height:1;letter-spacing:-1px;}
+.stat-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;background:linear-gradient(135deg,rgba(79,70,229,.12),rgba(124,58,237,.12));color:var(--primary);}
+.stat.g .stat-icon{background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(5,150,105,.12));color:var(--success);}
+.stat.o .stat-icon{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(217,119,6,.12));color:var(--warning);}
+.stat.pk .stat-icon{background:linear-gradient(135deg,rgba(219,39,119,.12),rgba(244,63,94,.12));color:var(--pink);}
+.stat-label{font-size:.66rem;color:var(--text-3);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
+.stat-value{font-size:1.75rem;font-weight:800;color:var(--text);line-height:1;letter-spacing:-1px;}
 
 /* SECTION */
 .sec-head{display:flex;justify-content:space-between;align-items:center;margin:24px 4px 12px;}
-.sec-head h3{font-size:1rem;font-weight:800;color:var(--t1);letter-spacing:-.3px;display:flex;align-items:center;gap:9px;}
-.sec-head h3 i{color:var(--p);font-size:.85rem;width:28px;height:28px;border-radius:9px;background:rgba(99,102,241,.1);display:flex;align-items:center;justify-content:center;}
-.sec-head .link{font-size:.74rem;font-weight:700;color:var(--p);padding:8px 12px;border-radius:10px;background:rgba(99,102,241,.08);display:flex;align-items:center;gap:5px;}
+.sec-head h3{font-size:1rem;font-weight:800;color:var(--text);letter-spacing:-.3px;display:flex;align-items:center;gap:9px;}
+.sec-head h3 i{color:var(--primary);font-size:.85rem;width:28px;height:28px;border-radius:9px;background:rgba(79,70,229,.1);display:flex;align-items:center;justify-content:center;}
+.sec-head .link{font-size:.74rem;font-weight:700;color:var(--primary);padding:8px 12px;border-radius:10px;background:rgba(79,70,229,.08);display:flex;align-items:center;gap:5px;}
 
 /* QUICK */
 .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px;}
-.quick{background:var(--card);border-radius:var(--r);padding:14px 6px 12px;box-shadow:var(--sh-sm);border:1px solid var(--bd);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.64rem;font-weight:800;color:var(--t2);text-align:center;transition:transform .15s;letter-spacing:-.1px;}
+.quick{background:var(--card);border-radius:var(--r);padding:14px 6px 12px;box-shadow:var(--sh-sm);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.64rem;font-weight:800;color:var(--text-2);text-align:center;transition:transform .15s;letter-spacing:-.1px;}
 .quick:active{transform:scale(.94);}
-.quick i{font-size:1.15rem;width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(139,92,246,.1));color:var(--p);display:flex;align-items:center;justify-content:center;}
-.quick.g i{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.1));color:var(--ok);}
-.quick.o i{background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(217,119,6,.1));color:var(--warn);}
-.quick.pk i{background:linear-gradient(135deg,rgba(236,72,153,.1),rgba(244,63,94,.1));color:var(--pink);}
+.quick i{font-size:1.15rem;width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,rgba(79,70,229,.1),rgba(124,58,237,.1));color:var(--primary);display:flex;align-items:center;justify-content:center;}
+.quick.g i{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.1));color:var(--success);}
+.quick.o i{background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(217,119,6,.1));color:var(--warning);}
+.quick.pk i{background:linear-gradient(135deg,rgba(219,39,119,.1),rgba(244,63,94,.1));color:var(--pink);}
 .quick.cy i{background:linear-gradient(135deg,rgba(6,182,212,.1),rgba(8,145,178,.1));color:var(--info);}
 
 /* CARDS */
-.card{background:var(--card);border-radius:var(--r-lg);padding:18px;box-shadow:var(--sh-sm);border:1px solid var(--bd);margin-bottom:14px;}
+.card{background:var(--card);border-radius:var(--r-lg);padding:18px;box-shadow:var(--sh-sm);border:1px solid var(--border);margin-bottom:14px;}
 .card-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-.card-h h4{font-size:.95rem;font-weight:800;color:var(--t1);display:flex;align-items:center;gap:8px;}
-.card-h h4 i{color:var(--p);}
+.card-h h4{font-size:.95rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px;}
+.card-h h4 i{color:var(--primary);}
 
 /* LIST ITEM */
-.li{background:var(--card);border-radius:var(--r);padding:14px;border:1px solid var(--bd);margin-bottom:10px;display:flex;align-items:center;gap:13px;box-shadow:var(--sh-xs);transition:transform .15s;}
+.li{background:var(--card);border-radius:var(--r);padding:14px;border:1px solid var(--border);margin-bottom:10px;display:flex;align-items:center;gap:13px;box-shadow:var(--sh-xs);transition:transform .15s;}
 .li:active{transform:scale(.99);}
-.li-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(139,92,246,.1));color:var(--p);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;font-weight:800;}
-.li-icon.g{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.1));color:var(--ok);}
-.li-icon.o{background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(217,119,6,.1));color:var(--warn);}
-.li-icon.pk{background:linear-gradient(135deg,rgba(236,72,153,.1),rgba(244,63,94,.1));color:var(--pink);}
+.li-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(79,70,229,.1),rgba(124,58,237,.1));color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;font-weight:800;}
+.li-icon.g{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.1));color:var(--success);}
+.li-icon.o{background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(217,119,6,.1));color:var(--warning);}
+.li-icon.pk{background:linear-gradient(135deg,rgba(219,39,119,.1),rgba(244,63,94,.1));color:var(--pink);}
 .li-body{flex:1;min-width:0;}
-.li-body h4{font-size:.92rem;font-weight:700;color:var(--t1);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.li-body p{font-size:.74rem;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;}
+.li-body h4{font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.li-body p{font-size:.74rem;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;}
 .li-meta{display:flex;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap;}
-.li-chip{font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:7px;background:var(--bg2);color:var(--t2);}
-.li-chip.g{background:rgba(16,185,129,.1);color:var(--ok);}
-.li-chip.o{background:rgba(245,158,11,.1);color:var(--warn);}
-.li-chip.r{background:rgba(239,68,68,.1);color:var(--err);}
-.li-arrow{color:var(--t4);font-size:.85rem;flex-shrink:0;}
+.li-chip{font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:7px;background:var(--bg-2);color:var(--text-2);}
+.li-chip.g{background:rgba(16,185,129,.1);color:var(--success);}
+.li-chip.o{background:rgba(245,158,11,.1);color:var(--warning);}
+.li-chip.r{background:rgba(239,68,68,.1);color:var(--danger);}
+.li-arrow{color:var(--text-4);font-size:.85rem;flex-shrink:0;}
 
 /* BUTTONS */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:13px;font-weight:700;font-size:.86rem;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;transition:transform .15s;box-shadow:0 6px 16px rgba(99,102,241,.3);white-space:nowrap;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:13px;font-weight:700;font-size:.86rem;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;transition:transform .15s;box-shadow:0 6px 16px rgba(79,70,229,.3);white-space:nowrap;}
 .btn:active{transform:scale(.97);}
 .btn.full{width:100%;}
 .btn.sm{padding:9px 14px;font-size:.76rem;border-radius:10px;}
-.btn.ghost{background:rgba(99,102,241,.08);color:var(--p);box-shadow:none;}
-.btn.g{background:linear-gradient(135deg,var(--ok),var(--ok-d));box-shadow:0 6px 16px rgba(16,185,129,.3);}
-.btn.r{background:linear-gradient(135deg,var(--err),var(--err-d));box-shadow:0 6px 16px rgba(239,68,68,.3);}
-.btn.gray{background:var(--bg2);color:var(--t2);box-shadow:none;}
+.btn.ghost{background:rgba(79,70,229,.08);color:var(--primary);box-shadow:none;}
+.btn.g{background:linear-gradient(135deg,var(--success),var(--success-d));box-shadow:0 6px 16px rgba(16,185,129,.3);}
+.btn.r{background:linear-gradient(135deg,var(--danger),var(--danger-d));box-shadow:0 6px 16px rgba(239,68,68,.3);}
+.btn.gray{background:var(--bg-2);color:var(--text-2);box-shadow:none;}
 
 /* FAB */
-.fab{position:fixed;bottom:calc(var(--nav-h) + 16px + env(safe-area-inset-bottom));right:18px;width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,var(--p),var(--pink));color:#fff;font-size:1.4rem;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 36px rgba(99,102,241,.5);z-index:150;transition:transform .2s;}
+.fab{position:fixed;bottom:calc(var(--nav-h) + 16px + env(safe-area-inset-bottom));right:18px;width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,var(--primary),var(--pink));color:#fff;font-size:1.4rem;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 36px rgba(79,70,229,.5);z-index:150;transition:transform .2s;}
 .fab:active{transform:scale(.9) rotate(45deg);}
 
 /* NAV */
-.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.92);backdrop-filter:blur(24px) saturate(180%);border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:10px 6px calc(12px + env(safe-area-inset-bottom));z-index:200;box-shadow:0 -8px 30px rgba(15,23,42,.06);}
+.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.92);backdrop-filter:blur(24px) saturate(180%);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:10px 6px calc(12px + env(safe-area-inset-bottom));z-index:200;box-shadow:0 -8px 30px rgba(15,23,42,.06);}
 [data-theme="dark"] .nav{background:rgba(21,29,51,.92);}
-.nav-btn{flex:1;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--t3);border-radius:12px;transition:color .2s;position:relative;}
+.nav-btn{flex:1;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--text-3);border-radius:12px;transition:color .2s;position:relative;}
 .nav-btn i{font-size:1.15rem;transition:transform .2s;}
-.nav-btn.active{color:var(--p);}
+.nav-btn.active{color:var(--primary);}
 .nav-btn.active i{transform:translateY(-2px);}
-.nav-btn.active::before{content:'';position:absolute;top:2px;width:22px;height:3px;background:linear-gradient(90deg,var(--p),var(--p2));border-radius:0 0 4px 4px;left:50%;transform:translateX(-50%);}
+.nav-btn.active::before{content:'';position:absolute;top:2px;width:22px;height:3px;background:linear-gradient(90deg,var(--primary),var(--primary-2));border-radius:0 0 4px 4px;left:50%;transform:translateX(-50%);}
 
 /* PAGE */
 .page{display:none;animation:fade .35s cubic-bezier(.16,1,.3,1);}
@@ -172,18 +169,18 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 
 /* FORM */
 .field{margin-bottom:15px;}
-.field label{display:block;font-size:.76rem;font-weight:700;color:var(--t2);margin-bottom:8px;}
-.field label .req{color:var(--err);}
-.inp,.sel,.txa{width:100%;padding:14px 16px;border:1.5px solid var(--bd2);border-radius:13px;background:var(--bg);outline:none;transition:border .2s,background .2s;font-size:.92rem;font-weight:600;color:var(--t1);}
-[data-theme="dark"] .inp,[data-theme="dark"] .sel,[data-theme="dark"] .txa{background:var(--bg2);}
-.inp:focus,.sel:focus,.txa:focus{border-color:var(--p);background:var(--card);box-shadow:0 0 0 4px rgba(99,102,241,.1);}
+.field label{display:block;font-size:.76rem;font-weight:700;color:var(--text-2);margin-bottom:8px;}
+.field label .req{color:var(--danger);}
+.inp,.sel,.txa{width:100%;padding:14px 16px;border:1.5px solid var(--border-2);border-radius:13px;background:var(--bg);outline:none;transition:border .2s,background .2s;font-size:.92rem;font-weight:600;color:var(--text);}
+[data-theme="dark"] .inp,[data-theme="dark"] .sel,[data-theme="dark"] .txa{background:var(--bg-2);}
+.inp:focus,.sel:focus,.txa:focus{border-color:var(--primary);background:var(--card);box-shadow:0 0 0 4px rgba(79,70,229,.1);}
 .txa{resize:vertical;min-height:88px;line-height:1.6;font-weight:500;}
-.inp::placeholder,.txa::placeholder{color:var(--t4);font-weight:500;}
+.inp::placeholder,.txa::placeholder{color:var(--text-4);font-weight:500;}
 
 /* EMPTY */
-.empty{text-align:center;padding:48px 20px;color:var(--t3);}
-.empty-ill{width:92px;height:92px;margin:0 auto 18px;border-radius:28px;background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.08));display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:var(--p);opacity:.75;}
-.empty h4{font-size:.98rem;font-weight:800;color:var(--t2);margin-bottom:6px;}
+.empty{text-align:center;padding:48px 20px;color:var(--text-3);}
+.empty-ill{width:92px;height:92px;margin:0 auto 18px;border-radius:28px;background:linear-gradient(135deg,rgba(79,70,229,.08),rgba(124,58,237,.08));display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:var(--primary);opacity:.75;}
+.empty h4{font-size:.98rem;font-weight:800;color:var(--text-2);margin-bottom:6px;}
 .empty p{font-size:.78rem;line-height:1.6;max-width:260px;margin:0 auto;}
 
 /* MODAL */
@@ -191,105 +188,109 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .modal.open{display:flex;animation:fade .2s;}
 .modal-inner{background:var(--card);border-radius:28px 28px 0 0;padding:24px 20px 28px;width:100%;max-width:720px;max-height:92vh;overflow-y:auto;animation:slideUp .35s cubic-bezier(.16,1,.3,1);padding-bottom:calc(28px + env(safe-area-inset-bottom));}
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
-.modal-inner::before{content:'';display:block;width:40px;height:4px;background:var(--bd2);border-radius:4px;margin:0 auto 18px;}
+.modal-inner::before{content:'';display:block;width:40px;height:4px;background:var(--border-2);border-radius:4px;margin:0 auto 18px;}
 .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;gap:12px;}
 .modal-head h3{font-size:1.15rem;font-weight:800;}
-.modal-head p{font-size:.74rem;color:var(--t3);margin-top:4px;font-weight:500;}
-.close-btn{width:38px;height:38px;border-radius:12px;background:var(--bg2);color:var(--t2);font-size:.92rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.modal-head p{font-size:.74rem;color:var(--text-3);margin-top:4px;font-weight:500;}
+.close-btn{width:38px;height:38px;border-radius:12px;background:var(--bg-2);color:var(--text-2);font-size:.92rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .modal-btns{display:flex;gap:10px;margin-top:8px;}
 .modal-btns .btn{flex:1;}
 
 /* TOAST */
 .toast-wrap{position:fixed;top:calc(16px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:10000;display:flex;flex-direction:column;gap:8px;width:calc(100% - 32px);max-width:400px;pointer-events:none;}
-.toast{background:var(--card);border-radius:14px;padding:13px 16px;box-shadow:var(--sh-xl);border:1px solid var(--bd);display:flex;align-items:center;gap:12px;animation:toastIn .3s cubic-bezier(.16,1,.3,1);pointer-events:auto;}
+.toast{background:var(--card);border-radius:14px;padding:13px 16px;box-shadow:var(--sh-xl);border:1px solid var(--border);display:flex;align-items:center;gap:12px;animation:toastIn .3s cubic-bezier(.16,1,.3,1);pointer-events:auto;}
 @keyframes toastIn{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
 .toast.out{animation:toastOut .3s forwards;}
 @keyframes toastOut{to{opacity:0;transform:translateY(-20px);}}
-.toast-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;background:rgba(99,102,241,.1);color:var(--p);}
-.toast.ok .toast-icon{background:rgba(16,185,129,.12);color:var(--ok);}
-.toast.err .toast-icon{background:rgba(239,68,68,.12);color:var(--err);}
-.toast.warn .toast-icon{background:rgba(245,158,11,.12);color:var(--warn);}
+.toast-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;background:rgba(79,70,229,.1);color:var(--primary);}
+.toast.ok .toast-icon{background:rgba(16,185,129,.12);color:var(--success);}
+.toast.err .toast-icon{background:rgba(239,68,68,.12);color:var(--danger);}
+.toast.warn .toast-icon{background:rgba(245,158,11,.12);color:var(--warning);}
 .toast-body{flex:1;min-width:0;}
 .toast-body h5{font-size:.84rem;font-weight:700;}
-.toast-body p{font-size:.72rem;color:var(--t3);margin-top:2px;font-weight:500;}
+.toast-body p{font-size:.72rem;color:var(--text-3);margin-top:2px;font-weight:500;}
 
 /* DIALOG */
 .dialog{position:fixed;inset:0;background:rgba(15,23,42,.62);z-index:10001;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px);}
 .dialog.open{display:flex;animation:fade .2s;}
 .dialog-inner{background:var(--card);border-radius:24px;padding:26px 22px 22px;width:100%;max-width:360px;box-shadow:var(--sh-xl);animation:popIn .3s cubic-bezier(.16,1,.3,1);text-align:center;}
 @keyframes popIn{from{opacity:0;transform:scale(.9);}to{opacity:1;transform:scale(1);}}
-.dialog-icon{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(244,63,94,.12));color:var(--err);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 16px;}
-.dialog-icon.warn{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(217,119,6,.12));color:var(--warn);}
-.dialog-icon.info{background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(139,92,246,.12));color:var(--p);}
+.dialog-icon{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(244,63,94,.12));color:var(--danger);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 16px;}
+.dialog-icon.warn{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(217,119,6,.12));color:var(--warning);}
+.dialog-icon.info{background:linear-gradient(135deg,rgba(79,70,229,.12),rgba(124,58,237,.12));color:var(--primary);}
 .dialog h3{font-size:1.08rem;font-weight:800;margin-bottom:8px;}
-.dialog p{font-size:.82rem;color:var(--t2);line-height:1.6;margin-bottom:22px;font-weight:500;white-space:pre-line;}
+.dialog p{font-size:.82rem;color:var(--text-2);line-height:1.6;margin-bottom:22px;font-weight:500;white-space:pre-line;}
 
 /* SEARCH */
 .search-overlay{position:fixed;inset:0;background:var(--bg);z-index:9997;display:none;flex-direction:column;padding:16px;padding-top:calc(16px + env(safe-area-inset-top));}
 .search-overlay.open{display:flex;animation:fade .2s;}
 .search-bar{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
 .search-wrap{position:relative;flex:1;}
-.search-wrap i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--t3);font-size:.9rem;}
+.search-wrap i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:.9rem;}
 .search-wrap .inp{padding-left:44px;background:var(--card);}
 .search-results{flex:1;overflow-y:auto;}
 
 /* PROGRESS */
-.progress{width:100%;height:8px;background:var(--bg2);border-radius:100px;overflow:hidden;}
-.progress-inner{height:100%;background:linear-gradient(90deg,var(--p),var(--p2));border-radius:100px;transition:width .4s cubic-bezier(.16,1,.3,1);}
-.progress-inner.g{background:linear-gradient(90deg,var(--ok),var(--ok-d));}
-.progress-inner.o{background:linear-gradient(90deg,var(--warn),var(--warn-d));}
-.progress-inner.r{background:linear-gradient(90deg,var(--err),var(--err-d));}
+.progress{width:100%;height:8px;background:var(--bg-2);border-radius:100px;overflow:hidden;}
+.progress-inner{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-2));border-radius:100px;transition:width .4s cubic-bezier(.16,1,.3,1);}
+.progress-inner.g{background:linear-gradient(90deg,var(--success),var(--success-d));}
+.progress-inner.o{background:linear-gradient(90deg,var(--warning),var(--warning-d));}
+.progress-inner.r{background:linear-gradient(90deg,var(--danger),var(--danger-d));}
 
 /* ATTENDANCE */
-.att{display:flex;align-items:center;padding:12px;border-radius:14px;background:var(--bg);border:1px solid var(--bd);margin-bottom:9px;gap:10px;}
-[data-theme="dark"] .att{background:var(--bg2);}
+.att{display:flex;align-items:center;padding:12px;border-radius:14px;background:var(--bg);border:1px solid var(--border);margin-bottom:9px;gap:10px;}
+[data-theme="dark"] .att{background:var(--bg-2);}
 .att-btns{display:flex;gap:5px;flex-shrink:0;}
-.att-b{width:40px;height:40px;border-radius:12px;background:var(--card);border:1.5px solid var(--bd2);color:var(--t3);font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .18s;}
-.att-b.P.on{background:linear-gradient(135deg,var(--ok),var(--ok-d));color:#fff;border-color:var(--ok);box-shadow:0 6px 14px rgba(16,185,129,.35);}
-.att-b.A.on{background:linear-gradient(135deg,var(--err),var(--err-d));color:#fff;border-color:var(--err);box-shadow:0 6px 14px rgba(239,68,68,.35);}
-.att-b.L.on{background:linear-gradient(135deg,var(--warn),var(--warn-d));color:#fff;border-color:var(--warn);box-shadow:0 6px 14px rgba(245,158,11,.35);}
+.att-b{width:40px;height:40px;border-radius:12px;background:var(--card);border:1.5px solid var(--border-2);color:var(--text-3);font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .18s;}
+.att-b.P.on{background:linear-gradient(135deg,var(--success),var(--success-d));color:#fff;border-color:var(--success);box-shadow:0 6px 14px rgba(16,185,129,.35);}
+.att-b.A.on{background:linear-gradient(135deg,var(--danger),var(--danger-d));color:#fff;border-color:var(--danger);box-shadow:0 6px 14px rgba(239,68,68,.35);}
+.att-b.L.on{background:linear-gradient(135deg,var(--warning),var(--warning-d));color:#fff;border-color:var(--warning);box-shadow:0 6px 14px rgba(245,158,11,.35);}
 
 /* DIARY */
-.d-item{padding:15px;border-radius:14px;background:var(--card);border:1px solid var(--bd);margin-bottom:11px;position:relative;box-shadow:var(--sh-xs);}
-.d-item::before{content:'';position:absolute;left:0;top:15px;bottom:15px;width:3.5px;border-radius:0 4px 4px 0;background:linear-gradient(180deg,var(--p),var(--p2));}
+.d-item{padding:15px;border-radius:14px;background:var(--card);border:1px solid var(--border);margin-bottom:11px;position:relative;box-shadow:var(--sh-xs);}
+.d-item::before{content:'';position:absolute;left:0;top:15px;bottom:15px;width:3.5px;border-radius:0 4px 4px 0;background:linear-gradient(180deg,var(--primary),var(--primary-2));}
 .d-head{display:flex;align-items:center;gap:8px;margin-bottom:9px;flex-wrap:wrap;padding-left:10px;}
-.d-date{font-size:.68rem;font-weight:700;color:var(--t3);display:flex;align-items:center;gap:5px;}
+.d-date{font-size:.68rem;font-weight:700;color:var(--text-3);display:flex;align-items:center;gap:5px;}
 .d-title{font-size:.92rem;font-weight:700;margin-bottom:6px;line-height:1.4;padding-left:10px;}
-.d-desc{font-size:.78rem;color:var(--t2);line-height:1.6;padding-left:10px;font-weight:500;}
+.d-desc{font-size:.78rem;color:var(--text-2);line-height:1.6;padding-left:10px;font-weight:500;}
 .d-hw{margin-top:10px;padding:10px 12px;background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(217,119,6,.08));border-radius:12px;display:flex;gap:8px;align-items:flex-start;margin-left:10px;}
-.d-hw i{color:var(--warn);font-size:.8rem;margin-top:2px;}
-.d-hw div{font-size:.76rem;color:var(--t2);font-weight:600;line-height:1.4;}
+.d-hw i{color:var(--warning);font-size:.8rem;margin-top:2px;}
+.d-hw div{font-size:.76rem;color:var(--text-2);font-weight:600;line-height:1.4;}
 
 /* SETTINGS ROW */
-.set-row{display:flex;align-items:center;gap:14px;padding:15px 4px;border-bottom:1px solid var(--bd);cursor:pointer;}
+.set-row{display:flex;align-items:center;gap:14px;padding:15px 4px;border-bottom:1px solid var(--border);cursor:pointer;}
 .set-row:last-child{border-bottom:none;}
-.set-ic{width:42px;height:42px;border-radius:13px;background:var(--bg2);color:var(--p);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.set-ic{width:42px;height:42px;border-radius:13px;background:var(--bg-2);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
 .set-body{flex:1;min-width:0;}
 .set-body h4{font-size:.88rem;font-weight:700;margin-bottom:3px;}
-.set-body p{font-size:.72rem;color:var(--t3);font-weight:500;}
-.set-arrow{color:var(--t4);font-size:.8rem;}
+.set-body p{font-size:.72rem;color:var(--text-3);font-weight:500;}
+.set-arrow{color:var(--text-4);font-size:.8rem;}
 
 /* CHART */
-.chart{width:100%;height:160px;position:relative;}
-.chart svg{width:100%;height:100%;overflow:visible;}
-.chart-label{font-size:.62rem;fill:var(--t3);font-weight:600;}
+.chart-container{width:100%;height:180px;padding:10px 0;position:relative;}
+.chart-bars{display:flex;align-items:flex-end;justify-content:space-around;height:140px;gap:8px;}
+.chart-col{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;}
+.chart-bar{width:100%;max-width:36px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--primary),var(--primary-2));transition:height .6s cubic-bezier(.16,1,.3,1);min-height:4px;}
+.chart-bar.empty{background:var(--bg-3);}
+.chart-label{font-size:.62rem;font-weight:700;color:var(--text-3);}
+.chart-value{font-size:.68rem;font-weight:800;color:var(--primary);}
 
 /* TIMETABLE */
 .tt-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:14px;}
-.tt-day{text-align:center;padding:9px 3px;border-radius:10px;font-size:.68rem;font-weight:800;color:var(--t3);background:var(--bg2);cursor:pointer;transition:all .15s;}
-.tt-day.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;box-shadow:0 4px 12px rgba(99,102,241,.3);}
-.tt-slot{padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--p);margin-bottom:8px;box-shadow:var(--sh-xs);}
-.tt-slot .time{font-size:.68rem;font-weight:800;color:var(--p);letter-spacing:.5px;}
+.tt-day{text-align:center;padding:9px 3px;border-radius:10px;font-size:.68rem;font-weight:800;color:var(--text-3);background:var(--bg-2);cursor:pointer;transition:all .15s;}
+.tt-day.on{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 4px 12px rgba(79,70,229,.3);}
+.tt-slot{padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--border);border-left:4px solid var(--primary);margin-bottom:8px;box-shadow:var(--sh-xs);}
+.tt-slot .time{font-size:.68rem;font-weight:800;color:var(--primary);letter-spacing:.5px;}
 .tt-slot .sub{font-size:.88rem;font-weight:700;margin-top:4px;}
-.tt-slot .cls{font-size:.72rem;color:var(--t3);margin-top:3px;font-weight:500;}
+.tt-slot .cls{font-size:.72rem;color:var(--text-3);margin-top:3px;font-weight:500;}
 
 /* NOTE */
 .note{padding:15px;border-radius:14px;background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(217,119,6,.06));border:1px solid rgba(245,158,11,.15);margin-bottom:10px;}
 .note h5{font-size:.9rem;font-weight:700;margin-bottom:6px;}
-.note p{font-size:.78rem;color:var(--t2);line-height:1.55;font-weight:500;}
-.note .date{font-size:.65rem;color:var(--t3);margin-top:8px;font-weight:600;}
+.note p{font-size:.78rem;color:var(--text-2);line-height:1.55;font-weight:500;}
+.note .date{font-size:.65rem;color:var(--text-3);margin-top:8px;font-weight:600;}
 
-/* MISC */
+/* UTILS */
 .hidden{display:none!important;}
 .text-center{text-align:center;}
 .mb-2{margin-bottom:8px;}.mb-3{margin-bottom:12px;}.mt-2{margin-top:8px;}.mt-3{margin-top:12px;}
@@ -312,24 +313,14 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <div class="splash-made">Made with ❤️ for Indian Teachers</div>
 </div>
 
-<!-- LANGUAGE PICKER -->
-<div class="lang-pick" id="lang-pick">
-  <h2 id="lp-title">Choose Language / भाषा चुनें</h2>
-  <p id="lp-desc">Select your preferred language</p>
-  <div class="lang-grid" id="lang-grid"></div>
-</div>
-
-<!-- ONBOARDING -->
-<div class="lang-pick" id="onboard" style="display:none;">
-  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 12px;">
-    <div id="ob-ill" style="width:180px;height:180px;border-radius:48px;background:linear-gradient(135deg,var(--p),var(--p2),var(--pink));display:flex;align-items:center;justify-content:center;font-size:5rem;color:#fff;margin-bottom:36px;box-shadow:0 24px 60px rgba(99,102,241,.35);"><i class="fas fa-graduation-cap"></i></div>
-    <h2 id="ob-title" style="font-size:1.6rem;font-weight:800;margin-bottom:12px;line-height:1.25;"></h2>
-    <p id="ob-desc" style="font-size:.92rem;color:var(--t2);line-height:1.65;max-width:320px;margin:0 auto;font-weight:500;"></p>
-    <div id="ob-dots" style="display:flex;justify-content:center;gap:7px;margin:32px 0 24px;"></div>
-  </div>
-  <div style="display:flex;gap:12px;padding:0 8px calc(24px + env(safe-area-inset-bottom));">
-    <button class="btn gray" id="ob-prev" onclick="obPrev()" style="flex:1;display:none;">Back</button>
-    <button class="btn" id="ob-next" onclick="obNext()" style="flex:1;">Next</button>
+<!-- LANGUAGE PICKER MODAL -->
+<div class="modal" id="lang-modal">
+  <div class="modal-inner">
+    <div class="modal-head">
+      <div><h3>Choose Language / भाषा चुनें</h3><p>Select your preferred language</p></div>
+      <button class="close-btn" onclick="closeLangModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="lang-list" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-bottom:20px;"></div>
   </div>
 </div>
 
@@ -341,6 +332,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
       <div class="brand-text">AcharyaOS<small>The Teacher's OS</small></div>
     </div>
     <div class="bar-actions">
+      <button class="icon-btn" onclick="openLangModal()"><i class="fas fa-globe"></i></button>
       <button class="icon-btn" onclick="openSearch()"><i class="fas fa-search"></i></button>
       <button class="icon-btn" onclick="toggleTheme()" id="theme-btn"><i class="fas fa-moon"></i></button>
       <button class="icon-btn" onclick="shareApp()"><i class="fas fa-share-alt"></i></button>
@@ -391,7 +383,11 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     <button class="quick pk" onclick="openModal('marks')"><i class="fas fa-star"></i> <span data-t="marks">Marks</span></button>
   </div>
   <div class="sec-head"><h3><i class="fas fa-chart-line"></i> <span data-t="weekly_attendance">Weekly Attendance</span></h3><span class="link" onclick="switchPage('reports')"><i class="fas fa-file-alt"></i> <span data-t="reports">Reports</span></span></div>
-  <div class="card"><div class="chart" id="wk-chart"></div></div>
+  <div class="card">
+    <div class="chart-container" id="weekly-chart">
+      <!-- Chart will be rendered here -->
+    </div>
+  </div>
   <div class="sec-head"><h3><i class="fas fa-clock"></i> <span data-t="recent">Recent Activity</span></h3></div>
   <div id="recent"></div>
 </div>
@@ -451,30 +447,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <div id="list-notes"></div>
 </div>
 
-<!-- EXAMS -->
-<div class="page" id="pg-exams">
-  <div class="sec-head"><h3><i class="fas fa-file-alt"></i> <span data-t="exams">Exams</span></h3><button class="link" onclick="openModal('exam')"><i class="fas fa-plus"></i> <span data-t="add_exam">Add Exam</span></button></div>
-  <div id="list-exams"></div>
-</div>
-
-<!-- LESSONS -->
-<div class="page" id="pg-lessons">
-  <div class="sec-head"><h3><i class="fas fa-chalkboard"></i> <span data-t="lesson_plans">Lesson Plans</span></h3><button class="link" onclick="openModal('lesson')"><i class="fas fa-plus"></i> <span data-t="add_lesson">Add Lesson</span></button></div>
-  <div id="list-lessons"></div>
-</div>
-
-<!-- REMINDERS -->
-<div class="page" id="pg-reminders">
-  <div class="sec-head"><h3><i class="fas fa-bell"></i> <span data-t="reminders">Reminders</span></h3><button class="link" onclick="openModal('reminder')"><i class="fas fa-plus"></i> <span data-t="add_reminder">Add Reminder</span></button></div>
-  <div id="list-reminders"></div>
-</div>
-
-<!-- HOLIDAYS -->
-<div class="page" id="pg-holidays">
-  <div class="sec-head"><h3><i class="fas fa-umbrella-beach"></i> <span data-t="holidays">Holidays</span></h3><button class="link" onclick="openModal('holiday')"><i class="fas fa-plus"></i> <span data-t="add_holiday">Add Holiday</span></button></div>
-  <div id="list-holidays"></div>
-</div>
-
 <!-- REPORTS -->
 <div class="page" id="pg-reports">
   <div class="sec-head"><h3><i class="fas fa-chart-bar"></i> <span data-t="reports">Reports</span></h3><button class="link" onclick="window.print()"><i class="fas fa-print"></i> <span data-t="print">Print</span></button></div>
@@ -486,10 +458,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     <div class="card-h"><h4><i class="fas fa-star"></i> <span data-t="marks_summary">Marks Summary</span></h4></div>
     <div id="rep-marks"></div>
   </div>
-  <div class="card">
-    <div class="card-h"><h4><i class="fas fa-users"></i> <span data-t="class_wise">Class-wise Students</span></h4></div>
-    <div id="rep-class"></div>
-  </div>
 </div>
 
 <!-- MORE -->
@@ -498,11 +466,11 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <div class="grid-2" id="more-grid"></div>
   <div class="sec-head"><h3><i class="fas fa-info-circle"></i> <span data-t="about">About</span></h3></div>
   <div class="card text-center" style="padding:24px 18px;">
-    <div style="width:76px;height:76px;border-radius:22px;background:linear-gradient(135deg,var(--p),var(--pink));color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px;box-shadow:0 10px 24px rgba(99,102,241,.4);"><i class="fas fa-graduation-cap"></i></div>
+    <div style="width:76px;height:76px;border-radius:22px;background:linear-gradient(135deg,var(--primary),var(--pink));color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px;box-shadow:0 10px 24px rgba(79,70,229,.4);"><i class="fas fa-graduation-cap"></i></div>
     <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;">AcharyaOS Pro</h3>
-    <p style="font-size:.78rem;color:var(--t3);font-weight:600;">Version 3.0.0</p>
-    <p style="font-size:.82rem;color:var(--t2);margin-top:14px;line-height:1.6;" data-t="about_desc">A professional digital assistant for Indian teachers.</p>
-    <p style="font-size:.72rem;color:var(--t3);margin-top:12px;">Made with ❤️ in India 🇮🇳</p>
+    <p style="font-size:.78rem;color:var(--text-3);font-weight:600;">Version 4.0.0</p>
+    <p style="font-size:.82rem;color:var(--text-2);margin-top:14px;line-height:1.6;" data-t="about_desc">A professional digital assistant for Indian teachers.</p>
+    <p style="font-size:.72rem;color:var(--text-3);margin-top:12px;">Made with ❤️ in India 🇮🇳</p>
   </div>
 </div>
 
@@ -515,7 +483,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
       <div class="set-body"><h4 data-t="profile">Profile</h4><p id="prof-sub" data-t="set_name_school">Set your name and school</p></div>
       <i class="fas fa-chevron-right set-arrow"></i>
     </div>
-    <div class="set-row" onclick="openLangPicker()">
+    <div class="set-row" onclick="openLangModal()">
       <div class="set-ic"><i class="fas fa-globe"></i></div>
       <div class="set-body"><h4 data-t="language">Language</h4><p id="lang-sub">हिन्दी</p></div>
       <i class="fas fa-chevron-right set-arrow"></i>
@@ -539,8 +507,8 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     </div>
     <input type="file" id="imp-file" accept=".json" style="display:none" onchange="importData(event)">
     <div class="set-row" onclick="confirmReset()">
-      <div class="set-ic" style="background:rgba(239,68,68,.1);color:var(--err);"><i class="fas fa-trash"></i></div>
-      <div class="set-body"><h4 style="color:var(--err);" data-t="reset_data">Reset Data</h4><p data-t="reset_desc">Delete all data permanently</p></div>
+      <div class="set-ic" style="background:rgba(239,68,68,.1);color:var(--danger);"><i class="fas fa-trash"></i></div>
+      <div class="set-body"><h4 style="color:var(--danger);" data-t="reset_data">Reset Data</h4><p data-t="reset_desc">Delete all data permanently</p></div>
       <i class="fas fa-chevron-right set-arrow"></i>
     </div>
   </div>
@@ -552,7 +520,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     </div>
     <div class="set-row" onclick="showAbout()">
       <div class="set-ic"><i class="fas fa-info-circle"></i></div>
-      <div class="set-body"><h4 data-t="about">About</h4><p>Version 3.0.0</p></div>
+      <div class="set-body"><h4 data-t="about">About</h4><p>Version 4.0.0</p></div>
       <i class="fas fa-chevron-right set-arrow"></i>
     </div>
   </div>
@@ -633,20 +601,20 @@ const LANGS = [
 
 /* ============ I18N ============ */
 const T = {
-  hi: {home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'आपकी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lesson_plans:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',class_wise:'क्लास-वार स्टूडेंट्स',all_features:'सभी फीचर्स',about:'ऐप के बारे में',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',empty_exam:'कोई परीक्षा नहीं',empty_lesson:'कोई पाठ नहीं',empty_rem:'कोई रिमाइंडर नहीं',empty_hol:'कोई छुट्टी नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',mark:'उपस्थिति',subject_lbl:'विषय'},
-  en: {home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',exams:'Exams',add_exam:'Add Exam',lesson_plans:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',class_wise:'Class-wise Students',all_features:'All Features',about:'About',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap the button above to add your first class.',empty_students:'No Students',empty_students_d:'Tap the button above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',empty_exam:'No Exams',empty_lesson:'No Lessons',empty_rem:'No Reminders',empty_hol:'No Holidays',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',mark:'Mark',subject_lbl:'Subject'},
-  bn: {home:'হোম',classes:'ক্লাস',students:'শিক্ষার্থী',attend:'উপস্থিতি',diary:'ডায়েরি',marks:'নম্বর',more:'আরও',class:'ক্লাস',student:'শিক্ষার্থী',present_today:'আজ উপস্থিত',quick_actions:'দ্রুত কাজ',weekly_attendance:'সাপ্তাহিক উপস্থিতি',reports:'রিপোর্ট',recent:'সাম্প্রতিক',my_classes:'আমার ক্লাস',all_students:'সব শিক্ষার্থী',add_class:'নতুন ক্লাস',add_student:'নতুন শিক্ষার্থী',attendance:'উপস্থিতি',new_entry:'নতুন এন্ট্রি',add_marks:'নম্বর যোগ করুন',homework:'হোমওয়ার্ক',new_hw:'নতুন HW',timetable:'সময়সূচি',add_period:'পিরিয়ড যোগ',notes:'নোট',new_note:'নতুন নোট',exams:'পরীক্ষা',add_exam:'পরীক্ষা যোগ',lesson_plans:'পাঠ পরিকল্পনা',add_lesson:'পাঠ যোগ',reminders:'রিমাইন্ডার',add_reminder:'রিমাইন্ডার যোগ',holidays:'ছুটি',add_holiday:'ছুটি যোগ',print:'প্রিন্ট',attendance_summary:'উপস্থিতি সারসংক্ষেপ',marks_summary:'নম্বর সারসংক্ষেপ',class_wise:'ক্লাস-ভিত্তিক',all_features:'সব ফিচার',about:'সম্পর্কে',about_desc:'ভারতীয় শিক্ষকদের জন্য একটি পেশাদার ডিজিটাল সহায়ক।',settings:'সেটিংস',profile:'প্রোফাইল',set_name_school:'নাম ও স্কুল সেট করুন',language:'ভাষা',dark_mode:'ডার্ক মোড',dark_desc:'চোখের জন্য আরামদায়ক',backup:'ডেটা ব্যাকআপ',backup_desc:'সব ডেটা JSON ফাইলে সেভ করুন',restore:'ডেটা রিস্টোর',restore_desc:'ব্যাকআপ ফাইল থেকে ফেরান',reset_data:'ডেটা রিসেট',reset_desc:'সব ডেটা মুছুন',share:'শেয়ার',share_desc:'WhatsApp-এ পাঠান',cancel:'বাতিল',save:'সেভ',confirm:'নিশ্চিত',delete:'মুছুন',name:'নাম',roll:'রোল',subject:'বিষয়',phone:'ফোন',room:'রুম',title:'শিরোনাম',desc:'বিবরণ',hw:'হোমওয়ার্ক',exam:'পরীক্ষা',score:'নম্বর',total:'মোট',time:'সময়',day:'দিন',date:'তারিখ',due:'শেষ তারিখ',school:'স্কুল',select_class:'ক্লাস নির্বাচন',select_student:'শিক্ষার্থী নির্বাচন',required:'আবশ্যক',empty_classes:'কোনো ক্লাস নেই',empty_classes_d:'উপরের বোতাম চাপুন।',empty_students:'কোনো শিক্ষার্থী নেই',empty_students_d:'উপরের বোতাম চাপুন।',empty_att:'কোনো শিক্ষার্থী নেই',empty_diary:'কোনো এন্ট্রি নেই',empty_marks:'কোনো নম্বর নেই',empty_hw:'কোনো হোমওয়ার্ক নেই',empty_period:'কোনো পিরিয়ড নেই',empty_note:'কোনো নোট নেই',empty_exam:'কোনো পরীক্ষা নেই',empty_lesson:'কোনো পাঠ নেই',empty_rem:'কোনো রিমাইন্ডার নেই',empty_hol:'কোনো ছুটি নেই',mark_all:'সব উপস্থিত',del_confirm:'মুছবেন?',del_desc:'এটি স্থায়ীভাবে মুছে যাবে।',reset_confirm:'সব ডেটা মুছবেন?',reset_desc2:'এই কাজ ফেরানো যাবে না।',saved:'সেভ হয়েছে',deleted:'মুছে ফেলা হয়েছে',fill_required:'তথ্য পূরণ করুন',mark:'মার্ক',subject_lbl:'বিষয়'},
-  mr: {home:'होम',classes:'वर्ग',students:'विद्यार्थी',attend:'हजेरी',diary:'डायरी',marks:'गुण',more:'अधिक',class:'वर्ग',student:'विद्यार्थी',present_today:'आज उपस्थित',quick_actions:'त्वरित कार्य',weekly_attendance:'साप्ताहिक हजेरी',reports:'अहवाल',recent:'अलीकडील',my_classes:'माझे वर्ग',all_students:'सर्व विद्यार्थी',add_class:'नवीन वर्ग',add_student:'नवीन विद्यार्थी',attendance:'हजेरी',new_entry:'नवीन नोंद',add_marks:'गुण जोडा',homework:'गृहपाठ',new_hw:'नवीन HW',timetable:'वेळापत्रक',add_period:'तास जोडा',notes:'टिपा',new_note:'नवीन टीप',exams:'परीक्षा',add_exam:'परीक्षा जोडा',lesson_plans:'पाठ योजना',add_lesson:'पाठ जोडा',reminders:'स्मरण',add_reminder:'स्मरण जोडा',holidays:'सुट्ट्या',add_holiday:'सुट्टी जोडा',print:'प्रिंट',attendance_summary:'हजेरी सारांश',marks_summary:'गुण सारांश',class_wise:'वर्गानुसार',all_features:'सर्व वैशिष्ट्ये',about:'विषयी',about_desc:'भारतीय शिक्षकांसाठी व्यावसायिक डिजिटल सहाय्यक।',settings:'सेटिंग्ज',profile:'प्रोफाइल',set_name_school:'नाव व शाळा सेट करा',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'डोळ्यांसाठी आरामदायक',backup:'डेटा बॅकअप',backup_desc:'सर्व डेटा JSON मध्ये सेव्ह करा',restore:'डेटा रिस्टोअर',restore_desc:'बॅकअपमधून परत आणा',reset_data:'डेटा रीसेट',reset_desc:'सर्व डेटा कायमचा मिटवा',share:'शेअर',share_desc:'WhatsApp वर पाठवा',cancel:'रद्द',save:'सेव्ह',confirm:'पुष्टी',delete:'हटवा',name:'नाव',roll:'रोल',subject:'विषय',phone:'फोन',room:'खोली',title:'शीर्षक',desc:'वर्णन',hw:'गृहपाठ',exam:'परीक्षा',score:'गुण',total:'एकूण',time:'वेळ',day:'दिवस',date:'तारीख',due:'देय',school:'शाळा',select_class:'वर्ग निवडा',select_student:'विद्यार्थी निवडा',required:'आवश्यक',empty_classes:'वर्ग नाहीत',empty_classes_d:'वर बटण दाबा।',empty_students:'विद्यार्थी नाहीत',empty_students_d:'वर बटण दाबा।',empty_att:'विद्यार्थी नाहीत',empty_diary:'नोंदी नाहीत',empty_marks:'गुण नाहीत',empty_hw:'गृहपाठ नाही',empty_period:'तास नाहीत',empty_note:'टिपा नाहीत',empty_exam:'परीक्षा नाहीत',empty_lesson:'पाठ नाहीत',empty_rem:'स्मरण नाहीत',empty_hol:'सुट्ट्या नाहीत',mark_all:'सर्व उपस्थित',del_confirm:'हटवायचे?',del_desc:'कायमचे हटवले जाईल।',reset_confirm:'सर्व डेटा मिटवायचा?',reset_desc2:'परत करता येणार नाही।',saved:'सेव्ह झाले',deleted:'हटवले',fill_required:'माहिती भरा',mark:'मार्क',subject_lbl:'विषय'},
-  te: {home:'హోమ్',classes:'తరగతులు',students:'విద్యార్థులు',attend:'హాజరు',diary:'డైరీ',marks:'మార్కులు',more:'మరిన్ని',class:'తరగతి',student:'విద్యార్థి',present_today:'ఈరోజు హాజరు',quick_actions:'త్వరిత పనులు',weekly_attendance:'వారపు హాజరు',reports:'నివేదికలు',recent:'ఇటీవలి',my_classes:'నా తరగతులు',all_students:'విద్యార్థులు',add_class:'తరగతి జోడించు',add_student:'విద్యార్థి జోడించు',attendance:'హాజరు',new_entry:'కొత్త ఎంట్రీ',add_marks:'మార్కులు జోడించు',homework:'హోంవర్క్',new_hw:'కొత్త HW',timetable:'టైమ్టేబుల్',add_period:'పీరియడ్ జోడించు',notes:'నోట్స్',new_note:'కొత్త నోట్',exams:'పరీక్షలు',add_exam:'పరీక్ష జోడించు',lesson_plans:'పాఠ్య ప్రణాళిక',add_lesson:'పాఠం జోడించు',reminders:'రిమైండర్లు',add_reminder:'రిమైండర్ జోడించు',holidays:'సెలవులు',add_holiday:'సెలవు జోడించు',print:'ప్రింట్',attendance_summary:'హాజరు సారాంశం',marks_summary:'మార్కుల సారాంశం',class_wise:'తరగతి వారీగా',all_features:'అన్ని ఫీచర్లు',about:'గురించి',about_desc:'భారతీయ ఉపాధ్యాయుల కోసం వృత్తిపరమైన సహాయకుడు.',settings:'సెట్టింగ్స్',profile:'ప్రొఫైల్',set_name_school:'పేరు మరియు పాఠశాల',language:'భాష',dark_mode:'డార్క్ మోడ్',dark_desc:'కళ్ళకు ఆరామం',backup:'డేటా బ్యాకప్',backup_desc:'JSON ఫైల్‌లో సేవ్ చేయండి',restore:'డేటా రీస్టోర్',restore_desc:'బ్యాకప్ నుండి తిరిగి',reset_data:'డేటా రీసెట్',reset_desc:'అన్ని డేటా తొలగించు',share:'షేర్',share_desc:'WhatsAppలో పంపండి',cancel:'రద్దు',save:'సేవ్',confirm:'నిర్ధారించు',delete:'తొలగించు',name:'పేరు',roll:'రోల్',subject:'సబ్జెక్ట్',phone:'ఫోన్',room:'గది',title:'శీర్షిక',desc:'వివరణ',hw:'హోంవర్క్',exam:'పరీక్ష',score:'మార్కులు',total:'మొత్తం',time:'సమయం',day:'రోజు',date:'తేదీ',due:'గడువు',school:'పాఠశాల',select_class:'తరగతి ఎంచుకోండి',select_student:'విద్యార్థి ఎంచుకోండి',required:'అవసరం',empty_classes:'తరగతులు లేవు',empty_classes_d:'పైన బటన్ నొక్కండి।',empty_students:'విద్యార్థులు లేరు',empty_students_d:'పైన బటన్ నొక్కండి।',empty_att:'విద్యార్థులు లేరు',empty_diary:'ఎంట్రీలు లేవు',empty_marks:'మార్కులు లేవు',empty_hw:'హోంవర్క్ లేదు',empty_period:'పీరియడ్‌లు లేవు',empty_note:'నోట్స్ లేవు',empty_exam:'పరీక్షలు లేవు',empty_lesson:'పాఠాలు లేవు',empty_rem:'రిమైండర్లు లేవు',empty_hol:'సెలవులు లేవు',mark_all:'అందరూ హాజరు',del_confirm:'తొలగించాలా?',del_desc:'శాశ్వతంగా తొలగించబడుతుంది।',reset_confirm:'డేటా రీసెట్?',reset_desc2:'తిరిగి పొందలేరు।',saved:'సేవ్ అయింది',deleted:'తొలగించబడింది',fill_required:'సమాచారం నింపండి',mark:'మార్క్',subject_lbl:'సబ్జెక్ట్'},
-  ta: {home:'முகப்பு',classes:'வகுப்புகள்',students:'மாணவர்கள்',attend:'வருகை',diary:'டைரி',marks:'மதிப்பெண்',more:'மேலும்',class:'வகுப்பு',student:'மாணவர்',present_today:'இன்று வருகை',quick_actions:'விரைவு',weekly_attendance:'வார வருகை',reports:'அறிக்கை',recent:'சமீபத்திய',my_classes:'என் வகுப்புகள்',all_students:'மாணவர்கள்',add_class:'வகுப்பு சேர்',add_student:'மாணவர் சேர்',attendance:'வருகை',new_entry:'புதிய',add_marks:'மதிப்பெண் சேர்',homework:'வீட்டுப்பாடம்',new_hw:'புதிய HW',timetable:'அட்டவணை',add_period:'பாடம் சேர்',notes:'குறிப்பு',new_note:'புதிய குறிப்பு',exams:'தேர்வுகள்',add_exam:'தேர்வு சேர்',lesson_plans:'பாட திட்டம்',add_lesson:'பாடம் சேர்',reminders:'நினைவூட்டல்',add_reminder:'சேர்',holidays:'விடுமுறை',add_holiday:'விடுமுறை சேர்',print:'அச்சிடு',attendance_summary:'வருகை சுருக்கம்',marks_summary:'மதிப்பெண் சுருக்கம்',class_wise:'வகுப்பு வாரியாக',all_features:'அனைத்து',about:'பற்றி',about_desc:'இந்திய ஆசிரியர்களுக்கான தொழில்முறை உதவியாளர்.',settings:'அமைப்பு',profile:'சுயவிவரம்',set_name_school:'பெயர் பள்ளி',language:'மொழி',dark_mode:'டார்க்',dark_desc:'கண்களுக்கு வசதி',backup:'காப்பு',backup_desc:'JSON இல் சேமி',restore:'மீட்டெடு',restore_desc:'காப்பிலிருந்து',reset_data:'மீட்டமை',reset_desc:'எல்லாம் அழி',share:'பகிர்',share_desc:'WhatsApp',cancel:'ரத்து',save:'சேமி',confirm:'உறுதி',delete:'அழி',name:'பெயர்',roll:'ரோல்',subject:'பாடம்',phone:'தொலைபேசி',room:'அறை',title:'தலைப்பு',desc:'விவரம்',hw:'HW',exam:'தேர்வு',score:'மதிப்பெண்',total:'மொத்தம்',time:'நேரம்',day:'நாள்',date:'தேதி',due:'கடைசி',school:'பள்ளி',select_class:'வகுப்பு',select_student:'மாணவர்',required:'தேவை',empty_classes:'வகுப்பு இல்லை',empty_classes_d:'மேலே அழுத்து।',empty_students:'மாணவர் இல்லை',empty_students_d:'மேலே அழுத்து।',empty_att:'மாணவர் இல்லை',empty_diary:'இல்லை',empty_marks:'இல்லை',empty_hw:'இல்லை',empty_period:'இல்லை',empty_note:'இல்லை',empty_exam:'இல்லை',empty_lesson:'இல்லை',empty_rem:'இல்லை',empty_hol:'இல்லை',mark_all:'அனைவரும்',del_confirm:'அழிக்க?',del_desc:'நிரந்தரமாக அழிக்கப்படும்.',reset_confirm:'மீட்டமை?',reset_desc2:'மீட்க முடியாது.',saved:'சேமிக்கப்பட்டது',deleted:'அழிக்கப்பட்டது',fill_required:'விவரம் நிரப்பு',mark:'மார்க்',subject_lbl:'பாடம்'},
-  gu: {home:'હોમ',classes:'વર્ગો',students:'વિદ્યાર્થીઓ',attend:'હાજરી',diary:'ડાયરી',marks:'ગુણ',more:'વધુ',class:'વર્ગ',student:'વિદ્યાર્થી',present_today:'આજે હાજર',quick_actions:'ઝડપી',weekly_attendance:'સાપ્તાહિક',reports:'રિપોર્ટ',recent:'તાજેતર',my_classes:'મારા વર્ગો',all_students:'વિદ્યાર્થીઓ',add_class:'વર્ગ ઉમેરો',add_student:'વિદ્યાર્થી ઉમેરો',attendance:'હાજરી',new_entry:'નવી',add_marks:'ગુણ ઉમેરો',homework:'હોમવર્ક',new_hw:'નવું HW',timetable:'સમયપત્રક',add_period:'પીરિયડ',notes:'નોંધ',new_note:'નવી નોંધ',exams:'પરીક્ષા',add_exam:'પરીક્ષા ઉમેરો',lesson_plans:'પાઠ યોજના',add_lesson:'પાઠ ઉમેરો',reminders:'રિમાઇન્ડર',add_reminder:'ઉમેરો',holidays:'રજાઓ',add_holiday:'રજા ઉમેરો',print:'પ્રિન્ટ',attendance_summary:'હાજરી સારાંશ',marks_summary:'ગુણ સારાંશ',class_wise:'વર્ગ મુજબ',all_features:'બધા',about:'વિશે',about_desc:'ભારતીય શિક્ષકો માટે વ્યાવસાયિક સહાયક.',settings:'સેટિંગ',profile:'પ્રોફાઇલ',set_name_school:'નામ અને શાળા',language:'ભાષા',dark_mode:'ડાર્ક',dark_desc:'આંખો માટે',backup:'બેકઅપ',backup_desc:'JSON માં સેવ',restore:'રીસ્ટોર',restore_desc:'બેકઅપથી',reset_data:'રીસેટ',reset_desc:'બધું ભૂંસો',share:'શેર',share_desc:'WhatsApp',cancel:'રદ',save:'સેવ',confirm:'પુષ્ટિ',delete:'ભૂંસો',name:'નામ',roll:'રોલ',subject:'વિષય',phone:'ફોન',room:'રૂમ',title:'શીર્ષક',desc:'વર્ણન',hw:'HW',exam:'પરીક્ષા',score:'ગુણ',total:'કુલ',time:'સમય',day:'દિવસ',date:'તારીખ',due:'તારીખ',school:'શાળા',select_class:'વર્ગ',select_student:'વિદ્યાર્થી',required:'જરૂરી',empty_classes:'વર્ગ નથી',empty_classes_d:'ઉપર બટન દબાવો.',empty_students:'વિદ્યાર્થી નથી',empty_students_d:'ઉપર બટન દબાવો.',empty_att:'વિદ્યાર્થી નથી',empty_diary:'નથી',empty_marks:'નથી',empty_hw:'નથી',empty_period:'નથી',empty_note:'નથી',empty_exam:'નથી',empty_lesson:'નથી',empty_rem:'નથી',empty_hol:'નથી',mark_all:'બધા હાજર',del_confirm:'ભૂંસવું?',del_desc:'કાયમી ભૂંસાશે.',reset_confirm:'રીસેટ?',reset_desc2:'પાછું નહીં આવે.',saved:'સેવ',deleted:'ભૂંસ્યું',fill_required:'માહિતી ભરો',mark:'માર્ક',subject_lbl:'વિષય'},
-  ur: {home:'ہوم',classes:'کلاسز',students:'طلباء',attend:'حاضری',diary:'ڈائری',marks:'نمبر',more:'مزید',class:'کلاس',student:'طالب علم',present_today:'آج حاضر',quick_actions:'فوری کام',weekly_attendance:'ہفتہ وار',reports:'رپورٹس',recent:'حالیہ',my_classes:'میری کلاسز',all_students:'تمام طلباء',add_class:'کلاس شامل',add_student:'طالب شامل',attendance:'حاضری',new_entry:'نئی',add_marks:'نمبر شامل',homework:'ہوم ورک',new_hw:'نیا HW',timetable:'ٹائم ٹیبل',add_period:'پیریڈ',notes:'نوٹس',new_note:'نیا نوٹ',exams:'امتحانات',add_exam:'امتحان شامل',lesson_plans:'اسباق',add_lesson:'سبق شامل',reminders:'یاد دہانی',add_reminder:'شامل',holidays:'چھٹیاں',add_holiday:'چھٹی شامل',print:'پرنٹ',attendance_summary:'حاضری خلاصہ',marks_summary:'نمبر خلاصہ',class_wise:'کلاس کے مطابق',all_features:'تمام',about:'متعلق',about_desc:'بھارتی اساتذہ کے لیے پیشہ ورانہ معاون۔',settings:'ترتیبات',profile:'پروفائل',set_name_school:'نام اور اسکول',language:'زبان',dark_mode:'ڈارک',dark_desc:'آنکھوں کے لیے',backup:'بیک اپ',backup_desc:'JSON میں محفوظ',restore:'بحالی',restore_desc:'بیک اپ سے',reset_data:'ری سیٹ',reset_desc:'سب مٹا دیں',share:'شیئر',share_desc:'WhatsApp',cancel:'منسوخ',save:'محفوظ',confirm:'تصدیق',delete:'حذف',name:'نام',roll:'رول',subject:'مضمون',phone:'فون',room:'کمرہ',title:'عنوان',desc:'تفصیل',hw:'HW',exam:'امتحان',score:'نمبر',total:'کل',time:'وقت',day:'دن',date:'تاریخ',due:'آخری تاریخ',school:'اسکول',select_class:'کلاس',select_student:'طالب',required:'ضروری',empty_classes:'کلاس نہیں',empty_classes_d:'اوپر بٹن دبائیں۔',empty_students:'طالب نہیں',empty_students_d:'اوپر بٹن دبائیں۔',empty_att:'طالب نہیں',empty_diary:'نہیں',empty_marks:'نہیں',empty_hw:'نہیں',empty_period:'نہیں',empty_note:'نہیں',empty_exam:'نہیں',empty_lesson:'نہیں',empty_rem:'نہیں',empty_hol:'نہیں',mark_all:'سب حاضر',del_confirm:'حذف؟',del_desc:'ہمیشہ کے لیے۔',reset_confirm:'ری سیٹ؟',reset_desc2:'واپس نہیں آئے گا۔',saved:'محفوظ',deleted:'حذف',fill_required:'معلومات بھریں',mark:'مارک',subject_lbl:'مضمون'},
-  kn: {home:'ಮುಖಪುಟ',classes:'ತರಗತಿ',students:'ವಿದ್ಯಾರ್ಥಿ',attend:'ಹಾಜರಿ',diary:'ಡೈರಿ',marks:'ಅಂಕ',more:'ಇನ್ನಷ್ಟು',class:'ತರಗತಿ',student:'ವಿದ್ಯಾರ್ಥಿ',present_today:'ಇಂದು',quick_actions:'ತ್ವರಿತ',weekly_attendance:'ಸಾಪ್ತಾಹಿಕ',reports:'ವರದಿ',recent:'ಇತ್ತೀಚಿನ',my_classes:'ನನ್ನ ತರಗತಿ',all_students:'ಎಲ್ಲ ವಿದ್ಯಾರ್ಥಿ',add_class:'ತರಗತಿ ಸೇರಿಸು',add_student:'ವಿದ್ಯಾರ್ಥಿ ಸೇರಿಸು',attendance:'ಹಾಜರಿ',new_entry:'ಹೊಸ',add_marks:'ಅಂಕ ಸೇರಿಸು',homework:'ಮನೆಪಾಠ',new_hw:'ಹೊಸ HW',timetable:'ವೇಳಾಪಟ್ಟಿ',add_period:'ಅವಧಿ',notes:'ಟಿಪ್ಪಣಿ',new_note:'ಹೊಸ',exams:'ಪರೀಕ್ಷೆ',add_exam:'ಪರೀಕ್ಷೆ ಸೇರಿಸು',lesson_plans:'ಪಾಠ ಯೋಜನೆ',add_lesson:'ಪಾಠ ಸೇರಿಸು',reminders:'ಜ್ಞಾಪನೆ',add_reminder:'ಸೇರಿಸು',holidays:'ರಜೆ',add_holiday:'ರಜೆ ಸೇರಿಸು',print:'ಮುದ್ರಿಸು',attendance_summary:'ಹಾಜರಿ ಸಾರಾಂಶ',marks_summary:'ಅಂಕ ಸಾರಾಂಶ',class_wise:'ತರಗತಿ ಪ್ರಕಾರ',all_features:'ಎಲ್ಲ',about:'ಬಗ್ಗೆ',about_desc:'ಭಾರತೀಯ ಶಿಕ್ಷಕರಿಗಾಗಿ ವೃತ್ತಿಪರ ಸಹಾಯಕ.',settings:'ಸೆಟ್ಟಿಂಗ್ಸ್',profile:'ಪ್ರೊಫೈಲ್',set_name_school:'ಹೆಸರು ಶಾಲೆ',language:'ಭಾಷೆ',dark_mode:'ಡಾರ್ಕ್',dark_desc:'ಕಣ್ಣಿಗೆ ಆರಾಮ',backup:'ಬ್ಯಾಕಪ್',backup_desc:'JSON ನಲ್ಲಿ ಉಳಿಸಿ',restore:'ಮರುಸ್ಥಾಪಿಸು',restore_desc:'ಬ್ಯಾಕಪ್‌ನಿಂದ',reset_data:'ರೀಸೆಟ್',reset_desc:'ಎಲ್ಲ ಅಳಿಸಿ',share:'ಹಂಚಿಕೊಳ್ಳಿ',share_desc:'WhatsApp',cancel:'ರದ್ದು',save:'ಉಳಿಸು',confirm:'ದೃಢಪಡಿಸು',delete:'ಅಳಿಸು',name:'ಹೆಸರು',roll:'ರೋಲ್',subject:'ವಿಷಯ',phone:'ಫೋನ್',room:'ಕೊಠಡಿ',title:'ಶೀರ್ಷಿಕೆ',desc:'ವಿವರಣೆ',hw:'HW',exam:'ಪರೀಕ್ಷೆ',score:'ಅಂಕ',total:'ಒಟ್ಟು',time:'ಸಮಯ',day:'ದಿನ',date:'ದಿನಾಂಕ',due:'ಕೊನೆ',school:'ಶಾಲೆ',select_class:'ತರಗತಿ',select_student:'ವಿದ್ಯಾರ್ಥಿ',required:'ಅಗತ್ಯ',empty_classes:'ತರಗತಿ ಇಲ್ಲ',empty_classes_d:'ಮೇಲೆ ಬಟನ್ ಒತ್ತಿ.',empty_students:'ವಿದ್ಯಾರ್ಥಿ ಇಲ್ಲ',empty_students_d:'ಮೇಲೆ ಬಟನ್ ಒತ್ತಿ.',empty_att:'ವಿದ್ಯಾರ್ಥಿ ಇಲ್ಲ',empty_diary:'ಇಲ್ಲ',empty_marks:'ಇಲ್ಲ',empty_hw:'ಇಲ್ಲ',empty_period:'ಇಲ್ಲ',empty_note:'ಇಲ್ಲ',empty_exam:'ಇಲ್ಲ',empty_lesson:'ಇಲ್ಲ',empty_rem:'ಇಲ್ಲ',empty_hol:'ಇಲ್ಲ',mark_all:'ಎಲ್ಲ ಹಾಜರು',del_confirm:'ಅಳಿಸುವುದೇ?',del_desc:'ಶಾಶ್ವತವಾಗಿ.',reset_confirm:'ರೀಸೆಟ್?',reset_desc2:'ಹಿಂತಿರುಗಿಸಲಾಗದು.',saved:'ಉಳಿಸಲಾಗಿದೆ',deleted:'ಅಳಿಸಲಾಗಿದೆ',fill_required:'ಮಾಹಿತಿ ತುಂಬಿ',mark:'ಮಾರ್ಕ್',subject_lbl:'ವಿಷಯ'},
-  or: {home:'ହୋମ',classes:'ଶ୍ରେଣୀ',students:'ଛାତ୍ର',attend:'ଉପସ୍ଥିତି',diary:'ଡାଏରୀ',marks:'ନମ୍ବର',more:'ଅଧିକ',class:'ଶ୍ରେଣୀ',student:'ଛାତ୍ର',present_today:'ଆଜି',quick_actions:'ଶୀଘ୍ର',weekly_attendance:'ସାପ୍ତାହିକ',reports:'ରିପୋର୍ଟ',recent:'ସାମ୍ପ୍ରତିକ',my_classes:'ମୋ ଶ୍ରେଣୀ',all_students:'ସମସ୍ତ ଛାତ୍ର',add_class:'ଶ୍ରେଣୀ ଯୋଡ଼ନ୍ତୁ',add_student:'ଛାତ୍ର ଯୋଡ଼ନ୍ତୁ',attendance:'ଉପସ୍ଥିତି',new_entry:'ନୂଆ',add_marks:'ନମ୍ବର ଯୋଡ଼ନ୍ତୁ',homework:'ଗୃହକାର୍ଯ୍ୟ',new_hw:'ନୂଆ HW',timetable:'ସମୟ ସାରଣୀ',add_period:'ପିରିଅଡ',notes:'ଟିପ୍ପଣୀ',new_note:'ନୂଆ',exams:'ପରୀକ୍ଷା',add_exam:'ପରୀକ୍ଷା ଯୋଡ଼ନ୍ତୁ',lesson_plans:'ପାଠ ଯୋଜନା',add_lesson:'ପାଠ ଯୋଡ଼ନ୍ତୁ',reminders:'ମନେ ପକାଇବା',add_reminder:'ଯୋଡ଼ନ୍ତୁ',holidays:'ଛୁଟି',add_holiday:'ଛୁଟି ଯୋଡ଼ନ୍ତୁ',print:'ପ୍ରିଣ୍ଟ',attendance_summary:'ଉପସ୍ଥିତି ସାରାଂଶ',marks_summary:'ନମ୍ବର ସାରାଂଶ',class_wise:'ଶ୍ରେଣୀ ଅନୁସାରେ',all_features:'ସମସ୍ତ',about:'ବିଷୟରେ',about_desc:'ଭାରତୀୟ ଶିକ୍ଷକଙ୍କ ପାଇଁ ବୃତ୍ତିଗତ ସହାୟକ।',settings:'ସେଟିଂସ',profile:'ପ୍ରୋଫାଇଲ',set_name_school:'ନାମ ଓ ବିଦ୍ୟାଳୟ',language:'ଭାଷା',dark_mode:'ଡାର୍କ',dark_desc:'ଆଖି ପାଇଁ',backup:'ବ୍ୟାକଅପ',backup_desc:'JSON ରେ ସେଭ',restore:'ରିଷ୍ଟୋର',restore_desc:'ବ୍ୟାକଅପରୁ',reset_data:'ରିସେଟ',reset_desc:'ସବୁ ଲିଭାନ୍ତୁ',share:'ସେୟାର',share_desc:'WhatsApp',cancel:'ବାତିଲ',save:'ସେଭ',confirm:'ନିଶ୍ଚିତ',delete:'ଲିଭାନ୍ତୁ',name:'ନାମ',roll:'ରୋଲ',subject:'ବିଷୟ',phone:'ଫୋନ',room:'କୋଠରୀ',title:'ଶୀର୍ଷକ',desc:'ବିବରଣୀ',hw:'HW',exam:'ପରୀକ୍ଷା',score:'ନମ୍ବର',total:'ମୋଟ',time:'ସମୟ',day:'ଦିନ',date:'ତାରିଖ',due:'ଶେଷ',school:'ବିଦ୍ୟାଳୟ',select_class:'ଶ୍ରେଣୀ',select_student:'ଛାତ୍ର',required:'ଆବଶ୍ୟକ',empty_classes:'ଶ୍ରେଣୀ ନାହିଁ',empty_classes_d:'ଉପର ବଟନ ଦବାନ୍ତୁ।',empty_students:'ଛାତ୍ର ନାହିଁ',empty_students_d:'ଉପର ବଟନ ଦବାନ୍ତୁ।',empty_att:'ଛାତ୍ର ନାହିଁ',empty_diary:'ନାହିଁ',empty_marks:'ନାହିଁ',empty_hw:'ନାହିଁ',empty_period:'ନାହିଁ',empty_note:'ନାହିଁ',empty_exam:'ନାହିଁ',empty_lesson:'ନାହିଁ',empty_rem:'ନାହିଁ',empty_hol:'ନାହିଁ',mark_all:'ସମସ୍ତ ଉପସ୍ଥିତ',del_confirm:'ଲିଭାଇବେ?',del_desc:'ସ୍ଥାୟୀ ଭାବରେ।',reset_confirm:'ରିସେଟ?',reset_desc2:'ଫେରାଇ ଆଣିବେ ନାହିଁ।',saved:'ସେଭ ହେଲା',deleted:'ଲିଭିଗଲା',fill_required:'ସୂଚନା ଭରନ୍ତୁ',mark:'ମାର୍କ',subject_lbl:'ବିଷୟ'},
-  ml: {home:'ഹോം',classes:'ക്ലാസ്',students:'വിദ്യാർത്ഥി',attend:'ഹാജർ',diary:'ഡയറി',marks:'മാർക്ക്',more:'കൂടുതൽ',class:'ക്ലാസ്',student:'വിദ്യാർത്ഥി',present_today:'ഇന്ന് ഹാജർ',quick_actions:'പെട്ടെന്ന്',weekly_attendance:'പ്രതിവാര',reports:'റിപ്പോർട്ട്',recent:'സമീപകാല',my_classes:'എന്റെ ക്ലാസ്',all_students:'എല്ലാ വിദ്യാർത്ഥി',add_class:'ക്ലാസ് ചേർക്കുക',add_student:'വിദ്യാർത്ഥി ചേർക്കുക',attendance:'ഹാജർ',new_entry:'പുതിയ',add_marks:'മാർക്ക് ചേർക്കുക',homework:'ഹോംവർക്ക്',new_hw:'പുതിയ HW',timetable:'ടൈംടേബിൾ',add_period:'പിരീഡ്',notes:'കുറിപ്പ്',new_note:'പുതിയ',exams:'പരീക്ഷ',add_exam:'പരീക്ഷ ചേർക്കുക',lesson_plans:'പാഠ പദ്ധതി',add_lesson:'പാഠം ചേർക്കുക',reminders:'ഓർമ്മപ്പെടുത്തൽ',add_reminder:'ചേർക്കുക',holidays:'അവധി',add_holiday:'അവധി ചേർക്കുക',print:'പ്രിന്റ്',attendance_summary:'ഹാജർ സംഗ്രഹം',marks_summary:'മാർക്ക് സംഗ്രഹം',class_wise:'ക്ലാസ് അനുസരിച്ച്',all_features:'എല്ലാം',about:'കുറിച്ച്',about_desc:'ഇന്ത്യൻ അധ്യാപകർക്കുള്ള പ്രൊഫഷണൽ സഹായി.',settings:'സെറ്റിംഗ്സ്',profile:'പ്രൊഫൈൽ',set_name_school:'പേര് സ്കൂൾ',language:'ഭാഷ',dark_mode:'ഡാർക്ക്',dark_desc:'കണ്ണിന് സുഖം',backup:'ബാക്കപ്പ്',backup_desc:'JSON ൽ സേവ്',restore:'റീസ്റ്റോർ',restore_desc:'ബാക്കപ്പിൽ നിന്ന്',reset_data:'റീസെറ്റ്',reset_desc:'എല്ലാം മായ്ക്കുക',share:'ഷെയർ',share_desc:'WhatsApp',cancel:'റദ്ദാക്കുക',save:'സേവ്',confirm:'സ്ഥിരീകരിക്കുക',delete:'ഡിലീറ്റ്',name:'പേര്',roll:'റോൾ',subject:'വിഷയം',phone:'ഫോൺ',room:'മുറി',title:'ശീർഷകം',desc:'വിവരണം',hw:'HW',exam:'പരീക്ഷ',score:'മാർക്ക്',total:'ആകെ',time:'സമയം',day:'ദിവസം',date:'തീയതി',due:'അവസാന',school:'സ്കൂൾ',select_class:'ക്ലാസ്',select_student:'വിദ്യാർത്ഥി',required:'ആവശ്യം',empty_classes:'ക്ലാസ് ഇല്ല',empty_classes_d:'മുകളിലെ ബട്ടൺ അമർത്തുക.',empty_students:'വിദ്യാർത്ഥി ഇല്ല',empty_students_d:'മുകളിലെ ബട്ടൺ അമർത്തുക.',empty_att:'വിദ്യാർത്ഥി ഇല്ല',empty_diary:'ഇല്ല',empty_marks:'ഇല്ല',empty_hw:'ഇല്ല',empty_period:'ഇല്ല',empty_note:'ഇല്ല',empty_exam:'ഇല്ല',empty_lesson:'ഇല്ല',empty_rem:'ഇല്ല',empty_hol:'ഇല്ല',mark_all:'എല്ലാം ഹാജർ',del_confirm:'ഡിലീറ്റ്?',del_desc:'സ്ഥിരമായി.',reset_confirm:'റീസെറ്റ്?',reset_desc2:'തിരികെ ലഭിക്കില്ല.',saved:'സേവ്',deleted:'ഡിലീറ്റ്',fill_required:'വിവരം നൽകുക',mark:'മാർക്ക്',subject_lbl:'വിഷയം'},
-  pa: {home:'ਹੋਮ',classes:'ਕਲਾਸਾਂ',students:'ਵਿਦਿਆਰਥੀ',attend:'ਹਾਜ਼ਰੀ',diary:'ਡਾਇਰੀ',marks:'ਅੰਕ',more:'ਹੋਰ',class:'ਕਲਾਸ',student:'ਵਿਦਿਆਰਥੀ',present_today:'ਅੱਜ ਹਾਜ਼ਰ',quick_actions:'ਤੁਰੰਤ',weekly_attendance:'ਹਫ਼ਤਾਵਾਰੀ',reports:'ਰਿਪੋਰਟਾਂ',recent:'ਤਾਜ਼ਾ',my_classes:'ਮੇਰੀਆਂ ਕਲਾਸਾਂ',all_students:'ਸਾਰੇ ਵਿਦਿਆਰਥੀ',add_class:'ਕਲਾਸ ਸ਼ਾਮਲ',add_student:'ਵਿਦਿਆਰਥੀ ਸ਼ਾਮਲ',attendance:'ਹਾਜ਼ਰੀ',new_entry:'ਨਵੀਂ',add_marks:'ਅੰਕ ਸ਼ਾਮਲ',homework:'ਹੋਮਵਰਕ',new_hw:'ਨਵਾਂ HW',timetable:'ਸਮਾਂ-ਸਾਰਣੀ',add_period:'ਪੀਰੀਅਡ',notes:'ਨੋਟਸ',new_note:'ਨਵਾਂ ਨੋਟ',exams:'ਪਰੀਖਿਆਵਾਂ',add_exam:'ਪਰੀਖਿਆ ਸ਼ਾਮਲ',lesson_plans:'ਪਾਠ ਯੋਜਨਾ',add_lesson:'ਪਾਠ ਸ਼ਾਮਲ',reminders:'ਰਿਮਾਈਂਡਰ',add_reminder:'ਸ਼ਾਮਲ',holidays:'ਛੁੱਟੀਆਂ',add_holiday:'ਛੁੱਟੀ ਸ਼ਾਮਲ',print:'ਪ੍ਰਿੰਟ',attendance_summary:'ਹਾਜ਼ਰੀ ਸਾਰ',marks_summary:'ਅੰਕ ਸਾਰ',class_wise:'ਕਲਾਸ ਅਨੁਸਾਰ',all_features:'ਸਾਰੇ',about:'ਬਾਰੇ',about_desc:'ਭਾਰਤੀ ਅਧਿਆਪਕਾਂ ਲਈ ਪੇਸ਼ੇਵਰ ਸਹਾਇਕ।',settings:'ਸੈਟਿੰਗਾਂ',profile:'ਪ੍ਰੋਫਾਈਲ',set_name_school:'ਨਾਮ ਅਤੇ ਸਕੂਲ',language:'ਭਾਸ਼ਾ',dark_mode:'ਡਾਰਕ',dark_desc:'ਅੱਖਾਂ ਲਈ',backup:'ਬੈਕਅੱਪ',backup_desc:'JSON ਵਿੱਚ ਸੇਵ',restore:'ਰੀਸਟੋਰ',restore_desc:'ਬੈਕਅੱਪ ਤੋਂ',reset_data:'ਰੀਸੈਟ',reset_desc:'ਸਭ ਮਿਟਾਓ',share:'ਸ਼ੇਅਰ',share_desc:'WhatsApp',cancel:'ਰੱਦ',save:'ਸੇਵ',confirm:'ਪੁਸ਼ਟੀ',delete:'ਮਿਟਾਓ',name:'ਨਾਮ',roll:'ਰੋਲ',subject:'ਵਿਸ਼ਾ',phone:'ਫੋਨ',room:'ਕਮਰਾ',title:'ਸਿਰਲੇਖ',desc:'ਵੇਰਵਾ',hw:'HW',exam:'ਪਰੀਖਿਆ',score:'ਅੰਕ',total:'ਕੁੱਲ',time:'ਸਮਾਂ',day:'ਦਿਨ',date:'ਤਾਰੀਖ',due:'ਆਖਰੀ',school:'ਸਕੂਲ',select_class:'ਕਲਾਸ',select_student:'ਵਿਦਿਆਰਥੀ',required:'ਜ਼ਰੂਰੀ',empty_classes:'ਕਲਾਸ ਨਹੀਂ',empty_classes_d:'ਉੱਪਰ ਬਟਨ ਦਬਾਓ।',empty_students:'ਵਿਦਿਆਰਥੀ ਨਹੀਂ',empty_students_d:'ਉੱਪਰ ਬਟਨ ਦਬਾਓ।',empty_att:'ਵਿਦਿਆਰਥੀ ਨਹੀਂ',empty_diary:'ਨਹੀਂ',empty_marks:'ਨਹੀਂ',empty_hw:'ਨਹੀਂ',empty_period:'ਨਹੀਂ',empty_note:'ਨਹੀਂ',empty_exam:'ਨਹੀਂ',empty_lesson:'ਨਹੀਂ',empty_rem:'ਨਹੀਂ',empty_hol:'ਨਹੀਂ',mark_all:'ਸਾਰੇ ਹਾਜ਼ਰ',del_confirm:'ਮਿਟਾਉਣਾ?',del_desc:'ਪੱਕੇ ਤੌਰ ਤੇ।',reset_confirm:'ਰੀਸੈਟ?',reset_desc2:'ਵਾਪਸ ਨਹੀਂ।',saved:'ਸੇਵ',deleted:'ਮਿਟਾਇਆ',fill_required:'ਜਾਣਕਾਰੀ ਭਰੋ',mark:'ਮਾਰਕ',subject_lbl:'ਵਿਸ਼ਾ'},
-  as: {home:'হোম',classes:'শ্ৰেণী',students:'শিক্ষাৰ্থী',attend:'উপস্থিতি',diary:'ডায়েৰী',marks:'নম্বৰ',more:'অধিক',class:'শ্ৰেণী',student:'শিক্ষাৰ্থী',present_today:'আজি উপস্থিত',quick_actions:'দ্ৰুত',weekly_attendance:'সাপ্তাহিক',reports:'ৰিপৰ্ট',recent:'শেহতীয়া',my_classes:'মোৰ শ্ৰেণী',all_students:'সকলো শিক্ষাৰ্থী',add_class:'শ্ৰেণী যোগ',add_student:'শিক্ষাৰ্থী যোগ',attendance:'উপস্থিতি',new_entry:'নতুন',add_marks:'নম্বৰ যোগ',homework:'গৃহকৰ্ম',new_hw:'নতুন HW',timetable:'সময়সূচী',add_period:'পিৰিয়ড',notes:'টোকা',new_note:'নতুন টোকা',exams:'পৰীক্ষা',add_exam:'পৰীক্ষা যোগ',lesson_plans:'পাঠ পৰিকল্পনা',add_lesson:'পাঠ যোগ',reminders:'সোঁৱৰণী',add_reminder:'যোগ',holidays:'বন্ধ',add_holiday:'বন্ধ যোগ',print:'প্ৰিন্ট',attendance_summary:'উপস্থিতি সাৰাংশ',marks_summary:'নম্বৰ সাৰাংশ',class_wise:'শ্ৰেণী অনুসৰি',all_features:'সকলো',about:'বিষয়ে',about_desc:'ভাৰতীয় শিক্ষকৰ বাবে বৃত্তিগত সহায়ক।',settings:'ছেটিংছ',profile:'প্ৰফাইল',set_name_school:'নাম আৰু বিদ্যালয়',language:'ভাষা',dark_mode:'ডাৰ্ক',dark_desc:'চকুৰ বাবে',backup:'বেকআপ',backup_desc:'JSON ত সংৰক্ষণ',restore:'ৰিষ্টোৰ',restore_desc:'বেকআপৰ পৰা',reset_data:'ৰিচেট',reset_desc:'সকলো মচি পেলাওক',share:'শেয়াৰ',share_desc:'WhatsApp',cancel:'বাতিল',save:'সংৰক্ষণ',confirm:'নিশ্চিত',delete:'মচক',name:'নাম',roll:'ৰোল',subject:'বিষয়',phone:'ফোন',room:'কোঠা',title:'শিৰোনাম',desc:'বিৱৰণ',hw:'HW',exam:'পৰীক্ষা',score:'নম্বৰ',total:'মুঠ',time:'সময়',day:'দিন',date:'তাৰিখ',due:'শেষ',school:'বিদ্যালয়',select_class:'শ্ৰেণী',select_student:'শিক্ষাৰ্থী',required:'প্ৰয়োজন',empty_classes:'শ্ৰেণী নাই',empty_classes_d:'ওপৰত বুটাম টিপক।',empty_students:'শিক্ষাৰ্থী নাই',empty_students_d:'ওপৰত বুটাম টিপক।',empty_att:'শিক্ষাৰ্থী নাই',empty_diary:'নাই',empty_marks:'নাই',empty_hw:'নাই',empty_period:'নাই',empty_note:'নাই',empty_exam:'নাই',empty_lesson:'নাই',empty_rem:'নাই',empty_hol:'নাই',mark_all:'সকলো উপস্থিত',del_confirm:'মচিব?',del_desc:'স্থায়ীভাৱে।',reset_confirm:'ৰিচেট?',reset_desc2:'ঘূৰাই নাপাব।',saved:'সংৰক্ষিত',deleted:'মচা হ’ল',fill_required:'তথ্য ভৰাওক',mark:'মাৰ্ক',subject_lbl:'বিষয়'},
-  ne: {home:'होम',classes:'कक्षा',students:'विद्यार्थी',attend:'उपस्थिति',diary:'डायरी',marks:'अंक',more:'अधिक',class:'कक्षा',student:'विद्यार्थी',present_today:'आज उपस्थित',quick_actions:'छिटो',weekly_attendance:'साप्ताहिक',reports:'रिपोर्ट',recent:'हालैको',my_classes:'मेरा कक्षा',all_students:'सबै विद्यार्थी',add_class:'कक्षा थप्नुहोस्',add_student:'विद्यार्थी थप्नुहोस्',attendance:'उपस्थिति',new_entry:'नयाँ',add_marks:'अंक थप्नुहोस्',homework:'गृहकार्य',new_hw:'नयाँ HW',timetable:'समयतालिका',add_period:'पिरियड',notes:'नोट',new_note:'नयाँ नोट',exams:'परीक्षा',add_exam:'परीक्षा थप्नुहोस्',lesson_plans:'पाठ योजना',add_lesson:'पाठ थप्नुहोस्',reminders:'रिमाइन्डर',add_reminder:'थप्नुहोस्',holidays:'बिदा',add_holiday:'बिदा थप्नुहोस्',print:'प्रिन्ट',attendance_summary:'उपस्थिति सारांश',marks_summary:'अंक सारांश',class_wise:'कक्षा अनुसार',all_features:'सबै',about:'बारेमा',about_desc:'भारतीय शिक्षकहरूका लागि व्यावसायिक सहायक।',settings:'सेटिङ',profile:'प्रोफाइल',set_name_school:'नाम र विद्यालय',language:'भाषा',dark_mode:'डार्क',dark_desc:'आँखाका लागि',backup:'ब्याकअप',backup_desc:'JSON मा बचत',restore:'रिस्टोर',restore_desc:'ब्याकअपबाट',reset_data:'रिसेट',reset_desc:'सबै मेटाउनुहोस्',share:'सेयर',share_desc:'WhatsApp',cancel:'रद्द',save:'बचत',confirm:'पुष्टि',delete:'मेट्नुहोस्',name:'नाम',roll:'रोल',subject:'विषय',phone:'फोन',room:'कोठा',title:'शीर्षक',desc:'विवरण',hw:'HW',exam:'परीक्षा',score:'अंक',total:'कुल',time:'समय',day:'दिन',date:'मिति',due:'अन्तिम',school:'विद्यालय',select_class:'कक्षा',select_student:'विद्यार्थी',required:'आवश्यक',empty_classes:'कक्षा छैन',empty_classes_d:'माथि बटन थिच्नुहोस्।',empty_students:'विद्यार्थी छैन',empty_students_d:'माथि बटन थिच्नुहोस्।',empty_att:'विद्यार्थी छैन',empty_diary:'छैन',empty_marks:'छैन',empty_hw:'छैन',empty_period:'छैन',empty_note:'छैन',empty_exam:'छैन',empty_lesson:'छैन',empty_rem:'छैन',empty_hol:'छैन',mark_all:'सबै उपस्थित',del_confirm:'मेट्ने?',del_desc:'स्थायी रूपमा।',reset_confirm:'रिसेट?',reset_desc2:'फर्काउन सकिँदैन।',saved:'बचत भयो',deleted:'मेटियो',fill_required:'जानकारी भर्नुहोस्',mark:'मार्क',subject_lbl:'विषय'}
+  hi: {home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'आपकी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lesson_plans:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',class_wise:'क्लास-वार स्टूडेंट्स',all_features:'सभी फीचर्स',about:'ऐप के बारे में',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',mark:'उपस्थिति',subject_lbl:'विषय'},
+  en: {home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',exams:'Exams',add_exam:'Add Exam',lesson_plans:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',class_wise:'Class-wise Students',all_features:'All Features',about:'About',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap the button above to add your first class.',empty_students:'No Students',empty_students_d:'Tap the button above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',mark:'Mark',subject_lbl:'Subject'},
+  bn: {home:'হোম',classes:'ক্লাস',students:'শিক্ষার্থী',attend:'উপস্থিতি',diary:'ডায়েরি',marks:'নম্বর',more:'আরও',class:'ক্লাস',student:'শিক্ষার্থী',present_today:'আজ উপস্থিত',quick_actions:'দ্রুত কাজ',weekly_attendance:'সাপ্তাহিক উপস্থিতি',reports:'রিপোর্ট',recent:'সাম্প্রতিক',my_classes:'আমার ক্লাস',all_students:'সব শিক্ষার্থী',add_class:'নতুন ক্লাস',add_student:'নতুন শিক্ষার্থী',attendance:'উপস্থিতি',new_entry:'নতুন এন্ট্রি',add_marks:'নম্বর যোগ করুন',homework:'হোমওয়ার্ক',new_hw:'নতুন HW',timetable:'সময়সূচি',add_period:'পিরিয়ড যোগ',notes:'নোট',new_note:'নতুন নোট',exams:'পরীক্ষা',add_exam:'পরীক্ষা যোগ',lesson_plans:'পাঠ পরিকল্পনা',add_lesson:'পাঠ যোগ',reminders:'রিমাইন্ডার',add_reminder:'রিমাইন্ডার যোগ',holidays:'ছুটি',add_holiday:'ছুটি যোগ',print:'প্রিন্ট',attendance_summary:'উপস্থিতি সারসংক্ষেপ',marks_summary:'নম্বর সারসংক্ষেপ',class_wise:'ক্লাস-ভিত্তিক',all_features:'সব ফিচার',about:'সম্পর্কে',about_desc:'ভারতীয় শিক্ষকদের জন্য একটি পেশাদার ডিজিটাল সহায়ক।',settings:'সেটিংস',profile:'প্রোফাইল',set_name_school:'নাম ও স্কুল সেট করুন',language:'ভাষা',dark_mode:'ডার্ক মোড',dark_desc:'চোখের জন্য আরামদায়ক',backup:'ডেটা ব্যাকআপ',backup_desc:'সব ডেটা JSON ফাইলে সেভ করুন',restore:'ডেটা রিস্টোর',restore_desc:'ব্যাকআপ ফাইল থেকে ফেরান',reset_data:'ডেটা রিসেট',reset_desc:'সব ডেটা মুছুন',share:'শেয়ার',share_desc:'WhatsApp-এ পাঠান',cancel:'বাতিল',save:'সেভ',confirm:'নিশ্চিত',delete:'মুছুন',name:'নাম',roll:'রোল',subject:'বিষয়',phone:'ফোন',room:'রুম',title:'শিরোনাম',desc:'বিবরণ',hw:'হোমওয়ার্ক',exam:'পরীক্ষা',score:'নম্বর',total:'মোট',time:'সময়',day:'দিন',date:'তারিখ',due:'শেষ তারিখ',school:'স্কুল',select_class:'ক্লাস নির্বাচন',select_student:'শিক্ষার্থী নির্বাচন',required:'আবশ্যক',empty_classes:'কোনো ক্লাস নেই',empty_classes_d:'উপরের বোতাম চাপুন।',empty_students:'কোনো শিক্ষার্থী নেই',empty_students_d:'উপরের বোতাম চাপুন।',empty_att:'কোনো শিক্ষার্থী নেই',empty_diary:'কোনো এন্ট্রি নেই',empty_marks:'কোনো নম্বর নেই',empty_hw:'কোনো হোমওয়ার্ক নেই',empty_period:'কোনো পিরিয়ড নেই',empty_note:'কোনো নোট নেই',mark_all:'সব উপস্থিত',del_confirm:'মুছবেন?',del_desc:'এটি স্থায়ীভাবে মুছে যাবে।',reset_confirm:'সব ডেটা মুছবেন?',reset_desc2:'এই কাজ ফেরানো যাবে না।',saved:'সেভ হয়েছে',deleted:'মুছে ফেলা হয়েছে',fill_required:'তথ্য পূরণ করুন',mark:'মার্ক',subject_lbl:'বিষয়'},
+  mr: {home:'होम',classes:'वर्ग',students:'विद्यार्थी',attend:'हजेरी',diary:'डायरी',marks:'गुण',more:'अधिक',class:'वर्ग',student:'विद्यार्थी',present_today:'आज उपस्थित',quick_actions:'त्वरित कार्य',weekly_attendance:'साप्ताहिक हजेरी',reports:'अहवाल',recent:'अलीकडील',my_classes:'माझे वर्ग',all_students:'सर्व विद्यार्थी',add_class:'नवीन वर्ग',add_student:'नवीन विद्यार्थी',attendance:'हजेरी',new_entry:'नवीन नोंद',add_marks:'गुण जोडा',homework:'गृहपाठ',new_hw:'नवीन HW',timetable:'वेळापत्रक',add_period:'तास जोडा',notes:'टिपा',new_note:'नवीन टीप',exams:'परीक्षा',add_exam:'परीक्षा जोडा',lesson_plans:'पाठ योजना',add_lesson:'पाठ जोडा',reminders:'स्मरण',add_reminder:'स्मरण जोडा',holidays:'सुट्ट्या',add_holiday:'सुट्टी जोडा',print:'प्रिंट',attendance_summary:'हजेरी सारांश',marks_summary:'गुण सारांश',class_wise:'वर्गानुसार',all_features:'सर्व वैशिष्ट्ये',about:'विषयी',about_desc:'भारतीय शिक्षकांसाठी व्यावसायिक डिजिटल सहाय्यक।',settings:'सेटिंग्ज',profile:'प्रोफाइल',set_name_school:'नाव व शाळा सेट करा',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'डोळ्यांसाठी आरामदायक',backup:'डेटा बॅकअप',backup_desc:'सर्व डेटा JSON मध्ये सेव्ह करा',restore:'डेटा रिस्टोअर',restore_desc:'बॅकअपमधून परत आणा',reset_data:'डेटा रीसेट',reset_desc:'सर्व डेटा कायमचा मिटवा',share:'शेअर',share_desc:'WhatsApp वर पाठवा',cancel:'रद्द',save:'सेव्ह',confirm:'पुष्टी',delete:'हटवा',name:'नाव',roll:'रोल',subject:'विषय',phone:'फोन',room:'खोली',title:'शीर्षक',desc:'वर्णन',hw:'गृहपाठ',exam:'परीक्षा',score:'गुण',total:'एकूण',time:'वेळ',day:'दिवस',date:'तारीख',due:'देय',school:'शाळा',select_class:'वर्ग निवडा',select_student:'विद्यार्थी निवडा',required:'आवश्यक',empty_classes:'वर्ग नाहीत',empty_classes_d:'वर बटण दाबा।',empty_students:'विद्यार्थी नाहीत',empty_students_d:'वर बटण दाबा।',empty_att:'विद्यार्थी नाहीत',empty_diary:'नोंदी नाहीत',empty_marks:'गुण नाहीत',empty_hw:'गृहपाठ नाही',empty_period:'तास नाहीत',empty_note:'टिपा नाहीत',mark_all:'सर्व उपस्थित',del_confirm:'हटवायचे?',del_desc:'कायमचे हटवले जाईल।',reset_confirm:'सर्व डेटा मिटवायचा?',reset_desc2:'परत करता येणार नाही।',saved:'सेव्ह झाले',deleted:'हटवले',fill_required:'माहिती भरा',mark:'मार्क',subject_lbl:'विषय'},
+  te: {home:'హోమ్',classes:'తరగతులు',students:'విద్యార్థులు',attend:'హాజరు',diary:'డైరీ',marks:'మార్కులు',more:'మరిన్ని',class:'తరగతి',student:'విద్యార్థి',present_today:'ఈరోజు హాజరు',quick_actions:'త్వరిత పనులు',weekly_attendance:'వారపు హాజరు',reports:'నివేదికలు',recent:'ఇటీవలి',my_classes:'నా తరగతులు',all_students:'విద్యార్థులు',add_class:'తరగతి జోడించు',add_student:'విద్యార్థి జోడించు',attendance:'హాజరు',new_entry:'కొత్త ఎంట్రీ',add_marks:'మార్కులు జోడించు',homework:'హోంవర్క్',new_hw:'కొత్త HW',timetable:'టైమ్టేబుల్',add_period:'పీరియడ్ జోడించు',notes:'నోట్స్',new_note:'కొత్త నోట్',exams:'పరీక్షలు',add_exam:'పరీక్ష జోడించు',lesson_plans:'పాఠ్య ప్రణాళిక',add_lesson:'పాఠం జోడించు',reminders:'రిమైండర్లు',add_reminder:'రిమైండర్ జోడించు',holidays:'సెలవులు',add_holiday:'సెలవు జోడించు',print:'ప్రింట్',attendance_summary:'హాజరు సారాంశం',marks_summary:'మార్కుల సారాంశం',class_wise:'తరగతి వారీగా',all_features:'అన్ని ఫీచర్లు',about:'గురించి',about_desc:'భారతీయ ఉపాధ్యాయుల కోసం వృత్తిపరమైన సహాయకుడు.',settings:'సెట్టింగ్స్',profile:'ప్రొఫైల్',set_name_school:'పేరు మరియు పాఠశాల',language:'భాష',dark_mode:'డార్క్ మోడ్',dark_desc:'కళ్ళకు ఆరామం',backup:'డేటా బ్యాకప్',backup_desc:'JSON ఫైల్‌లో సేవ్ చేయండి',restore:'డేటా రీస్టోర్',restore_desc:'బ్యాకప్ నుండి తిరిగి',reset_data:'డేటా రీసెట్',reset_desc:'అన్ని డేటా తొలగించు',share:'షేర్',share_desc:'WhatsAppలో పంపండి',cancel:'రద్దు',save:'సేవ్',confirm:'నిర్ధారించు',delete:'తొలగించు',name:'పేరు',roll:'రోల్',subject:'సబ్జెక్ట్',phone:'ఫోన్',room:'గది',title:'శీర్షిక',desc:'వివరణ',hw:'హోంవర్క్',exam:'పరీక్ష',score:'మార్కులు',total:'మొత్తం',time:'సమయం',day:'రోజు',date:'తేదీ',due:'గడువు',school:'పాఠశాల',select_class:'తరగతి ఎంచుకోండి',select_student:'విద్యార్థి ఎంచుకోండి',required:'అవసరం',empty_classes:'తరగతులు లేవు',empty_classes_d:'పైన బటన్ నొక్కండి।',empty_students:'విద్యార్థులు లేరు',empty_students_d:'పైన బటన్ నొక్కండి।',empty_att:'విద్యార్థులు లేరు',empty_diary:'ఎంట్రీలు లేవు',empty_marks:'మార్కులు లేవు',empty_hw:'హోంవర్క్ లేదు',empty_period:'పీరియడ్‌లు లేవు',empty_note:'నోట్స్ లేవు',mark_all:'అందరూ హాజరు',del_confirm:'తొలగించాలా?',del_desc:'శాశ్వతంగా తొలగించబడుతుంది।',reset_confirm:'డేటా రీసెట్?',reset_desc2:'తిరిగి పొందలేరు।',saved:'సేవ్ అయింది',deleted:'తొలగించబడింది',fill_required:'సమాచారం నింపండి',mark:'మార్క్',subject_lbl:'సబ్జెక్ట్'},
+  ta: {home:'முகப்பு',classes:'வகுப்புகள்',students:'மாணவர்கள்',attend:'வருகை',diary:'டைரி',marks:'மதிப்பெண்',more:'மேலும்',class:'வகுப்பு',student:'மாணவர்',present_today:'இன்று வருகை',quick_actions:'விரைவு',weekly_attendance:'வார வருகை',reports:'அறிக்கை',recent:'சமீபத்திய',my_classes:'என் வகுப்புகள்',all_students:'மாணவர்கள்',add_class:'வகுப்பு சேர்',add_student:'மாணவர் சேர்',attendance:'வருகை',new_entry:'புதிய',add_marks:'மதிப்பெண் சேர்',homework:'வீட்டுப்பாடம்',new_hw:'புதிய HW',timetable:'அட்டவணை',add_period:'பாடம் சேர்',notes:'குறிப்பு',new_note:'புதிய குறிப்பு',exams:'தேர்வுகள்',add_exam:'தேர்வு சேர்',lesson_plans:'பாட திட்டம்',add_lesson:'பாடம் சேர்',reminders:'நினைவூட்டல்',add_reminder:'சேர்',holidays:'விடுமுறை',add_holiday:'விடுமுறை சேர்',print:'அச்சிடு',attendance_summary:'வருகை சுருக்கம்',marks_summary:'மதிப்பெண் சுருக்கம்',class_wise:'வகுப்பு வாரியாக',all_features:'அனைத்து',about:'பற்றி',about_desc:'இந்திய ஆசிரியர்களுக்கான தொழில்முறை உதவியாளர்.',settings:'அமைப்பு',profile:'சுயவிவரம்',set_name_school:'பெயர் பள்ளி',language:'மொழி',dark_mode:'டார்க்',dark_desc:'கண்களுக்கு வசதி',backup:'காப்பு',backup_desc:'JSON இல் சேமி',restore:'மீட்டெடு',restore_desc:'காப்பிலிருந்து',reset_data:'மீட்டமை',reset_desc:'எல்லாம் அழி',share:'பகிர்',share_desc:'WhatsApp',cancel:'ரத்து',save:'சேமி',confirm:'உறுதி',delete:'அழி',name:'பெயர்',roll:'ரோல்',subject:'பாடம்',phone:'தொலைபேசி',room:'அறை',title:'தலைப்பு',desc:'விவரம்',hw:'HW',exam:'தேர்வு',score:'மதிப்பெண்',total:'மொத்தம்',time:'நேரம்',day:'நாள்',date:'தேதி',due:'கடைசி',school:'பள்ளி',select_class:'வகுப்பு',select_student:'மாணவர்',required:'தேவை',empty_classes:'வகுப்பு இல்லை',empty_classes_d:'மேலே அழுத்து।',empty_students:'மாணவர் இல்லை',empty_students_d:'மேலே அழுத்து।',empty_att:'மாணவர் இல்லை',empty_diary:'இல்லை',empty_marks:'இல்லை',empty_hw:'இல்லை',empty_period:'இல்லை',empty_note:'இல்லை',mark_all:'அனைவரும்',del_confirm:'அழிக்க?',del_desc:'நிரந்தரமாக அழிக்கப்படும்.',reset_confirm:'மீட்டமை?',reset_desc2:'மீட்க முடியாது.',saved:'சேமிக்கப்பட்டது',deleted:'அழிக்கப்பட்டது',fill_required:'விவரம் நிரப்பு',mark:'மார்க்',subject_lbl:'பாடம்'},
+  gu: {home:'હોમ',classes:'વર્ગો',students:'વિદ્યાર્થીઓ',attend:'હાજરી',diary:'ડાયરી',marks:'ગુણ',more:'વધુ',class:'વર્ગ',student:'વિદ્યાર્થી',present_today:'આજે હાજર',quick_actions:'ઝડપી',weekly_attendance:'સાપ્તાહિક',reports:'રિપોર્ટ',recent:'તાજેતર',my_classes:'મારા વર્ગો',all_students:'વિદ્યાર્થીઓ',add_class:'વર્ગ ઉમેરો',add_student:'વિદ્યાર્થી ઉમેરો',attendance:'હાજરી',new_entry:'નવી',add_marks:'ગુણ ઉમેરો',homework:'હોમવર્ક',new_hw:'નવું HW',timetable:'સમયપત્રક',add_period:'પીરિયડ',notes:'નોંધ',new_note:'નવી નોંધ',exams:'પરીક્ષા',add_exam:'પરીક્ષા ઉમેરો',lesson_plans:'પાઠ યોજના',add_lesson:'પાઠ ઉમેરો',reminders:'રિમાઇન્ડર',add_reminder:'ઉમેરો',holidays:'રજાઓ',add_holiday:'રજા ઉમેરો',print:'પ્રિન્ટ',attendance_summary:'હાજરી સારાંશ',marks_summary:'ગુણ સારાંશ',class_wise:'વર્ગ મુજબ',all_features:'બધા',about:'વિશે',about_desc:'ભારતીય શિક્ષકો માટે વ્યાવસાયિક સહાયક.',settings:'સેટિંગ',profile:'પ્રોફાઇલ',set_name_school:'નામ અને શાળા',language:'ભાષા',dark_mode:'ડાર્ક',dark_desc:'આંખો માટે',backup:'બેકઅપ',backup_desc:'JSON માં સેવ',restore:'રીસ્ટોર',restore_desc:'બેકઅપથી',reset_data:'રીસેટ',reset_desc:'બધું ભૂંસો',share:'શેર',share_desc:'WhatsApp',cancel:'રદ',save:'સેવ',confirm:'પુષ્ટિ',delete:'ભૂંસો',name:'નામ',roll:'રોલ',subject:'વિષય',phone:'ફોન',room:'રૂમ',title:'શીર્ષક',desc:'વર્ણન',hw:'HW',exam:'પરીક્ષા',score:'ગુણ',total:'કુલ',time:'સમય',day:'દિવસ',date:'તારીખ',due:'તારીખ',school:'શાળા',select_class:'વર્ગ',select_student:'વિદ્યાર્થી',required:'જરૂરી',empty_classes:'વર્ગ નથી',empty_classes_d:'ઉપર બટન દબાવો.',empty_students:'વિદ્યાર્થી નથી',empty_students_d:'ઉપર બટન દબાવો.',empty_att:'વિદ્યાર્થી નથી',empty_diary:'નથી',empty_marks:'નથી',empty_hw:'નથી',empty_period:'નથી',empty_note:'નથી',mark_all:'બધા હાજર',del_confirm:'ભૂંસવું?',del_desc:'કાયમી ભૂંસાશે.',reset_confirm:'રીસેટ?',reset_desc2:'પાછું નહીં આવે.',saved:'સેવ',deleted:'ભૂંસ્યું',fill_required:'માહિતી ભરો',mark:'માર્ક',subject_lbl:'વિષય'},
+  ur: {home:'ہوم',classes:'کلاسز',students:'طلباء',attend:'حاضری',diary:'ڈائری',marks:'نمبر',more:'مزید',class:'کلاس',student:'طالب علم',present_today:'آج حاضر',quick_actions:'فوری کام',weekly_attendance:'ہفتہ وار',reports:'رپورٹس',recent:'حالیہ',my_classes:'میری کلاسز',all_students:'تمام طلباء',add_class:'کلاس شامل',add_student:'طالب شامل',attendance:'حاضری',new_entry:'نئی',add_marks:'نمبر شامل',homework:'ہوم ورک',new_hw:'نیا HW',timetable:'ٹائم ٹیبل',add_period:'پیریڈ',notes:'نوٹس',new_note:'نیا نوٹ',exams:'امتحانات',add_exam:'امتحان شامل',lesson_plans:'اسباق',add_lesson:'سبق شامل',reminders:'یاد دہانی',add_reminder:'شامل',holidays:'چھٹیاں',add_holiday:'چھٹی شامل',print:'پرنٹ',attendance_summary:'حاضری خلاصہ',marks_summary:'نمبر خلاصہ',class_wise:'کلاس کے مطابق',all_features:'تمام',about:'متعلق',about_desc:'بھارتی اساتذہ کے لیے پیشہ ورانہ معاون۔',settings:'ترتیبات',profile:'پروفائل',set_name_school:'نام اور اسکول',language:'زبان',dark_mode:'ڈارک',dark_desc:'آنکھوں کے لیے',backup:'بیک اپ',backup_desc:'JSON میں محفوظ',restore:'بحالی',restore_desc:'بیک اپ سے',reset_data:'ری سیٹ',reset_desc:'سب مٹا دیں',share:'شیئر',share_desc:'WhatsApp',cancel:'منسوخ',save:'محفوظ',confirm:'تصدیق',delete:'حذف',name:'نام',roll:'رول',subject:'مضمون',phone:'فون',room:'کمرہ',title:'عنوان',desc:'تفصیل',hw:'HW',exam:'امتحان',score:'نمبر',total:'کل',time:'وقت',day:'دن',date:'تاریخ',due:'آخری تاریخ',school:'اسکول',select_class:'کلاس',select_student:'طالب',required:'ضروری',empty_classes:'کلاس نہیں',empty_classes_d:'اوپر بٹن دبائیں۔',empty_students:'طالب نہیں',empty_students_d:'اوپر بٹن دبائیں۔',empty_att:'طالب نہیں',empty_diary:'نہیں',empty_marks:'نہیں',empty_hw:'نہیں',empty_period:'نہیں',empty_note:'نہیں',mark_all:'سب حاضر',del_confirm:'حذف؟',del_desc:'ہمیشہ کے لیے۔',reset_confirm:'ری سیٹ؟',reset_desc2:'واپس نہیں آئے گا۔',saved:'محفوظ',deleted:'حذف',fill_required:'معلومات بھریں',mark:'مارک',subject_lbl:'مضمون'},
+  kn: {home:'ಮುಖಪುಟ',classes:'ತರಗತಿ',students:'ವಿದ್ಯಾರ್ಥಿ',attend:'ಹಾಜರಿ',diary:'ಡೈರಿ',marks:'ಅಂಕ',more:'ಇನ್ನಷ್ಟು',class:'ತರಗತಿ',student:'ವಿದ್ಯಾರ್ಥಿ',present_today:'ಇಂದು',quick_actions:'ತ್ವರಿತ',weekly_attendance:'ಸಾಪ್ತಾಹಿಕ',reports:'ವರದಿ',recent:'ಇತ್ತೀಚಿನ',my_classes:'ನನ್ನ ತರಗತಿ',all_students:'ಎಲ್ಲ ವಿದ್ಯಾರ್ಥಿ',add_class:'ತರಗತಿ ಸೇರಿಸು',add_student:'ವಿದ್ಯಾರ್ಥಿ ಸೇರಿಸು',attendance:'ಹಾಜರಿ',new_entry:'ಹೊಸ',add_marks:'ಅಂಕ ಸೇರಿಸು',homework:'ಮನೆಪಾಠ',new_hw:'ಹೊಸ HW',timetable:'ವೇಳಾಪಟ್ಟಿ',add_period:'ಅವಧಿ',notes:'ಟಿಪ್ಪಣಿ',new_note:'ಹೊಸ',exams:'ಪರೀಕ್ಷೆ',add_exam:'ಪರೀಕ್ಷೆ ಸೇರಿಸು',lesson_plans:'ಪಾಠ ಯೋಜನೆ',add_lesson:'ಪಾಠ ಸೇರಿಸು',reminders:'ಜ್ಞಾಪನೆ',add_reminder:'ಸೇರಿಸು',holidays:'ರಜೆ',add_holiday:'ರಜೆ ಸೇರಿಸು',print:'ಮುದ್ರಿಸು',attendance_summary:'ಹಾಜರಿ ಸಾರಾಂಶ',marks_summary:'ಅಂಕ ಸಾರಾಂಶ',class_wise:'ತರಗತಿ ಪ್ರಕಾರ',all_features:'ಎಲ್ಲ',about:'ಬಗ್ಗೆ',about_desc:'ಭಾರತೀಯ ಶಿಕ್ಷಕರಿಗಾಗಿ ವೃತ್ತಿಪರ ಸಹಾಯಕ.',settings:'ಸೆಟ್ಟಿಂಗ್ಸ್',profile:'ಪ್ರೊಫೈಲ್',set_name_school:'ಹೆಸರು ಶಾಲೆ',language:'ಭಾಷೆ',dark_mode:'ಡಾರ್ಕ್',dark_desc:'ಕಣ್ಣಿಗೆ ಆರಾಮ',backup:'ಬ್ಯಾಕಪ್',backup_desc:'JSON ನಲ್ಲಿ ಉಳಿಸಿ',restore:'ಮರುಸ್ಥಾಪಿಸು',restore_desc:'ಬ್ಯಾಕಪ್‌ನಿಂದ',reset_data:'ರೀಸೆಟ್',reset_desc:'ಎಲ್ಲ ಅಳಿಸಿ',share:'ಹಂಚಿಕೊಳ್ಳಿ',share_desc:'WhatsApp',cancel:'ರದ್ದು',save:'ಉಳಿಸು',confirm:'ದೃಢಪಡಿಸು',delete:'ಅಳಿಸು',name:'ಹೆಸರು',roll:'ರೋಲ್',subject:'ವಿಷಯ',phone:'ಫೋನ್',room:'ಕೊಠಡಿ',title:'ಶೀರ್ಷಿಕೆ',desc:'ವಿವರಣೆ',hw:'HW',exam:'ಪರೀಕ್ಷೆ',score:'ಅಂಕ',total:'ಒಟ್ಟು',time:'ಸಮಯ',day:'ದಿನ',date:'ದಿನಾಂಕ',due:'ಕೊನೆ',school:'ಶಾಲೆ',select_class:'ತರಗತಿ',select_student:'ವಿದ್ಯಾರ್ಥಿ',required:'ಅಗತ್ಯ',empty_classes:'ತರಗತಿ ಇಲ್ಲ',empty_classes_d:'ಮೇಲೆ ಬಟನ್ ಒತ್ತಿ.',empty_students:'ವಿದ್ಯಾರ್ಥಿ ಇಲ್ಲ',empty_students_d:'ಮೇಲೆ ಬಟನ್ ಒತ್ತಿ.',empty_att:'ವಿದ್ಯಾರ್ಥಿ ಇಲ್ಲ',empty_diary:'ಇಲ್ಲ',empty_marks:'ಇಲ್ಲ',empty_hw:'ಇಲ್ಲ',empty_period:'ಇಲ್ಲ',empty_note:'ಇಲ್ಲ',mark_all:'ಎಲ್ಲ ಹಾಜರು',del_confirm:'ಅಳಿಸುವುದೇ?',del_desc:'ಶಾಶ್ವತವಾಗಿ.',reset_confirm:'ರೀಸೆಟ್?',reset_desc2:'ಹಿಂತಿರುಗಿಸಲಾಗದು.',saved:'ಉಳಿಸಲಾಗಿದೆ',deleted:'ಅಳಿಸಲಾಗಿದೆ',fill_required:'ಮಾಹಿತಿ ತುಂಬಿ',mark:'ಮಾರ್ಕ್',subject_lbl:'ವಿಷಯ'},
+  or: {home:'ହୋମ',classes:'ଶ୍ରେଣୀ',students:'ଛାତ୍ର',attend:'ଉପସ୍ଥିତି',diary:'ଡାଏରୀ',marks:'ନମ୍ବର',more:'ଅଧିକ',class:'ଶ୍ରେଣୀ',student:'ଛାତ୍ର',present_today:'ଆଜି',quick_actions:'ଶୀଘ୍ର',weekly_attendance:'ସାପ୍ତାହିକ',reports:'ରିପୋର୍ଟ',recent:'ସାମ୍ପ୍ରତିକ',my_classes:'ମୋ ଶ୍ରେଣୀ',all_students:'ସମସ୍ତ ଛାତ୍ର',add_class:'ଶ୍ରେଣୀ ଯୋଡ଼ନ୍ତୁ',add_student:'ଛାତ୍ର ଯୋଡ଼ନ୍ତୁ',attendance:'ଉପସ୍ଥିତି',new_entry:'ନୂଆ',add_marks:'ନମ୍ବର ଯୋଡ଼ନ୍ତୁ',homework:'ଗୃହକାର୍ଯ୍ୟ',new_hw:'ନୂଆ HW',timetable:'ସମୟ ସାରଣୀ',add_period:'ପିରିଅଡ',notes:'ଟିପ୍ପଣୀ',new_note:'ନୂଆ',exams:'ପରୀକ୍ଷା',add_exam:'ପରୀକ୍ଷା ଯୋଡ଼ନ୍ତୁ',lesson_plans:'ପାଠ ଯୋଜନା',add_lesson:'ପାଠ ଯୋଡ଼ନ୍ତୁ',reminders:'ମନେ ପକାଇବା',add_reminder:'ଯୋଡ଼ନ୍ତୁ',holidays:'ଛୁଟି',add_holiday:'ଛୁଟି ଯୋଡ଼ନ୍ତୁ',print:'ପ୍ରିଣ୍ଟ',attendance_summary:'ଉପସ୍ଥିତି ସାରାଂଶ',marks_summary:'ନମ୍ବର ସାରାଂଶ',class_wise:'ଶ୍ରେଣୀ ଅନୁସାରେ',all_features:'ସମସ୍ତ',about:'ବିଷୟରେ',about_desc:'ଭାରତୀୟ ଶିକ୍ଷକଙ୍କ ପାଇଁ ବୃତ୍ତିଗତ ସହାୟକ।',settings:'ସେଟିଂସ',profile:'ପ୍ରୋଫାଇଲ',set_name_school:'ନାମ ଓ ବିଦ୍ୟାଳୟ',language:'ଭାଷା',dark_mode:'ଡାର୍କ',dark_desc:'ଆଖି ପାଇଁ',backup:'ବ୍ୟାକଅପ',backup_desc:'JSON ରେ ସେଭ',restore:'ରିଷ୍ଟୋର',restore_desc:'ବ୍ୟାକଅପରୁ',reset_data:'ରିସେଟ',reset_desc:'ସବୁ ଲିଭାନ୍ତୁ',share:'ସେୟାର',share_desc:'WhatsApp',cancel:'ବାତିଲ',save:'ସେଭ',confirm:'ନିଶ୍ଚିତ',delete:'ଲିଭାନ୍ତୁ',name:'ନାମ',roll:'ରୋଲ',subject:'ବିଷୟ',phone:'ଫୋନ',room:'କୋଠରୀ',title:'ଶୀର୍ଷକ',desc:'ବିବରଣୀ',hw:'HW',exam:'ପରୀକ୍ଷା',score:'ନମ୍ବର',total:'ମୋଟ',time:'ସମୟ',day:'ଦିନ',date:'ତାରିଖ',due:'ଶେଷ',school:'ବିଦ୍ୟାଳୟ',select_class:'ଶ୍ରେଣୀ',select_student:'ଛାତ୍ର',required:'ଆବଶ୍ୟକ',empty_classes:'ଶ୍ରେଣୀ ନାହିଁ',empty_classes_d:'ଉପର ବଟନ ଦବାନ୍ତୁ।',empty_students:'ଛାତ୍ର ନାହିଁ',empty_students_d:'ଉପର ବଟନ ଦବାନ୍ତୁ।',empty_att:'ଛାତ୍ର ନାହିଁ',empty_diary:'ନାହିଁ',empty_marks:'ନାହିଁ',empty_hw:'ନାହିଁ',empty_period:'ନାହିଁ',empty_note:'ନାହିଁ',mark_all:'ସମସ୍ତ ଉପସ୍ଥିତ',del_confirm:'ଲିଭାଇବେ?',del_desc:'ସ୍ଥାୟୀ ଭାବରେ।',reset_confirm:'ରିସେଟ?',reset_desc2:'ଫେରାଇ ଆଣିବେ ନାହିଁ।',saved:'ସେଭ ହେଲା',deleted:'ଲିଭିଗଲା',fill_required:'ସୂଚନା ଭରନ୍ତୁ',mark:'ମାର୍କ',subject_lbl:'ବିଷୟ'},
+  ml: {home:'ഹോം',classes:'ക്ലാസ്',students:'വിദ്യാർത്ഥി',attend:'ഹാജർ',diary:'ഡയറി',marks:'മാർക്ക്',more:'കൂടുതൽ',class:'ക്ലാസ്',student:'വിദ്യാർത്ഥി',present_today:'ഇന്ന് ഹാജർ',quick_actions:'പെട്ടെന്ന്',weekly_attendance:'പ്രതിവാര',reports:'റിപ്പോർട്ട്',recent:'സമീപകാല',my_classes:'എന്റെ ക്ലാസ്',all_students:'എല്ലാ വിദ്യാർത്ഥി',add_class:'ക്ലാസ് ചേർക്കുക',add_student:'വിദ്യാർത്ഥി ചേർക്കുക',attendance:'ഹാജർ',new_entry:'പുതിയ',add_marks:'മാർക്ക് ചേർക്കുക',homework:'ഹോംവർക്ക്',new_hw:'പുതിയ HW',timetable:'ടൈംടേബിൾ',add_period:'പിരീഡ്',notes:'കുറിപ്പ്',new_note:'പുതിയ',exams:'പരീക്ഷ',add_exam:'പരീക്ഷ ചേർക്കുക',lesson_plans:'പാഠ പദ്ധതി',add_lesson:'പാഠം ചേർക്കുക',reminders:'ഓർമ്മപ്പെടുത്തൽ',add_reminder:'ചേർക്കുക',holidays:'അവധി',add_holiday:'അവധി ചേർക്കുക',print:'പ്രിന്റ്',attendance_summary:'ഹാജർ സംഗ്രഹം',marks_summary:'മാർക്ക് സംഗ്രഹം',class_wise:'ക്ലാസ് അനുസരിച്ച്',all_features:'എല്ലാം',about:'കുറിച്ച്',about_desc:'ഇന്ത്യൻ അധ്യാപകർക്കുള്ള പ്രൊഫഷണൽ സഹായി.',settings:'സെറ്റിംഗ്സ്',profile:'പ്രൊഫൈൽ',set_name_school:'പേര് സ്കൂൾ',language:'ഭാഷ',dark_mode:'ഡാർക്ക്',dark_desc:'കണ്ണിന് സുഖം',backup:'ബാക്കപ്പ്',backup_desc:'JSON ൽ സേവ്',restore:'റീസ്റ്റോർ',restore_desc:'ബാക്കപ്പിൽ നിന്ന്',reset_data:'റീസെറ്റ്',reset_desc:'എല്ലാം മായ്ക്കുക',share:'ഷെയർ',share_desc:'WhatsApp',cancel:'റദ്ദാക്കുക',save:'സേവ്',confirm:'സ്ഥിരീകരിക്കുക',delete:'ഡിലീറ്റ്',name:'പേര്',roll:'റോൾ',subject:'വിഷയം',phone:'ഫോൺ',room:'മുറി',title:'ശീർഷകം',desc:'വിവരണം',hw:'HW',exam:'പരീക്ഷ',score:'മാർക്ക്',total:'ആകെ',time:'സമയം',day:'ദിവസം',date:'തീയതി',due:'അവസാന',school:'സ്കൂൾ',select_class:'ക്ലാസ്',select_student:'വിദ്യാർത്ഥി',required:'ആവശ്യം',empty_classes:'ക്ലാസ് ഇല്ല',empty_classes_d:'മുകളിലെ ബട്ടൺ അമർത്തുക.',empty_students:'വിദ്യാർത്ഥി ഇല്ല',empty_students_d:'മുകളിലെ ബട്ടൺ അമർത്തുക.',empty_att:'വിദ്യാർത്ഥി ഇല്ല',empty_diary:'ഇല്ല',empty_marks:'ഇല്ല',empty_hw:'ഇല്ല',empty_period:'ഇല്ല',empty_note:'ഇല്ല',mark_all:'എല്ലാം ഹാജർ',del_confirm:'ഡിലീറ്റ്?',del_desc:'സ്ഥിരമായി.',reset_confirm:'റീസെറ്റ്?',reset_desc2:'തിരികെ ലഭിക്കില്ല.',saved:'സേവ്',deleted:'ഡിലീറ്റ്',fill_required:'വിവരം നൽകുക',mark:'മാർക്ക്',subject_lbl:'വിഷയം'},
+  pa: {home:'ਹੋਮ',classes:'ਕਲਾਸਾਂ',students:'ਵਿਦਿਆਰਥੀ',attend:'ਹਾਜ਼ਰੀ',diary:'ਡਾਇਰੀ',marks:'ਅੰਕ',more:'ਹੋਰ',class:'ਕਲਾਸ',student:'ਵਿਦਿਆਰਥੀ',present_today:'ਅੱਜ ਹਾਜ਼ਰ',quick_actions:'ਤੁਰੰਤ',weekly_attendance:'ਹਫ਼ਤਾਵਾਰੀ',reports:'ਰਿਪੋਰਟਾਂ',recent:'ਤਾਜ਼ਾ',my_classes:'ਮੇਰੀਆਂ ਕਲਾਸਾਂ',all_students:'ਸਾਰੇ ਵਿਦਿਆਰਥੀ',add_class:'ਕਲਾਸ ਸ਼ਾਮਲ',add_student:'ਵਿਦਿਆਰਥੀ ਸ਼ਾਮਲ',attendance:'ਹਾਜ਼ਰੀ',new_entry:'ਨਵੀਂ',add_marks:'ਅੰਕ ਸ਼ਾਮਲ',homework:'ਹੋਮਵਰਕ',new_hw:'ਨਵਾਂ HW',timetable:'ਸਮਾਂ-ਸਾਰਣੀ',add_period:'ਪੀਰੀਅਡ',notes:'ਨੋਟਸ',new_note:'ਨਵਾਂ ਨੋਟ',exams:'ਪਰੀਖਿਆਵਾਂ',add_exam:'ਪਰੀਖਿਆ ਸ਼ਾਮਲ',lesson_plans:'ਪਾਠ ਯੋਜਨਾ',add_lesson:'ਪਾਠ ਸ਼ਾਮਲ',reminders:'ਰਿਮਾਈਂਡਰ',add_reminder:'ਸ਼ਾਮਲ',holidays:'ਛੁੱਟੀਆਂ',add_holiday:'ਛੁੱਟੀ ਸ਼ਾਮਲ',print:'ਪ੍ਰਿੰਟ',attendance_summary:'ਹਾਜ਼ਰੀ ਸਾਰ',marks_summary:'ਅੰਕ ਸਾਰ',class_wise:'ਕਲਾਸ ਅਨੁਸਾਰ',all_features:'ਸਾਰੇ',about:'ਬਾਰੇ',about_desc:'ਭਾਰਤੀ ਅਧਿਆਪਕਾਂ ਲਈ ਪੇਸ਼ੇਵਰ ਸਹਾਇਕ।',settings:'ਸੈਟਿੰਗਾਂ',profile:'ਪ੍ਰੋਫਾਈਲ',set_name_school:'ਨਾਮ ਅਤੇ ਸਕੂਲ',language:'ਭਾਸ਼ਾ',dark_mode:'ਡਾਰਕ',dark_desc:'ਅੱਖਾਂ ਲਈ',backup:'ਬੈਕਅੱਪ',backup_desc:'JSON ਵਿੱਚ ਸੇਵ',restore:'ਰੀਸਟੋਰ',restore_desc:'ਬੈਕਅੱਪ ਤੋਂ',reset_data:'ਰੀਸੈਟ',reset_desc:'ਸਭ ਮਿਟਾਓ',share:'ਸ਼ੇਅਰ',share_desc:'WhatsApp',cancel:'ਰੱਦ',save:'ਸੇਵ',confirm:'ਪੁਸ਼ਟੀ',delete:'ਮਿਟਾਓ',name:'ਨਾਮ',roll:'ਰੋਲ',subject:'ਵਿਸ਼ਾ',phone:'ਫੋਨ',room:'ਕਮਰਾ',title:'ਸਿਰਲੇਖ',desc:'ਵੇਰਵਾ',hw:'HW',exam:'ਪਰੀਖਿਆ',score:'ਅੰਕ',total:'ਕੁੱਲ',time:'ਸਮਾਂ',day:'ਦਿਨ',date:'ਤਾਰੀਖ',due:'ਆਖਰੀ',school:'ਸਕੂਲ',select_class:'ਕਲਾਸ',select_student:'ਵਿਦਿਆਰਥੀ',required:'ਜ਼ਰੂਰੀ',empty_classes:'ਕਲਾਸ ਨਹੀਂ',empty_classes_d:'ਉੱਪਰ ਬਟਨ ਦਬਾਓ।',empty_students:'ਵਿਦਿਆਰਥੀ ਨਹੀਂ',empty_students_d:'ਉੱਪਰ ਬਟਨ ਦਬਾਓ।',empty_att:'ਵਿਦਿਆਰਥੀ ਨਹੀਂ',empty_diary:'ਨਹੀਂ',empty_marks:'ਨਹੀਂ',empty_hw:'ਨਹੀਂ',empty_period:'ਨਹੀਂ',empty_note:'ਨਹੀਂ',mark_all:'ਸਾਰੇ ਹਾਜ਼ਰ',del_confirm:'ਮਿਟਾਉਣਾ?',del_desc:'ਪੱਕੇ ਤੌਰ ਤੇ।',reset_confirm:'ਰੀਸੈਟ?',reset_desc2:'ਵਾਪਸ ਨਹੀਂ।',saved:'ਸੇਵ',deleted:'ਮਿਟਾਇਆ',fill_required:'ਜਾਣਕਾਰੀ ਭਰੋ',mark:'ਮਾਰਕ',subject_lbl:'ਵਿਸ਼ਾ'},
+  as: {home:'হোম',classes:'শ্ৰেণী',students:'শিক্ষাৰ্থী',attend:'উপস্থিতি',diary:'ডায়েৰী',marks:'নম্বৰ',more:'অধিক',class:'শ্ৰেণী',student:'শিক্ষাৰ্থী',present_today:'আজি উপস্থিত',quick_actions:'দ্ৰুত',weekly_attendance:'সাপ্তাহিক',reports:'ৰিপৰ্ট',recent:'শেহতীয়া',my_classes:'মোৰ শ্ৰেণী',all_students:'সকলো শিক্ষাৰ্থী',add_class:'শ্ৰেণী যোগ',add_student:'শিক্ষাৰ্থী যোগ',attendance:'উপস্থিতি',new_entry:'নতুন',add_marks:'নম্বৰ যোগ',homework:'গৃহকৰ্ম',new_hw:'নতুন HW',timetable:'সময়সূচী',add_period:'পিৰিয়ড',notes:'টোকা',new_note:'নতুন টোকা',exams:'পৰীক্ষা',add_exam:'পৰীক্ষা যোগ',lesson_plans:'পাঠ পৰিকল্পনা',add_lesson:'পাঠ যোগ',reminders:'সোঁৱৰণী',add_reminder:'যোগ',holidays:'বন্ধ',add_holiday:'বন্ধ যোগ',print:'প্ৰিন্ট',attendance_summary:'উপস্থিতি সাৰাংশ',marks_summary:'নম্বৰ সাৰাংশ',class_wise:'শ্ৰেণী অনুসৰি',all_features:'সকলো',about:'বিষয়ে',about_desc:'ভাৰতীয় শিক্ষকৰ বাবে বৃত্তিগত সহায়ক।',settings:'ছেটিংছ',profile:'প্ৰফাইল',set_name_school:'নাম আৰু বিদ্যালয়',language:'ভাষা',dark_mode:'ডাৰ্ক',dark_desc:'চকুৰ বাবে',backup:'বেকআপ',backup_desc:'JSON ত সংৰক্ষণ',restore:'ৰিষ্টোৰ',restore_desc:'বেকআপৰ পৰা',reset_data:'ৰিচেট',reset_desc:'সকলো মচি পেলাওক',share:'শেয়াৰ',share_desc:'WhatsApp',cancel:'বাতিল',save:'সংৰক্ষণ',confirm:'নিশ্চিত',delete:'মচক',name:'নাম',roll:'ৰোল',subject:'বিষয়',phone:'ফোন',room:'কোঠা',title:'শিৰোনাম',desc:'বিৱৰণ',hw:'HW',exam:'পৰীক্ষা',score:'নম্বৰ',total:'মুঠ',time:'সময়',day:'দিন',date:'তাৰিখ',due:'শেষ',school:'বিদ্যালয়',select_class:'শ্ৰেণী',select_student:'শিক্ষাৰ্থী',required:'প্ৰয়োজন',empty_classes:'শ্ৰেণী নাই',empty_classes_d:'ওপৰত বুটাম টিপক।',empty_students:'শিক্ষাৰ্থী নাই',empty_students_d:'ওপৰত বুটাম টিপক।',empty_att:'শিক্ষাৰ্থী নাই',empty_diary:'নাই',empty_marks:'নাই',empty_hw:'নাই',empty_period:'নাই',empty_note:'নাই',mark_all:'সকলো উপস্থিত',del_confirm:'মচিব?',del_desc:'স্থায়ীভাৱে।',reset_confirm:'ৰিচেট?',reset_desc2:'ঘূৰাই নাপাব।',saved:'সংৰক্ষিত',deleted:'মচা হ’ল',fill_required:'তথ্য ভৰাওক',mark:'মাৰ্ক',subject_lbl:'বিষয়'},
+  ne: {home:'होम',classes:'कक्षा',students:'विद्यार्थी',attend:'उपस्थिति',diary:'डायरी',marks:'अंक',more:'अधिक',class:'कक्षा',student:'विद्यार्थी',present_today:'आज उपस्थित',quick_actions:'छिटो',weekly_attendance:'साप्ताहिक',reports:'रिपोर्ट',recent:'हालैको',my_classes:'मेरा कक्षा',all_students:'सबै विद्यार्थी',add_class:'कक्षा थप्नुहोस्',add_student:'विद्यार्थी थप्नुहोस्',attendance:'उपस्थिति',new_entry:'नयाँ',add_marks:'अंक थप्नुहोस्',homework:'गृहकार्य',new_hw:'नयाँ HW',timetable:'समयतालिका',add_period:'पिरियड',notes:'नोट',new_note:'नयाँ नोट',exams:'परीक्षा',add_exam:'परीक्षा थप्नुहोस्',lesson_plans:'पाठ योजना',add_lesson:'पाठ थप्नुहोस्',reminders:'रिमाइन्डर',add_reminder:'थप्नुहोस्',holidays:'बिदा',add_holiday:'बिदा थप्नुहोस्',print:'प्रिन्ट',attendance_summary:'उपस्थिति सारांश',marks_summary:'अंक सारांश',class_wise:'कक्षा अनुसार',all_features:'सबै',about:'बारेमा',about_desc:'भारतीय शिक्षकहरूका लागि व्यावसायिक सहायक।',settings:'सेटिङ',profile:'प्रोफाइल',set_name_school:'नाम र विद्यालय',language:'भाषा',dark_mode:'डार्क',dark_desc:'आँखाका लागि',backup:'ब्याकअप',backup_desc:'JSON मा बचत',restore:'रिस्टोर',restore_desc:'ब्याकअपबाट',reset_data:'रिसेट',reset_desc:'सबै मेटाउनुहोस्',share:'सेयर',share_desc:'WhatsApp',cancel:'रद्द',save:'बचत',confirm:'पुष्टि',delete:'मेट्नुहोस्',name:'नाम',roll:'रोल',subject:'विषय',phone:'फोन',room:'कोठा',title:'शीर्षक',desc:'विवरण',hw:'HW',exam:'परीक्षा',score:'अंक',total:'कुल',time:'समय',day:'दिन',date:'मिति',due:'अन्तिम',school:'विद्यालय',select_class:'कक्षा',select_student:'विद्यार्थी',required:'आवश्यक',empty_classes:'कक्षा छैन',empty_classes_d:'माथि बटन थिच्नुहोस्।',empty_students:'विद्यार्थी छैन',empty_students_d:'माथि बटन थिच्नुहोस्।',empty_att:'विद्यार्थी छैन',empty_diary:'छैन',empty_marks:'छैन',empty_hw:'छैन',empty_period:'छैन',empty_note:'छैन',mark_all:'सबै उपस्थित',del_confirm:'मेट्ने?',del_desc:'स्थायी रूपमा।',reset_confirm:'रिसेट?',reset_desc2:'फर्काउन सकिँदैन।',saved:'बचत भयो',deleted:'मेटियो',fill_required:'जानकारी भर्नुहोस्',mark:'मार्क',subject_lbl:'विषय'}
 };
 
 let LANG = localStorage.getItem('aos_lang') || 'hi';
@@ -662,11 +630,7 @@ let S = {
   marks: JSON.parse(localStorage.getItem('aos_marks')) || [],
   homework: JSON.parse(localStorage.getItem('aos_hw')) || [],
   periods: JSON.parse(localStorage.getItem('aos_periods')) || [],
-  notes: JSON.parse(localStorage.getItem('aos_notes')) || [],
-  exams: JSON.parse(localStorage.getItem('aos_exams')) || [],
-  lessons: JSON.parse(localStorage.getItem('aos_lessons')) || [],
-  reminders: JSON.parse(localStorage.getItem('aos_reminders')) || [],
-  holidays: JSON.parse(localStorage.getItem('aos_holidays')) || []
+  notes: JSON.parse(localStorage.getItem('aos_notes')) || []
 };
 function save() {
   Object.keys(S).forEach(k => localStorage.setItem('aos_' + k, JSON.stringify(S[k])));
@@ -678,7 +642,7 @@ let selectedDay = 'Monday';
 
 /* ============ UTIL ============ */
 function $(id) { return document.getElementById(id); }
-function el(html) { const d = document.createElement('div'); d.innerHTML = html.trim(); return d.firstChild; }
+function val(id) { const e = $(id); return e ? e.value.trim() : ''; }
 
 /* ============ TOAST ============ */
 function toast(title, msg, type) {
@@ -707,26 +671,27 @@ function closeDialog() { $('dialog').classList.remove('open'); dCB = null; }
 $('d-confirm').addEventListener('click', () => { if (dCB) dCB(); closeDialog(); });
 
 /* ============ LANGUAGE ============ */
-function renderLangGrid() {
-  $('lang-grid').innerHTML = LANGS.map(l => `
-    <div class="lang-card ${l.code === LANG ? 'on' : ''}" onclick="selectLang('${l.code}')">
-      <div class="lang-code">${l.num}</div>
-      <div><div class="lang-name">${l.native}</div><div class="lang-native">${l.name}</div></div>
+function renderLangList() {
+  $('lang-list').innerHTML = LANGS.map(l => `
+    <div class="li" style="cursor:pointer; ${l.code === LANG ? 'border-color:var(--primary);background:rgba(79,70,229,.04);' : ''}" onclick="selectLang('${l.code}')">
+      <div class="li-icon" style="width:40px;height:40px;font-size:.75rem;font-weight:800;">${l.num}</div>
+      <div class="li-body"><h4>${l.native}</h4><p>${l.name}</p></div>
+      ${l.code === LANG ? '<i class="fas fa-check-circle" style="color:var(--primary);"></i>' : ''}
     </div>`).join('');
 }
+function openLangModal() { renderLangList(); $('lang-modal').classList.add('open'); }
+function closeLangModal() { $('lang-modal').classList.remove('open'); }
 function selectLang(code) {
   LANG = code;
   localStorage.setItem('aos_lang', code);
+  closeLangModal();
   applyI18n();
-  renderLangGrid();
-  if (!$('onboard').dataset.on) {
-    $('lang-pick').classList.remove('show');
-    startOnboard();
-  }
+  toast(t('saved'), LANGS.find(l => l.code === code).native, 'ok');
 }
+
+/* ============ I18N ============ */
 function applyI18n() {
   document.querySelectorAll('[data-t]').forEach(e => { e.innerText = t(e.dataset.t); });
-  // Update nav
   document.querySelectorAll('.nav-btn').forEach(b => {
     const k = b.dataset.page === 'home' ? 'home' : b.dataset.page === 'classes' ? 'classes' : b.dataset.page === 'attendance' ? 'attend' : b.dataset.page === 'diary' ? 'diary' : 'more';
     const s = b.querySelector('span'); if (s) s.innerText = t(k);
@@ -734,44 +699,6 @@ function applyI18n() {
   $('lang-sub').innerText = LANGS.find(l => l.code === LANG).native;
   updateGreet();
   renderAll();
-}
-function openLangPicker() {
-  $('lang-pick').classList.add('show');
-  $('lang-pick').dataset.from = 'settings';
-  renderLangGrid();
-}
-
-/* ============ ONBOARD ============ */
-let obStep = 0;
-const OB = [
-  { icon:'fa-graduation-cap', t:'Welcome! 🙏', d:'AcharyaOS Pro — a professional digital assistant for Indian teachers.' },
-  { icon:'fa-users', t:'Classes & Students', d:'Manage all your classes and students in one place — with roll numbers, subjects and contacts.' },
-  { icon:'fa-user-check', t:'Smart Attendance', d:'Mark attendance in one tap. P, A, L buttons — daily records and reports.' },
-  { icon:'fa-chart-line', t:'Reports & Analytics', d:'Weekly charts, marks analysis, printable report cards.' },
-  { icon:'fa-shield-alt', t:'100% Offline & Secure', d:'All data stays on your phone. No internet needed, no data leaks.' }
-];
-function startOnboard() {
-  obStep = 0;
-  $('onboard').dataset.on = '1';
-  $('onboard').style.display = 'flex';
-  renderOnboard();
-}
-function renderOnboard() {
-  const d = OB[obStep];
-  $('ob-ill').innerHTML = `<i class="fas ${d.icon}"></i>`;
-  $('ob-title').innerText = d.t;
-  $('ob-desc').innerText = d.d;
-  $('ob-prev').style.display = obStep > 0 ? 'flex' : 'none';
-  $('ob-next').innerHTML = obStep === OB.length - 1 ? 'Start <i class="fas fa-rocket"></i>' : 'Next <i class="fas fa-arrow-right"></i>';
-  $('ob-dots').innerHTML = OB.map((_, i) => `<span style="width:${i===obStep?'24px':'8px'};height:8px;border-radius:4px;background:${i===obStep?'linear-gradient(90deg,var(--p),var(--p2))':'var(--bd2)'};transition:all .3s;"></span>`).join('');
-}
-function obNext() { if (obStep < OB.length - 1) { obStep++; renderOnboard(); } else finishOnboard(); }
-function obPrev() { if (obStep > 0) { obStep--; renderOnboard(); } }
-function finishOnboard() {
-  localStorage.setItem('aos_onb', '1');
-  $('onboard').style.display = 'none';
-  // Prompt for profile if empty
-  if (!S.profile.name) setTimeout(() => openModal('profile'), 400);
 }
 
 /* ============ THEME ============ */
@@ -783,8 +710,6 @@ function toggleTheme() {
 if (localStorage.getItem('aos_theme') === 'dark') { document.documentElement.setAttribute('data-theme','dark'); $('theme-btn').innerHTML = '<i class="fas fa-sun"></i>'; }
 
 /* ============ NAVIGATION ============ */
-const PAGE_TITLES = { home:'home', classes:'my_classes', students:'all_students', attendance:'attendance', diary:'diary', marks:'marks', homework:'homework', timetable:'timetable', notes:'notes', exams:'exams', lessons:'lesson_plans', reminders:'reminders', holidays:'holidays', reports:'reports', more:'all_features', settings:'settings' };
-
 function switchPage(p, btn) {
   currentPage = p;
   document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
@@ -797,7 +722,7 @@ function switchPage(p, btn) {
 }
 
 function smartFab() {
-  const map = { home:'class', classes:'class', students:'student', attendance:'student', diary:'diary', marks:'marks', homework:'homework', timetable:'period', notes:'note', exams:'exam', lessons:'lesson', reminders:'reminder', holidays:'holiday' };
+  const map = { home:'class', classes:'class', students:'student', attendance:'student', diary:'diary', marks:'marks', homework:'homework', timetable:'period', notes:'note' };
   openModal(map[currentPage] || 'class');
 }
 
@@ -807,7 +732,7 @@ function openModal(type) {
   const fields = $('m-fields');
   let html = '';
   const tt = (key) => t(key);
-  const titleMap = { class:'add_class', student:'add_student', diary:'new_entry', marks:'add_marks', homework:'new_hw', period:'add_period', note:'new_note', exam:'add_exam', lesson:'add_lesson', reminder:'add_reminder', holiday:'add_holiday', profile:'profile' };
+  const titleMap = { class:'add_class', student:'add_student', diary:'new_entry', marks:'add_marks', homework:'new_hw', period:'add_period', note:'new_note', profile:'profile' };
   $('m-title').innerText = tt(titleMap[type] || 'add');
 
   if (type === 'class') {
@@ -851,27 +776,6 @@ function openModal(type) {
   } else if (type === 'note') {
     html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp"></div>
       <div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>`;
-  } else if (type === 'exam') {
-    html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Half Yearly Exam"></div>
-      <div class="grid-2">
-        <div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div>
-        <div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp"></div>
-      </div>
-      <div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp"></div>`;
-  } else if (type === 'lesson') {
-    html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 5 - Trigonometry"></div>
-      <div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp"></div>
-      <div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa" placeholder="Objectives, resources, activities..."></textarea></div>`;
-  } else if (type === 'reminder') {
-    html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Parent-Teacher Meeting"></div>
-      <div class="field"><label>${tt('date')}</label><input type="datetime-local" id="f-date" class="inp"></div>
-      <div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>`;
-  } else if (type === 'holiday') {
-    html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Independence Day"></div>
-      <div class="grid-2">
-        <div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div>
-        <div class="field"><label>To</label><input type="date" id="f-date2" class="inp"></div>
-      </div>`;
   } else if (type === 'profile') {
     html = `<div class="field"><label>${tt('name')}</label><input type="text" id="f-name" class="inp" value="${S.profile.name}" placeholder="Your Name"></div>
       <div class="field"><label>${tt('school')}</label><input type="text" id="f-school" class="inp" value="${S.profile.school}" placeholder="School Name"></div>`;
@@ -881,7 +785,6 @@ function openModal(type) {
   setTimeout(() => { const f = fields.querySelector('input,select,textarea'); if (f) f.focus(); }, 250);
 }
 function closeModal() { $('modal').classList.remove('open'); }
-function val(id) { const e = $(id); return e ? e.value.trim() : ''; }
 
 /* ============ SAVE ============ */
 function saveData() {
@@ -914,22 +817,6 @@ function saveData() {
     if (!v('f-title')) return toast(t('fill_required'), '', 'err');
     S.notes.unshift({ id: Date.now(), title: v('f-title'), desc: v('f-desc'), date: new Date().toLocaleDateString() });
     toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'exam') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.exams.unshift({ id: Date.now(), title: v('f-title'), date: v('f-date'), sub: v('f-sub'), cls: v('f-cls') });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'lesson') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.lessons.unshift({ id: Date.now(), title: v('f-title'), sub: v('f-sub'), desc: v('f-desc'), date: new Date().toLocaleDateString() });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'reminder') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.reminders.unshift({ id: Date.now(), title: v('f-title'), date: v('f-date'), desc: v('f-desc') });
-    toast(t('saved'), v('f-title'), 'ok');
-  } else if (currentModal === 'holiday') {
-    if (!v('f-title')) return toast(t('fill_required'), '', 'err');
-    S.holidays.unshift({ id: Date.now(), title: v('f-title'), date: v('f-date'), date2: v('f-date2') });
-    toast(t('saved'), v('f-title'), 'ok');
   } else if (currentModal === 'profile') {
     S.profile.name = v('f-name') || S.profile.name || 'Teacher';
     S.profile.school = v('f-school');
@@ -941,7 +828,7 @@ function saveData() {
 /* ============ DELETE ============ */
 function del(type, id) {
   confirmD(t('del_confirm'), t('del_desc'), () => {
-    const map = { class:'classes', student:'students', diary:'diary', marks:'marks', homework:'homework', period:'periods', note:'notes', exam:'exams', lesson:'lessons', reminder:'reminders', holiday:'holidays' };
+    const map = { class:'classes', student:'students', diary:'diary', marks:'marks', homework:'homework', period:'periods', note:'notes' };
     const k = map[type]; if (k) S[k] = S[k].filter(x => x.id !== id);
     save(); renderAll();
     toast(t('deleted'), '', 'ok');
@@ -952,8 +839,7 @@ function del(type, id) {
 function renderAll() {
   renderStats(); renderChart(); renderRecent(); renderClasses(); renderStudents(); renderAttendance();
   renderDiary(); renderMarks(); renderHomework(); renderDays(); renderPeriods(); renderNotes();
-  renderExams(); renderLessons(); renderReminders(); renderHolidays(); renderReports(); renderMore();
-  renderProfileSub();
+  renderReports(); renderMore(); renderProfileSub();
 }
 
 /* ============ HOME ============ */
@@ -968,8 +854,8 @@ function renderStats() {
 }
 
 function renderChart() {
-  const wrap = $('wk-chart');
-  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const wrap = $('weekly-chart');
+  const days = ['S','M','T','W','T','F','S'];
   const data = [];
   for (let i = 6; i >= 0; i--) {
     const d = new Date(); d.setDate(d.getDate() - i);
@@ -977,18 +863,16 @@ function renderChart() {
     data.push({ label: days[d.getDay()], value: Object.values(a).filter(v => v === 'P').length });
   }
   const max = Math.max(...data.map(d => d.value), 5);
-  const bw = 100 / data.length;
-  let bars = '';
-  const colors = ['#6366f1','#8b5cf6','#ec4899','#10b981','#f59e0b','#06b6d4','#f43f5e'];
-  data.forEach((d, i) => {
-    const h = (d.value / max) * 68;
-    const x = i * bw + bw * 0.2;
-    const y = 82 - h;
-    bars += `<rect x="${x}%" y="${y}%" width="${bw * 0.6}%" height="${h}%" rx="1.5" fill="${colors[i]}" opacity="${d.value === 0 ? 0.15 : 1}"/>`;
-    bars += `<text x="${x + bw * 0.3}%" y="94%" text-anchor="middle" class="chart-label">${d.label}</text>`;
-    if (d.value > 0) bars += `<text x="${x + bw * 0.3}%" y="${y - 3}%" text-anchor="middle" class="chart-label" style="fill:${colors[i]};font-weight:800;">${d.value}</text>`;
-  });
-  wrap.innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${bars}</svg>`;
+  const bars = data.map(d => {
+    const h = (d.value / max) * 100;
+    const isEmpty = d.value === 0;
+    return `<div class="chart-col">
+      <div class="chart-value" style="${isEmpty ? 'opacity:0' : ''}">${d.value}</div>
+      <div class="chart-bar ${isEmpty ? 'empty' : ''}" style="height:${Math.max(h, 4)}%"></div>
+      <div class="chart-label">${d.label}</div>
+    </div>`;
+  }).join('');
+  wrap.innerHTML = `<div class="chart-bars">${bars}</div>`;
 }
 
 function renderRecent() {
@@ -997,7 +881,7 @@ function renderRecent() {
   S.diary.slice(0, 2).forEach(d => items.push({ i:'fa-book', c:'', t:d.title, s:t('diary') + ' • ' + d.date, p:'diary' }));
   S.marks.slice(0, 2).forEach(m => items.push({ i:'fa-star', c:'pk', t:m.name + ' — ' + m.score, s:(m.exam || t('exam')) + ' • ' + (m.subject || ''), p:'marks' }));
   S.homework.slice(0, 2).forEach(h => items.push({ i:'fa-pencil-alt', c:'o', t:h.title, s:t('homework'), p:'homework' }));
-  if (!items.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-seedling"></i></div><h4>—</h4><p>${t('recent')}</p></div>`; return; }
+  if (!items.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-seedling"></i></div><h4>${t('recent')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
   e.innerHTML = items.slice(0, 4).map(x => `<div class="li" onclick="switchPage('${x.p}')"><div class="li-icon ${x.c}"><i class="fas ${x.i}"></i></div><div class="li-body"><h4>${x.t}</h4><p>${x.s}</p></div><i class="fas fa-chevron-right li-arrow"></i></div>`).join('');
 }
 
@@ -1007,7 +891,7 @@ function renderClasses() {
   if (!S.classes.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-chalkboard"></i></div><h4>${t('empty_classes')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
   e.innerHTML = S.classes.map(c => {
     const n = S.students.filter(s => s.cls === c.name).length;
-    return `<div class="li"><div class="li-icon"><i class="fas fa-chalkboard-teacher"></i></div><div class="li-body"><h4>${c.name}</h4><p>${c.subject || ''} ${c.room ? '• ' + c.room : ''}</p><div class="li-meta"><span class="li-chip">${n} ${t('students')}</span></div></div><button onclick="event.stopPropagation();del('class',${c.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--err);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`;
+    return `<div class="li"><div class="li-icon"><i class="fas fa-chalkboard-teacher"></i></div><div class="li-body"><h4>${c.name}</h4><p>${c.subject || ''} ${c.room ? '• ' + c.room : ''}</p><div class="li-meta"><span class="li-chip">${n} ${t('students')}</span></div></div><button onclick="event.stopPropagation();del('class',${c.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`;
   }).join('');
 }
 
@@ -1015,7 +899,7 @@ function renderClasses() {
 function renderStudents() {
   const e = $('list-students');
   if (!S.students.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-users"></i></div><h4>${t('empty_students')}</h4><p>${t('empty_students_d')}</p></div>`; return; }
-  e.innerHTML = S.students.map(s => `<div class="li"><div class="li-icon g">${s.name.charAt(0).toUpperCase()}</div><div class="li-body"><h4>${s.name}</h4><p>${t('roll')}: ${s.roll || '-'} ${s.cls ? '• ' + s.cls : ''}</p>${s.phone ? `<div class="li-meta"><span class="li-chip"><i class="fas fa-phone" style="font-size:.6rem;"></i> ${s.phone}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('student',${s.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--err);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+  e.innerHTML = S.students.map(s => `<div class="li"><div class="li-icon g">${s.name.charAt(0).toUpperCase()}</div><div class="li-body"><h4>${s.name}</h4><p>${t('roll')}: ${s.roll || '-'} ${s.cls ? '• ' + s.cls : ''}</p>${s.phone ? `<div class="li-meta"><span class="li-chip"><i class="fas fa-phone" style="font-size:.6rem;"></i> ${s.phone}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('student',${s.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
 /* ============ ATTENDANCE ============ */
@@ -1048,7 +932,7 @@ function markAllPresent() {
 function renderDiary() {
   const e = $('list-diary');
   if (!S.diary.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-book"></i></div><h4>${t('empty_diary')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.diary.map(d => `<div class="d-item"><div class="d-head"><div class="d-date"><i class="far fa-calendar-alt"></i> ${d.date}</div></div><div class="d-title">${d.title}</div>${d.desc ? `<div class="d-desc">${d.desc}</div>` : ''}${d.hw ? `<div class="d-hw"><i class="fas fa-pencil-alt"></i><div><b>${t('hw')}:</b> ${d.hw}</div></div>` : ''}<button onclick="del('diary',${d.id})" style="margin-top:10px;margin-left:10px;color:var(--err);font-size:.74rem;font-weight:700;"><i class="fas fa-trash"></i> ${t('delete')}</button></div>`).join('');
+  e.innerHTML = S.diary.map(d => `<div class="d-item"><div class="d-head"><div class="d-date"><i class="far fa-calendar-alt"></i> ${d.date}</div></div><div class="d-title">${d.title}</div>${d.desc ? `<div class="d-desc">${d.desc}</div>` : ''}${d.hw ? `<div class="d-hw"><i class="fas fa-pencil-alt"></i><div><b>${t('hw')}:</b> ${d.hw}</div></div>` : ''}<button onclick="del('diary',${d.id})" style="margin-top:10px;margin-left:10px;color:var(--danger);font-size:.74rem;font-weight:700;"><i class="fas fa-trash"></i> ${t('delete')}</button></div>`).join('');
 }
 
 /* ============ MARKS ============ */
@@ -1058,7 +942,7 @@ function renderMarks() {
   e.innerHTML = S.marks.map(m => {
     const pct = Math.round((m.score / m.total) * 100);
     const cls = pct >= 75 ? 'g' : pct >= 40 ? 'o' : 'r';
-    return `<div class="li"><div class="li-icon pk"><i class="fas fa-star"></i></div><div class="li-body"><h4>${m.name}</h4><p>${m.exam || t('exam')} ${m.subject ? '• ' + m.subject : ''}</p><div class="li-meta"><span class="li-chip ${cls}">${m.score}/${m.total} • ${pct}%</span></div></div><button onclick="event.stopPropagation();del('marks',${m.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--err);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`;
+    return `<div class="li"><div class="li-icon pk"><i class="fas fa-star"></i></div><div class="li-body"><h4>${m.name}</h4><p>${m.exam || t('exam')} ${m.subject ? '• ' + m.subject : ''}</p><div class="li-meta"><span class="li-chip ${cls}">${m.score}/${m.total} • ${pct}%</span></div></div><button onclick="event.stopPropagation();del('marks',${m.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`;
   }).join('');
 }
 
@@ -1066,7 +950,7 @@ function renderMarks() {
 function renderHomework() {
   const e = $('list-hw');
   if (!S.homework.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-pencil-alt"></i></div><h4>${t('empty_hw')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.homework.map(h => `<div class="li"><div class="li-icon o"><i class="fas fa-pencil-alt"></i></div><div class="li-body"><h4 style="${h.done ? 'text-decoration:line-through;opacity:.6;' : ''}">${h.title}</h4><p>${h.cls || ''} ${h.due ? '• ' + h.due : ''}</p></div><button onclick="event.stopPropagation();toggleHw(${h.id})" style="width:36px;height:36px;border-radius:11px;background:${h.done ? 'rgba(16,185,129,.1)' : 'var(--bg2)'};color:${h.done ? 'var(--ok)' : 'var(--t3)'};border:1px solid var(--bd2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-${h.done ? 'check' : 'circle'}"></i></button><button onclick="event.stopPropagation();del('homework',${h.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--err);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:5px;"><i class="fas fa-trash"></i></button></div>`).join('');
+  e.innerHTML = S.homework.map(h => `<div class="li"><div class="li-icon o"><i class="fas fa-pencil-alt"></i></div><div class="li-body"><h4 style="${h.done ? 'text-decoration:line-through;opacity:.6;' : ''}">${h.title}</h4><p>${h.cls || ''} ${h.due ? '• ' + h.due : ''}</p></div><button onclick="event.stopPropagation();toggleHw(${h.id})" style="width:36px;height:36px;border-radius:11px;background:${h.done ? 'rgba(16,185,129,.1)' : 'var(--bg-2)'};color:${h.done ? 'var(--success)' : 'var(--text-3)'};border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-${h.done ? 'check' : 'circle'}"></i></button><button onclick="event.stopPropagation();del('homework',${h.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:5px;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 function toggleHw(id) { const h = S.homework.find(x => x.id === id); if (h) { h.done = !h.done; save(); renderHomework(); } }
 
@@ -1078,75 +962,35 @@ function renderPeriods() {
   const e = $('list-periods');
   const f = S.periods.filter(p => p.day === selectedDay).sort((a,b) => a.time.localeCompare(b.time));
   if (!f.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-calendar-alt"></i></div><h4>${t('empty_period')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = f.map(p => `<div class="tt-slot"><div class="flex justify-between items-center"><div><div class="time">${p.time}</div><div class="sub">${p.sub}</div><div class="cls">${p.cls || ''}</div></div><button onclick="del('period',${p.id})" style="color:var(--err);padding:6px;"><i class="fas fa-trash"></i></button></div></div>`).join('');
+  e.innerHTML = f.map(p => `<div class="tt-slot"><div class="flex justify-between items-center"><div><div class="time">${p.time}</div><div class="sub">${p.sub}</div><div class="cls">${p.cls || ''}</div></div><button onclick="del('period',${p.id})" style="color:var(--danger);padding:6px;"><i class="fas fa-trash"></i></button></div></div>`).join('');
 }
 
 /* ============ NOTES ============ */
 function renderNotes() {
   const e = $('list-notes');
   if (!S.notes.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-sticky-note"></i></div><h4>${t('empty_note')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.notes.map(n => `<div class="note"><h5>${n.title}</h5>${n.desc ? `<p>${n.desc}</p>` : ''}<div class="date"><i class="far fa-clock"></i> ${n.date}</div><button onclick="del('note',${n.id})" style="margin-top:8px;color:var(--err);font-size:.72rem;font-weight:700;"><i class="fas fa-trash"></i> ${t('delete')}</button></div>`).join('');
-}
-
-/* ============ EXAMS ============ */
-function renderExams() {
-  const e = $('list-exams');
-  if (!S.exams.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-file-alt"></i></div><h4>${t('empty_exam')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.exams.map(x => `<div class="li"><div class="li-icon"><i class="fas fa-file-alt"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.sub || ''} ${x.date ? '• ' + x.date : ''}</p>${x.cls ? `<div class="li-meta"><span class="li-chip">${x.cls}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('exam',${x.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--err);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
-}
-
-/* ============ LESSONS ============ */
-function renderLessons() {
-  const e = $('list-lessons');
-  if (!S.lessons.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-chalkboard"></i></div><h4>${t('empty_lesson')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.lessons.map(l => `<div class="li"><div class="li-icon"><i class="fas fa-chalkboard"></i></div><div class="li-body"><h4>${l.title}</h4><p>${l.sub || ''} • ${l.date}</p>${l.desc ? `<div class="li-meta"><span class="li-chip">${l.desc.slice(0, 50)}${l.desc.length > 50 ? '…' : ''}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('lesson',${l.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--err);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
-}
-
-/* ============ REMINDERS ============ */
-function renderReminders() {
-  const e = $('list-reminders');
-  if (!S.reminders.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-bell"></i></div><h4>${t('empty_rem')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.reminders.map(r => `<div class="li"><div class="li-icon o"><i class="fas fa-bell"></i></div><div class="li-body"><h4>${r.title}</h4><p>${r.date ? new Date(r.date).toLocaleString() : ''}</p>${r.desc ? `<div class="li-meta"><span class="li-chip">${r.desc.slice(0, 60)}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('reminder',${r.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--err);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
-}
-
-/* ============ HOLIDAYS ============ */
-function renderHolidays() {
-  const e = $('list-holidays');
-  if (!S.holidays.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-umbrella-beach"></i></div><h4>${t('empty_hol')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.holidays.map(h => `<div class="li"><div class="li-icon pk"><i class="fas fa-umbrella-beach"></i></div><div class="li-body"><h4>${h.title}</h4><p>${h.date || ''} ${h.date2 ? '→ ' + h.date2 : ''}</p></div><button onclick="event.stopPropagation();del('holiday',${h.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--err);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+  e.innerHTML = S.notes.map(n => `<div class="note"><h5>${n.title}</h5>${n.desc ? `<p>${n.desc}</p>` : ''}<div class="date"><i class="far fa-clock"></i> ${n.date}</div><button onclick="del('note',${n.id})" style="margin-top:8px;color:var(--danger);font-size:.72rem;font-weight:700;"><i class="fas fa-trash"></i> ${t('delete')}</button></div>`).join('');
 }
 
 /* ============ REPORTS ============ */
 function renderReports() {
-  // Attendance
   const aEl = $('rep-att');
-  if (!S.students.length) aEl.innerHTML = '<p style="font-size:.82rem;color:var(--t3);">—</p>';
+  if (!S.students.length) aEl.innerHTML = '<p style="font-size:.82rem;color:var(--text-3);">—</p>';
   else {
     let p = 0, a = 0, l = 0;
     Object.values(S.attendance).forEach(day => Object.values(day).forEach(v => { if (v === 'P') p++; if (v === 'A') a++; if (v === 'L') l++; }));
     const tot = p + a + l || 1;
     const pct = Math.round((p / tot) * 100);
     const cls = pct >= 75 ? 'g' : pct >= 50 ? 'o' : 'r';
-    aEl.innerHTML = `<div class="grid-3 mb-3"><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--ok);">${p}</div><div style="font-size:.68rem;color:var(--t3);font-weight:700;">P</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--err);">${a}</div><div style="font-size:.68rem;color:var(--t3);font-weight:700;">A</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--warn);">${l}</div><div style="font-size:.68rem;color:var(--t3);font-weight:700;">L</div></div></div><div class="flex justify-between" style="font-size:.74rem;font-weight:700;color:var(--t2);margin-bottom:6px;"><span>${t('attendance')}</span><span>${pct}%</span></div><div class="progress"><div class="progress-inner ${cls}" style="width:${pct}%"></div></div><p style="font-size:.68rem;color:var(--t3);margin-top:10px;">${Object.keys(S.attendance).length} days</p>`;
+    aEl.innerHTML = `<div class="grid-3 mb-3"><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--success);">${p}</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">P</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--danger);">${a}</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">A</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--warning);">${l}</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">L</div></div></div><div class="flex justify-between" style="font-size:.74rem;font-weight:700;color:var(--text-2);margin-bottom:6px;"><span>${t('attendance')}</span><span>${pct}%</span></div><div class="progress"><div class="progress-inner ${cls}" style="width:${pct}%"></div></div><p style="font-size:.68rem;color:var(--text-3);margin-top:10px;">${Object.keys(S.attendance).length} days</p>`;
   }
-  // Marks
   const mEl = $('rep-marks');
-  if (!S.marks.length) mEl.innerHTML = '<p style="font-size:.82rem;color:var(--t3);">—</p>';
+  if (!S.marks.length) mEl.innerHTML = '<p style="font-size:.82rem;color:var(--text-3);">—</p>';
   else {
     const avg = Math.round(S.marks.reduce((s, m) => s + (m.score / m.total) * 100, 0) / S.marks.length);
     const hi = Math.max(...S.marks.map(m => Math.round((m.score / m.total) * 100)));
     const lo = Math.min(...S.marks.map(m => Math.round((m.score / m.total) * 100)));
-    mEl.innerHTML = `<div class="grid-3 mb-3"><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--p);">${avg}%</div><div style="font-size:.68rem;color:var(--t3);font-weight:700;">AVG</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--ok);">${hi}%</div><div style="font-size:.68rem;color:var(--t3);font-weight:700;">HI</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--err);">${lo}%</div><div style="font-size:.68rem;color:var(--t3);font-weight:700;">LO</div></div></div><p style="font-size:.68rem;color:var(--t3);">${S.marks.length} records</p>`;
-  }
-  // Class-wise
-  const cEl = $('rep-class');
-  if (!S.classes.length) cEl.innerHTML = '<p style="font-size:.82rem;color:var(--t3);">—</p>';
-  else {
-    cEl.innerHTML = S.classes.map(c => {
-      const n = S.students.filter(s => s.cls === c.name).length;
-      const pct = S.students.length ? Math.round((n / S.students.length) * 100) : 0;
-      return `<div class="mb-3"><div class="flex justify-between" style="font-size:.8rem;font-weight:700;margin-bottom:5px;"><span>${c.name}</span><span>${n} ${t('students')}</span></div><div class="progress"><div class="progress-inner" style="width:${pct}%"></div></div></div>`;
-    }).join('');
+    mEl.innerHTML = `<div class="grid-3 mb-3"><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--primary);">${avg}%</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">AVG</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--success);">${hi}%</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">HI</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--danger);">${lo}%</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">LO</div></div></div><p style="font-size:.68rem;color:var(--text-3);">${S.marks.length} records</p>`;
   }
 }
 
@@ -1155,17 +999,13 @@ const MORE_FEATURES = [
   { k:'homework', i:'fa-pencil-alt', c:'' },
   { k:'timetable', i:'fa-calendar-alt', c:'g' },
   { k:'notes', i:'fa-sticky-note', c:'o' },
-  { k:'exams', i:'fa-file-alt', c:'pk' },
-  { k:'lessons', i:'fa-chalkboard', c:'cy' },
-  { k:'reminders', i:'fa-bell', c:'' },
-  { k:'holidays', i:'fa-umbrella-beach', c:'g' },
-  { k:'reports', i:'fa-chart-bar', c:'o' },
-  { k:'settings', i:'fa-cog', c:'pk' }
+  { k:'reports', i:'fa-chart-bar', c:'pk' },
+  { k:'settings', i:'fa-cog', c:'' },
+  { k:'share', i:'fa-share-alt', c:'g' }
 ];
 function renderMore() {
-  $('more-grid').innerHTML = MORE_FEATURES.map(f => `<button class="quick ${f.c}" style="padding:20px 10px;" onclick="${f.k === 'settings' ? "switchPage('settings')" : "switchPage('" + f.k + "')"}"><i class="fas ${f.i}"></i> ${t(f.k)}</button>`).join('');
+  $('more-grid').innerHTML = MORE_FEATURES.map(f => `<button class="quick ${f.c}" style="padding:20px 10px;" onclick="${f.k === 'settings' ? "switchPage('settings')" : f.k === 'share' ? 'shareApp()' : "switchPage('" + f.k + "')"}"><i class="fas ${f.i}"></i> ${t(f.k)}</button>`).join('');
 }
-
 function renderProfileSub() { $('prof-sub').innerText = S.profile.school || t('set_name_school'); }
 
 /* ============ SEARCH ============ */
@@ -1174,13 +1014,12 @@ function closeSearch() { $('search-ov').classList.remove('open'); $('search-inp'
 function doSearch() {
   const q = $('search-inp').value.toLowerCase().trim();
   const r = $('search-res');
-  if (!q) { r.innerHTML = '<p style="text-align:center;color:var(--t3);padding:40px;font-size:.84rem;">' + t('home') + '...</p>'; return; }
+  if (!q) { r.innerHTML = '<p style="text-align:center;color:var(--text-3);padding:40px;font-size:.84rem;">' + t('home') + '...</p>'; return; }
   let items = [];
   S.classes.forEach(c => { if (c.name.toLowerCase().includes(q) || (c.subject || '').toLowerCase().includes(q)) items.push({ i:'fa-users', t:c.name, s:t('class') + ' • ' + (c.subject || ''), p:'classes' }); });
   S.students.forEach(s => { if (s.name.toLowerCase().includes(q) || (s.roll || '').includes(q)) items.push({ i:'fa-user-graduate', t:s.name, s:t('student') + ' • ' + t('roll') + ' ' + (s.roll || '-'), p:'students' }); });
   S.diary.forEach(d => { if (d.title.toLowerCase().includes(q) || (d.desc || '').toLowerCase().includes(q)) items.push({ i:'fa-book', t:d.title, s:t('diary') + ' • ' + d.date, p:'diary' }); });
   S.notes.forEach(n => { if (n.title.toLowerCase().includes(q) || (n.desc || '').toLowerCase().includes(q)) items.push({ i:'fa-sticky-note', t:n.title, s:t('notes'), p:'notes' }); });
-  S.homework.forEach(h => { if (h.title.toLowerCase().includes(q)) items.push({ i:'fa-pencil-alt', t:h.title, s:t('homework'), p:'homework' }); });
   if (!items.length) { r.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-search"></i></div><h4>—</h4><p>${t('home')}</p></div>`; return; }
   r.innerHTML = items.map(x => `<div class="li" onclick="closeSearch();switchPage('${x.p}')"><div class="li-icon"><i class="fas ${x.i}"></i></div><div class="li-body"><h4>${x.t}</h4><p>${x.s}</p></div><i class="fas fa-chevron-right li-arrow"></i></div>`).join('');
 }
@@ -1194,7 +1033,7 @@ function shareApp() {
 
 /* ============ BACKUP ============ */
 function exportData() {
-  const data = { ...S, version:'3.0.0', lang: LANG, exportedAt: new Date().toISOString() };
+  const data = { ...S, version:'4.0.0', lang: LANG, exportedAt: new Date().toISOString() };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -1209,7 +1048,7 @@ function importData(ev) {
     try {
       const d = JSON.parse(e.target.result);
       confirmD(t('restore'), '', () => {
-        ['profile','classes','students','attendance','diary','marks','homework','periods','notes','exams','lessons','reminders','holidays'].forEach(k => { if (d[k]) S[k] = d[k]; });
+        ['profile','classes','students','attendance','diary','marks','homework','periods','notes'].forEach(k => { if (d[k]) S[k] = d[k]; });
         if (d.lang) { LANG = d.lang; localStorage.setItem('aos_lang', LANG); applyI18n(); }
         save(); renderAll(); toast(t('restore'), 'Done', 'ok');
       }, 'info');
@@ -1222,7 +1061,7 @@ function confirmReset() {
 }
 
 /* ============ ABOUT ============ */
-function showAbout() { confirmD('AcharyaOS Pro', 'Version 3.0.0\n\n' + t('about_desc') + '\n\n14+ Indian Languages\n100% Offline & Free\n\nMade with ❤️ in India 🇮🇳', () => {}, 'info'); }
+function showAbout() { confirmD('AcharyaOS Pro', 'Version 4.0.0\n\n' + t('about_desc') + '\n\n14+ Indian Languages\n100% Offline & Free\n\nMade with ❤️ in India 🇮🇳', () => {}, 'info'); }
 
 /* ============ GREET ============ */
 function updateGreet() {
@@ -1238,14 +1077,13 @@ function updateGreet() {
 
 /* ============ INIT ============ */
 document.addEventListener('DOMContentLoaded', () => {
-  // Set date
   const dOpt = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
   $('cur-date').innerText = new Date().toLocaleDateString(LANG === 'hi' ? 'hi-IN' : LANG, dOpt);
   applyI18n();
   renderAll();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(); closeDialog(); closeSearch(); }
+    if (e.key === 'Escape') { closeModal(); closeDialog(); closeSearch(); closeLangModal(); }
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
   });
 });
@@ -1254,10 +1092,9 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
   setTimeout(() => {
     $('splash').classList.add('hide');
-    const langSet = localStorage.getItem('aos_lang');
-    const onbDone = localStorage.getItem('aos_onb');
-    if (!langSet) { renderLangGrid(); $('lang-pick').classList.add('show'); }
-    else if (!onbDone) { setTimeout(() => startOnboard(), 400); }
+    if (!localStorage.getItem('aos_lang')) {
+      setTimeout(() => openLangModal(), 400);
+    }
   }, 2300);
 });
 </script>
