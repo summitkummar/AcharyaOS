@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>TeachDesk - Teacher's Digital Assistant</title>
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232563eb'/><path d='M25 30 L50 20 L75 30 L75 70 L50 80 L25 70 Z' fill='white'/><path d='M50 20 L50 80' stroke='%232563eb' stroke-width='2'/></svg>">
+<link rel="manifest" href="manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{font-family:'Inter',system-ui,sans-serif;background:#f0f4f8;color:#1e293b;overflow-x:hidden;}
+body{padding-bottom:80px;min-height:100vh;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+input,select,textarea{font-family:inherit;font-size:.95rem;}
+
+/* Header */
+.hdr{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(37,99,235,.25);}
+.hdr-row{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.hdr-logo{font-size:1.15rem;font-weight:800;display:flex;align-items:center;gap:8px;letter-spacing:-.3px;}
+.hdr-logo i{background:rgba(255,255,255,.2);padding:6px 8px;border-radius:8px;font-size:.95rem;}
+.hdr-btn{color:#fff;background:rgba(255,255,255,.15);width:38px;height:38px;border-radius:10px;font-size:.95rem;display:flex;align-items:center;justify-content:center;}
+.hdr-btn:active{transform:scale(.92);}
+
+/* Container */
+.container{padding:16px;max-width:600px;margin:0 auto;}
+
+/* Pages */
+.page{display:none;animation:fadeIn .3s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* Cards */
+.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #e2e8f0;}
+.card-title{font-size:.95rem;font-weight:700;color:#1e293b;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.card-title i{color:#2563eb;font-size:.9rem;}
+
+/* Welcome */
+.welcome{background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border-radius:14px;padding:20px;margin-bottom:14px;}
+.welcome h2{font-size:1.15rem;font-weight:700;margin-bottom:4px;}
+.welcome p{font-size:.82rem;opacity:.9;}
+.welcome-date{font-size:.75rem;opacity:.85;margin-top:8px;}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;}
+.stat{background:#fff;border-radius:12px;padding:14px;border:1px solid #e2e8f0;}
+.stat-label{font-size:.7rem;color:#64748b;font-weight:600;letter-spacing:.3px;margin-bottom:6px;text-transform:uppercase;}
+.stat-value{font-size:1.5rem;font-weight:800;color:#2563eb;line-height:1;}
+.stat.green .stat-value{color:#16a34a;}
+.stat.orange .stat-value{color:#ea580c;}
+.stat.purple .stat-value{color:#7c3aed;}
+
+/* Quick Actions */
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.action{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.68rem;font-weight:600;color:#1e293b;text-align:center;}
+.action i{font-size:1.2rem;color:#2563eb;}
+.action:active{background:#f1f5f9;transform:scale(.96);}
+
+/* Class cards */
+.class-card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+.class-card:active{background:#f8fafc;}
+.class-info h4{font-size:.95rem;font-weight:700;margin-bottom:3px;}
+.class-info p{font-size:.72rem;color:#64748b;}
+.class-arrow{color:#cbd5e1;}
+
+/* Buttons */
+.btn{background:#2563eb;color:#fff;border-radius:10px;padding:12px 18px;font-weight:700;font-size:.85rem;display:inline-flex;align-items:center;gap:8px;justify-content:center;}
+.btn:active{transform:scale(.97);background:#1d4ed8;}
+.btn.full{width:100%;}
+.btn.green{background:#16a34a;}
+.btn.green:active{background:#15803d;}
+.btn.red{background:#dc2626;}
+.btn.red:active{background:#b91c1c;}
+.btn.orange{background:#ea580c;}
+.btn.orange:active{background:#c2410c;}
+.btn.ghost{background:#f1f5f9;color:#1e293b;}
+.btn.ghost:active{background:#e2e8f0;}
+.btn.small{padding:8px 12px;font-size:.78rem;}
+
+/* Inputs */
+.input-group{margin-bottom:12px;}
+.input-group label{display:block;font-size:.75rem;font-weight:600;color:#475569;margin-bottom:6px;}
+.input,.select,.textarea{width:100%;padding:11px 14px;border:1.5px solid #e2e8f0;border-radius:10px;background:#fff;outline:none;transition:border .2s;}
+.input:focus,.select:focus,.textarea:focus{border-color:#2563eb;}
+.textarea{resize:vertical;min-height:70px;}
+
+/* Empty */
+.empty{text-align:center;padding:30px 20px;color:#94a3b8;}
+.empty i{font-size:2.5rem;color:#cbd5e1;margin-bottom:10px;display:block;}
+.empty p{font-size:.85rem;}
+
+/* Modal */
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.6);z-index:1000;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);}
+.modal.open{display:flex;}
+.modal-content{background:#fff;border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:600px;max-height:88vh;overflow-y:auto;animation:slideUp .3s ease;}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.modal-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;position:sticky;top:0;background:#fff;padding-top:4px;}
+.modal-hdr h3{font-size:1.1rem;font-weight:800;}
+.modal-close{width:34px;height:34px;border-radius:10px;background:#f1f5f9;color:#64748b;font-size:1rem;}
+
+/* Student row */
+.stu{display:flex;align-items:center;padding:10px 12px;border-radius:10px;margin-bottom:6px;background:#f8fafc;gap:10px;}
+.stu-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.stu-info{flex:1;min-width:0;}
+.stu-info h5{font-size:.88rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.stu-info p{font-size:.7rem;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.stu-actions{display:flex;gap:4px;}
+.stu-actions button{width:32px;height:32px;border-radius:8px;background:#fff;border:1px solid #e2e8f0;color:#64748b;font-size:.8rem;}
+.stu-actions button.wa{color:#25D366;border-color:#bbf7d0;background:#f0fdf4;}
+
+/* Attendance row */
+.att-row{display:flex;align-items:center;padding:10px 12px;border-radius:10px;margin-bottom:6px;background:#f8fafc;gap:10px;}
+.att-row .stu-info{flex:1;min-width:0;}
+.att-btns{display:flex;gap:5px;flex-shrink:0;}
+.att-btn{width:40px;height:40px;border-radius:10px;background:#fff;border:1.5px solid #e2e8f0;color:#94a3b8;font-weight:700;font-size:.75rem;display:flex;align-items:center;justify-content:center;}
+.att-btn.P.active{background:#16a34a;color:#fff;border-color:#16a34a;}
+.att-btn.A.active{background:#dc2626;color:#fff;border-color:#dc2626;}
+.att-btn.L.active{background:#ea580c;color:#fff;border-color:#ea580c;}
+
+/* Bottom Nav */
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e2e8f0;display:flex;justify-content:space-around;padding:8px 4px;z-index:200;box-shadow:0 -2px 10px rgba(0,0,0,.04);}
+.nav-btn{flex:1;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.62rem;font-weight:600;color:#94a3b8;border-radius:10px;}
+.nav-btn i{font-size:1.05rem;}
+.nav-btn.active{color:#2563eb;}
+.nav-btn.active i{color:#2563eb;}
+
+/* Toast */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(80px);background:#1e293b;color:#fff;padding:12px 20px;border-radius:30px;font-size:.8rem;font-weight:600;z-index:3000;transition:transform .3s;pointer-events:none;box-shadow:0 8px 20px rgba(0,0,0,.2);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.success{background:#16a34a;}
+.toast.error{background:#dc2626;}
+
+/* Divider */
+.divider{height:1px;background:#e2e8f0;margin:14px 0;}
+
+/* Tag */
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.66rem;font-weight:700;}
+.tag.blue{background:#dbeafe;color:#1d4ed8;}
+.tag.green{background:#dcfce7;color:#15803d;}
+.tag.orange{background:#ffedd5;color:#c2410c;}
+.tag.red{background:#fee2e2;color:#b91c1c;}
+.tag.gray{background:#f1f5f9;color:#64748b;}
+
+/* Diary entry */
+.diary-item{padding:12px;border-radius:10px;background:#f8fafc;margin-bottom:8px;border-left:3px solid #2563eb;}
+.diary-item .date{font-size:.68rem;color:#64748b;font-weight:600;margin-bottom:4px;}
+.diary-item .title{font-size:.88rem;font-weight:700;margin-bottom:4px;}
+.diary-item .desc{font-size:.78rem;color:#475569;line-height:1.5;}
+
+/* Progress bar */
+.progress{height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;margin-top:6px;}
+.progress-bar{height:100%;background:linear-gradient(90deg,#2563eb,#7c3aed);border-radius:4px;transition:width .5s;}
+
+/* Subject chip */
+.chip{padding:4px 10px;border-radius:20px;font-size:.68rem;font-weight:700;background:#dbeafe;color:#1d4ed8;display:inline-block;}
+
+/* Marks */
+.marks-input{width:70px;padding:8px;border:1.5px solid #e2e8f0;border-radius:8px;text-align:center;font-weight:700;}
+
+@media(min-width:640px){
+  .container{padding:20px;}
+  .stats{grid-template-columns:repeat(4,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-row">
+    <div class="hdr-logo"><i class="fas fa-chalkboard-teacher"></i> TeachDesk</div>
+    <div style="display:flex;gap:8px;">
+      <button class="hdr-btn" id="langBtn"><i class="fas fa-language"></i></button>
+      <button class="hdr-btn" id="menuBtn"><i class="fas fa-ellipsis-v"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTAINER -->
+<div class="container">
+
+  <!-- HOME PAGE -->
+  <div class="page active" id="page-home">
+    <div class="welcome">
+      <h2 id="welcomeName">नमस्ते, Teacher जी! 👋</h2>
+      <p id="welcomeSub">आज का दिन शुभ हो</p>
+      <div class="welcome-date" id="welcomeDate"></div>
+    </div>
+
+    <div class="stats" id="statsGrid">
+      <div class="stat">
+        <div class="stat-label">Classes</div>
+        <div class="stat-value" id="statClasses">0</div>
+      </div>
+      <div class="stat green">
+        <div class="stat-label">Students</div>
+        <div class="stat-value" id="statStudents">0</div>
+      </div>
+      <div class="stat orange">
+        <div class="stat-label">आज उपस्थित</div>
+        <div class="stat-value" id="statPresent">-</div>
+      </div>
+      <div class="stat purple">
+        <div class="stat-label">Diary Entries</div>
+        <div class="stat-value" id="statDiary">0</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="action" onclick="openModal('modalClass')"><i class="fas fa-plus-circle"></i>Class जोड़ें</button>
+      <button class="action" onclick="goPage('attendance')"><i class="fas fa-user-check"></i>Attendance</button>
+      <button class="action" onclick="goPage('diary')"><i class="fas fa-book"></i>Diary</button>
+      <button class="action" onclick="goPage('marks')"><i class="fas fa-star"></i>Marks</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><i class="fas fa-list"></i> मेरी Classes</div>
+      <div id="classesList"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><i class="fas fa-clock-rotate-left"></i> आज की गतिविधि</div>
+      <div id="todayActivity"></div>
+    </div>
+  </div>
+
+  <!-- CLASSES PAGE -->
+  <div class="page" id="page-classes">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div class="card-title" style="margin:0;"><i class="fas fa-users"></i> सभी Classes</div>
+        <button class="btn small" onclick="openModal('modalClass')"><i class="fas fa-plus"></i> जोड़ें</button>
+      </div>
+      <div id="allClassesList"></div>
+    </div>
+  </div>
+
+  <!-- ATTENDANCE PAGE -->
+  <div class="page" id="page-attendance">
+    <div class="card">
+      <div class="card-title"><i class="fas fa-user-check"></i> Attendance लें</div>
+      <div class="input-group">
+        <label>Class चुनें</label>
+        <select class="select" id="attClassSelect" onchange="loadAttendance()"></select>
+      </div>
+      <div class="input-group">
+        <label>Date</label>
+        <input type="date" class="input" id="attDate" onchange="loadAttendance()">
+      </div>
+      <div id="attendanceBody"></div>
+      <div id="attendanceActions" style="display:none;margin-top:14px;">
+        <button class="btn full green" onclick="saveAttendance()"><i class="fas fa-save"></i> Attendance सेव करें</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIARY PAGE -->
+  <div class="page" id="page-diary">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div class="card-title" style="margin:0;"><i class="fas fa-book"></i> Teaching Diary</div>
+        <button class="btn small" onclick="openModal('modalDiary')"><i class="fas fa-plus"></i> आज लिखें</button>
+      </div>
+      <div id="diaryList"></div>
+    </div>
+  </div>
+
+  <!-- MARKS PAGE -->
+  <div class="page" id="page-marks">
+    <div class="card">
+      <div class="card-title"><i class="fas fa-star"></i> Test & Marks</div>
+      <div class="input-group">
+        <label>Class चुनें</label>
+        <select class="select" id="marksClassSelect" onchange="loadMarksView()"></select>
+      </div>
+      <div id="marksView"></div>
+    </div>
+  </div>
+
+  <!-- REPORTS PAGE -->
+  <div class="page" id="page-reports">
+    <div class="card">
+      <div class="card-title"><i class="fas fa-chart-simple"></i> Reports</div>
+      <div class="input-group">
+        <label>Class चुनें</label>
+        <select class="select" id="reportClassSelect" onchange="loadReports()"></select>
+      </div>
+      <div id="reportsView"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="nav">
+  <button class="nav-btn active" data-page="home" onclick="goPage('home')"><i class="fas fa-home"></i>Home</button>
+  <button class="nav-btn" data-page="classes" onclick="goPage('classes')"><i class="fas fa-users"></i>Classes</button>
+  <button class="nav-btn" data-page="attendance" onclick="goPage('attendance')"><i class="fas fa-user-check"></i>Attend</button>
+  <button class="nav-btn" data-page="diary" onclick="goPage('diary')"><i class="fas fa-book"></i>Diary</button>
+  <button class="nav-btn" data-page="marks" onclick="goPage('marks')"><i class="fas fa-star"></i>Marks</button>
+</div>
+
+<!-- ================ MODALS ================ -->
+
+<!-- Add Class Modal -->
+<div class="modal" id="modalClass">
+  <div class="modal-content">
+    <div class="modal-hdr">
+      <h3>Class जोड़ें</h3>
+      <button class="modal-close" onclick="closeModal('modalClass')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="input-group">
+      <label>Class का नाम *</label>
+      <input type="text" class="input" id="classInputName" placeholder="जैसे: Class 8 - A">
+    </div>
+    <div class="input-group">
+      <label>Subject</label>
+      <input type="text" class="input" id="classInputSubject" placeholder="जैसे: Maths, Science">
+    </div>
+    <button class="btn full" onclick="saveClass()"><i class="fas fa-save"></i> सेव करें</button>
+  </div>
+</div>
+
+<!-- Class Detail Modal -->
+<div class="modal" id="modalClassDetail">
+  <div class="modal-content">
+    <div class="modal-hdr">
+      <h3 id="cdTitle">Class Detail</h3>
+      <button class="modal-close" onclick="closeModal('modalClassDetail')"><i class="fas fa-times"></i></button>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:14px;">
+      <button class="btn small full" onclick="openModal('modalStudent')"><i class="fas fa-user-plus"></i> Student जोड़ें</button>
+    </div>
+    <div id="classStudentsList"></div>
+  </div>
+</div>
+
+<!-- Add Student Modal -->
+<div class="modal" id="modalStudent">
+  <div class="modal-content">
+    <div class="modal-hdr">
+      <h3>Student जोड़ें</h3>
+      <button class="modal-close" onclick="closeModal('modalStudent')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="input-group">
+      <label>Student का नाम *</label>
+      <input type="text" class="input" id="stuName" placeholder="पूरा नाम">
+    </div>
+    <div class="input-group">
+      <label>Roll Number</label>
+      <input type="text" class="input" id="stuRoll" placeholder="जैसे: 01">
+    </div>
+    <div class="input-group">
+      <label>Parent का नाम</label>
+      <input type="text" class="input" id="stuParent" placeholder="Parent name">
+    </div>
+    <div class="input-group">
+      <label>Parent का WhatsApp नंबर</label>
+      <input type="tel" class="input" id="stuPhone" placeholder="जैसे: 9876543210" maxlength="10">
+    </div>
+    <button class="btn full" onclick="saveStudent()"><i class="fas fa-save"></i> सेव करें</button>
+  </div>
+</div>
+
+<!-- Add Diary Modal -->
+<div class="modal" id="modalDiary">
+  <div class="modal-content">
+    <div class="modal-hdr">
+      <h3>आज की Diary Entry</h3>
+      <button class="modal-close" onclick="closeModal('modalDiary')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="input-group">
+      <label>Class *</label>
+      <select class="select" id="diaryClass"></select>
+    </div>
+    <div class="input-group">
+      <label>Date</label>
+      <input type="date" class="input" id="diaryDate">
+    </div>
+    <div class="input-group">
+      <label>आज क्या पढ़ाया? *</label>
+      <textarea class="textarea" id="diaryTopic" placeholder="Chapter, topic, summary..."></textarea>
+    </div>
+    <div class="input-group">
+      <label>Homework दिया?</label>
+      <textarea class="textarea" id="diaryHw" placeholder="Homework details (optional)"></textarea>
+    </div>
+    <button class="btn full" onclick="saveDiary()"><i class="fas fa-save"></i> सेव करें</button>
+  </div>
+</div>
+
+<!-- Marks Modal -->
+<div class="modal" id="modalMarks">
+  <div class="modal-content">
+    <div class="modal-hdr">
+      <h3 id="marksTitle">Marks Entry</h3>
+      <button class="modal-close" onclick="closeModal('modalMarks')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="input-group">
+      <label>Test का नाम *</label>
+      <input type="text" class="input" id="testName" placeholder="जैसे: Unit Test 1">
+    </div>
+    <div class="input-group">
+      <label>Total Marks</label>
+      <input type="number" class="input" id="testTotal" value="100">
+    </div>
+    <div class="input-group">
+      <label>Date</label>
+      <input type="date" class="input" id="testDate">
+    </div>
+    <div id="marksEntryBody" style="margin-top:10px;"></div>
+    <button class="btn full green" onclick="saveMarks()" style="margin-top:14px;"><i class="fas fa-save"></i> सेव करें</button>
+  </div>
+</div>
+
+<!-- Menu Modal -->
+<div class="modal" id="modalMenu">
+  <div class="modal-content">
+    <div class="modal-hdr">
+      <h3>Menu</h3>
+      <button class="modal-close" onclick="closeModal('modalMenu')"><i class="fas fa-times"></i></button>
+    </div>
+    <button class="btn ghost full" style="margin-bottom:8px;justify-content:flex-start;" onclick="exportData()"><i class="fas fa-download"></i> Backup Export करें</button>
+    <button class="btn ghost full" style="margin-bottom:8px;justify-content:flex-start;" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> Backup Restore करें</button>
+    <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+    <button class="btn ghost full" style="margin-bottom:8px;justify-content:flex-start;" onclick="window.print()"><i class="fas fa-print"></i> प्रिंट करें</button>
+    <button class="btn ghost full" style="margin-bottom:8px;justify-content:flex-start;" onclick="clearAllData()"><i class="fas fa-trash" style="color:#dc2626"></i> सारा Data मिटाएँ</button>
+    <div class="divider"></div>
+    <p style="font-size:.75rem;color:#94a3b8;text-align:center;line-height:1.6;">
+      TeachDesk v1.0<br>
+      सारा data आपके फोन में ही सेव है। कहीं upload नहीं होता।
+    </p>
+  </div>
+</div>
+
+<!-- Language Modal -->
+<div class="modal" id="modalLang">
+  <div class="modal-content">
+    <div class="modal-hdr">
+      <h3>भाषा चुनें</h3>
+      <button class="modal-close" onclick="closeModal('modalLang')"><i class="fas fa-times"></i></button>
+    </div>
+    <button class="btn full" onclick="setLang('hi')" style="margin-bottom:8px;">हिंदी</button>
+    <button class="btn full ghost" onclick="setLang('en')">English</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ DATA LAYER ============ */
+const DB_KEY = 'teachdesk_v1';
+let DB = {
+  classes: [],   // {id, name, subject, students: [{id, name, roll, parent, phone}]}
+  attendance: {}, // {classId_date: {studentId: 'P'|'A'|'L'}}
+  diary: [],      // {id, classId, date, topic, homework}
+  marks: [],      // {id, classId, testName, total, date, marks: {studentId: num}}
+  profile: {name: 'Teacher'}
+};
+
+function loadDB(){
+  try{
+    const raw = localStorage.getItem(DB_KEY);
+    if(raw) DB = Object.assign(DB, JSON.parse(raw));
+  }catch(e){}
+}
+function saveDB(){
+  try{ localStorage.setItem(DB_KEY, JSON.stringify(DB)); }catch(e){}
+}
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+/* ============ NAV ============ */
+function goPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(x=>x.classList.remove('active'));
+  document.querySelector('.nav-btn[data-page="'+p+'"]')?.classList.add('active');
+  window.scrollTo(0,0);
+  if(p==='classes') renderAllClasses();
+  if(p==='attendance') renderAttClassSelect();
+  if(p==='diary') renderDiary();
+  if(p==='marks') renderMarksClassSelect();
+  if(p==='reports') renderReportClassSelect();
+}
+
+/* ============ MODAL ============ */
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal').forEach(m=>{
+  m.addEventListener('click', e => { if(e.target === m) m.classList.remove('open'); });
+});
+
+/* ============ TOAST ============ */
+function toast(msg, type){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + (type||'');
+  setTimeout(()=>t.classList.add('show'), 10);
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+/* ============ LANGUAGE ============ */
+let LANG = localStorage.getItem('td_lang') || 'hi';
+function setLang(l){
+  LANG = l;
+  localStorage.setItem('td_lang', l);
+  closeModal('modalLang');
+  toast(l === 'hi' ? 'हिंदी चुनी गई' : 'English selected');
+  render();
+}
+document.getElementById('langBtn').onclick = () => openModal('modalLang');
+document.getElementById('menuBtn').onclick = () => openModal('modalMenu');
+
+/* ============ CLASSES ============ */
+function saveClass(){
+  const name = document.getElementById('classInputName').value.trim();
+  const sub = document.getElementById('classInputSubject').value.trim();
+  if(!name){ toast('Class का नाम जरूरी है', 'error'); return; }
+  DB.classes.push({ id: uid(), name, subject: sub || '', students: [] });
+  saveDB();
+  closeModal('modalClass');
+  document.getElementById('classInputName').value = '';
+  document.getElementById('classInputSubject').value = '';
+  toast('Class जोड़ी गई ✅', 'success');
+  render();
+  renderAllClasses();
+  renderAttClassSelect();
+  renderMarksClassSelect();
+  renderReportClassSelect();
+  renderDiaryClassSelect();
+}
+
+let activeClassId = null;
+function openClassDetail(classId){
+  activeClassId = classId;
+  const c = DB.classes.find(x => x.id === classId);
+  if(!c) return;
+  document.getElementById('cdTitle').textContent = c.name + (c.subject ? ' · ' + c.subject : '');
+  renderClassStudents();
+  openModal('modalClassDetail');
+}
+
+function renderClassStudents(){
+  const c = DB.classes.find(x => x.id === activeClassId);
+  const el = document.getElementById('classStudentsList');
+  if(!c || !c.students.length){
+    el.innerHTML = '<div class="empty"><i class="fas fa-user-graduate"></i><p>अभी कोई student नहीं है। ऊपर से जोड़ें।</p></div>';
+    return;
+  }
+  el.innerHTML = c.students.map(s => `
+    <div class="stu">
+      <div class="stu-avatar">${(s.name[0]||'?').toUpperCase()}</div>
+      <div class="stu-info">
+        <h5>${esc(s.name)}</h5>
+        <p>Roll: ${esc(s.roll||'-')} · ${esc(s.parent||'Parent')}</p>
+      </div>
+      <div class="stu-actions">
+        ${s.phone ? `<button class="wa" onclick="waParent('${s.phone}','${esc(s.name)}')"><i class="fab fa-whatsapp"></i></button>` : ''}
+        <button onclick="deleteStudent('${s.id}')"><i class="fas fa-trash"></i></button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function saveStudent(){
+  if(!activeClassId){ toast('Class नहीं चुनी','error'); return; }
+  const name = document.getElementById('stuName').value.trim();
+  if(!name){ toast('नाम जरूरी है','error'); return; }
+  const c = DB.classes.find(x => x.id === activeClassId);
+  c.students.push({
+    id: uid(),
+    name,
+    roll: document.getElementById('stuRoll').value.trim(),
+    parent: document.getElementById('stuParent').value.trim(),
+    phone: document.getElementById('stuPhone').value.trim()
+  });
+  saveDB();
+  closeModal('modalStudent');
+  document.getElementById('stuName').value = '';
+  document.getElementById('stuRoll').value = '';
+  document.getElementById('stuParent').value = '';
+  document.getElementById('stuPhone').value = '';
+  toast('Student जोड़ा गया ✅','success');
+  renderClassStudents();
+  render();
+}
+
+function deleteStudent(sid){
+  if(!confirm('इस student को हटाना है?')) return;
+  const c = DB.classes.find(x => x.id === activeClassId);
+  c.students = c.students.filter(s => s.id !== sid);
+  saveDB();
+  renderClassStudents();
+  render();
+  toast('हटा दिया','success');
+}
+
+function renderAllClasses(){
+  const el = document.getElementById('allClassesList');
+  if(!DB.classes.length){
+    el.innerHTML = '<div class="empty"><i class="fas fa-users"></i><p>अभी कोई class नहीं है। "जोड़ें" दबाएँ।</p></div>';
+    return;
+  }
+  el.innerHTML = DB.classes.map(c => `
+    <div class="class-card" onclick="openClassDetail('${c.id}')">
+      <div class="class-info">
+        <h4>${esc(c.name)}</h4>
+        <p>${esc(c.subject || 'No subject')} · ${c.students.length} students</p>
+      </div>
+      <i class="fas fa-chevron-right class-arrow"></i>
+    </div>
+  `).join('');
+}
+
+function renderClassesList(){
+  const el = document.getElementById('classesList');
+  if(!DB.classes.length){
+    el.innerHTML = '<div class="empty"><i class="fas fa-users"></i><p>अभी कोई class नहीं है।</p></div>';
+    return;
+  }
+  el.innerHTML = DB.classes.slice(0,5).map(c => `
+    <div class="class-card" onclick="openClassDetail('${c.id}')">
+      <div class="class-info">
+        <h4>${esc(c.name)}</h4>
+        <p>${esc(c.subject || '')} · ${c.students.length} students</p>
+      </div>
+      <i class="fas fa-chevron-right class-arrow"></i>
+    </div>
+  `).join('');
+}
+
+/* ============ ATTENDANCE ============ */
+function renderAttClassSelect(){
+  const sel = document.getElementById('attClassSelect');
+  sel.innerHTML = '<option value="">-- Class चुनें --</option>' +
+    DB.classes.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  if(!document.getElementById('attDate').value){
+    document.getElementById('attDate').value = today();
+  }
+}
+
+function loadAttendance(){
+  const cid = document.getElementById('attClassSelect').value;
+  const date = document.getElementById('attDate').value || today();
+  const body = document.getElementById('attendanceBody');
+  const actions = document.getElementById('attendanceActions');
+  if(!cid){
+    body.innerHTML = '<div class="empty"><i class="fas fa-user-check"></i><p>Class चुनें ताकि attendance ले सकें।</p></div>';
+    actions.style.display = 'none';
+    return;
+  }
+  const c = DB.classes.find(x => x.id === cid);
+  if(!c.students.length){
+    body.innerHTML = '<div class="empty"><i class="fas fa-user-plus"></i><p>इस class में student नहीं हैं।</p></div>';
+    actions.style.display = 'none';
+    return;
+  }
+  const key = cid + '_' + date;
+  const existing = DB.attendance[key] || {};
+  body.innerHTML = c.students.map(s => {
+    const status = existing[s.id] || '';
+    return `
+      <div class="att-row">
+        <div class="stu-avatar">${(s.name[0]||'?').toUpperCase()}</div>
+        <div class="stu-info">
+          <h5>${esc(s.name)}</h5>
+          <p>Roll: ${esc(s.roll||'-')}</p>
+        </div>
+        <div class="att-btns">
+          <button class="att-btn P ${status==='P'?'active':''}" onclick="markAtt('${s.id}','P',this)">P</button>
+          <button class="att-btn A ${status==='A'?'active':''}" onclick="markAtt('${s.id}','A',this)">A</button>
+          <button class="att-btn L ${status==='L'?'active':''}" onclick="markAtt('${s.id}','L',this)">L</button>
+        </div>
+      </div>`;
+  }).join('');
+  actions.style.display = 'block';
+  window._attCurrent = { cid, date };
+  window._attData = Object.assign({}, existing);
+}
+
+function markAtt(sid, status, btn){
+  const row = btn.parentElement;
+  row.querySelectorAll('.att-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if(!window._attData) window._attData = {};
+  window._attData[sid] = status;
+}
+
+function saveAttendance(){
+  if(!window._attCurrent) return;
+  const { cid, date } = window._attCurrent;
+  const key = cid + '_' + date;
+  const c = DB.classes.find(x => x.id === cid);
+  // Default absent for unmarked? No - skip unmarked.
+  DB.attendance[key] = window._attData;
+  saveDB();
+  toast('Attendance सेव हो गई ✅','success');
+  render();
+}
+
+/* ============ DIARY ============ */
+function renderDiaryClassSelect(){
+  const sel = document.getElementById('diaryClass');
+  sel.innerHTML = '<option value="">-- Class चुनें --</option>' +
+    DB.classes.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+}
+document.getElementById('diaryDate').value = today();
+
+function saveDiary(){
+  const cid = document.getElementById('diaryClass').value;
+  const date = document.getElementById('diaryDate').value || today();
+  const topic = document.getElementById('diaryTopic').value.trim();
+  if(!cid){ toast('Class चुनें','error'); return; }
+  if(!topic){ toast('क्या पढ़ाया, लिखें','error'); return; }
+  DB.diary.unshift({
+    id: uid(),
+    classId: cid,
+    date,
+    topic,
+    homework: document.getElementById('diaryHw').value.trim()
+  });
+  saveDB();
+  closeModal('modalDiary');
+  document.getElementById('diaryTopic').value = '';
+  document.getElementById('diaryHw').value = '';
+  toast('Diary entry जोड़ी गई ✅','success');
+  renderDiary();
+  render();
+}
+
+function renderDiary(){
+  const el = document.getElementById('diaryList');
+  if(!DB.diary.length){
+    el.innerHTML = '<div class="empty"><i class="fas fa-book"></i><p>अभी कोई diary entry नहीं है।</p></div>';
+    return;
+  }
+  el.innerHTML = DB.diary.map(d => {
+    const c = DB.classes.find(x => x.id === d.classId);
+    return `
+      <div class="diary-item">
+        <div class="date">📅 ${formatDate(d.date)} · <span class="chip">${esc(c ? c.name : 'Class')}</span></div>
+        <div class="title">${esc(d.topic.split('\n')[0].slice(0,60))}</div>
+        ${d.homework ? `<div class="desc">📝 HW: ${esc(d.homework.slice(0,80))}</div>` : ''}
+      </div>`;
+  }).join('');
+}
+
+/* ============ MARKS ============ */
+function renderMarksClassSelect(){
+  const sel = document.getElementById('marksClassSelect');
+  sel.innerHTML = '<option value="">-- Class चुनें --</option>' +
+    DB.classes.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+}
+
+function loadMarksView(){
+  const cid = document.getElementById('marksClassSelect').value;
+  const el = document.getElementById('marksView');
+  if(!cid){
+    el.innerHTML = '<div class="empty"><i class="fas fa-star"></i><p>Class चुनें</p></div>';
+    return;
+  }
+  const tests = DB.marks.filter(m => m.classId === cid);
+  let html = '<button class="btn full" onclick="openMarksModal()" style="margin-bottom:12px;"><i class="fas fa-plus"></i> नया Test जोड़ें</button>';
+  if(!tests.length){
+    html += '<div class="empty"><i class="fas fa-star"></i><p>अभी कोई test नहीं</p></div>';
+  } else {
+    tests.sort((a,b) => b.date.localeCompare(a.date)).forEach(t => {
+      const c = DB.classes.find(x => x.id === cid);
+      let total = 0, count = 0, max = 0;
+      c.students.forEach(s => {
+        if(t.marks[s.id] !== undefined){ total += t.marks[s.id]; count++; }
+      });
+      max = c.students.length * t.total;
+      const avg = count ? (total/count).toFixed(1) : '-';
+      html += `
+        <div class="diary-item">
+          <div class="date">📅 ${formatDate(t.date)}</div>
+          <div class="title">${esc(t.testName)}</div>
+          <div class="desc">Average: <b>${avg}</b> / ${t.total} · ${count} students</div>
+        </div>`;
+    });
+  }
+  el.innerHTML = html;
+}
+
+function openMarksModal(){
+  const cid = document.getElementById('marksClassSelect').value;
+  if(!cid) return;
+  const c = DB.classes.find(x => x.id === cid);
+  document.getElementById('marksTitle').textContent = 'Marks Entry · ' + c.name;
+  document.getElementById('testName').value = '';
+  document.getElementById('testTotal').value = 100;
+  document.getElementById('testDate').value = today();
+  const body = document.getElementById('marksEntryBody');
+  if(!c.students.length){
+    body.innerHTML = '<p style="color:#94a3b8;font-size:.85rem;text-align:center;padding:12px;">इस class में student नहीं हैं</p>';
+  } else {
+    body.innerHTML = c.students.map(s => `
+      <div class="stu" style="margin-bottom:8px;">
+        <div class="stu-avatar">${(s.name[0]||'?').toUpperCase()}</div>
+        <div class="stu-info"><h5>${esc(s.name)}</h5><p>Roll: ${esc(s.roll||'-')}</p></div>
+        <input type="number" class="marks-input" data-sid="${s.id}" placeholder="0" min="0">
+      </div>
+    `).join('');
+  }
+  openModal('modalMarks');
+}
+
+function saveMarks(){
+  const cid = document.getElementById('marksClassSelect').value;
+  const testName = document.getElementById('testName').value.trim();
+  const total = parseInt(document.getElementById('testTotal').value) || 100;
+  const date = document.getElementById('testDate').value || today();
+  if(!testName){ toast('Test का नाम लिखें','error'); return; }
+  const marks = {};
+  document.querySelectorAll('#marksEntryBody .marks-input').forEach(inp => {
+    const v = inp.value.trim();
+    if(v !== '') marks[inp.dataset.sid] = parseFloat(v);
+  });
+  DB.marks.push({ id: uid(), classId: cid, testName, total, date, marks });
+  saveDB();
+  closeModal('modalMarks');
+  toast('Marks सेव हो गए ✅','success');
+  loadMarksView();
+}
+
+/* ============ REPORTS ============ */
+function renderReportClassSelect(){
+  const sel = document.getElementById('reportClassSelect');
+  sel.innerHTML = '<option value="">-- Class चुनें --</option>' +
+    DB.classes.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+}
+
+function loadReports(){
+  const cid = document.getElementById('reportClassSelect').value;
+  const el = document.getElementById('reportsView');
+  if(!cid){
+    el.innerHTML = '<div class="empty"><i class="fas fa-chart-simple"></i><p>Class चुनें</p></div>';
+    return;
+  }
+  const c = DB.classes.find(x => x.id === cid);
+  // Attendance %
+  let totalPresent = 0, totalMarked = 0;
+  Object.keys(DB.attendance).forEach(k => {
+    if(k.startsWith(cid + '_')){
+      Object.values(DB.attendance[k]).forEach(v => {
+        totalMarked++;
+        if(v === 'P') totalPresent++;
+      });
+    }
+  });
+  const attPct = totalMarked ? Math.round(totalPresent/totalMarked*100) : 0;
+
+  // Test avg
+  const tests = DB.marks.filter(m => m.classId === cid);
+  let testTotal = 0, testCount = 0;
+  tests.forEach(t => {
+    Object.values(t.marks).forEach(m => { testTotal += m; testCount++; });
+  });
+  const avgMarks = testCount ? (testTotal/testCount).toFixed(1) : '-';
+
+  el.innerHTML = `
+    <div class="stats" style="grid-template-columns:repeat(2,1fr);">
+      <div class="stat green"><div class="stat-label">Attendance</div><div class="stat-value">${attPct}%</div></div>
+      <div class="stat purple"><div class="stat-label">Students</div><div class="stat-value">${c.students.length}</div></div>
+      <div class="stat"><div class="stat-label">Tests</div><div class="stat-value">${tests.length}</div></div>
+      <div class="stat orange"><div class="stat-label">Avg Marks</div><div class="stat-value">${avgMarks}</div></div>
+    </div>
+    <div class="divider"></div>
+    <button class="btn full ghost" onclick="printReport('${cid}')"><i class="fas fa-print"></i> Report Card प्रिंट करें</button>
+  `;
+}
+
+function printReport(cid){
+  const c = DB.classes.find(x => x.id === cid);
+  let html = '<html><head><title>Report Card - ' + c.name + '</title><style>body{font-family:sans-serif;padding:20px;}h1{color:#2563eb;}table{width:100%;border-collapse:collapse;margin-top:20px;}th,td{border:1px solid #ddd;padding:10px;text-align:left;}th{background:#f0f4f8;}</style></head><body>';
+  html += '<h1>' + esc(c.name) + ' - Report Card</h1>';
+  html += '<table><tr><th>Roll</th><th>Name</th><th>Attendance %</th><th>Avg Marks</th></tr>';
+  c.students.forEach(s => {
+    // Attendance
+    let pres = 0, tot = 0;
+    Object.keys(DB.attendance).forEach(k => {
+      if(k.startsWith(cid + '_') && DB.attendance[k][s.id]){
+        tot++;
+        if(DB.attendance[k][s.id] === 'P') pres++;
+      }
+    });
+    const att = tot ? Math.round(pres/tot*100) : 0;
+    // Marks
+    let mt = 0, mc = 0;
+    DB.marks.filter(m => m.classId === cid).forEach(t => {
+      if(t.marks[s.id] !== undefined){ mt += t.marks[s.id]; mc++; }
+    });
+    const avg = mc ? (mt/mc).toFixed(1) : '-';
+    html += '<tr><td>' + esc(s.roll||'-') + '</td><td>' + esc(s.name) + '</td><td>' + att + '%</td><td>' + avg + '</td></tr>';
+  });
+  html += '</table></body></html>';
+  const w = window.open('', '_blank');
+  w.document.write(html);
+  w.document.close();
+}
+
+/* ============ WHATSAPP ============ */
+function waParent(phone, name){
+  let p = phone.replace(/\D/g, '');
+  if(p.length === 10) p = '91' + p;
+  const msg = encodeURIComponent('नमस्ते, ' + name + ' के parent जी,\n\n[अपना message यहाँ लिखें]\n\n- Teacher');
+  window.open('https://wa.me/' + p + '?text=' + msg, '_blank');
+}
+
+function waClassAll(cid){
+  const c = DB.classes.find(x => x.id === cid);
+  if(!c) return;
+  const withPhone = c.students.filter(s => s.phone);
+  if(!withPhone.length){ toast('किसी student का नंबर नहीं है','error'); return; }
+  if(!confirm('एक-एक करके ' + withPhone.length + ' parents को WhatsApp भेजें?')) return;
+  withPhone.forEach((s, i) => {
+    setTimeout(() => waParent(s.phone, s.name), i * 1200);
+  });
+}
+
+/* ============ RENDER HOME ============ */
+function render(){
+  document.getElementById('statClasses').textContent = DB.classes.length;
+  document.getElementById('statStudents').textContent = DB.classes.reduce((a,c) => a + c.students.length, 0);
+  document.getElementById('statDiary').textContent = DB.diary.length;
+
+  // Today's present
+  const t = today();
+  let present = 0, marked = 0;
+  Object.keys(DB.attendance).forEach(k => {
+    if(k.endsWith('_' + t)){
+      Object.values(DB.attendance[k]).forEach(v => { marked++; if(v === 'P') present++; });
+    }
+  });
+  document.getElementById('statPresent').textContent = marked ? present + '/' + marked : '-';
+
+  renderClassesList();
+  renderAllClasses();
+}
+
+function formatDate(d){
+  if(!d) return '';
+  const dt = new Date(d);
+  return dt.toLocaleDateString('hi-IN', { day:'numeric', month:'short', year:'numeric' });
+}
+
+function esc(s){
+  return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+/* ============ DATE ON HOME ============ */
+function showDate(){
+  const d = new Date();
+  const opts = { weekday:'long', day:'numeric', month:'long', year:'numeric' };
+  document.getElementById('welcomeDate').textContent = '📅 ' + d.toLocaleDateString('hi-IN', opts);
+}
+
+/* ============ BACKUP ============ */
+function exportData(){
+  const blob = new Blob([JSON.stringify(DB, null, 2)], { type:'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'teachdesk-backup-' + today() + '.json';
+  a.click();
+  toast('Backup download हो रहा है...','success');
+}
+
+function importData(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try{
+      const data = JSON.parse(r.result);
+      if(confirm('यह data लोड करने से मौजूदा data बदल जाएगा। जारी रखें?')){
+        DB = Object.assign(DB, data);
+        saveDB();
+        render();
+        renderAttClassSelect();
+        renderMarksClassSelect();
+        renderReportClassSelect();
+        renderDiaryClassSelect();
+        closeModal('modalMenu');
+        toast('Data restore हो गया ✅','success');
+      }
+    }catch(err){ toast('फाइल पढ़ने में error','error'); }
+  };
+  r.readAsText(file);
+}
+
+function clearAllData(){
+  if(!confirm('सच में सारा data मिटाना है? यह वापस नहीं आएगा!')) return;
+  localStorage.removeItem(DB_KEY);
+  DB = { classes: [], attendance: {}, diary: [], marks: [], profile: { name: 'Teacher' } };
+  saveDB();
+  render();
+  closeModal('modalMenu');
+  toast('सारा data मिटा दिया','success');
+}
+
+/* ============ INIT ============ */
+loadDB();
+showDate();
+render();
+renderAttClassSelect();
+renderMarksClassSelect();
+renderReportClassSelect();
+renderDiaryClassSelect();
+document.getElementById('attDate').value = today();
+
+console.log('%c📚 TeachDesk v1.0','color:#2563eb;font-size:20px;font-weight:bold;');
+console.log('%c100% offline. Data आपके फोन में ही है।','color:#64748b;font-size:12px;');
+</script>
+</body>
+</html>
