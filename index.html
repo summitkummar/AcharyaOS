@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>AcharyaOS Pro — The Teacher's OS</title>
-<meta name="description" content="AcharyaOS Pro — Premium digital assistant for Indian teachers. 100% offline, free forever.">
 <meta name="theme-color" content="#FF9933">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="AcharyaOS">
@@ -15,32 +14,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-/* ============ TRICOLOR DESIGN SYSTEM ============ */
 :root{
-  --primary:#FF9933;--primary-2:#E65100;--primary-3:#FFB74D;
-  --pink:#000080;--rose:#000080;
-  --success:#138808;--success-d:#0D5E05;
-  --warning:#FF9933;--warning-d:#E65100;
+  --primary:#FF9933;--primary-2:#E65100;
+  --navy:#000080;--green:#138808;--green-d:#0D5E05;
   --danger:#EF4444;--danger-d:#DC2626;
-  --info:#000080;
   --bg:#F8F9FA;--bg-2:#F1F3F5;--bg-3:#E9ECEF;
-  --card:#FFFFFF;--card-2:#FCFCFC;
-  --border:#DEE2E6;--border-2:#CED4DA;
-  --text:#212529;--text-2:#495057;--text-3:#ADB5BD;--text-4:#DEE2E6;
+  --card:#FFFFFF;--border:#DEE2E6;--border-2:#CED4DA;
+  --text:#0F172A;--text-2:#475569;--text-3:#94A3B8;--text-4:#CBD5E1;
   --sh-xs:0 1px 2px rgba(0,0,0,.04);
   --sh-sm:0 2px 4px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.06);
-  --sh-md:0 4px 12px rgba(0,0,0,.06),0 2px 4px rgba(0,0,0,.04);
-  --sh-lg:0 12px 28px rgba(0,0,0,.08),0 4px 8px rgba(0,0,0,.04);
+  --sh-md:0 4px 12px rgba(0,0,0,.06);
+  --sh-lg:0 12px 28px rgba(0,0,0,.08);
   --sh-xl:0 24px 48px rgba(0,0,0,.12);
   --r:16px;--r-lg:22px;--r-xl:28px;--nav-h:74px;
 }
 [data-theme="dark"]{
   --bg:#0F1419;--bg-2:#1A2332;--bg-3:#252F42;
-  --card:#1A2332;--card-2:#222D40;
-  --border:#2E3A52;--border-2:#3D4A66;
+  --card:#1A2332;--border:#2E3A52;--border-2:#3D4A66;
   --text:#F1F5F9;--text-2:#CBD5E1;--text-3:#8896B0;--text-4:#5A6884;
-  --primary:#FFA94D;--primary-2:#FF7A00;
-  --success:#2ECC71;--success-d:#1E9E55;
+  --primary:#FFA94D;--primary-2:#FF7A00;--green:#2ECC71;--green-d:#1E9E55;--navy:#7986CB;
   --sh-sm:0 2px 4px rgba(0,0,0,.3);--sh-md:0 4px 12px rgba(0,0,0,.35);--sh-lg:0 12px 28px rgba(0,0,0,.4);--sh-xl:0 24px 48px rgba(0,0,0,.5);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
@@ -51,48 +43,58 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 ::selection{background:var(--primary);color:#fff;}
 ::-webkit-scrollbar{width:0;height:0;}
 
-/* SPLASH */
+/* ============ BLINK & GLOW ANIMATIONS ============ */
+@keyframes blinkGreen {
+  0%, 100% { color: #FFFFFF; text-shadow: 0 1px 3px rgba(0,0,0,.2); }
+  50% { color: #C8FACC; text-shadow: 0 0 12px #138808, 0 0 22px rgba(19,136,8,.7); }
+}
+@keyframes blinkOrange {
+  0%, 100% { box-shadow: 0 4px 12px rgba(255,153,51,.35); }
+  50% { box-shadow: 0 4px 22px rgba(255,153,51,.95), 0 0 0 5px rgba(255,153,51,.12); }
+}
+@keyframes blinkNav {
+  0%, 100% { opacity: 1; transform: translateY(0); }
+  50% { opacity: .7; transform: translateY(-2px); }
+}
+.blink-green { animation: blinkGreen 1.8s ease-in-out infinite; }
+.blink-orange { animation: blinkOrange 2s ease-in-out infinite; }
+
+/* ============ SPLASH ============ */
 .splash{position:fixed;inset:0;background:linear-gradient(135deg,#FF9933 0%,#FFFFFF 50%,#138808 100%);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;}
 .splash.hide{opacity:0;visibility:hidden;pointer-events:none;}
-.splash-logo{width:120px;height:120px;border-radius:32px;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;font-size:3.2rem;color:#000080;backdrop-filter:blur(20px);box-shadow:0 24px 60px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.4);animation:splIn 1s cubic-bezier(.16,1,.3,1) forwards;opacity:0;transform:scale(.5);}
+.splash-logo{width:120px;height:120px;border-radius:32px;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;font-size:3.2rem;color:#000080;backdrop-filter:blur(20px);box-shadow:0 24px 60px rgba(0,0,0,.15);animation:splIn 1s cubic-bezier(.16,1,.3,1) forwards;opacity:0;transform:scale(.5);}
 @keyframes splIn{to{opacity:1;transform:scale(1);}}
 .splash-name{margin-top:26px;font-size:2rem;font-weight:800;color:#000080;letter-spacing:-.8px;animation:splIn .8s .2s cubic-bezier(.16,1,.3,1) forwards;opacity:0;}
 .splash-tag{font-size:.72rem;color:#000080;margin-top:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;animation:splIn .8s .35s cubic-bezier(.16,1,.3,1) forwards;opacity:0;}
 .splash-bar{width:180px;height:3px;background:rgba(0,0,0,.15);border-radius:3px;margin-top:48px;overflow:hidden;animation:splIn .8s .5s ease forwards;opacity:0;}
 .splash-bar-inner{height:100%;background:#000080;border-radius:3px;animation:splBar 2.2s ease-out forwards;width:0;}
 @keyframes splBar{to{width:100%;}}
-.splash-made{position:absolute;bottom:38px;color:#000080;font-size:.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;}
-
-/* ============ BLINK & GLOW ANIMATIONS ============ */
-@keyframes blinkPulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,153,51,.5); }
-  50% { opacity: 0.85; box-shadow: 0 0 0 10px rgba(255,153,51,0); }
-}
-.blink { animation: blinkPulse 1.8s ease-in-out infinite; }
-@keyframes logoBlink {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.82; transform: scale(0.99); }
-}
-.logo-click { cursor: pointer; animation: logoBlink 2s ease-in-out infinite; transition: transform .15s; }
-.logo-click:active { transform: scale(.96); }
+.splash-made{position:absolute;bottom:38px;color:#000080;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
 
 /* ============ APP BAR ============ */
-.app-bar{background:linear-gradient(135deg,#FF9933 0%,#E65100 100%);padding:14px 14px 72px;position:relative;border-radius:0 0 34px 34px;box-shadow:0 12px 40px rgba(255,153,51,.35);overflow:hidden;padding-top:calc(14px + env(safe-area-inset-top));}
-.app-bar::before{content:'';position:absolute;top:-80px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%);border-radius:50%;pointer-events:none;}
-.app-bar::after{content:'';position:absolute;bottom:-100px;left:-50px;width:220px;height:220px;background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%);border-radius:50%;pointer-events:none;}
+.app-bar{background:linear-gradient(135deg,#FF9933 0%,#E65100 100%);padding:14px 14px 68px;position:relative;border-radius:0 0 32px 32px;box-shadow:0 12px 40px rgba(255,153,51,.4);overflow:hidden;padding-top:calc(14px + env(safe-area-inset-top));}
+.app-bar::before{content:'';position:absolute;top:-80px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%);border-radius:50%;pointer-events:none;}
+.app-bar::after{content:'';position:absolute;bottom:-100px;left:-50px;width:220px;height:220px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%;pointer-events:none;}
 .bar-row{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;gap:8px;}
 .brand{display:flex;align-items:center;gap:9px;color:#fff;min-width:0;flex:1;}
-.brand-icon{width:38px;height:38px;background:rgba(255,255,255,.25);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4);flex-shrink:0;}
-.brand-text{font-weight:800;font-size:1.05rem;letter-spacing:-.4px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#000080;text-shadow:0 1px 2px rgba(255,255,255,.4);}
-.brand-text small{display:block;font-size:.5rem;font-weight:700;opacity:.92;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;white-space:nowrap;color:#000080;}
+.brand-icon{width:38px;height:38px;background:rgba(255,255,255,.3);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4);flex-shrink:0;color:#FFFFFF;border:1px solid rgba(255,255,255,.3);}
+.brand-text{font-weight:800;font-size:1.05rem;letter-spacing:-.4px;line-height:1.1;color:#FFFFFF;text-shadow:0 1px 3px rgba(0,0,0,.15);}
+.brand-text small{display:block;font-size:.5rem;font-weight:700;opacity:.95;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;color:#FFFFFF;}
 .bar-actions{display:flex;gap:5px;flex-shrink:0;}
-.icon-btn{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#000080;backdrop-filter:blur(10px);transition:transform .15s,background .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.3);position:relative;}
-.icon-btn:active{transform:scale(.92);background:rgba(255,255,255,.34);}
+.icon-btn{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#FFFFFF;backdrop-filter:blur(10px);transition:transform .15s,background .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.25);}
+.icon-btn:active{transform:scale(.92);background:rgba(255,255,255,.4);}
 
-/* WRAP */
-.wrap{padding:0 16px;max-width:720px;margin:-58px auto 0;position:relative;z-index:2;}
+/* ============ WRAP ============ */
+.wrap{padding:0 14px;max-width:720px;margin:-52px auto 0;position:relative;z-index:2;}
 
-/* GREETING */
+/* ============ SECTION HEAD (white card always readable) ============ */
+.sec-head{background:var(--card);padding:12px 16px;border-radius:16px;box-shadow:var(--sh-md);border:1px solid var(--border);margin:16px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.sec-head h3{font-size:.98rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:9px;flex:1;min-width:0;}
+.sec-head h3 i{color:var(--primary);font-size:.85rem;width:30px;height:30px;border-radius:9px;background:rgba(255,153,51,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sec-head .link{font-size:.72rem;font-weight:800;color:#FFFFFF;padding:9px 14px;border-radius:11px;background:linear-gradient(135deg,#FF9933,#E65100);display:flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(255,153,51,.4);white-space:nowrap;border:1px solid rgba(255,255,255,.3);}
+.sec-head .link:active{transform:scale(.96);}
+
+/* ============ GREETING ============ */
 .greet{background:var(--card);border-radius:var(--r-xl);padding:22px;box-shadow:var(--sh-lg);margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;border:1px solid var(--border);}
 .greet h1{font-size:1.22rem;font-weight:800;letter-spacing:-.4px;color:var(--text);margin-bottom:6px;line-height:1.25;}
 .greet p{font-size:.84rem;color:var(--text-2);font-weight:500;}
@@ -101,101 +103,79 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .greet-avatar{width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,#FF9933,#138808);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;box-shadow:0 10px 24px rgba(255,153,51,.4);position:relative;cursor:pointer;}
 .greet-avatar::after{content:'';position:absolute;bottom:2px;right:2px;width:15px;height:15px;background:#138808;border-radius:50%;border:3px solid var(--card);}
 
-/* STATS */
+/* ============ STATS ============ */
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;}
 .stat{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--sh-sm);border:1px solid var(--border);transition:transform .15s;cursor:pointer;}
 .stat:active{transform:scale(.98);}
 .stat-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
-.stat-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;background:linear-gradient(135deg,rgba(255,153,51,.12),rgba(230,81,0,.12));color:var(--primary);}
-.stat.g .stat-icon{background:linear-gradient(135deg,rgba(19,136,8,.12),rgba(13,94,5,.12));color:var(--success);}
-.stat.o .stat-icon{background:linear-gradient(135deg,rgba(255,153,51,.12),rgba(230,81,0,.12));color:var(--warning);}
-.stat.pk .stat-icon{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--pink);}
+.stat-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);}
+.stat.g .stat-icon{background:linear-gradient(135deg,rgba(19,136,8,.15),rgba(13,94,5,.15));color:var(--green);}
+.stat.o .stat-icon{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);}
+.stat.pk .stat-icon{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--navy);}
 .stat-label{font-size:.66rem;color:var(--text-3);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
 .stat-value{font-size:1.75rem;font-weight:800;color:var(--text);line-height:1;letter-spacing:-1px;}
 
-/* SECTION */
-.sec-head{display:flex;justify-content:space-between;align-items:center;margin:24px 4px 12px;gap:10px;}
-.sec-head h3{font-size:1rem;font-weight:800;color:var(--text);letter-spacing:-.3px;display:flex;align-items:center;gap:9px;flex:1;min-width:0;}
-.sec-head h3 i{color:var(--primary);font-size:.85rem;width:28px;height:28px;border-radius:9px;background:rgba(255,153,51,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.sec-head .link{font-size:.72rem;font-weight:800;color:#fff;padding:9px 14px;border-radius:11px;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(255,153,51,.4);border:1px solid rgba(255,255,255,.2);white-space:nowrap;}
-
-/* QUICK */
+/* ============ QUICK ACTIONS ============ */
 .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px;}
 .quick{background:var(--card);border-radius:var(--r);padding:14px 6px 12px;box-shadow:var(--sh-sm);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.64rem;font-weight:800;color:var(--text-2);text-align:center;transition:transform .15s;letter-spacing:-.1px;}
 .quick:active{transform:scale(.94);}
-.quick i{font-size:1.15rem;width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,rgba(255,153,51,.1),rgba(230,81,0,.1));color:var(--primary);display:flex;align-items:center;justify-content:center;}
-.quick.g i{background:linear-gradient(135deg,rgba(19,136,8,.1),rgba(13,94,5,.1));color:var(--success);}
-.quick.o i{background:linear-gradient(135deg,rgba(255,153,51,.1),rgba(230,81,0,.1));color:var(--warning);}
-.quick.pk i{background:linear-gradient(135deg,rgba(0,0,128,.1),rgba(0,0,80,.1));color:var(--pink);}
-.quick.cy i{background:linear-gradient(135deg,rgba(0,0,128,.1),rgba(0,0,80,.1));color:var(--info);}
+.quick i{font-size:1.15rem;width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,rgba(255,153,51,.12),rgba(230,81,0,.12));color:var(--primary);display:flex;align-items:center;justify-content:center;}
+.quick.g i{background:linear-gradient(135deg,rgba(19,136,8,.12),rgba(13,94,5,.12));color:var(--green);}
+.quick.o i{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);}
+.quick.pk i{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--navy);}
 
-/* MORE GRID */
-.more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:8px;}
-.more-card{background:var(--card);border-radius:var(--r-lg);padding:20px 14px;box-shadow:var(--sh-sm);border:1px solid var(--border);display:flex;align-items:center;gap:14px;transition:transform .15s;text-align:left;}
-.more-card:active{transform:scale(.97);}
-.more-card i{font-size:1.3rem;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(255,153,51,.12),rgba(230,81,0,.12));color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.more-card.g i{background:linear-gradient(135deg,rgba(19,136,8,.12),rgba(13,94,5,.12));color:var(--success);}
-.more-card.o i{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--warning);}
-.more-card.pk i{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--pink);}
-.more-card.cy i{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--info);}
-.more-card .mc-body{flex:1;min-width:0;}
-.more-card .mc-body h4{font-size:.85rem;font-weight:800;color:var(--text);line-height:1.2;}
-.more-card .mc-body p{font-size:.65rem;color:var(--text-3);font-weight:600;margin-top:2px;}
-
-/* CARDS */
+/* ============ CARDS ============ */
 .card{background:var(--card);border-radius:var(--r-lg);padding:18px;box-shadow:var(--sh-sm);border:1px solid var(--border);margin-bottom:14px;}
 .card-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
 .card-h h4{font-size:.95rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px;}
 .card-h h4 i{color:var(--primary);}
 
-/* LIST ITEM */
+/* ============ LIST ITEM ============ */
 .li{background:var(--card);border-radius:var(--r);padding:14px;border:1px solid var(--border);margin-bottom:10px;display:flex;align-items:center;gap:13px;box-shadow:var(--sh-xs);transition:transform .15s;}
 .li:active{transform:scale(.99);}
-.li-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(255,153,51,.1),rgba(230,81,0,.1));color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;font-weight:800;}
-.li-icon.g{background:linear-gradient(135deg,rgba(19,136,8,.1),rgba(13,94,5,.1));color:var(--success);}
-.li-icon.o{background:linear-gradient(135deg,rgba(255,153,51,.1),rgba(230,81,0,.1));color:var(--warning);}
-.li-icon.pk{background:linear-gradient(135deg,rgba(0,0,128,.1),rgba(0,0,80,.1));color:var(--pink);}
-.li-icon.cy{background:linear-gradient(135deg,rgba(0,0,128,.1),rgba(0,0,80,.1));color:var(--info);}
+.li-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(255,153,51,.12),rgba(230,81,0,.12));color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;font-weight:800;}
+.li-icon.g{background:linear-gradient(135deg,rgba(19,136,8,.12),rgba(13,94,5,.12));color:var(--green);}
+.li-icon.o{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);}
+.li-icon.pk{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--navy);}
+.li-icon.r{background:rgba(239,68,68,.12);color:var(--danger);}
 .li-body{flex:1;min-width:0;}
 .li-body h4{font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .li-body p{font-size:.74rem;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;}
 .li-meta{display:flex;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap;}
 .li-chip{font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:7px;background:var(--bg-2);color:var(--text-2);}
-.li-chip.g{background:rgba(19,136,8,.12);color:var(--success);}
-.li-chip.o{background:rgba(255,153,51,.12);color:var(--warning);}
+.li-chip.g{background:rgba(19,136,8,.12);color:var(--green);}
+.li-chip.o{background:rgba(255,153,51,.15);color:var(--primary);}
 .li-chip.r{background:rgba(239,68,68,.12);color:var(--danger);}
-.li-chip.pk{background:rgba(0,0,128,.12);color:var(--pink);}
-.li-arrow{color:var(--text-4);font-size:.85rem;flex-shrink:0;}
+.li-chip.pk{background:rgba(0,0,128,.12);color:var(--navy);}
 
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:13px;font-weight:700;font-size:.86rem;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;transition:transform .15s;box-shadow:0 6px 16px rgba(255,153,51,.3);white-space:nowrap;}
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:13px;font-weight:700;font-size:.86rem;background:linear-gradient(135deg,#FF9933,#E65100);color:#FFFFFF;transition:transform .15s;box-shadow:0 6px 16px rgba(255,153,51,.35);white-space:nowrap;}
 .btn:active{transform:scale(.97);}
 .btn.full{width:100%;}
 .btn.sm{padding:9px 14px;font-size:.76rem;border-radius:10px;}
-.btn.ghost{background:rgba(255,153,51,.08);color:var(--primary);box-shadow:none;}
-.btn.g{background:linear-gradient(135deg,var(--success),var(--success-d));box-shadow:0 6px 16px rgba(19,136,8,.3);}
-.btn.r{background:linear-gradient(135deg,var(--danger),var(--danger-d));box-shadow:0 6px 16px rgba(239,68,68,.3);}
+.btn.g{background:linear-gradient(135deg,#138808,#0D5E05);box-shadow:0 6px 16px rgba(19,136,8,.35);}
+.btn.r{background:linear-gradient(135deg,#EF4444,#DC2626);box-shadow:0 6px 16px rgba(239,68,68,.35);}
 .btn.gray{background:var(--bg-2);color:var(--text-2);box-shadow:none;}
 
-/* FAB */
-.fab{position:fixed;bottom:calc(var(--nav-h) + 16px + env(safe-area-inset-bottom));right:18px;width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,#FF9933,#E65100);color:#fff;font-size:1.4rem;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 36px rgba(255,153,51,.5);z-index:150;transition:transform .2s;}
+/* ============ FAB ============ */
+.fab{position:fixed;bottom:calc(var(--nav-h) + 16px + env(safe-area-inset-bottom));right:18px;width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,#FF9933,#E65100);color:#fff;font-size:1.4rem;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 36px rgba(255,153,51,.55);z-index:150;transition:transform .2s;}
 .fab:active{transform:scale(.9) rotate(45deg);}
 
-/* NAV */
+/* ============ NAV ============ */
 .nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(24px) saturate(180%);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:10px 6px calc(12px + env(safe-area-inset-bottom));z-index:200;box-shadow:0 -8px 30px rgba(0,0,0,.06);}
 [data-theme="dark"] .nav{background:rgba(26,35,50,.95);}
 .nav-btn{flex:1;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--text-3);border-radius:12px;transition:color .2s;position:relative;}
 .nav-btn i{font-size:1.15rem;transition:transform .2s;}
 .nav-btn.active{color:var(--primary);}
-.nav-btn.active i{transform:translateY(-2px);}
-.nav-btn.active::before{content:'';position:absolute;top:2px;width:22px;height:3px;background:linear-gradient(90deg,var(--primary),var(--success));border-radius:0 0 4px 4px;left:50%;transform:translateX(-50%);}
+.nav-btn.active i{transform:translateY(-2px);animation:blinkNav 2s ease-in-out infinite;}
+.nav-btn.active::before{content:'';position:absolute;top:2px;width:22px;height:3px;background:linear-gradient(90deg,#FF9933,#138808);border-radius:0 0 4px 4px;left:50%;transform:translateX(-50%);}
 
-/* PAGE */
+/* ============ PAGE ============ */
 .page{display:none;animation:fade .35s cubic-bezier(.16,1,.3,1);}
 .page.active{display:block;}
 @keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
-/* FORM */
+/* ============ FORM ============ */
 .field{margin-bottom:15px;}
 .field label{display:block;font-size:.76rem;font-weight:700;color:var(--text-2);margin-bottom:8px;}
 .field label .req{color:var(--danger);}
@@ -205,16 +185,16 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .txa{resize:vertical;min-height:88px;line-height:1.6;font-weight:500;}
 .inp::placeholder,.txa::placeholder{color:var(--text-4);font-weight:500;}
 
-/* EMPTY */
-.empty{text-align:center;padding:48px 20px;color:var(--text-3);}
+/* ============ EMPTY ============ */
+.empty{text-align:center;padding:40px 20px;color:var(--text-3);}
 .empty-ill{width:92px;height:92px;margin:0 auto 18px;border-radius:28px;background:linear-gradient(135deg,rgba(255,153,51,.1),rgba(19,136,8,.1));display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:var(--primary);opacity:.85;}
 .empty h4{font-size:.98rem;font-weight:800;color:var(--text-2);margin-bottom:6px;}
 .empty p{font-size:.78rem;line-height:1.6;max-width:260px;margin:0 auto;}
 
-/* MODAL */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:1000;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);}
+/* ============ MODAL ============ */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1000;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);}
 .modal.open{display:flex;animation:fade .2s;}
-.modal-inner{background:var(--card);border-radius:28px 28px 0 0;padding:24px 20px 28px;width:100%;max-width:720px;max-height:92vh;overflow-y:auto;animation:slideUp .35s cubic-bezier(.16,1,.3,1);padding-bottom:calc(28px + env(safe-area-inset-bottom));}
+.modal-inner{background:var(--card);border-radius:28px 28px 0 0;padding:24px 20px 28px;width:100%;max-width:720px;max-height:92vh;overflow-y:auto;animation:slideUp .35s cubic-bezier(.16,1,.3,1);padding-bottom:calc(28px + env(safe-area-inset-bottom));transition:transform .2s;}
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
 .modal-inner::before{content:'';display:block;width:40px;height:4px;background:var(--border-2);border-radius:4px;margin:0 auto 18px;}
 .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;gap:12px;}
@@ -224,32 +204,31 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .modal-btns{display:flex;gap:10px;margin-top:8px;}
 .modal-btns .btn{flex:1;}
 
-/* TOAST */
+/* ============ TOAST ============ */
 .toast-wrap{position:fixed;top:calc(16px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:10000;display:flex;flex-direction:column;gap:8px;width:calc(100% - 32px);max-width:400px;pointer-events:none;}
 .toast{background:var(--card);border-radius:14px;padding:13px 16px;box-shadow:var(--sh-xl);border:1px solid var(--border);display:flex;align-items:center;gap:12px;animation:toastIn .3s cubic-bezier(.16,1,.3,1);pointer-events:auto;}
 @keyframes toastIn{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
 .toast.out{animation:toastOut .3s forwards;}
 @keyframes toastOut{to{opacity:0;transform:translateY(-20px);}}
-.toast-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;background:rgba(255,153,51,.1);color:var(--primary);}
-.toast.ok .toast-icon{background:rgba(19,136,8,.12);color:var(--success);}
-.toast.err .toast-icon{background:rgba(239,68,68,.12);color:var(--danger);}
-.toast.warn .toast-icon{background:rgba(255,153,51,.12);color:var(--warning);}
+.toast-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;background:rgba(255,153,51,.15);color:var(--primary);}
+.toast.ok .toast-icon{background:rgba(19,136,8,.15);color:var(--green);}
+.toast.err .toast-icon{background:rgba(239,68,68,.15);color:var(--danger);}
 .toast-body{flex:1;min-width:0;}
 .toast-body h5{font-size:.84rem;font-weight:700;}
 .toast-body p{font-size:.72rem;color:var(--text-3);margin-top:2px;font-weight:500;}
 
-/* DIALOG */
-.dialog{position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:10001;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px);}
+/* ============ DIALOG ============ */
+.dialog{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:10001;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px);}
 .dialog.open{display:flex;animation:fade .2s;}
 .dialog-inner{background:var(--card);border-radius:24px;padding:26px 22px 22px;width:100%;max-width:360px;box-shadow:var(--sh-xl);animation:popIn .3s cubic-bezier(.16,1,.3,1);text-align:center;}
 @keyframes popIn{from{opacity:0;transform:scale(.9);}to{opacity:1;transform:scale(1);}}
-.dialog-icon{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(244,63,94,.12));color:var(--danger);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 16px;}
-.dialog-icon.warn{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--warning);}
-.dialog-icon.info{background:linear-gradient(135deg,rgba(0,0,128,.15),rgba(0,0,80,.15));color:var(--info);}
+.dialog-icon{width:64px;height:64px;border-radius:20px;background:rgba(239,68,68,.12);color:var(--danger);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 16px;}
+.dialog-icon.warn{background:rgba(255,153,51,.15);color:var(--primary);}
+.dialog-icon.info{background:rgba(0,0,128,.12);color:var(--navy);}
 .dialog h3{font-size:1.08rem;font-weight:800;margin-bottom:8px;}
 .dialog p{font-size:.82rem;color:var(--text-2);line-height:1.6;margin-bottom:22px;font-weight:500;white-space:pre-line;}
 
-/* SEARCH */
+/* ============ SEARCH ============ */
 .search-overlay{position:fixed;inset:0;background:var(--bg);z-index:9997;display:none;flex-direction:column;padding:16px;padding-top:calc(16px + env(safe-area-inset-top));}
 .search-overlay.open{display:flex;animation:fade .2s;}
 .search-bar{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
@@ -258,67 +237,82 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .search-wrap .inp{padding-left:44px;background:var(--card);}
 .search-results{flex:1;overflow-y:auto;}
 
-/* PROGRESS */
+/* ============ PROGRESS ============ */
 .progress{width:100%;height:8px;background:var(--bg-2);border-radius:100px;overflow:hidden;}
-.progress-inner{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-2));border-radius:100px;transition:width .4s cubic-bezier(.16,1,.3,1);}
-.progress-inner.g{background:linear-gradient(90deg,var(--success),var(--success-d));}
-.progress-inner.o{background:linear-gradient(90deg,var(--warning),var(--warning-d));}
-.progress-inner.r{background:linear-gradient(90deg,var(--danger),var(--danger-d));}
+.progress-inner{height:100%;background:linear-gradient(90deg,#FF9933,#E65100);border-radius:100px;transition:width .4s cubic-bezier(.16,1,.3,1);}
+.progress-inner.g{background:linear-gradient(90deg,#138808,#0D5E05);}
+.progress-inner.r{background:linear-gradient(90deg,#EF4444,#DC2626);}
 
-/* ATTENDANCE */
+/* ============ ATTENDANCE ============ */
 .att{display:flex;align-items:center;padding:12px;border-radius:14px;background:var(--bg);border:1px solid var(--border);margin-bottom:9px;gap:10px;}
 [data-theme="dark"] .att{background:var(--bg-2);}
 .att-btns{display:flex;gap:5px;flex-shrink:0;}
 .att-b{width:40px;height:40px;border-radius:12px;background:var(--card);border:1.5px solid var(--border-2);color:var(--text-3);font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .18s;}
-.att-b.P.on{background:linear-gradient(135deg,var(--success),var(--success-d));color:#fff;border-color:var(--success);box-shadow:0 6px 14px rgba(19,136,8,.35);}
-.att-b.A.on{background:linear-gradient(135deg,var(--danger),var(--danger-d));color:#fff;border-color:var(--danger);box-shadow:0 6px 14px rgba(239,68,68,.35);}
-.att-b.L.on{background:linear-gradient(135deg,var(--warning),var(--warning-d));color:#fff;border-color:var(--warning);box-shadow:0 6px 14px rgba(255,153,51,.35);}
+.att-b.P.on{background:linear-gradient(135deg,#138808,#0D5E05);color:#fff;border-color:var(--green);box-shadow:0 6px 14px rgba(19,136,8,.35);}
+.att-b.A.on{background:linear-gradient(135deg,#EF4444,#DC2626);color:#fff;border-color:var(--danger);box-shadow:0 6px 14px rgba(239,68,68,.35);}
+.att-b.L.on{background:linear-gradient(135deg,#FF9933,#E65100);color:#fff;border-color:var(--primary);box-shadow:0 6px 14px rgba(255,153,51,.35);}
 
-/* DIARY */
+/* ============ DIARY ============ */
 .d-item{padding:15px;border-radius:14px;background:var(--card);border:1px solid var(--border);margin-bottom:11px;position:relative;box-shadow:var(--sh-xs);}
-.d-item::before{content:'';position:absolute;left:0;top:15px;bottom:15px;width:3.5px;border-radius:0 4px 4px 0;background:linear-gradient(180deg,var(--primary),var(--success));}
+.d-item::before{content:'';position:absolute;left:0;top:15px;bottom:15px;width:3.5px;border-radius:0 4px 4px 0;background:linear-gradient(180deg,#FF9933,#138808);}
 .d-head{display:flex;align-items:center;gap:8px;margin-bottom:9px;flex-wrap:wrap;padding-left:10px;}
 .d-date{font-size:.68rem;font-weight:700;color:var(--text-3);display:flex;align-items:center;gap:5px;}
-.d-title{font-size:.92rem;font-weight:700;margin-bottom:6px;line-height:1.4;padding-left:10px;}
+.d-title{font-size:.92rem;font-weight:700;margin-bottom:6px;line-height:1.4;padding-left:10px;color:var(--text);}
 .d-desc{font-size:.78rem;color:var(--text-2);line-height:1.6;padding-left:10px;font-weight:500;}
 .d-hw{margin-top:10px;padding:10px 12px;background:linear-gradient(135deg,rgba(255,153,51,.1),rgba(230,81,0,.1));border-radius:12px;display:flex;gap:8px;align-items:flex-start;margin-left:10px;}
-.d-hw i{color:var(--warning);font-size:.8rem;margin-top:2px;}
+.d-hw i{color:var(--primary);font-size:.8rem;margin-top:2px;}
 .d-hw div{font-size:.76rem;color:var(--text-2);font-weight:600;line-height:1.4;}
 
-/* SETTINGS ROW */
+/* ============ SETTINGS ROW ============ */
 .set-row{display:flex;align-items:center;gap:14px;padding:15px 4px;border-bottom:1px solid var(--border);cursor:pointer;}
 .set-row:last-child{border-bottom:none;}
 .set-ic{width:42px;height:42px;border-radius:13px;background:var(--bg-2);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
 .set-body{flex:1;min-width:0;}
-.set-body h4{font-size:.88rem;font-weight:700;margin-bottom:3px;}
+.set-body h4{font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--text);}
 .set-body p{font-size:.72rem;color:var(--text-3);font-weight:500;}
 .set-arrow{color:var(--text-4);font-size:.8rem;}
 
-/* CHART */
+/* ============ CHART ============ */
 .chart-container{width:100%;height:180px;padding:10px 0;position:relative;}
 .chart-bars{display:flex;align-items:flex-end;justify-content:space-around;height:140px;gap:8px;}
 .chart-col{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;}
-.chart-bar{width:100%;max-width:36px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--primary),var(--primary-2));transition:height .6s cubic-bezier(.16,1,.3,1);min-height:4px;}
+.chart-bar{width:100%;max-width:36px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#FF9933,#138808);transition:height .6s cubic-bezier(.16,1,.3,1);min-height:4px;}
 .chart-bar.empty{background:var(--bg-3);}
 .chart-label{font-size:.62rem;font-weight:700;color:var(--text-3);}
 .chart-value{font-size:.68rem;font-weight:800;color:var(--primary);}
 
-/* TIMETABLE */
+/* ============ TIMETABLE ============ */
 .tt-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:14px;}
 .tt-day{text-align:center;padding:9px 3px;border-radius:10px;font-size:.68rem;font-weight:800;color:var(--text-3);background:var(--bg-2);cursor:pointer;transition:all .15s;}
-.tt-day.on{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 4px 12px rgba(255,153,51,.3);}
+.tt-day.on{background:linear-gradient(135deg,#FF9933,#E65100);color:#fff;box-shadow:0 4px 12px rgba(255,153,51,.35);}
 .tt-slot{padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--border);border-left:4px solid var(--primary);margin-bottom:8px;box-shadow:var(--sh-xs);}
 .tt-slot .time{font-size:.68rem;font-weight:800;color:var(--primary);letter-spacing:.5px;}
-.tt-slot .sub{font-size:.88rem;font-weight:700;margin-top:4px;}
+.tt-slot .sub{font-size:.88rem;font-weight:700;margin-top:4px;color:var(--text);}
 .tt-slot .cls{font-size:.72rem;color:var(--text-3);margin-top:3px;font-weight:500;}
 
-/* NOTE */
+/* ============ NOTE ============ */
 .note{padding:15px;border-radius:14px;background:linear-gradient(135deg,rgba(255,153,51,.08),rgba(230,81,0,.08));border:1px solid rgba(255,153,51,.2);margin-bottom:10px;}
-.note h5{font-size:.9rem;font-weight:700;margin-bottom:6px;}
+.note h5{font-size:.9rem;font-weight:700;margin-bottom:6px;color:var(--text);}
 .note p{font-size:.78rem;color:var(--text-2);line-height:1.55;font-weight:500;}
 .note .date{font-size:.65rem;color:var(--text-3);margin-top:8px;font-weight:600;}
 
-/* UTILS */
+/* ============ ACCORDION (More page) ============ */
+.acc-item{background:var(--card);border-radius:16px;border:1px solid var(--border);margin-bottom:10px;box-shadow:var(--sh-sm);overflow:hidden;}
+.acc-head{width:100%;padding:16px;display:flex;align-items:center;gap:13px;text-align:left;transition:background .15s;}
+.acc-head:active{background:var(--bg-2);}
+.acc-head i.acc-icon{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;}
+.acc-head.g i.acc-icon{background:linear-gradient(135deg,rgba(19,136,8,.15),rgba(13,94,5,.15));color:var(--green);}
+.acc-head.pk i.acc-icon{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--navy);}
+.acc-head.o i.acc-icon{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);}
+.acc-title{flex:1;min-width:0;}
+.acc-title h4{font-size:.92rem;font-weight:800;color:var(--text);}
+.acc-title p{font-size:.7rem;color:var(--text-3);font-weight:500;margin-top:2px;}
+.acc-chev{color:var(--text-3);font-size:.85rem;transition:transform .3s;}
+.acc-item.open .acc-chev{transform:rotate(180deg);}
+.acc-body{display:none;padding:0 16px 16px;}
+.acc-item.open .acc-body{display:block;animation:fade .3s;}
+
+/* ============ UTILS ============ */
 .hidden{display:none!important;}
 .text-center{text-align:center;}
 .mb-2{margin-bottom:8px;}.mb-3{margin-bottom:12px;}.mt-2{margin-top:8px;}.mt-3{margin-top:12px;}
@@ -326,21 +320,27 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
 
-/* INSTALL BANNER */
-.install-banner{background:linear-gradient(135deg,#FF9933,#138808);border-radius:var(--r-lg);padding:16px;display:flex;align-items:center;gap:14px;margin-bottom:16px;color:#fff;box-shadow:0 8px 24px rgba(255,153,51,.3);}
-.install-banner i{font-size:1.6rem;opacity:.9;}
+/* ============ INSTALL BANNER ============ */
+.install-banner{background:linear-gradient(135deg,#FF9933,#138808);border-radius:var(--r-lg);padding:16px;display:flex;align-items:center;gap:14px;margin-bottom:16px;color:#fff;box-shadow:0 8px 24px rgba(255,153,51,.35);}
+.install-banner i{font-size:1.6rem;}
 .install-banner .ib-body{flex:1;}
 .install-banner .ib-body h4{font-size:.9rem;font-weight:800;margin-bottom:2px;}
-.install-banner .ib-body p{font-size:.72rem;opacity:.9;}
+.install-banner .ib-body p{font-size:.72rem;opacity:.95;}
 .install-banner button{background:#fff;color:#E65100;padding:8px 14px;border-radius:10px;font-weight:800;font-size:.74rem;}
 
-/* PRINT */
+/* ============ LANGUAGE CARD ============ */
+.lang-card{background:var(--card);border-radius:14px;padding:14px 12px;border:1.5px solid var(--border);display:flex;align-items:center;gap:11px;cursor:pointer;transition:all .2s;}
+.lang-card:active{transform:scale(.97);}
+.lang-card.on{border-color:var(--primary);background:linear-gradient(135deg,rgba(255,153,51,.08),rgba(230,81,0,.08));}
+.lang-num{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,#FF9933,#E65100);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.72rem;flex-shrink:0;}
+.lang-native{font-size:.86rem;font-weight:800;color:var(--text);}
+.lang-en{font-size:.66rem;color:var(--text-3);font-weight:600;margin-top:2px;}
+
 @media print{.app-bar,.nav,.fab,.toast-wrap,.modal,.dialog,.install-banner{display:none!important;}body{background:#fff;padding:0;}.wrap{margin:0;padding:16px;}}
 </style>
 </head>
 <body>
 
-<!-- SPLASH -->
 <div class="splash" id="splash">
   <div class="splash-logo"><i class="fas fa-graduation-cap"></i></div>
   <div class="splash-name">AcharyaOS</div>
@@ -349,32 +349,29 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <div class="splash-made">Made with ❤️ for Indian Teachers</div>
 </div>
 
-<!-- LANGUAGE MODAL -->
 <div class="modal" id="lang-modal">
-  <div class="modal-inner">
+  <div class="modal-inner" id="lang-modal-inner">
     <div class="modal-head">
-      <div><h3>Choose Language / भाषा चुनें</h3><p>Select your preferred language</p></div>
+      <div><h3 style="color:var(--text);">Choose Language / भाषा चुनें</h3><p>Select your preferred language</p></div>
       <button class="close-btn" onclick="closeLangModal()"><i class="fas fa-times"></i></button>
     </div>
     <div id="lang-list" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-bottom:20px;"></div>
   </div>
 </div>
 
-<!-- STUDENT PROFILE MODAL -->
 <div class="modal" id="profile-modal">
-  <div class="modal-inner">
+  <div class="modal-inner" id="profile-modal-inner">
     <div class="modal-head">
-      <div><h3 id="pm-name">Student</h3><p id="pm-sub">Profile</p></div>
+      <div><h3 id="pm-name" style="color:var(--text);">Student</h3><p id="pm-sub">Profile</p></div>
       <button class="close-btn" onclick="closeProfileModal()"><i class="fas fa-times"></i></button>
     </div>
     <div id="pm-content"></div>
   </div>
 </div>
 
-<!-- APP BAR -->
 <div class="app-bar">
   <div class="bar-row">
-    <div class="brand logo-click" onclick="location.reload()" title="Tap to Refresh">
+    <div class="brand">
       <div class="brand-icon"><i class="fas fa-graduation-cap"></i></div>
       <div class="brand-text">AcharyaOS<small>The Teacher's OS</small></div>
     </div>
@@ -387,10 +384,8 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   </div>
 </div>
 
-<!-- WRAP -->
 <div class="wrap">
 
-<!-- HOME -->
 <div class="page active" id="pg-home">
   <div class="install-banner" id="install-banner" style="display:none;">
     <i class="fas fa-mobile-alt"></i>
@@ -435,27 +430,27 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     <button class="quick o" onclick="openModal('diary')"><i class="fas fa-book-open"></i> <span data-t="diary">Diary</span></button>
     <button class="quick pk" onclick="openModal('marks')"><i class="fas fa-star"></i> <span data-t="marks">Marks</span></button>
   </div>
-  <div class="sec-head"><h3><i class="fas fa-chart-line"></i> <span data-t="weekly_attendance">Weekly Attendance</span></h3><span class="link blink" onclick="switchPage('reports')"><i class="fas fa-file-alt"></i> <span data-t="reports">Reports</span></span></div>
+  <div class="sec-head">
+    <h3><i class="fas fa-chart-line"></i> <span data-t="weekly_attendance">Weekly Attendance</span></h3>
+    <span class="link blink-orange" onclick="switchPage('reports')"><i class="fas fa-file-alt"></i> <span data-t="reports">Reports</span></span>
+  </div>
   <div class="card"><div class="chart-container" id="weekly-chart"></div></div>
   <div class="sec-head"><h3><i class="fas fa-clock"></i> <span data-t="recent">Recent Activity</span></h3></div>
   <div id="recent"></div>
 </div>
 
-<!-- CLASSES -->
 <div class="page" id="pg-classes">
-  <div class="sec-head"><h3><i class="fas fa-users"></i> <span data-t="my_classes">My Classes</span></h3><button class="link blink" onclick="openModal('class')"><i class="fas fa-plus"></i> <span data-t="add_class">Add Class</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-users"></i> <span data-t="my_classes">My Classes</span></h3><button class="link blink-orange" onclick="openModal('class')"><i class="fas fa-plus"></i> <span data-t="add_class">Add Class</span></button></div>
   <div id="list-classes"></div>
 </div>
 
-<!-- STUDENTS -->
 <div class="page" id="pg-students">
-  <div class="sec-head"><h3><i class="fas fa-user-graduate"></i> <span data-t="all_students">All Students</span></h3><button class="link blink" onclick="openModal('student')"><i class="fas fa-plus"></i> <span data-t="add_student">Add Student</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-user-graduate"></i> <span data-t="all_students">All Students</span></h3><button class="link blink-orange" onclick="openModal('student')"><i class="fas fa-plus"></i> <span data-t="add_student">Add Student</span></button></div>
   <div id="list-students"></div>
 </div>
 
-<!-- ATTENDANCE -->
 <div class="page" id="pg-attendance">
-  <div class="sec-head"><h3><i class="fas fa-user-check"></i> <span data-t="attendance">Attendance</span></h3><span class="link blink" onclick="switchPage('reports')"><i class="fas fa-chart-pie"></i> <span data-t="reports">Reports</span></span></div>
+  <div class="sec-head"><h3><i class="fas fa-user-check"></i> <span data-t="attendance">Attendance</span></h3><span class="link blink-orange" onclick="switchPage('reports')"><i class="fas fa-chart-pie"></i> <span data-t="reports">Reports</span></span></div>
   <div class="card mb-3">
     <div class="flex gap-2 items-center">
       <input type="date" id="att-date" class="inp" style="flex:1;" onchange="renderAttendance()">
@@ -465,107 +460,91 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <div id="list-att"></div>
 </div>
 
-<!-- DIARY -->
 <div class="page" id="pg-diary">
-  <div class="sec-head"><h3><i class="fas fa-book"></i> <span data-t="diary">Diary</span></h3><button class="link blink" onclick="openModal('diary')"><i class="fas fa-plus"></i> <span data-t="new_entry">New Entry</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-book"></i> <span data-t="diary">Diary</span></h3><button class="link blink-orange" onclick="openModal('diary')"><i class="fas fa-plus"></i> <span data-t="new_entry">New Entry</span></button></div>
   <div id="list-diary"></div>
 </div>
 
-<!-- MARKS -->
 <div class="page" id="pg-marks">
-  <div class="sec-head"><h3><i class="fas fa-star"></i> <span data-t="marks">Marks</span></h3><button class="link blink" onclick="openModal('marks')"><i class="fas fa-plus"></i> <span data-t="add_marks">Add Marks</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-star"></i> <span data-t="marks">Marks</span></h3><button class="link blink-orange" onclick="openModal('marks')"><i class="fas fa-plus"></i> <span data-t="add_marks">Add Marks</span></button></div>
   <div id="list-marks"></div>
 </div>
 
-<!-- HOMEWORK -->
 <div class="page" id="pg-homework">
-  <div class="sec-head"><h3><i class="fas fa-pencil-alt"></i> <span data-t="homework">Homework</span></h3><button class="link blink" onclick="openModal('homework')"><i class="fas fa-plus"></i> <span data-t="new_hw">New HW</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-pencil-alt"></i> <span data-t="homework">Homework</span></h3><button class="link blink-orange" onclick="openModal('homework')"><i class="fas fa-plus"></i> <span data-t="new_hw">New HW</span></button></div>
   <div id="list-hw"></div>
 </div>
 
-<!-- TIMETABLE -->
 <div class="page" id="pg-timetable">
-  <div class="sec-head"><h3><i class="fas fa-calendar-alt"></i> <span data-t="timetable">Timetable</span></h3><button class="link blink" onclick="openModal('period')"><i class="fas fa-plus"></i> <span data-t="add_period">Add Period</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-calendar-alt"></i> <span data-t="timetable">Timetable</span></h3><button class="link blink-orange" onclick="openModal('period')"><i class="fas fa-plus"></i> <span data-t="add_period">Add Period</span></button></div>
   <div class="tt-grid" id="tt-days"></div>
   <div id="list-periods"></div>
 </div>
 
-<!-- FEES -->
 <div class="page" id="pg-fees">
-  <div class="sec-head"><h3><i class="fas fa-file-invoice-dollar"></i> <span data-t="fee_tracker">Fee Tracker</span></h3><button class="link blink" onclick="openModal('fee')"><i class="fas fa-plus"></i> <span data-t="add_fee">Add Fee</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-file-invoice-dollar"></i> <span data-t="fee_tracker">Fee Tracker</span></h3><button class="link blink-orange" onclick="openModal('fee')"><i class="fas fa-plus"></i> <span data-t="add_fee">Add Fee</span></button></div>
   <div id="list-fees"></div>
 </div>
 
-<!-- EXAMS -->
 <div class="page" id="pg-exams">
-  <div class="sec-head"><h3><i class="fas fa-file-alt"></i> <span data-t="exams">Exams</span></h3><button class="link blink" onclick="openModal('exam')"><i class="fas fa-plus"></i> <span data-t="add_exam">Add Exam</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-file-alt"></i> <span data-t="exams">Exams</span></h3><button class="link blink-orange" onclick="openModal('exam')"><i class="fas fa-plus"></i> <span data-t="add_exam">Add Exam</span></button></div>
   <div id="list-exams"></div>
 </div>
 
-<!-- LESSONS -->
 <div class="page" id="pg-lessons">
-  <div class="sec-head"><h3><i class="fas fa-chalkboard"></i> <span data-t="lessons">Lesson Plans</span></h3><button class="link blink" onclick="openModal('lesson')"><i class="fas fa-plus"></i> <span data-t="add_lesson">Add Lesson</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-chalkboard"></i> <span data-t="lessons">Lesson Plans</span></h3><button class="link blink-orange" onclick="openModal('lesson')"><i class="fas fa-plus"></i> <span data-t="add_lesson">Add Lesson</span></button></div>
   <div id="list-lessons"></div>
 </div>
 
-<!-- REMINDERS -->
 <div class="page" id="pg-reminders">
-  <div class="sec-head"><h3><i class="fas fa-bell"></i> <span data-t="reminders">Reminders</span></h3><button class="link blink" onclick="openModal('reminder')"><i class="fas fa-plus"></i> <span data-t="add_reminder">Add Reminder</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-bell"></i> <span data-t="reminders">Reminders</span></h3><button class="link blink-orange" onclick="openModal('reminder')"><i class="fas fa-plus"></i> <span data-t="add_reminder">Add Reminder</span></button></div>
   <div id="list-reminders"></div>
 </div>
 
-<!-- HOLIDAYS -->
 <div class="page" id="pg-holidays">
-  <div class="sec-head"><h3><i class="fas fa-umbrella-beach"></i> <span data-t="holidays">Holidays</span></h3><button class="link blink" onclick="openModal('holiday')"><i class="fas fa-plus"></i> <span data-t="add_holiday">Add Holiday</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-umbrella-beach"></i> <span data-t="holidays">Holidays</span></h3><button class="link blink-orange" onclick="openModal('holiday')"><i class="fas fa-plus"></i> <span data-t="add_holiday">Add Holiday</span></button></div>
   <div id="list-holidays"></div>
 </div>
 
-<!-- SYLLABUS -->
 <div class="page" id="pg-syllabus">
-  <div class="sec-head"><h3><i class="fas fa-book-reader"></i> <span data-t="syllabus">Syllabus Tracker</span></h3><button class="link blink" onclick="openModal('syllabus')"><i class="fas fa-plus"></i> <span data-t="add_syllabus">Add Chapter</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-book-reader"></i> <span data-t="syllabus">Syllabus Tracker</span></h3><button class="link blink-orange" onclick="openModal('syllabus')"><i class="fas fa-plus"></i> <span data-t="add_syllabus">Add Chapter</span></button></div>
   <div id="list-syllabus"></div>
 </div>
 
-<!-- TO-DO -->
 <div class="page" id="pg-todo">
-  <div class="sec-head"><h3><i class="fas fa-tasks"></i> <span data-t="todo">To-Do List</span></h3><button class="link blink" onclick="openModal('todo')"><i class="fas fa-plus"></i> <span data-t="add_todo">Add Task</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-tasks"></i> <span data-t="todo">To-Do List</span></h3><button class="link blink-orange" onclick="openModal('todo')"><i class="fas fa-plus"></i> <span data-t="add_todo">Add Task</span></button></div>
   <div id="list-todo"></div>
 </div>
 
-<!-- SEATING -->
 <div class="page" id="pg-seating">
-  <div class="sec-head"><h3><i class="fas fa-chair"></i> <span data-t="seating">Seating Plan</span></h3><button class="link blink" onclick="openModal('seating')"><i class="fas fa-plus"></i> <span data-t="add_seat">Assign Seat</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-chair"></i> <span data-t="seating">Seating Plan</span></h3><button class="link blink-orange" onclick="openModal('seating')"><i class="fas fa-plus"></i> <span data-t="add_seat">Assign Seat</span></button></div>
   <div id="list-seating"></div>
 </div>
 
-<!-- NOTES -->
 <div class="page" id="pg-notes">
-  <div class="sec-head"><h3><i class="fas fa-sticky-note"></i> <span data-t="notes">Notes</span></h3><button class="link blink" onclick="openModal('note')"><i class="fas fa-plus"></i> <span data-t="new_note">New Note</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-sticky-note"></i> <span data-t="notes">Notes</span></h3><button class="link blink-orange" onclick="openModal('note')"><i class="fas fa-plus"></i> <span data-t="new_note">New Note</span></button></div>
   <div id="list-notes"></div>
 </div>
 
-<!-- REPORTS -->
 <div class="page" id="pg-reports">
-  <div class="sec-head"><h3><i class="fas fa-chart-bar"></i> <span data-t="reports">Reports</span></h3><button class="link blink" onclick="window.print()"><i class="fas fa-print"></i> <span data-t="print">Print</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-chart-bar"></i> <span data-t="reports">Reports</span></h3><button class="link blink-orange" onclick="window.print()"><i class="fas fa-print"></i> <span data-t="print">Print</span></button></div>
   <div class="card mb-3"><div class="card-h"><h4><i class="fas fa-user-check"></i> <span data-t="attendance_summary">Attendance Summary</span></h4></div><div id="rep-att"></div></div>
   <div class="card mb-3"><div class="card-h"><h4><i class="fas fa-star"></i> <span data-t="marks_summary">Marks Summary</span></h4></div><div id="rep-marks"></div></div>
 </div>
 
-<!-- MORE -->
 <div class="page" id="pg-more">
   <div class="sec-head"><h3><i class="fas fa-th-large"></i> <span data-t="all_features">All Features</span></h3></div>
-  <div class="more-grid" id="more-grid"></div>
+  <div id="more-acc"></div>
   <div class="sec-head"><h3><i class="fas fa-info-circle"></i> <span data-t="about">About</span></h3></div>
   <div class="card text-center" style="padding:24px 18px;">
     <div style="width:76px;height:76px;border-radius:22px;background:linear-gradient(135deg,#FF9933,#138808);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px;box-shadow:0 10px 24px rgba(255,153,51,.4);"><i class="fas fa-graduation-cap"></i></div>
-    <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;">AcharyaOS Pro</h3>
-    <p style="font-size:.78rem;color:var(--text-3);font-weight:600;">Version 8.0.0</p>
+    <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;color:var(--text);">AcharyaOS Pro</h3>
+    <p style="font-size:.78rem;color:var(--text-3);font-weight:600;">Version 9.0.0</p>
     <p style="font-size:.82rem;color:var(--text-2);margin-top:14px;line-height:1.6;" data-t="about_desc">A professional digital assistant for Indian teachers.</p>
     <p style="font-size:.72rem;color:var(--text-3);margin-top:12px;">Made with ❤️ in India 🇮🇳</p>
   </div>
 </div>
 
-<!-- SETTINGS -->
 <div class="page" id="pg-settings">
   <div class="sec-head"><h3><i class="fas fa-cog"></i> <span data-t="settings">Settings</span></h3></div>
   <div class="card">
@@ -611,7 +590,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     </div>
     <div class="set-row" onclick="showAbout()">
       <div class="set-ic"><i class="fas fa-info-circle"></i></div>
-      <div class="set-body"><h4 data-t="about">About</h4><p>Version 8.0.0</p></div>
+      <div class="set-body"><h4 data-t="about">About</h4><p>Version 9.0.0</p></div>
       <i class="fas fa-chevron-right set-arrow"></i>
     </div>
   </div>
@@ -619,10 +598,8 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 
 </div>
 
-<!-- FAB -->
 <button class="fab" onclick="smartFab()"><i class="fas fa-plus"></i></button>
 
-<!-- NAV -->
 <div class="nav">
   <button class="nav-btn active" data-page="home" onclick="switchPage('home',this)"><i class="fas fa-home"></i><span data-t="home">Home</span></button>
   <button class="nav-btn" data-page="classes" onclick="switchPage('classes',this)"><i class="fas fa-users"></i><span data-t="classes">Classes</span></button>
@@ -631,11 +608,10 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <button class="nav-btn" data-page="more" onclick="switchPage('more',this)"><i class="fas fa-th-large"></i><span data-t="more">More</span></button>
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
-  <div class="modal-inner">
+  <div class="modal-inner" id="modal-inner">
     <div class="modal-head">
-      <div><h3 id="m-title">Add</h3><p id="m-sub">Fill details and save</p></div>
+      <div><h3 id="m-title" style="color:var(--text);">Add</h3><p id="m-sub">Fill details and save</p></div>
       <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
     </div>
     <div id="m-fields"></div>
@@ -646,11 +622,10 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   </div>
 </div>
 
-<!-- DIALOG -->
 <div class="dialog" id="dialog">
   <div class="dialog-inner">
     <div class="dialog-icon" id="d-icon"><i class="fas fa-exclamation-triangle"></i></div>
-    <h3 id="d-title">Are you sure?</h3>
+    <h3 id="d-title" style="color:var(--text);">Are you sure?</h3>
     <p id="d-desc">This action cannot be undone.</p>
     <div class="modal-btns">
       <button class="btn gray" onclick="closeDialog()" data-t="cancel">Cancel</button>
@@ -659,7 +634,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   </div>
 </div>
 
-<!-- SEARCH -->
 <div class="search-overlay" id="search-ov">
   <div class="search-bar">
     <div class="search-wrap"><i class="fas fa-search"></i><input type="text" id="search-inp" class="inp" placeholder="Search..." oninput="doSearch()"></div>
@@ -668,11 +642,10 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <div class="search-results" id="search-res"></div>
 </div>
 
-<!-- TOAST -->
 <div class="toast-wrap" id="toasts"></div>
 
 <script>
-const LANGS = [
+const LANGS=[
   {code:'hi',name:'Hindi',native:'हिन्दी',num:'01'},{code:'en',name:'English',native:'English',num:'02'},
   {code:'bn',name:'Bengali',native:'বাংলা',num:'03'},{code:'mr',name:'Marathi',native:'मराठी',num:'04'},
   {code:'te',name:'Telugu',native:'తెలుగు',num:'05'},{code:'ta',name:'Tamil',native:'தமிழ்',num:'06'},
@@ -682,431 +655,525 @@ const LANGS = [
   {code:'as',name:'Assamese',native:'অসমীয়া',num:'13'},{code:'ne',name:'Nepali',native:'नेपाली',num:'14'}
 ];
 
-const T = {
-  hi:{home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'आपकी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',all_features:'सभी फीचर्स',about:'ऐप के बारे में',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',empty_exam:'कोई परीक्षा नहीं',empty_lesson:'कोई पाठ नहीं',empty_rem:'कोई रिमाइंडर नहीं',empty_hol:'कोई छुट्टी नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',mark:'उपस्थिति',subject_lbl:'विषय',fees:'फीस',fee_tracker:'फीस ट्रैकर',add_fee:'फीस जोड़ें',paid:'जमा',unpaid:'बकाया',month:'महीना',amount:'रकम',status:'स्थिति',student_profile:'स्टूडेंट प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'मार्क्स हिस्ट्री',install_app:'ऐप इंस्टॉल करें',install_desc:'होम स्क्रीन पर जोड़ें',install_success:'ऐप इंस्टॉल हो गया!',install_already:'ऐप पहले से इंस्टॉल है या ब्राउज़र सपोर्ट नहीं करता।',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lessons:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',syllabus:'पाठ्यक्रम ट्रैकर',add_syllabus:'अध्याय जोड़ें',chapter:'अध्याय',completed:'पूरा हुआ',pending:'बाकी',todo:'कार्य सूची',add_todo:'कार्य जोड़ें',task:'कार्य',priority:'प्राथमिकता',high:'उच्च',medium:'मध्यम',low:'निम्न',seating:'बैठने की व्यवस्था',add_seat:'सीट असाइन करें',seat_no:'सीट नंबर',row:'पंक्ति',col:'स्तंभ'},
-  en:{home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',all_features:'All Features',about:'About',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap the button above to add your first class.',empty_students:'No Students',empty_students_d:'Tap the button above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',empty_exam:'No Exams',empty_lesson:'No Lessons',empty_rem:'No Reminders',empty_hol:'No Holidays',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',mark:'Mark',subject_lbl:'Subject',fees:'Fees',fee_tracker:'Fee Tracker',add_fee:'Add Fee',paid:'Paid',unpaid:'Unpaid',month:'Month',amount:'Amount',status:'Status',student_profile:'Student Profile',attendance_pct:'Overall Attendance',marks_history:'Marks History',install_app:'Install App',install_desc:'Add to home screen',install_success:'App installed!',install_already:'App already installed or not supported.',exams:'Exams',add_exam:'Add Exam',lessons:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',syllabus:'Syllabus Tracker',add_syllabus:'Add Chapter',chapter:'Chapter',completed:'Completed',pending:'Pending',todo:'To-Do List',add_todo:'Add Task',task:'Task',priority:'Priority',high:'High',medium:'Medium',low:'Low',seating:'Seating Plan',add_seat:'Assign Seat',seat_no:'Seat No.',row:'Row',col:'Column'}
+const T={
+  hi:{home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'मेरी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',all_features:'सभी फीचर्स',about:'ऐप के बारे में',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',empty_exam:'कोई परीक्षा नहीं',empty_lesson:'कोई पाठ नहीं',empty_rem:'कोई रिमाइंडर नहीं',empty_hol:'कोई छुट्टी नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',fees:'फीस',fee_tracker:'फीस ट्रैकर',add_fee:'फीस जोड़ें',paid:'जमा',unpaid:'बकाया',month:'महीना',amount:'रकम',status:'स्थिति',student_profile:'स्टूडेंट प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'मार्क्स हिस्ट्री',install_app:'ऐप इंस्टॉल',install_desc:'होम स्क्रीन पर जोड़ें',install_success:'ऐप इंस्टॉल हो गया!',install_already:'ऐप पहले से इंस्टॉल है या ब्राउज़र सपोर्ट नहीं करता।',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lessons:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',syllabus:'पाठ्यक्रम ट्रैकर',add_syllabus:'अध्याय जोड़ें',chapter:'अध्याय',completed:'पूरा हुआ',pending:'बाकी',todo:'कार्य सूची',add_todo:'कार्य जोड़ें',task:'कार्य',priority:'प्राथमिकता',high:'उच्च',medium:'मध्यम',low:'निम्न',seating:'बैठने की व्यवस्था',add_seat:'सीट असाइन करें',seat_no:'सीट नंबर',row:'पंक्ति',col:'स्तंभ',tap_expand:'देखने के लिए दबाएँ'},
+  en:{home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',all_features:'All Features',about:'About',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap above to add your first class.',empty_students:'No Students',empty_students_d:'Tap above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',empty_exam:'No Exams',empty_lesson:'No Lessons',empty_rem:'No Reminders',empty_hol:'No Holidays',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',fees:'Fees',fee_tracker:'Fee Tracker',add_fee:'Add Fee',paid:'Paid',unpaid:'Unpaid',month:'Month',amount:'Amount',status:'Status',student_profile:'Student Profile',attendance_pct:'Overall Attendance',marks_history:'Marks History',install_app:'Install App',install_desc:'Add to home screen',install_success:'App installed!',install_already:'App already installed or not supported.',exams:'Exams',add_exam:'Add Exam',lessons:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',syllabus:'Syllabus Tracker',add_syllabus:'Add Chapter',chapter:'Chapter',completed:'Completed',pending:'Pending',todo:'To-Do List',add_todo:'Add Task',task:'Task',priority:'Priority',high:'High',medium:'Medium',low:'Low',seating:'Seating Plan',add_seat:'Assign Seat',seat_no:'Seat No.',row:'Row',col:'Column',tap_expand:'Tap to view'}
 };
 
-let LANG = localStorage.getItem('aos_lang') || 'hi';
-function t(key) { return (T[LANG] && T[LANG][key]) || T.hi[key] || T.en[key] || key; }
+let LANG=localStorage.getItem('aos_lang')||'hi';
+function t(k){return (T[LANG]&&T[LANG][k])||T.hi[k]||T.en[k]||k;}
+function safeParse(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f;}catch(e){return f;}}
 
-function safeParse(key, fallback) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch(e) { return fallback; } }
-
-let S = {
-  profile: safeParse('aos_profile',{name:'',school:''}), classes: safeParse('aos_classes',[]), students: safeParse('aos_students',[]),
-  attendance: safeParse('aos_att',{}), diary: safeParse('aos_diary',[]), marks: safeParse('aos_marks',[]),
-  homework: safeParse('aos_hw',[]), periods: safeParse('aos_periods',[]), notes: safeParse('aos_notes',[]),
-  fees: safeParse('aos_fees',[]), exams: safeParse('aos_exams',[]), lessons: safeParse('aos_lessons',[]),
-  reminders: safeParse('aos_reminders',[]), holidays: safeParse('aos_holidays',[]), syllabus: safeParse('aos_syllabus',[]),
-  todos: safeParse('aos_todos',[]), seating: safeParse('aos_seating',[])
+let S={
+  profile:safeParse('aos_profile',{name:'',school:''}),classes:safeParse('aos_classes',[]),students:safeParse('aos_students',[]),
+  attendance:safeParse('aos_att',{}),diary:safeParse('aos_diary',[]),marks:safeParse('aos_marks',[]),
+  homework:safeParse('aos_hw',[]),periods:safeParse('aos_periods',[]),notes:safeParse('aos_notes',[]),
+  fees:safeParse('aos_fees',[]),exams:safeParse('aos_exams',[]),lessons:safeParse('aos_lessons',[]),
+  reminders:safeParse('aos_reminders',[]),holidays:safeParse('aos_holidays',[]),syllabus:safeParse('aos_syllabus',[]),
+  todos:safeParse('aos_todos',[]),seating:safeParse('aos_seating',[])
 };
-function save() { Object.keys(S).forEach(k => localStorage.setItem('aos_' + k, JSON.stringify(S[k]))); }
+function save(){Object.keys(S).forEach(k=>localStorage.setItem('aos_'+k,JSON.stringify(S[k])));}
 
-let currentModal = 'class', currentPage = 'home', selectedDay = 'Monday', deferredPrompt = null;
-function $(id) { return document.getElementById(id); }
-function val(id) { const e = $(id); return e ? e.value.trim() : ''; }
+let currentModal='class',currentPage='home',selectedDay='Monday',deferredPrompt=null;
+function $(id){return document.getElementById(id);}
+function val(id){const e=$(id);return e?e.value.trim():'';}
 
-window.addEventListener('beforeinstallprompt',(e) => { e.preventDefault(); deferredPrompt = e; const b = $('install-banner'); if (b) b.style.display = 'flex'; });
-function installApp() {
-  if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.then((r) => { if (r.outcome === 'accepted') toast(t('install_success'),'','ok'); deferredPrompt = null; const b = $('install-banner'); if (b) b.style.display = 'none'; }); }
-  else toast(t('install_app'), t('install_already'), 'info');
+window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;const b=$('install-banner');if(b)b.style.display='flex';});
+function installApp(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then((r)=>{if(r.outcome==='accepted')toast(t('install_success'),'','ok');deferredPrompt=null;const b=$('install-banner');if(b)b.style.display='none';});}else toast(t('install_app'),t('install_already'),'info');}
+
+function toast(title,msg,type){
+  type=type||'info';const icons={ok:'fa-check',err:'fa-times',warn:'fa-exclamation',info:'fa-info'};
+  const e=document.createElement('div');e.className='toast '+type;
+  e.innerHTML=`<div class="toast-icon"><i class="fas ${icons[type]}"></i></div><div class="toast-body"><h5>${title}</h5>${msg?'<p>'+msg+'</p>':''}</div>`;
+  $('toasts').appendChild(e);setTimeout(()=>{e.classList.add('out');setTimeout(()=>e.remove(),300);},2600);
 }
 
-function toast(title, msg, type) {
-  type = type || 'info'; const icons = {ok:'fa-check',err:'fa-times',warn:'fa-exclamation',info:'fa-info'};
-  const e = document.createElement('div'); e.className = 'toast ' + type;
-  e.innerHTML = `<div class="toast-icon"><i class="fas ${icons[type]}"></i></div><div class="toast-body"><h5>${title}</h5>${msg ? '<p>'+msg+'</p>' : ''}</div>`;
-  $('toasts').appendChild(e); setTimeout(() => { e.classList.add('out'); setTimeout(() => e.remove(), 300); }, 2600);
+let dCB=null;
+function confirmD(title,desc,cb,type){
+  type=type||'err';const icons={err:'fa-exclamation-triangle',warn:'fa-exclamation-circle',info:'fa-question-circle'};
+  $('d-title').innerText=title;$('d-desc').innerText=desc;
+  $('d-icon').className='dialog-icon '+(type==='warn'?'warn':type==='info'?'info':'');
+  $('d-icon').innerHTML=`<i class="fas ${icons[type]}"></i>`;dCB=cb;$('dialog').classList.add('open');
 }
+function closeDialog(){$('dialog').classList.remove('open');dCB=null;}
+$('d-confirm').addEventListener('click',()=>{if(dCB)dCB();closeDialog();});
 
-let dCB = null;
-function confirmD(title, desc, cb, type) {
-  type = type || 'err'; const icons = {err:'fa-exclamation-triangle',warn:'fa-exclamation-circle',info:'fa-question-circle'};
-  $('d-title').innerText = title; $('d-desc').innerText = desc;
-  $('d-icon').className = 'dialog-icon ' + (type === 'warn' ? 'warn' : type === 'info' ? 'info' : '');
-  $('d-icon').innerHTML = `<i class="fas ${icons[type]}"></i>`; dCB = cb; $('dialog').classList.add('open');
-}
-function closeDialog() { $('dialog').classList.remove('open'); dCB = null; }
-$('d-confirm').addEventListener('click', () => { if (dCB) dCB(); closeDialog(); });
-
-function renderLangList() {
-  $('lang-list').innerHTML = LANGS.map(l => `
-    <div class="li" style="cursor:pointer; ${l.code === LANG ? 'border-color:var(--primary);background:rgba(255,153,51,.05);' : ''}" onclick="selectLang('${l.code}')">
-      <div class="li-icon" style="width:40px;height:40px;font-size:.75rem;font-weight:800;">${l.num}</div>
-      <div class="li-body"><h4>${l.native}</h4><p>${l.name}</p></div>
-      ${l.code === LANG ? '<i class="fas fa-check-circle" style="color:var(--primary);"></i>' : ''}
+function renderLangList(){
+  $('lang-list').innerHTML=LANGS.map(l=>`
+    <div class="lang-card ${l.code===LANG?'on':''}" onclick="selectLang('${l.code}')">
+      <div class="lang-num">${l.num}</div>
+      <div><div class="lang-native">${l.native}</div><div class="lang-en">${l.name}</div></div>
+      ${l.code===LANG?'<i class="fas fa-check-circle" style="color:var(--primary);margin-left:auto;"></i>':''}
     </div>`).join('');
 }
-function openLangModal() { renderLangList(); $('lang-modal').classList.add('open'); }
-function closeLangModal() { $('lang-modal').classList.remove('open'); }
-function selectLang(code) { LANG = code; localStorage.setItem('aos_lang', code); closeLangModal(); applyI18n(); toast(t('saved'), LANGS.find(l => l.code === code).native, 'ok'); }
+function openLangModal(){renderLangList();$('lang-modal').classList.add('open');}
+function closeLangModal(){$('lang-modal').classList.remove('open');}
+function selectLang(code){LANG=code;localStorage.setItem('aos_lang',code);closeLangModal();applyI18n();toast(t('saved'),LANGS.find(l=>l.code===code).native,'ok');}
 
-function applyI18n() {
-  document.querySelectorAll('[data-t]').forEach(e => { e.innerText = t(e.dataset.t); });
-  document.querySelectorAll('.nav-btn').forEach(b => { const k = b.dataset.page === 'home' ? 'home' : b.dataset.page === 'classes' ? 'classes' : b.dataset.page === 'attendance' ? 'attend' : b.dataset.page === 'diary' ? 'diary' : 'more'; const s = b.querySelector('span'); if (s) s.innerText = t(k); });
-  $('lang-sub').innerText = LANGS.find(l => l.code === LANG).native;
-  updateGreet(); renderAll();
+function applyI18n(){
+  document.querySelectorAll('[data-t]').forEach(e=>{e.innerText=t(e.dataset.t);});
+  document.querySelectorAll('.nav-btn').forEach(b=>{const k=b.dataset.page==='home'?'home':b.dataset.page==='classes'?'classes':b.dataset.page==='attendance'?'attend':b.dataset.page==='diary'?'diary':'more';const s=b.querySelector('span');if(s)s.innerText=t(k);});
+  const ls=LANGS.find(l=>l.code===LANG);if(ls)$('lang-sub').innerText=ls.native;
+  updateGreet();renderAll();
 }
 
-function toggleTheme() {
-  const h = document.documentElement; const b = $('theme-btn');
-  if (h.getAttribute('data-theme') === 'dark') { h.removeAttribute('data-theme'); b.innerHTML = '<i class="fas fa-moon"></i>'; localStorage.setItem('aos_theme','light'); }
-  else { h.setAttribute('data-theme','dark'); b.innerHTML = '<i class="fas fa-sun"></i>'; localStorage.setItem('aos_theme','dark'); }
+function toggleTheme(){
+  const h=document.documentElement;const b=$('theme-btn');
+  if(h.getAttribute('data-theme')==='dark'){h.removeAttribute('data-theme');b.innerHTML='<i class="fas fa-moon"></i>';localStorage.setItem('aos_theme','light');}
+  else{h.setAttribute('data-theme','dark');b.innerHTML='<i class="fas fa-sun"></i>';localStorage.setItem('aos_theme','dark');}
 }
-if (localStorage.getItem('aos_theme') === 'dark') { document.documentElement.setAttribute('data-theme','dark'); $('theme-btn').innerHTML = '<i class="fas fa-sun"></i>'; }
+if(localStorage.getItem('aos_theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');$('theme-btn').innerHTML='<i class="fas fa-sun"></i>';}
 
-function switchPage(p, btn) {
-  currentPage = p;
-  document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
-  const e = $('pg-' + p); if (e) e.classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  else { const nb = document.querySelector(`.nav-btn[data-page="${p}"]`); if (nb) nb.classList.add('active'); }
-  window.scrollTo({ top:0, behavior:'smooth' }); renderAll();
+function switchPage(p,btn){
+  currentPage=p;
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  const e=$('pg-'+p);if(e)e.classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  else{const nb=document.querySelector(`.nav-btn[data-page="${p}"]`);if(nb)nb.classList.add('active');}
+  window.scrollTo({top:0,behavior:'smooth'});renderAll();
 }
-function smartFab() {
-  const map = {home:'class',classes:'class',students:'student',attendance:'student',diary:'diary',marks:'marks',homework:'homework',timetable:'period',fees:'fee',exams:'exam',lessons:'lesson',reminders:'reminder',holidays:'holiday',notes:'note',syllabus:'syllabus',todo:'todo',seating:'seating'};
-  openModal(map[currentPage] || 'class');
+function smartFab(){
+  const map={home:'class',classes:'class',students:'student',attendance:'student',diary:'diary',marks:'marks',homework:'homework',timetable:'period',fees:'fee',exams:'exam',lessons:'lesson',reminders:'reminder',holidays:'holiday',notes:'note',syllabus:'syllabus',todo:'todo',seating:'seating'};
+  openModal(map[currentPage]||'class');
 }
 
-function openStudentProfile(id) {
-  const s = S.students.find(x => x.id === id); if (!s) return;
-  let totalDays = 0, presentDays = 0;
-  Object.values(S.attendance).forEach(day => { if (day[s.id]) { totalDays++; if (day[s.id] === 'P') presentDays++; } });
-  const attPct = totalDays > 0 ? Math.round((presentDays / totalDays) * 100) : 0;
-  const attCls = attPct >= 75 ? 'g' : attPct >= 50 ? 'o' : 'r';
-  const studentMarks = S.marks.filter(m => m.name === s.name);
-  $('pm-name').innerText = s.name; $('pm-sub').innerText = `${t('roll')}: ${s.roll || '-'} • ${s.cls || ''}`;
-  let marksHtml = studentMarks.length === 0 ? `<p style="font-size:.8rem;color:var(--text-3);text-align:center;padding:10px 0;">${t('marks_history')}: —</p>` :
-    studentMarks.map(m => { const pct = Math.round((m.score / m.total) * 100); const cls = pct >= 75 ? 'g' : pct >= 40 ? 'o' : 'r';
-      return `<div class="li" style="margin-bottom:8px;padding:10px;"><div class="li-body"><h4>${m.exam || t('exam')} <span style="font-size:.7rem;font-weight:500;color:var(--text-3);">${m.subject || ''}</span></h4><div class="li-meta"><span class="li-chip ${cls}">${m.score}/${m.total} • ${pct}%</span></div></div></div>`; }).join('');
-  $('pm-content').innerHTML = `
+function openStudentProfile(id){
+  const s=S.students.find(x=>x.id===id);if(!s)return;
+  let td=0,pd=0;
+  Object.values(S.attendance).forEach(day=>{if(day[s.id]){td++;if(day[s.id]==='P')pd++;}});
+  const ap=td>0?Math.round((pd/td)*100):0;const ac=ap>=75?'g':ap>=50?'o':'r';
+  const sm=S.marks.filter(m=>m.name===s.name);
+  $('pm-name').innerText=s.name;$('pm-sub').innerText=`${t('roll')}: ${s.roll||'-'} • ${s.cls||''}`;
+  let mh=sm.length===0?`<p style="font-size:.8rem;color:var(--text-3);text-align:center;padding:10px 0;">${t('marks_history')}: —</p>`:
+    sm.map(m=>{const pct=Math.round((m.score/m.total)*100);const cls=pct>=75?'g':pct>=40?'o':'r';
+      return `<div class="li" style="margin-bottom:8px;padding:10px;"><div class="li-body"><h4>${m.exam||t('exam')} <span style="font-size:.7rem;font-weight:500;color:var(--text-3);">${m.subject||''}</span></h4><div class="li-meta"><span class="li-chip ${cls}">${m.score}/${m.total} • ${pct}%</span></div></div></div>`;}).join('');
+  $('pm-content').innerHTML=`
     <div class="card" style="margin-bottom:14px;background:var(--bg-2);">
-      <div class="flex justify-between items-center mb-2"><span style="font-size:.8rem;font-weight:700;color:var(--text-2);">${t('attendance_pct')}</span><span style="font-size:1.1rem;font-weight:800;color:var(--${attCls === 'g' ? 'success' : attCls === 'o' ? 'warning' : 'danger'});">${attPct}%</span></div>
-      <div class="progress"><div class="progress-inner ${attCls}" style="width:${attPct}%"></div></div>
-      <p style="font-size:.68rem;color:var(--text-3);margin-top:6px;">${presentDays} / ${totalDays} days</p>
+      <div class="flex justify-between items-center mb-2"><span style="font-size:.8rem;font-weight:700;color:var(--text-2);">${t('attendance_pct')}</span><span style="font-size:1.1rem;font-weight:800;color:var(--${ac==='g'?'green':ac==='o'?'primary':'danger'});">${ap}%</span></div>
+      <div class="progress"><div class="progress-inner ${ac}" style="width:${ap}%"></div></div>
+      <p style="font-size:.68rem;color:var(--text-3);margin-top:6px;">${pd} / ${td} days</p>
     </div>
     <div class="card" style="margin-bottom:14px;background:var(--bg-2);">
       <div class="flex justify-between items-center">
-        <div><p style="font-size:.68rem;color:var(--text-3);font-weight:700;">${t('phone')}</p><p style="font-size:.85rem;font-weight:700;">${s.phone || '—'}</p></div>
-        ${s.phone ? `<a href="https://wa.me/91${s.phone}" target="_blank" class="btn g sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>` : ''}
+        <div><p style="font-size:.68rem;color:var(--text-3);font-weight:700;">${t('phone')}</p><p style="font-size:.85rem;font-weight:700;color:var(--text);">${s.phone||'—'}</p></div>
+        ${s.phone?`<a href="https://wa.me/91${s.phone}" target="_blank" class="btn g sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>`:''}
       </div>
     </div>
-    <div class="sec-head"><h3><i class="fas fa-star"></i> ${t('marks_history')}</h3></div>${marksHtml}`;
+    <div class="sec-head"><h3><i class="fas fa-star"></i> ${t('marks_history')}</h3></div>${mh}`;
   $('profile-modal').classList.add('open');
 }
-function closeProfileModal() { $('profile-modal').classList.remove('open'); }
+function closeProfileModal(){$('profile-modal').classList.remove('open');}
 
-function openModal(type) {
-  currentModal = type; const fields = $('m-fields'); let html = ''; const tt = (key) => t(key);
-  const titleMap = {class:'add_class',student:'add_student',diary:'new_entry',marks:'add_marks',homework:'new_hw',period:'add_period',note:'new_note',profile:'profile',fee:'add_fee',exam:'add_exam',lesson:'add_lesson',reminder:'add_reminder',holiday:'add_holiday',syllabus:'add_syllabus',todo:'add_todo',seating:'add_seat'};
-  $('m-title').innerText = tt(titleMap[type] || 'add');
+function openModal(type){
+  currentModal=type;const fields=$('m-fields');let html='';const tt=(key)=>t(key);
+  const titleMap={class:'add_class',student:'add_student',diary:'new_entry',marks:'add_marks',homework:'new_hw',period:'add_period',note:'new_note',profile:'profile',fee:'add_fee',exam:'add_exam',lesson:'add_lesson',reminder:'add_reminder',holiday:'add_holiday',syllabus:'add_syllabus',todo:'add_todo',seating:'add_seat'};
+  $('m-title').innerText=tt(titleMap[type]||'add');
 
-  if (type === 'class') html = `<div class="field"><label>${tt('name')} <span class="req">*</span></label><input type="text" id="f-name" class="inp" placeholder="Class 10 - A"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp" placeholder="Mathematics"></div><div class="field"><label>${tt('room')}</label><input type="text" id="f-room" class="inp" placeholder="Room 204"></div>`;
-  else if (type === 'student') { const opts = S.classes.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
-    html = `<div class="field"><label>${tt('name')} <span class="req">*</span></label><input type="text" id="f-name" class="inp" placeholder="Rahul Sharma"></div><div class="field"><label>${tt('roll')}</label><input type="text" id="f-roll" class="inp" placeholder="01"></div><div class="field"><label>${tt('select_class')}</label><select id="f-cls" class="sel"><option value="">-- ${tt('select_class')} --</option>${opts}</select></div><div class="field"><label>${tt('phone')}</label><input type="tel" id="f-ph" class="inp" placeholder="9876543210"></div>`; }
-  else if (type === 'diary') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 5 - Trigonometry"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa" placeholder="Today's topic..."></textarea></div><div class="field"><label>${tt('hw')}</label><input type="text" id="f-hw" class="inp" placeholder="Exercise 5.2 Q1-10"></div>`;
-  else if (type === 'marks') { const opts = S.students.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
-    html = `<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${opts}</select></div><div class="field"><label>${tt('exam')}</label><input type="text" id="f-exam" class="inp" placeholder="Unit Test 1"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp" placeholder="Maths"></div><div class="grid-2"><div class="field"><label>${tt('score')} <span class="req">*</span></label><input type="number" id="f-score" class="inp" placeholder="85"></div><div class="field"><label>${tt('total')}</label><input type="number" id="f-total" class="inp" placeholder="100"></div></div>`; }
-  else if (type === 'homework') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Maths Worksheet 5"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div><div class="grid-2"><div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp"></div><div class="field"><label>${tt('due')}</label><input type="date" id="f-due" class="inp"></div></div>`;
-  else if (type === 'period') html = `<div class="field"><label>${tt('day')}</label><select id="f-day" class="sel"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select></div><div class="grid-2"><div class="field"><label>${tt('time')} <span class="req">*</span></label><input type="text" id="f-time" class="inp" placeholder="09:00"></div><div class="field"><label>${tt('subject')} <span class="req">*</span></label><input type="text" id="f-sub" class="inp" placeholder="Maths"></div></div><div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp" placeholder="Class 10 - A"></div>`;
-  else if (type === 'note') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>`;
-  else if (type === 'profile') html = `<div class="field"><label>${tt('name')}</label><input type="text" id="f-name" class="inp" value="${S.profile.name}" placeholder="Your Name"></div><div class="field"><label>${tt('school')}</label><input type="text" id="f-school" class="inp" value="${S.profile.school}" placeholder="School Name"></div>`;
-  else if (type === 'fee') { const opts = S.students.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
-    html = `<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${opts}</select></div><div class="grid-2"><div class="field"><label>${tt('month')} <span class="req">*</span></label><input type="month" id="f-month" class="inp" value="${new Date().toISOString().slice(0,7)}"></div><div class="field"><label>${tt('amount')} <span class="req">*</span></label><input type="number" id="f-amount" class="inp" placeholder="500"></div></div><div class="field"><label>${tt('status')}</label><select id="f-status" class="sel"><option value="Paid">${tt('paid')}</option><option value="Unpaid">${tt('unpaid')}</option></select></div>`; }
-  else if (type === 'exam') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Half Yearly Exam"></div><div class="grid-2"><div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp"></div></div><div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp"></div>`;
-  else if (type === 'lesson') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 5 - Trigonometry"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa" placeholder="Objectives, resources, activities..."></textarea></div>`;
-  else if (type === 'reminder') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Parent-Teacher Meeting"></div><div class="field"><label>${tt('date')}</label><input type="datetime-local" id="f-date" class="inp"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>`;
-  else if (type === 'holiday') html = `<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Independence Day"></div><div class="grid-2"><div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div><div class="field"><label>To</label><input type="date" id="f-date2" class="inp"></div></div>`;
-  else if (type === 'syllabus') html = `<div class="field"><label>${tt('subject')} <span class="req">*</span></label><input type="text" id="f-sub" class="inp" placeholder="Mathematics"></div><div class="field"><label>${tt('chapter')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 1: Real Numbers"></div><div class="grid-2"><div class="field"><label>Total</label><input type="number" id="f-total" class="inp" value="1"></div><div class="field"><label>${tt('completed')}</label><input type="number" id="f-done" class="inp" value="0"></div></div>`;
-  else if (type === 'todo') html = `<div class="field"><label>${tt('task')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Check homework copies"></div><div class="field"><label>${tt('priority')}</label><select id="f-priority" class="sel"><option value="High">${tt('high')}</option><option value="Medium">${tt('medium')}</option><option value="Low">${tt('low')}</option></select></div><div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div>`;
-  else if (type === 'seating') { const opts = S.students.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
-    html = `<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${opts}</select></div><div class="grid-2"><div class="field"><label>${tt('row')}</label><input type="number" id="f-row" class="inp" placeholder="1"></div><div class="field"><label>${tt('col')}</label><input type="number" id="f-col" class="inp" placeholder="1"></div></div>`; }
-  fields.innerHTML = html; $('modal').classList.add('open');
-  setTimeout(() => { const f = fields.querySelector('input,select,textarea'); if (f) f.focus(); }, 250);
+  if(type==='class')html=`<div class="field"><label>${tt('name')} <span class="req">*</span></label><input type="text" id="f-name" class="inp" placeholder="Class 10 - A"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp" placeholder="Mathematics"></div><div class="field"><label>${tt('room')}</label><input type="text" id="f-room" class="inp" placeholder="Room 204"></div>`;
+  else if(type==='student'){const o=S.classes.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');html=`<div class="field"><label>${tt('name')} <span class="req">*</span></label><input type="text" id="f-name" class="inp" placeholder="Rahul Sharma"></div><div class="field"><label>${tt('roll')}</label><input type="text" id="f-roll" class="inp" placeholder="01"></div><div class="field"><label>${tt('select_class')}</label><select id="f-cls" class="sel"><option value="">-- ${tt('select_class')} --</option>${o}</select></div><div class="field"><label>${tt('phone')}</label><input type="tel" id="f-ph" class="inp" placeholder="9876543210"></div>`;}
+  else if(type==='diary')html=`<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 5 - Trigonometry"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div><div class="field"><label>${tt('hw')}</label><input type="text" id="f-hw" class="inp" placeholder="Exercise 5.2 Q1-10"></div>`;
+  else if(type==='marks'){const o=S.students.map(s=>`<option value="${s.name}">${s.name}</option>`).join('');html=`<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${o}</select></div><div class="field"><label>${tt('exam')}</label><input type="text" id="f-exam" class="inp" placeholder="Unit Test 1"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp" placeholder="Maths"></div><div class="grid-2"><div class="field"><label>${tt('score')} <span class="req">*</span></label><input type="number" id="f-score" class="inp" placeholder="85"></div><div class="field"><label>${tt('total')}</label><input type="number" id="f-total" class="inp" placeholder="100"></div></div>`;}
+  else if(type==='homework')html=`<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Maths Worksheet 5"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div><div class="grid-2"><div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp"></div><div class="field"><label>${tt('due')}</label><input type="date" id="f-due" class="inp"></div></div>`;
+  else if(type==='period')html=`<div class="field"><label>${tt('day')}</label><select id="f-day" class="sel"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select></div><div class="grid-2"><div class="field"><label>${tt('time')} <span class="req">*</span></label><input type="text" id="f-time" class="inp" placeholder="09:00"></div><div class="field"><label>${tt('subject')} <span class="req">*</span></label><input type="text" id="f-sub" class="inp" placeholder="Maths"></div></div><div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp" placeholder="Class 10 - A"></div>`;
+  else if(type==='note')html=`<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>`;
+  else if(type==='profile')html=`<div class="field"><label>${tt('name')}</label><input type="text" id="f-name" class="inp" value="${S.profile.name}" placeholder="Your Name"></div><div class="field"><label>${tt('school')}</label><input type="text" id="f-school" class="inp" value="${S.profile.school}" placeholder="School Name"></div>`;
+  else if(type==='fee'){const o=S.students.map(s=>`<option value="${s.name}">${s.name}</option>`).join('');html=`<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${o}</select></div><div class="grid-2"><div class="field"><label>${tt('month')} <span class="req">*</span></label><input type="month" id="f-month" class="inp" value="${new Date().toISOString().slice(0,7)}"></div><div class="field"><label>${tt('amount')} <span class="req">*</span></label><input type="number" id="f-amount" class="inp" placeholder="500"></div></div><div class="field"><label>${tt('status')}</label><select id="f-status" class="sel"><option value="Paid">${tt('paid')}</option><option value="Unpaid">${tt('unpaid')}</option></select></div>`;}
+  else if(type==='exam')html=`<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Half Yearly Exam"></div><div class="grid-2"><div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp"></div></div><div class="field"><label>${tt('select_class')}</label><input type="text" id="f-cls" class="inp"></div>`;
+  else if(type==='lesson')html=`<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 5 - Trigonometry"></div><div class="field"><label>${tt('subject')}</label><input type="text" id="f-sub" class="inp"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>`;
+  else if(type==='reminder')html=`<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Parent-Teacher Meeting"></div><div class="field"><label>${tt('date')}</label><input type="datetime-local" id="f-date" class="inp"></div><div class="field"><label>${tt('desc')}</label><textarea id="f-desc" class="txa"></textarea></div>`;
+  else if(type==='holiday')html=`<div class="field"><label>${tt('title')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Independence Day"></div><div class="grid-2"><div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div><div class="field"><label>To</label><input type="date" id="f-date2" class="inp"></div></div>`;
+  else if(type==='syllabus')html=`<div class="field"><label>${tt('subject')} <span class="req">*</span></label><input type="text" id="f-sub" class="inp" placeholder="Mathematics"></div><div class="field"><label>${tt('chapter')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Chapter 1: Real Numbers"></div><div class="grid-2"><div class="field"><label>Total</label><input type="number" id="f-total" class="inp" value="1"></div><div class="field"><label>${tt('completed')}</label><input type="number" id="f-done" class="inp" value="0"></div></div>`;
+  else if(type==='todo')html=`<div class="field"><label>${tt('task')} <span class="req">*</span></label><input type="text" id="f-title" class="inp" placeholder="Check homework copies"></div><div class="field"><label>${tt('priority')}</label><select id="f-priority" class="sel"><option value="High">${tt('high')}</option><option value="Medium">${tt('medium')}</option><option value="Low">${tt('low')}</option></select></div><div class="field"><label>${tt('date')}</label><input type="date" id="f-date" class="inp"></div>`;
+  else if(type==='seating'){const o=S.students.map(s=>`<option value="${s.name}">${s.name}</option>`).join('');html=`<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${o}</select></div><div class="grid-2"><div class="field"><label>${tt('row')}</label><input type="number" id="f-row" class="inp" placeholder="1"></div><div class="field"><label>${tt('col')}</label><input type="number" id="f-col" class="inp" placeholder="1"></div></div>`;}
+  fields.innerHTML=html;$('modal').classList.add('open');
+  setTimeout(()=>{const f=fields.querySelector('input,select,textarea');if(f)f.focus();},250);
 }
-function closeModal() { $('modal').classList.remove('open'); }
+function closeModal(){$('modal').classList.remove('open');}
 
-function saveData() {
-  const v = val;
-  if (currentModal === 'class') { if (!v('f-name')) return toast(t('fill_required'),'','err'); S.classes.push({id:Date.now(),name:v('f-name'),subject:v('f-sub'),room:v('f-room')}); toast(t('saved'),v('f-name'),'ok'); }
-  else if (currentModal === 'student') { if (!v('f-name')) return toast(t('fill_required'),'','err'); S.students.push({id:Date.now(),name:v('f-name'),roll:v('f-roll'),cls:v('f-cls'),phone:v('f-ph')}); toast(t('saved'),v('f-name'),'ok'); }
-  else if (currentModal === 'diary') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.diary.unshift({id:Date.now(),title:v('f-title'),desc:v('f-desc'),hw:v('f-hw'),date:new Date().toLocaleDateString()}); toast(t('saved'),v('f-title'),'ok'); }
-  else if (currentModal === 'marks') { if (!v('f-name') || !v('f-score')) return toast(t('fill_required'),'','err'); S.marks.unshift({id:Date.now(),name:v('f-name'),exam:v('f-exam'),subject:v('f-sub'),score:parseInt(v('f-score')),total:parseInt(v('f-total')) || 100}); toast(t('saved'),v('f-name'),'ok'); }
-  else if (currentModal === 'homework') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.homework.unshift({id:Date.now(),title:v('f-title'),desc:v('f-desc'),cls:v('f-cls'),due:v('f-due'),done:false}); toast(t('saved'),v('f-title'),'ok'); }
-  else if (currentModal === 'period') { if (!v('f-sub') || !v('f-time')) return toast(t('fill_required'),'','err'); S.periods.push({id:Date.now(),day:v('f-day'),time:v('f-time'),sub:v('f-sub'),cls:v('f-cls')}); toast(t('saved'),v('f-sub'),'ok'); }
-  else if (currentModal === 'note') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.notes.unshift({id:Date.now(),title:v('f-title'),desc:v('f-desc'),date:new Date().toLocaleDateString()}); toast(t('saved'),v('f-title'),'ok'); }
-  else if (currentModal === 'fee') { if (!v('f-name') || !v('f-amount')) return toast(t('fill_required'),'','err'); S.fees.unshift({id:Date.now(),name:v('f-name'),month:v('f-month'),amount:parseInt(v('f-amount')),status:v('f-status')}); toast(t('saved'),v('f-name'),'ok'); }
-  else if (currentModal === 'exam') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.exams.unshift({id:Date.now(),title:v('f-title'),date:v('f-date'),sub:v('f-sub'),cls:v('f-cls')}); toast(t('saved'),v('f-title'),'ok'); }
-  else if (currentModal === 'lesson') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.lessons.unshift({id:Date.now(),title:v('f-title'),sub:v('f-sub'),desc:v('f-desc'),date:new Date().toLocaleDateString()}); toast(t('saved'),v('f-title'),'ok'); }
-  else if (currentModal === 'reminder') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.reminders.unshift({id:Date.now(),title:v('f-title'),date:v('f-date'),desc:v('f-desc')}); toast(t('saved'),v('f-title'),'ok'); }
-  else if (currentModal === 'holiday') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.holidays.unshift({id:Date.now(),title:v('f-title'),date:v('f-date'),date2:v('f-date2')}); toast(t('saved'),v('f-title'),'ok'); }
-  else if (currentModal === 'syllabus') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.syllabus.unshift({id:Date.now(),sub:v('f-sub'),title:v('f-title'),total:parseInt(v('f-total')) || 1,done:parseInt(v('f-done')) || 0}); toast(t('saved'),v('f-title'),'ok'); }
-  else if (currentModal === 'todo') { if (!v('f-title')) return toast(t('fill_required'),'','err'); S.todos.unshift({id:Date.now(),title:v('f-title'),priority:v('f-priority'),date:v('f-date'),done:false}); toast(t('saved'),v('f-title'),'ok'); }
-  else if (currentModal === 'seating') { if (!v('f-name')) return toast(t('fill_required'),'','err'); S.seating.push({id:Date.now(),name:v('f-name'),row:parseInt(v('f-row')) || 1,col:parseInt(v('f-col')) || 1}); toast(t('saved'),v('f-name'),'ok'); }
-  else if (currentModal === 'profile') { S.profile.name = v('f-name') || S.profile.name || 'Teacher'; S.profile.school = v('f-school'); toast(t('saved'),'','ok'); }
-  save(); closeModal(); renderAll();
+function saveData(){
+  const v=val;
+  if(currentModal==='class'){if(!v('f-name'))return toast(t('fill_required'),'','err');S.classes.push({id:Date.now(),name:v('f-name'),subject:v('f-sub'),room:v('f-room')});toast(t('saved'),v('f-name'),'ok');}
+  else if(currentModal==='student'){if(!v('f-name'))return toast(t('fill_required'),'','err');S.students.push({id:Date.now(),name:v('f-name'),roll:v('f-roll'),cls:v('f-cls'),phone:v('f-ph')});toast(t('saved'),v('f-name'),'ok');}
+  else if(currentModal==='diary'){if(!v('f-title'))return toast(t('fill_required'),'','err');S.diary.unshift({id:Date.now(),title:v('f-title'),desc:v('f-desc'),hw:v('f-hw'),date:new Date().toLocaleDateString()});toast(t('saved'),v('f-title'),'ok');}
+  else if(currentModal==='marks'){if(!v('f-name')||!v('f-score'))return toast(t('fill_required'),'','err');S.marks.unshift({id:Date.now(),name:v('f-name'),exam:v('f-exam'),subject:v('f-sub'),score:parseInt(v('f-score')),total:parseInt(v('f-total'))||100});toast(t('saved'),v('f-name'),'ok');}
+  else if(currentModal==='homework'){if(!v('f-title'))return toast(t('fill_required'),'','err');S.homework.unshift({id:Date.now(),title:v('f-title'),desc:v('f-desc'),cls:v('f-cls'),due:v('f-due'),done:false});toast(t('saved'),v('f-title'),'ok');}
+  else if(currentModal==='period'){if(!v('f-sub')||!v('f-time'))return toast(t('fill_required'),'','err');S.periods.push({id:Date.now(),day:v('f-day'),time:v('f-time'),sub:v('f-sub'),cls:v('f-cls')});toast(t('saved'),v('f-sub'),'ok');}
+  else if(currentModal==='note'){if(!v('f-title'))return toast(t('fill_required'),'','err');S.notes.unshift({id:Date.now(),title:v('f-title'),desc:v('f-desc'),date:new Date().toLocaleDateString()});toast(t('saved'),v('f-title'),'ok');}
+  else if(currentModal==='fee'){if(!v('f-name')||!v('f-amount'))return toast(t('fill_required'),'','err');S.fees.unshift({id:Date.now(),name:v('f-name'),month:v('f-month'),amount:parseInt(v('f-amount')),status:v('f-status')});toast(t('saved'),v('f-name'),'ok');}
+  else if(currentModal==='exam'){if(!v('f-title'))return toast(t('fill_required'),'','err');S.exams.unshift({id:Date.now(),title:v('f-title'),date:v('f-date'),sub:v('f-sub'),cls:v('f-cls')});toast(t('saved'),v('f-title'),'ok');}
+  else if(currentModal==='lesson'){if(!v('f-title'))return toast(t('fill_required'),'','err');S.lessons.unshift({id:Date.now(),title:v('f-title'),sub:v('f-sub'),desc:v('f-desc'),date:new Date().toLocaleDateString()});toast(t('saved'),v('f-title'),'ok');}
+  else if(currentModal==='reminder'){if(!v('f-title'))return toast(t('fill_required'),'','err');S.reminders.unshift({id:Date.now(),title:v('f-title'),date:v('f-date'),desc:v('f-desc')});toast(t('saved'),v('f-title'),'ok');}
+  else if(currentModal==='holiday'){if(!v('f-title'))return toast(t('fill_required'),'','err');S.holidays.unshift({id:Date.now(),title:v('f-title'),date:v('f-date'),date2:v('f-date2')});toast(t('saved'),v('f-title'),'ok');}
+  else if(currentModal==='syllabus'){if(!v('f-title'))return toast(t('fill_required'),'','err');S.syllabus.unshift({id:Date.now(),sub:v('f-sub'),title:v('f-title'),total:parseInt(v('f-total'))||1,done:parseInt(v('f-done'))||0});toast(t('saved'),v('f-title'),'ok');}
+  else if(currentModal==='todo'){if(!v('f-title'))return toast(t('fill_required'),'','err');S.todos.unshift({id:Date.now(),title:v('f-title'),priority:v('f-priority'),date:v('f-date'),done:false});toast(t('saved'),v('f-title'),'ok');}
+  else if(currentModal==='seating'){if(!v('f-name'))return toast(t('fill_required'),'','err');S.seating.push({id:Date.now(),name:v('f-name'),row:parseInt(v('f-row'))||1,col:parseInt(v('f-col'))||1});toast(t('saved'),v('f-name'),'ok');}
+  else if(currentModal==='profile'){S.profile.name=v('f-name')||S.profile.name||'Teacher';S.profile.school=v('f-school');toast(t('saved'),'','ok');}
+  save();closeModal();renderAll();
 }
 
-function del(type, id) {
-  confirmD(t('del_confirm'), t('del_desc'), () => {
-    const map = {class:'classes',student:'students',diary:'diary',marks:'marks',homework:'homework',period:'periods',note:'notes',fee:'fees',exam:'exams',lesson:'lessons',reminder:'reminders',holiday:'holidays',syllabus:'syllabus',todo:'todos',seating:'seating'};
-    const k = map[type]; if (k) S[k] = S[k].filter(x => x.id !== id);
-    save(); renderAll(); toast(t('deleted'),'','ok');
+function del(type,id){
+  confirmD(t('del_confirm'),t('del_desc'),()=>{
+    const map={class:'classes',student:'students',diary:'diary',marks:'marks',homework:'homework',period:'periods',note:'notes',fee:'fees',exam:'exams',lesson:'lessons',reminder:'reminders',holiday:'holidays',syllabus:'syllabus',todo:'todos',seating:'seating'};
+    const k=map[type];if(k)S[k]=S[k].filter(x=>x.id!==id);
+    save();renderAll();toast(t('deleted'),'','ok');
   });
 }
 
-function renderAll() {
-  renderStats(); renderChart(); renderRecent(); renderClasses(); renderStudents(); renderAttendance();
-  renderDiary(); renderMarks(); renderHomework(); renderDays(); renderPeriods(); renderNotes();
-  renderFees(); renderExams(); renderLessons(); renderReminders(); renderHolidays();
-  renderSyllabus(); renderTodos(); renderSeating(); renderReports(); renderMore(); renderProfileSub();
+function renderAll(){
+  renderStats();renderChart();renderRecent();renderClasses();renderStudents();renderAttendance();
+  renderDiary();renderMarks();renderHomework();renderDays();renderPeriods();renderNotes();
+  renderFees();renderExams();renderLessons();renderReminders();renderHolidays();
+  renderSyllabus();renderTodos();renderSeating();renderReports();renderMore();renderProfileSub();
 }
 
-function renderStats() {
-  $('st-classes').innerText = S.classes.length; $('st-students').innerText = S.students.length; $('st-diary').innerText = S.diary.length;
-  const today = new Date().toLocaleDateString(); const a = S.attendance[today] || {};
-  const p = Object.values(a).filter(v => v === 'P').length; $('st-att').innerText = p > 0 ? p : '-';
-  const unpaid = S.fees.filter(f => f.status === 'Unpaid').length;
-  $('st-fees').innerText = S.fees.length > 0 ? (unpaid > 0 ? unpaid + ' ' + t('unpaid') : t('paid')) : '-';
+function renderStats(){
+  $('st-classes').innerText=S.classes.length;$('st-students').innerText=S.students.length;$('st-diary').innerText=S.diary.length;
+  const today=new Date().toLocaleDateString();const a=S.attendance[today]||{};
+  const p=Object.values(a).filter(v=>v==='P').length;$('st-att').innerText=p>0?p:'-';
+  const unpaid=S.fees.filter(f=>f.status==='Unpaid').length;
+  $('st-fees').innerText=S.fees.length>0?(unpaid>0?unpaid+' '+t('unpaid'):t('paid')):'-';
 }
 
-function renderChart() {
-  const wrap = $('weekly-chart'); const days = ['S','M','T','W','T','F','S']; const data = [];
-  for (let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); const a = S.attendance[d.toLocaleDateString()] || {};
-    data.push({label:days[d.getDay()], value:Object.values(a).filter(v => v === 'P').length}); }
-  const max = Math.max(...data.map(d => d.value), 5);
-  const bars = data.map(d => { const h = (d.value / max) * 100; const isEmpty = d.value === 0;
-    return `<div class="chart-col"><div class="chart-value" style="${isEmpty ? 'opacity:0' : ''}">${d.value}</div><div class="chart-bar ${isEmpty ? 'empty' : ''}" style="height:${Math.max(h, 4)}%"></div><div class="chart-label">${d.label}</div></div>`; }).join('');
-  wrap.innerHTML = `<div class="chart-bars">${bars}</div>`;
+function renderChart(){
+  const wrap=$('weekly-chart');const days=['S','M','T','W','T','F','S'];const data=[];
+  for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const a=S.attendance[d.toLocaleDateString()]||{};
+    data.push({label:days[d.getDay()],value:Object.values(a).filter(v=>v==='P').length});}
+  const max=Math.max(...data.map(d=>d.value),5);
+  const bars=data.map(d=>{const h=(d.value/max)*100;const isEmpty=d.value===0;
+    return `<div class="chart-col"><div class="chart-value" style="${isEmpty?'opacity:0':''}">${d.value}</div><div class="chart-bar ${isEmpty?'empty':''}" style="height:${Math.max(h,4)}%"></div><div class="chart-label">${d.label}</div></div>`;}).join('');
+  wrap.innerHTML=`<div class="chart-bars">${bars}</div>`;
 }
 
-function renderRecent() {
-  const e = $('recent'); let items = [];
-  S.diary.slice(0,2).forEach(d => items.push({i:'fa-book',c:'',t:d.title,s:t('diary')+' • '+d.date,p:'diary'}));
-  S.marks.slice(0,2).forEach(m => items.push({i:'fa-star',c:'pk',t:m.name+' — '+m.score,s:(m.exam || t('exam'))+' • '+(m.subject || ''),p:'marks'}));
-  S.homework.slice(0,2).forEach(h => items.push({i:'fa-pencil-alt',c:'o',t:h.title,s:t('homework'),p:'homework'}));
-  S.fees.slice(0,2).forEach(f => items.push({i:'fa-file-invoice-dollar',c:'g',t:f.name,s:t('fees')+' • '+f.month+' • '+(f.status === 'Paid' ? t('paid') : t('unpaid')),p:'fees'}));
-  if (!items.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-seedling"></i></div><h4>${t('recent')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = items.slice(0,4).map(x => `<div class="li" onclick="switchPage('${x.p}')"><div class="li-icon ${x.c}"><i class="fas ${x.i}"></i></div><div class="li-body"><h4>${x.t}</h4><p>${x.s}</p></div><i class="fas fa-chevron-right li-arrow"></i></div>`).join('');
+function renderRecent(){
+  const e=$('recent');let items=[];
+  S.diary.slice(0,2).forEach(d=>items.push({i:'fa-book',c:'',t:d.title,s:t('diary')+' • '+d.date,p:'diary'}));
+  S.marks.slice(0,2).forEach(m=>items.push({i:'fa-star',c:'pk',t:m.name+' — '+m.score,s:(m.exam||t('exam'))+' • '+(m.subject||''),p:'marks'}));
+  S.homework.slice(0,2).forEach(h=>items.push({i:'fa-pencil-alt',c:'o',t:h.title,s:t('homework'),p:'homework'}));
+  S.fees.slice(0,2).forEach(f=>items.push({i:'fa-file-invoice-dollar',c:'g',t:f.name,s:t('fees')+' • '+f.month+' • '+(f.status==='Paid'?t('paid'):t('unpaid')),p:'fees'}));
+  if(!items.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-seedling"></i></div><h4>${t('recent')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=items.slice(0,4).map(x=>`<div class="li" onclick="switchPage('${x.p}')"><div class="li-icon ${x.c}"><i class="fas ${x.i}"></i></div><div class="li-body"><h4>${x.t}</h4><p>${x.s}</p></div><i class="fas fa-chevron-right" style="color:var(--text-4);font-size:.85rem;"></i></div>`).join('');
 }
 
-function renderClasses() {
-  const e = $('list-classes');
-  if (!S.classes.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-chalkboard"></i></div><h4>${t('empty_classes')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.classes.map(c => { const n = S.students.filter(s => s.cls === c.name).length;
-    return `<div class="li"><div class="li-icon"><i class="fas fa-chalkboard-teacher"></i></div><div class="li-body"><h4>${c.name}</h4><p>${c.subject || ''} ${c.room ? '• '+c.room : ''}</p><div class="li-meta"><span class="li-chip">${n} ${t('students')}</span></div></div><button onclick="event.stopPropagation();del('class',${c.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`; }).join('');
+function renderClasses(){
+  const e=$('list-classes');
+  if(!S.classes.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-chalkboard"></i></div><h4>${t('empty_classes')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.classes.map(c=>{const n=S.students.filter(s=>s.cls===c.name).length;
+    return `<div class="li"><div class="li-icon"><i class="fas fa-chalkboard-teacher"></i></div><div class="li-body"><h4>${c.name}</h4><p>${c.subject||''} ${c.room?'• '+c.room:''}</p><div class="li-meta"><span class="li-chip">${n} ${t('students')}</span></div></div><button onclick="event.stopPropagation();del('class',${c.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`;}).join('');
 }
 
-function renderStudents() {
-  const e = $('list-students');
-  if (!S.students.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-users"></i></div><h4>${t('empty_students')}</h4><p>${t('empty_students_d')}</p></div>`; return; }
-  e.innerHTML = S.students.map(s => `<div class="li" onclick="openStudentProfile(${s.id})" style="cursor:pointer;"><div class="li-icon g">${s.name.charAt(0).toUpperCase()}</div><div class="li-body"><h4>${s.name}</h4><p>${t('roll')}: ${s.roll || '-'} ${s.cls ? '• '+s.cls : ''}</p>${s.phone ? `<div class="li-meta"><span class="li-chip"><i class="fas fa-phone" style="font-size:.6rem;"></i> ${s.phone}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('student',${s.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+function renderStudents(){
+  const e=$('list-students');
+  if(!S.students.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-users"></i></div><h4>${t('empty_students')}</h4><p>${t('empty_students_d')}</p></div>`;return;}
+  e.innerHTML=S.students.map(s=>`<div class="li" onclick="openStudentProfile(${s.id})" style="cursor:pointer;"><div class="li-icon g">${s.name.charAt(0).toUpperCase()}</div><div class="li-body"><h4>${s.name}</h4><p>${t('roll')}: ${s.roll||'-'} ${s.cls?'• '+s.cls:''}</p>${s.phone?`<div class="li-meta"><span class="li-chip"><i class="fas fa-phone" style="font-size:.6rem;"></i> ${s.phone}</span></div>`:''}</div><button onclick="event.stopPropagation();del('student',${s.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-function renderAttendance() {
-  const e = $('list-att'); const dInp = $('att-date'); if (!dInp.value) dInp.value = new Date().toISOString().split('T')[0];
-  const key = new Date(dInp.value).toLocaleDateString(); const a = S.attendance[key] || {};
-  if (!S.students.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-users"></i></div><h4>${t('empty_att')}</h4><p>${t('empty_students_d')}</p></div>`; return; }
-  e.innerHTML = S.students.map(s => { const st = a[s.id] || '';
-    return `<div class="att"><div class="li-icon g" style="width:42px;height:42px;font-size:.88rem;border-radius:12px;">${s.name.charAt(0).toUpperCase()}</div><div class="li-body"><h4>${s.name}</h4><p>${t('roll')}: ${s.roll || '-'}</p></div><div class="att-btns"><button class="att-b P ${st === 'P' ? 'on' : ''}" onclick="markAtt('${s.id}','P')">P</button><button class="att-b A ${st === 'A' ? 'on' : ''}" onclick="markAtt('${s.id}','A')">A</button><button class="att-b L ${st === 'L' ? 'on' : ''}" onclick="markAtt('${s.id}','L')">L</button></div></div>`; }).join('');
+function renderAttendance(){
+  const e=$('list-att');const dInp=$('att-date');if(!dInp.value)dInp.value=new Date().toISOString().split('T')[0];
+  const key=new Date(dInp.value).toLocaleDateString();const a=S.attendance[key]||{};
+  if(!S.students.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-users"></i></div><h4>${t('empty_att')}</h4><p>${t('empty_students_d')}</p></div>`;return;}
+  e.innerHTML=S.students.map(s=>{const st=a[s.id]||'';
+    return `<div class="att"><div class="li-icon g" style="width:42px;height:42px;font-size:.88rem;border-radius:12px;">${s.name.charAt(0).toUpperCase()}</div><div class="li-body"><h4>${s.name}</h4><p>${t('roll')}: ${s.roll||'-'}</p></div><div class="att-btns"><button class="att-b P ${st==='P'?'on':''}" onclick="markAtt('${s.id}','P')">P</button><button class="att-b A ${st==='A'?'on':''}" onclick="markAtt('${s.id}','A')">A</button><button class="att-b L ${st==='L'?'on':''}" onclick="markAtt('${s.id}','L')">L</button></div></div>`;}).join('');
 }
-function markAtt(id, status) { const key = new Date($('att-date').value).toLocaleDateString(); if (!S.attendance[key]) S.attendance[key] = {}; S.attendance[key][id] = status; save(); renderAttendance(); renderStats(); renderChart(); }
-function markAllPresent() { const key = new Date($('att-date').value).toLocaleDateString(); if (!S.attendance[key]) S.attendance[key] = {}; S.students.forEach(s => S.attendance[key][s.id] = 'P'); save(); renderAttendance(); renderStats(); renderChart(); toast(t('mark_all'), S.students.length + ' ' + t('students'), 'ok'); }
+function markAtt(id,status){const key=new Date($('att-date').value).toLocaleDateString();if(!S.attendance[key])S.attendance[key]={};S.attendance[key][id]=status;save();renderAttendance();renderStats();renderChart();}
+function markAllPresent(){const key=new Date($('att-date').value).toLocaleDateString();if(!S.attendance[key])S.attendance[key]={};S.students.forEach(s=>S.attendance[key][s.id]='P');save();renderAttendance();renderStats();renderChart();toast(t('mark_all'),S.students.length+' '+t('students'),'ok');}
 
-function renderDiary() {
-  const e = $('list-diary');
-  if (!S.diary.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-book"></i></div><h4>${t('empty_diary')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.diary.map(d => `<div class="d-item"><div class="d-head"><div class="d-date"><i class="far fa-calendar-alt"></i> ${d.date}</div></div><div class="d-title">${d.title}</div>${d.desc ? `<div class="d-desc">${d.desc}</div>` : ''}${d.hw ? `<div class="d-hw"><i class="fas fa-pencil-alt"></i><div><b>${t('hw')}:</b> ${d.hw}</div></div>` : ''}<button onclick="del('diary',${d.id})" style="margin-top:10px;margin-left:10px;color:var(--danger);font-size:.74rem;font-weight:700;"><i class="fas fa-trash"></i> ${t('delete')}</button></div>`).join('');
-}
-
-function renderMarks() {
-  const e = $('list-marks');
-  if (!S.marks.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-star"></i></div><h4>${t('empty_marks')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.marks.map(m => { const pct = Math.round((m.score / m.total) * 100); const cls = pct >= 75 ? 'g' : pct >= 40 ? 'o' : 'r';
-    return `<div class="li"><div class="li-icon pk"><i class="fas fa-star"></i></div><div class="li-body"><h4>${m.name}</h4><p>${m.exam || t('exam')} ${m.subject ? '• '+m.subject : ''}</p><div class="li-meta"><span class="li-chip ${cls}">${m.score}/${m.total} • ${pct}%</span></div></div><button onclick="event.stopPropagation();del('marks',${m.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`; }).join('');
+function renderDiary(){
+  const e=$('list-diary');
+  if(!S.diary.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-book"></i></div><h4>${t('empty_diary')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.diary.map(d=>`<div class="d-item"><div class="d-head"><div class="d-date"><i class="far fa-calendar-alt"></i> ${d.date}</div></div><div class="d-title">${d.title}</div>${d.desc?`<div class="d-desc">${d.desc}</div>`:''}${d.hw?`<div class="d-hw"><i class="fas fa-pencil-alt"></i><div><b>${t('hw')}:</b> ${d.hw}</div></div>`:''}<button onclick="del('diary',${d.id})" style="margin-top:10px;margin-left:10px;color:var(--danger);font-size:.74rem;font-weight:700;"><i class="fas fa-trash"></i> ${t('delete')}</button></div>`).join('');
 }
 
-function renderHomework() {
-  const e = $('list-hw');
-  if (!S.homework.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-pencil-alt"></i></div><h4>${t('empty_hw')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.homework.map(h => `<div class="li"><div class="li-icon o"><i class="fas fa-pencil-alt"></i></div><div class="li-body"><h4 style="${h.done ? 'text-decoration:line-through;opacity:.6;' : ''}">${h.title}</h4><p>${h.cls || ''} ${h.due ? '• '+h.due : ''}</p></div><button onclick="event.stopPropagation();toggleHw(${h.id})" style="width:36px;height:36px;border-radius:11px;background:${h.done ? 'rgba(19,136,8,.1)' : 'var(--bg-2)'};color:${h.done ? 'var(--success)' : 'var(--text-3)'};border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-${h.done ? 'check' : 'circle'}"></i></button><button onclick="event.stopPropagation();del('homework',${h.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:5px;"><i class="fas fa-trash"></i></button></div>`).join('');
-}
-function toggleHw(id) { const h = S.homework.find(x => x.id === id); if (h) { h.done = !h.done; save(); renderHomework(); } }
-
-const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-function renderDays() { $('tt-days').innerHTML = DAYS.map(d => `<div class="tt-day ${d === selectedDay ? 'on' : ''}" onclick="selectDay('${d}')">${d.slice(0,3)}</div>`).join(''); }
-function selectDay(d) { selectedDay = d; renderDays(); renderPeriods(); }
-function renderPeriods() {
-  const e = $('list-periods'); const f = S.periods.filter(p => p.day === selectedDay).sort((a,b) => a.time.localeCompare(b.time));
-  if (!f.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-calendar-alt"></i></div><h4>${t('empty_period')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = f.map(p => `<div class="tt-slot"><div class="flex justify-between items-center"><div><div class="time">${p.time}</div><div class="sub">${p.sub}</div><div class="cls">${p.cls || ''}</div></div><button onclick="del('period',${p.id})" style="color:var(--danger);padding:6px;"><i class="fas fa-trash"></i></button></div></div>`).join('');
+function renderMarks(){
+  const e=$('list-marks');
+  if(!S.marks.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-star"></i></div><h4>${t('empty_marks')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.marks.map(m=>{const pct=Math.round((m.score/m.total)*100);const cls=pct>=75?'g':pct>=40?'o':'r';
+    return `<div class="li"><div class="li-icon pk"><i class="fas fa-star"></i></div><div class="li-body"><h4>${m.name}</h4><p>${m.exam||t('exam')} ${m.subject?'• '+m.subject:''}</p><div class="li-meta"><span class="li-chip ${cls}">${m.score}/${m.total} • ${pct}%</span></div></div><button onclick="event.stopPropagation();del('marks',${m.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`;}).join('');
 }
 
-function renderFees() {
-  const e = $('list-fees');
-  if (!S.fees.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-file-invoice-dollar"></i></div><h4>${t('fee_tracker')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.fees.map(f => { const isPaid = f.status === 'Paid';
-    return `<div class="li"><div class="li-icon ${isPaid ? 'g' : 'r'}"><i class="fas ${isPaid ? 'check' : 'exclamation'}"></i></div><div class="li-body"><h4>${f.name}</h4><p>${t('month')}: ${f.month} • ${t('amount')}: ₹${f.amount}</p><div class="li-meta"><span class="li-chip ${isPaid ? 'g' : 'r'}">${isPaid ? t('paid') : t('unpaid')}</span></div></div><button onclick="event.stopPropagation();del('fee',${f.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`; }).join('');
+function renderHomework(){
+  const e=$('list-hw');
+  if(!S.homework.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-pencil-alt"></i></div><h4>${t('empty_hw')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.homework.map(h=>`<div class="li"><div class="li-icon o"><i class="fas fa-pencil-alt"></i></div><div class="li-body"><h4 style="${h.done?'text-decoration:line-through;opacity:.6;':''}">${h.title}</h4><p>${h.cls||''} ${h.due?'• '+h.due:''}</p></div><button onclick="event.stopPropagation();toggleHw(${h.id})" style="width:36px;height:36px;border-radius:11px;background:${h.done?'rgba(19,136,8,.12)':'var(--bg-2)'};color:${h.done?'var(--green)':'var(--text-3)'};border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-${h.done?'check':'circle'}"></i></button><button onclick="event.stopPropagation();del('homework',${h.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:5px;"><i class="fas fa-trash"></i></button></div>`).join('');
+}
+function toggleHw(id){const h=S.homework.find(x=>x.id===id);if(h){h.done=!h.done;save();renderHomework();}}
+
+const DAYS=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+function renderDays(){$('tt-days').innerHTML=DAYS.map(d=>`<div class="tt-day ${d===selectedDay?'on':''}" onclick="selectDay('${d}')">${d.slice(0,3)}</div>`).join('');}
+function selectDay(d){selectedDay=d;renderDays();renderPeriods();}
+function renderPeriods(){
+  const e=$('list-periods');const f=S.periods.filter(p=>p.day===selectedDay).sort((a,b)=>a.time.localeCompare(b.time));
+  if(!f.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-calendar-alt"></i></div><h4>${t('empty_period')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=f.map(p=>`<div class="tt-slot"><div class="flex justify-between items-center"><div><div class="time">${p.time}</div><div class="sub">${p.sub}</div><div class="cls">${p.cls||''}</div></div><button onclick="del('period',${p.id})" style="color:var(--danger);padding:6px;"><i class="fas fa-trash"></i></button></div></div>`).join('');
 }
 
-function renderExams() {
-  const e = $('list-exams');
-  if (!S.exams.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-file-alt"></i></div><h4>${t('empty_exam')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.exams.map(x => `<div class="li"><div class="li-icon"><i class="fas fa-file-alt"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.sub || ''} ${x.date ? '• '+x.date : ''}</p>${x.cls ? `<div class="li-meta"><span class="li-chip">${x.cls}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('exam',${x.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+function renderFees(){
+  const e=$('list-fees');
+  if(!S.fees.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-file-invoice-dollar"></i></div><h4>${t('fee_tracker')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.fees.map(f=>{const isPaid=f.status==='Paid';
+    return `<div class="li"><div class="li-icon ${isPaid?'g':'r'}"><i class="fas ${isPaid?'check':'exclamation'}"></i></div><div class="li-body"><h4>${f.name}</h4><p>${t('month')}: ${f.month} • ${t('amount')}: ₹${f.amount}</p><div class="li-meta"><span class="li-chip ${isPaid?'g':'r'}">${isPaid?t('paid'):t('unpaid')}</span></div></div><button onclick="event.stopPropagation();del('fee',${f.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`;}).join('');
 }
 
-function renderLessons() {
-  const e = $('list-lessons');
-  if (!S.lessons.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-chalkboard"></i></div><h4>${t('empty_lesson')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.lessons.map(l => `<div class="li"><div class="li-icon"><i class="fas fa-chalkboard"></i></div><div class="li-body"><h4>${l.title}</h4><p>${l.sub || ''} • ${l.date}</p>${l.desc ? `<div class="li-meta"><span class="li-chip">${l.desc.slice(0, 50)}${l.desc.length > 50 ? '…' : ''}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('lesson',${l.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+function renderExams(){
+  const e=$('list-exams');
+  if(!S.exams.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-file-alt"></i></div><h4>${t('empty_exam')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.exams.map(x=>`<div class="li"><div class="li-icon"><i class="fas fa-file-alt"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.sub||''} ${x.date?'• '+x.date:''}</p>${x.cls?`<div class="li-meta"><span class="li-chip">${x.cls}</span></div>`:''}</div><button onclick="event.stopPropagation();del('exam',${x.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-function renderReminders() {
-  const e = $('list-reminders');
-  if (!S.reminders.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-bell"></i></div><h4>${t('empty_rem')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.reminders.map(r => `<div class="li"><div class="li-icon o"><i class="fas fa-bell"></i></div><div class="li-body"><h4>${r.title}</h4><p>${r.date ? new Date(r.date).toLocaleString() : ''}</p>${r.desc ? `<div class="li-meta"><span class="li-chip">${r.desc.slice(0, 60)}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('reminder',${r.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+function renderLessons(){
+  const e=$('list-lessons');
+  if(!S.lessons.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-chalkboard"></i></div><h4>${t('empty_lesson')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.lessons.map(l=>`<div class="li"><div class="li-icon"><i class="fas fa-chalkboard"></i></div><div class="li-body"><h4>${l.title}</h4><p>${l.sub||''} • ${l.date}</p>${l.desc?`<div class="li-meta"><span class="li-chip">${l.desc.slice(0,50)}${l.desc.length>50?'…':''}</span></div>`:''}</div><button onclick="event.stopPropagation();del('lesson',${l.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-function renderHolidays() {
-  const e = $('list-holidays');
-  if (!S.holidays.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-umbrella-beach"></i></div><h4>${t('empty_hol')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.holidays.map(h => `<div class="li"><div class="li-icon pk"><i class="fas fa-umbrella-beach"></i></div><div class="li-body"><h4>${h.title}</h4><p>${h.date || ''} ${h.date2 ? '→ '+h.date2 : ''}</p></div><button onclick="event.stopPropagation();del('holiday',${h.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+function renderReminders(){
+  const e=$('list-reminders');
+  if(!S.reminders.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-bell"></i></div><h4>${t('empty_rem')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.reminders.map(r=>`<div class="li"><div class="li-icon o"><i class="fas fa-bell"></i></div><div class="li-body"><h4>${r.title}</h4><p>${r.date?new Date(r.date).toLocaleString():''}</p>${r.desc?`<div class="li-meta"><span class="li-chip">${r.desc.slice(0,60)}</span></div>`:''}</div><button onclick="event.stopPropagation();del('reminder',${r.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-function renderSyllabus() {
-  const e = $('list-syllabus');
-  if (!S.syllabus.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-book-reader"></i></div><h4>${t('syllabus')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.syllabus.map(s => { const pct = Math.round((s.done / s.total) * 100); const cls = pct >= 75 ? 'g' : pct >= 40 ? 'o' : 'r';
-    return `<div class="card" style="margin-bottom:12px;padding:15px;"><div class="flex justify-between items-center mb-2"><div><h4 style="font-size:.9rem;font-weight:700;">${s.title}</h4><p style="font-size:.72rem;color:var(--text-3);">${s.sub || ''}</p></div><button onclick="del('syllabus',${s.id})" style="color:var(--danger);font-size:.8rem;padding:6px;"><i class="fas fa-trash"></i></button></div><div class="flex justify-between" style="font-size:.72rem;font-weight:700;color:var(--text-2);margin-bottom:6px;"><span>${t('completed')}: ${s.done}/${s.total}</span><span>${pct}%</span></div><div class="progress"><div class="progress-inner ${cls}" style="width:${pct}%"></div></div></div>`; }).join('');
+function renderHolidays(){
+  const e=$('list-holidays');
+  if(!S.holidays.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-umbrella-beach"></i></div><h4>${t('empty_hol')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.holidays.map(h=>`<div class="li"><div class="li-icon pk"><i class="fas fa-umbrella-beach"></i></div><div class="li-body"><h4>${h.title}</h4><p>${h.date||''} ${h.date2?'→ '+h.date2:''}</p></div><button onclick="event.stopPropagation();del('holiday',${h.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-function renderTodos() {
-  const e = $('list-todo');
-  if (!S.todos.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-tasks"></i></div><h4>${t('todo')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.todos.map(x => { const pCls = x.priority === 'High' ? 'r' : x.priority === 'Medium' ? 'o' : 'g';
-    return `<div class="li"><div class="li-icon ${pCls}"><i class="fas fa-tasks"></i></div><div class="li-body"><h4 style="${x.done ? 'text-decoration:line-through;opacity:.6;' : ''}">${x.title}</h4><p>${x.date || ''} • ${t('priority')}: ${x.priority}</p></div><button onclick="event.stopPropagation();toggleTodo(${x.id})" style="width:36px;height:36px;border-radius:11px;background:${x.done ? 'rgba(19,136,8,.1)' : 'var(--bg-2)'};color:${x.done ? 'var(--success)' : 'var(--text-3)'};border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-${x.done ? 'check' : 'circle'}"></i></button><button onclick="event.stopPropagation();del('todo',${x.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:5px;"><i class="fas fa-trash"></i></button></div>`; }).join('');
-}
-function toggleTodo(id) { const x = S.todos.find(t => t.id === id); if (x) { x.done = !x.done; save(); renderTodos(); } }
-
-function renderSeating() {
-  const e = $('list-seating');
-  if (!S.seating.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-chair"></i></div><h4>${t('seating')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  const sorted = [...S.seating].sort((a,b) => a.row - b.row || a.col - b.col);
-  e.innerHTML = sorted.map(s => `<div class="li"><div class="li-icon cy"><i class="fas fa-chair"></i></div><div class="li-body"><h4>${s.name}</h4><p>${t('row')}: ${s.row} • ${t('col')}: ${s.col}</p></div><button onclick="event.stopPropagation();del('seating',${s.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+function renderSyllabus(){
+  const e=$('list-syllabus');
+  if(!S.syllabus.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-book-reader"></i></div><h4>${t('syllabus')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.syllabus.map(s=>{const pct=Math.round((s.done/s.total)*100);const cls=pct>=75?'g':pct>=40?'o':'r';
+    return `<div class="card" style="margin-bottom:12px;padding:15px;"><div class="flex justify-between items-center mb-2"><div><h4 style="font-size:.9rem;font-weight:700;color:var(--text);">${s.title}</h4><p style="font-size:.72rem;color:var(--text-3);">${s.sub||''}</p></div><button onclick="del('syllabus',${s.id})" style="color:var(--danger);font-size:.8rem;padding:6px;"><i class="fas fa-trash"></i></button></div><div class="flex justify-between" style="font-size:.72rem;font-weight:700;color:var(--text-2);margin-bottom:6px;"><span>${t('completed')}: ${s.done}/${s.total}</span><span>${pct}%</span></div><div class="progress"><div class="progress-inner ${cls}" style="width:${pct}%"></div></div></div>`;}).join('');
 }
 
-function renderNotes() {
-  const e = $('list-notes');
-  if (!S.notes.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-sticky-note"></i></div><h4>${t('empty_note')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
-  e.innerHTML = S.notes.map(n => `<div class="note"><h5>${n.title}</h5>${n.desc ? `<p>${n.desc}</p>` : ''}<div class="date"><i class="far fa-clock"></i> ${n.date}</div><button onclick="del('note',${n.id})" style="margin-top:8px;color:var(--danger);font-size:.72rem;font-weight:700;"><i class="fas fa-trash"></i> ${t('delete')}</button></div>`).join('');
+function renderTodos(){
+  const e=$('list-todo');
+  if(!S.todos.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-tasks"></i></div><h4>${t('todo')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.todos.map(x=>{const pCls=x.priority==='High'?'r':x.priority==='Medium'?'o':'g';
+    return `<div class="li"><div class="li-icon ${pCls}"><i class="fas fa-tasks"></i></div><div class="li-body"><h4 style="${x.done?'text-decoration:line-through;opacity:.6;':''}">${x.title}</h4><p>${x.date||''} • ${t('priority')}: ${x.priority}</p></div><button onclick="event.stopPropagation();toggleTodo(${x.id})" style="width:36px;height:36px;border-radius:11px;background:${x.done?'rgba(19,136,8,.12)':'var(--bg-2)'};color:${x.done?'var(--green)':'var(--text-3)'};border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-${x.done?'check':'circle'}"></i></button><button onclick="event.stopPropagation();del('todo',${x.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:5px;"><i class="fas fa-trash"></i></button></div>`;}).join('');
+}
+function toggleTodo(id){const x=S.todos.find(t=>t.id===id);if(x){x.done=!x.done;save();renderTodos();}}
+
+function renderSeating(){
+  const e=$('list-seating');
+  if(!S.seating.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-chair"></i></div><h4>${t('seating')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  const sorted=[...S.seating].sort((a,b)=>a.row-b.row||a.col-b.col);
+  e.innerHTML=sorted.map(s=>`<div class="li"><div class="li-icon pk"><i class="fas fa-chair"></i></div><div class="li-body"><h4>${s.name}</h4><p>${t('row')}: ${s.row} • ${t('col')}: ${s.col}</p></div><button onclick="event.stopPropagation();del('seating',${s.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
-function renderReports() {
-  const aEl = $('rep-att');
-  if (!S.students.length) aEl.innerHTML = '<p style="font-size:.82rem;color:var(--text-3);">—</p>';
-  else {
-    let p = 0, a = 0, l = 0;
-    Object.values(S.attendance).forEach(day => Object.values(day).forEach(v => { if (v === 'P') p++; if (v === 'A') a++; if (v === 'L') l++; }));
-    const tot = p + a + l || 1; const pct = Math.round((p / tot) * 100); const cls = pct >= 75 ? 'g' : pct >= 50 ? 'o' : 'r';
-    aEl.innerHTML = `<div class="grid-3 mb-3"><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--success);">${p}</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">P</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--danger);">${a}</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">A</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--warning);">${l}</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">L</div></div></div><div class="flex justify-between" style="font-size:.74rem;font-weight:700;color:var(--text-2);margin-bottom:6px;"><span>${t('attendance')}</span><span>${pct}%</span></div><div class="progress"><div class="progress-inner ${cls}" style="width:${pct}%"></div></div><p style="font-size:.68rem;color:var(--text-3);margin-top:10px;">${Object.keys(S.attendance).length} days</p>`;
+function renderNotes(){
+  const e=$('list-notes');
+  if(!S.notes.length){e.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-sticky-note"></i></div><h4>${t('empty_note')}</h4><p>${t('empty_classes_d')}</p></div>`;return;}
+  e.innerHTML=S.notes.map(n=>`<div class="note"><h5>${n.title}</h5>${n.desc?`<p>${n.desc}</p>`:''}<div class="date"><i class="far fa-clock"></i> ${n.date}</div><button onclick="del('note',${n.id})" style="margin-top:8px;color:var(--danger);font-size:.72rem;font-weight:700;"><i class="fas fa-trash"></i> ${t('delete')}</button></div>`).join('');
+}
+
+function renderReports(){
+  const aEl=$('rep-att');
+  if(!S.students.length)aEl.innerHTML='<p style="font-size:.82rem;color:var(--text-3);">—</p>';
+  else{
+    let p=0,a=0,l=0;
+    Object.values(S.attendance).forEach(day=>Object.values(day).forEach(v=>{if(v==='P')p++;if(v==='A')a++;if(v==='L')l++;}));
+    const tot=p+a+l||1;const pct=Math.round((p/tot)*100);const cls=pct>=75?'g':pct>=50?'o':'r';
+    aEl.innerHTML=`<div class="grid-3 mb-3"><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--green);">${p}</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">P</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--danger);">${a}</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">A</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--primary);">${l}</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">L</div></div></div><div class="flex justify-between" style="font-size:.74rem;font-weight:700;color:var(--text-2);margin-bottom:6px;"><span>${t('attendance')}</span><span>${pct}%</span></div><div class="progress"><div class="progress-inner ${cls}" style="width:${pct}%"></div></div><p style="font-size:.68rem;color:var(--text-3);margin-top:10px;">${Object.keys(S.attendance).length} days</p>`;
   }
-  const mEl = $('rep-marks');
-  if (!S.marks.length) mEl.innerHTML = '<p style="font-size:.82rem;color:var(--text-3);">—</p>';
-  else {
-    const avg = Math.round(S.marks.reduce((s, m) => s + (m.score / m.total) * 100, 0) / S.marks.length);
-    const hi = Math.max(...S.marks.map(m => Math.round((m.score / m.total) * 100)));
-    const lo = Math.min(...S.marks.map(m => Math.round((m.score / m.total) * 100)));
-    mEl.innerHTML = `<div class="grid-3 mb-3"><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--primary);">${avg}%</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">AVG</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--success);">${hi}%</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">HI</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--danger);">${lo}%</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">LO</div></div></div><p style="font-size:.68rem;color:var(--text-3);">${S.marks.length} records</p>`;
+  const mEl=$('rep-marks');
+  if(!S.marks.length)mEl.innerHTML='<p style="font-size:.82rem;color:var(--text-3);">—</p>';
+  else{
+    const avg=Math.round(S.marks.reduce((s,m)=>s+(m.score/m.total)*100,0)/S.marks.length);
+    const hi=Math.max(...S.marks.map(m=>Math.round((m.score/m.total)*100)));
+    const lo=Math.min(...S.marks.map(m=>Math.round((m.score/m.total)*100)));
+    mEl.innerHTML=`<div class="grid-3 mb-3"><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--primary);">${avg}%</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">AVG</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--green);">${hi}%</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">HI</div></div><div class="text-center"><div style="font-size:1.4rem;font-weight:800;color:var(--danger);">${lo}%</div><div style="font-size:.68rem;color:var(--text-3);font-weight:700;">LO</div></div></div><p style="font-size:.68rem;color:var(--text-3);">${S.marks.length} records</p>`;
   }
 }
 
-const MORE_FEATURES = [
-  {k:'homework',i:'fa-pencil-alt',c:'',d:'Track assignments'},
-  {k:'timetable',i:'fa-calendar-alt',c:'g',d:'Weekly schedule'},
-  {k:'fees',i:'fa-file-invoice-dollar',c:'pk',d:'Fee collection'},
-  {k:'exams',i:'fa-file-alt',c:'cy',d:'Exam planner'},
-  {k:'lessons',i:'fa-chalkboard',c:'',d:'Lesson plans'},
-  {k:'reminders',i:'fa-bell',c:'g',d:'Important alerts'},
-  {k:'holidays',i:'fa-umbrella-beach',c:'pk',d:'Holiday list'},
-  {k:'syllabus',i:'fa-book-reader',c:'o',d:'Course progress'},
-  {k:'todo',i:'fa-tasks',c:'cy',d:'Daily tasks'},
-  {k:'seating',i:'fa-chair',c:'',d:'Class seating'},
-  {k:'notes',i:'fa-sticky-note',c:'g',d:'Quick notes'},
-  {k:'settings',i:'fa-cog',c:'pk',d:'App settings'}
+/* ============ MORE PAGE WITH INLINE ACCORDIONS ============ */
+const MORE_FEATURES=[
+  {k:'homework',i:'fa-pencil-alt',c:'',d:'Assignments tracker',render:'renderHomework'},
+  {k:'timetable',i:'fa-calendar-alt',c:'g',d:'Weekly class schedule',render:'renderPeriods'},
+  {k:'fees',i:'fa-file-invoice-dollar',c:'pk',d:'Fee collection status',render:'renderFees'},
+  {k:'exams',i:'fa-file-alt',c:'',d:'Exam planner & records',render:'renderExams'},
+  {k:'lessons',i:'fa-chalkboard',c:'o',d:'Daily lesson plans',render:'renderLessons'},
+  {k:'reminders',i:'fa-bell',c:'g',d:'Important alerts',render:'renderReminders'},
+  {k:'holidays',i:'fa-umbrella-beach',c:'pk',d:'Holiday calendar',render:'renderHolidays'},
+  {k:'syllabus',i:'fa-book-reader',c:'o',d:'Course completion',render:'renderSyllabus'},
+  {k:'todo',i:'fa-tasks',c:'',d:'Daily task manager',render:'renderTodos'},
+  {k:'seating',i:'fa-chair',c:'pk',d:'Classroom seating plan',render:'renderSeating'},
+  {k:'notes',i:'fa-sticky-note',c:'g',d:'Quick notes & ideas',render:'renderNotes'},
+  {k:'settings',i:'fa-cog',c:'o',d:'App preferences',render:'settings',isPage:true}
 ];
-function renderMore() {
-  $('more-grid').innerHTML = MORE_FEATURES.map(f => `<button class="more-card ${f.c}" onclick="${f.k === 'settings' ? "switchPage('settings')" : "switchPage('" + f.k + "')"}"><i class="fas ${f.i}"></i><div class="mc-body"><h4>${t(f.k)}</h4><p>${f.d}</p></div></button>`).join('');
-}
-function renderProfileSub() { $('prof-sub').innerText = S.profile.school || t('set_name_school'); }
 
-function openSearch() { $('search-ov').classList.add('open'); setTimeout(() => $('search-inp').focus(), 200); }
-function closeSearch() { $('search-ov').classList.remove('open'); $('search-inp').value = ''; $('search-res').innerHTML = ''; }
-function doSearch() {
-  const q = $('search-inp').value.toLowerCase().trim(); const r = $('search-res');
-  if (!q) { r.innerHTML = '<p style="text-align:center;color:var(--text-3);padding:40px;font-size:.84rem;">' + t('home') + '...</p>'; return; }
-  let items = [];
-  S.classes.forEach(c => { if (c.name.toLowerCase().includes(q) || (c.subject || '').toLowerCase().includes(q)) items.push({i:'fa-users',t:c.name,s:t('class')+' • '+(c.subject || ''),p:'classes'}); });
-  S.students.forEach(s => { if (s.name.toLowerCase().includes(q) || (s.roll || '').includes(q)) items.push({i:'fa-user-graduate',t:s.name,s:t('student')+' • '+t('roll')+' '+(s.roll || '-'),p:'students'}); });
-  S.diary.forEach(d => { if (d.title.toLowerCase().includes(q) || (d.desc || '').toLowerCase().includes(q)) items.push({i:'fa-book',t:d.title,s:t('diary')+' • '+d.date,p:'diary'}); });
-  S.notes.forEach(n => { if (n.title.toLowerCase().includes(q) || (n.desc || '').toLowerCase().includes(q)) items.push({i:'fa-sticky-note',t:n.title,s:t('notes'),p:'notes'}); });
-  if (!items.length) { r.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-search"></i></div><h4>—</h4><p>${t('home')}</p></div>`; return; }
-  r.innerHTML = items.map(x => `<div class="li" onclick="closeSearch();switchPage('${x.p}')"><div class="li-icon"><i class="fas ${x.i}"></i></div><div class="li-body"><h4>${x.t}</h4><p>${x.s}</p></div><i class="fas fa-chevron-right li-arrow"></i></div>`).join('');
+function renderMore(){
+  const el=$('more-acc');
+  el.innerHTML=MORE_FEATURES.map(f=>`
+    <div class="acc-item" id="acc-${f.k}">
+      <button class="acc-head ${f.c}" onclick="toggleAcc('${f.k}')">
+        <i class="fas ${f.i} acc-icon"></i>
+        <div class="acc-title"><h4>${t(f.k)}</h4><p>${f.d}</p></div>
+        <i class="fas fa-chevron-down acc-chev"></i>
+      </button>
+      <div class="acc-body" id="acc-body-${f.k}"></div>
+    </div>
+  `).join('');
 }
 
-function shareApp() {
-  const d = {title:'AcharyaOS Pro — The Teacher\'s OS', text:'A professional digital assistant for Indian teachers in 14+ languages.', url: window.location.href};
-  if (navigator.share) navigator.share(d).catch(() => {});
-  else { navigator.clipboard.writeText(window.location.href); toast(t('share'), t('share_desc'), 'ok'); }
+function toggleAcc(key){
+  const item=$('acc-'+key);
+  if(!item)return;
+  const wasOpen=item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.acc-item').forEach(x=>x.classList.remove('open'));
+  if(wasOpen)return;
+  // Open this one
+  item.classList.add('open');
+  // Render content
+  const body=$('acc-body-'+key);
+  if(!body||body.dataset.loaded==='1')return;
+  const f=MORE_FEATURES.find(x=>x.k===key);
+  if(f&&f.render==='settings'){
+    body.innerHTML=`<div style="padding:8px 0;">
+      <div class="set-row" onclick="openModal('profile')"><div class="set-ic"><i class="fas fa-user"></i></div><div class="set-body"><h4>${t('profile')}</h4><p>${t('set_name_school')}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
+      <div class="set-row" onclick="openLangModal()"><div class="set-ic"><i class="fas fa-globe"></i></div><div class="set-body"><h4>${t('language')}</h4><p id="lang-sub2">${LANGS.find(l=>l.code===LANG).native}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
+      <div class="set-row" onclick="toggleTheme()"><div class="set-ic"><i class="fas fa-moon"></i></div><div class="set-body"><h4>${t('dark_mode')}</h4><p>${t('dark_desc')}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
+      <div class="set-row" onclick="exportData()"><div class="set-ic"><i class="fas fa-download"></i></div><div class="set-body"><h4>${t('backup')}</h4><p>${t('backup_desc')}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
+      <div class="set-row" onclick="document.getElementById('imp-file').click()"><div class="set-ic"><i class="fas fa-upload"></i></div><div class="set-body"><h4>${t('restore')}</h4><p>${t('restore_desc')}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
+      <div class="set-row" onclick="confirmReset()"><div class="set-ic" style="background:rgba(239,68,68,.1);color:var(--danger);"><i class="fas fa-trash"></i></div><div class="set-body"><h4 style="color:var(--danger);">${t('reset_data')}</h4><p>${t('reset_desc')}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
+    </div>`;
+    body.dataset.loaded='1';
+    return;
+  }
+  if(f&&f.render==='renderHomework'){body.innerHTML='<div id="mini-hw"></div>';renderMini('hw',S.homework,(h)=>`<div class="li"><div class="li-icon o"><i class="fas fa-pencil-alt"></i></div><div class="li-body"><h4>${h.title}</h4><p>${h.cls||''} ${h.due?'• '+h.due:''}</p></div></div>`);}
+  if(f&&f.render==='renderPeriods'){body.innerHTML='<div class="tt-grid" id="mini-days"></div><div id="mini-periods"></div>';renderMiniDays();}
+  if(f&&f.render==='renderFees'){body.innerHTML='<div id="mini-fees"></div>';renderMini('fees',S.fees,(x)=>{const isPaid=x.status==='Paid';return `<div class="li"><div class="li-icon ${isPaid?'g':'r'}"><i class="fas ${isPaid?'check':'exclamation'}"></i></div><div class="li-body"><h4>${x.name}</h4><p>${x.month} • ₹${x.amount} • ${isPaid?t('paid'):t('unpaid')}</p></div></div>`;});}
+  if(f&&f.render==='renderExams'){body.innerHTML='<div id="mini-exams"></div>';renderMini('exams',S.exams,(x)=>`<div class="li"><div class="li-icon"><i class="fas fa-file-alt"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.sub||''} ${x.date?'• '+x.date:''}</p></div></div>`);}
+  if(f&&f.render==='renderLessons'){body.innerHTML='<div id="mini-lessons"></div>';renderMini('lessons',S.lessons,(x)=>`<div class="li"><div class="li-icon"><i class="fas fa-chalkboard"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.sub||''} • ${x.date}</p></div></div>`);}
+  if(f&&f.render==='renderReminders'){body.innerHTML='<div id="mini-rem"></div>';renderMini('rem',S.reminders,(x)=>`<div class="li"><div class="li-icon o"><i class="fas fa-bell"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.date?new Date(x.date).toLocaleString():''}</p></div></div>`);}
+  if(f&&f.render==='renderHolidays'){body.innerHTML='<div id="mini-hol"></div>';renderMini('hol',S.holidays,(x)=>`<div class="li"><div class="li-icon pk"><i class="fas fa-umbrella-beach"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.date||''} ${x.date2?'→ '+x.date2:''}</p></div></div>`);}
+  if(f&&f.render==='renderSyllabus'){body.innerHTML='<div id="mini-syl"></div>';renderMini('syl',S.syllabus,(s)=>{const pct=Math.round((s.done/s.total)*100);const cls=pct>=75?'g':pct>=40?'o':'r';return `<div style="margin-bottom:12px;"><div class="flex justify-between" style="font-size:.8rem;font-weight:700;margin-bottom:6px;color:var(--text);"><span>${s.title}</span><span>${pct}%</span></div><div class="progress"><div class="progress-inner ${cls}" style="width:${pct}%"></div></div></div>`;});}
+  if(f&&f.render==='renderTodos'){body.innerHTML='<div id="mini-todo"></div>';renderMini('todo',S.todos,(x)=>{const pCls=x.priority==='High'?'r':x.priority==='Medium'?'o':'g';return `<div class="li"><div class="li-icon ${pCls}"><i class="fas fa-tasks"></i></div><div class="li-body"><h4 style="${x.done?'text-decoration:line-through;opacity:.6;':''}">${x.title}</h4><p>${x.date||''} • ${x.priority}</p></div></div>`;});}
+  if(f&&f.render==='renderSeating'){body.innerHTML='<div id="mini-seat"></div>';renderMini('seat',[...S.seating].sort((a,b)=>a.row-b.row||a.col-b.col),(x)=>`<div class="li"><div class="li-icon pk"><i class="fas fa-chair"></i></div><div class="li-body"><h4>${x.name}</h4><p>${t('row')}: ${x.row} • ${t('col')}: ${x.col}</p></div></div>`);}
+  if(f&&f.render==='renderNotes'){body.innerHTML='<div id="mini-notes"></div>';renderMini('notes',S.notes,(n)=>`<div class="note" style="margin-bottom:8px;"><h5>${n.title}</h5>${n.desc?`<p>${n.desc}</p>`:''}<div class="date">${n.date}</div></div>`);}
+  body.dataset.loaded='1';
 }
 
-function exportData() {
-  const data = {...S, version:'8.0.0', lang:LANG, exportedAt:new Date().toISOString()};
-  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
-  const url = URL.createObjectURL(blob); const a = document.createElement('a');
-  a.href = url; a.download = `acharyaos-backup-${new Date().toISOString().split('T')[0]}.json`;
-  a.click(); URL.revokeObjectURL(url); toast(t('backup'), 'Downloaded', 'ok');
-}
-function importData(ev) {
-  const f = ev.target.files[0]; if (!f) return; const rd = new FileReader();
-  rd.onload = e => { try { const d = JSON.parse(e.target.result);
-      confirmD(t('restore'), '', () => {
-        ['profile','classes','students','attendance','diary','marks','homework','periods','notes','fees','exams','lessons','reminders','holidays','syllabus','todos','seating'].forEach(k => { if (d[k]) S[k] = d[k]; });
-        if (d.lang) { LANG = d.lang; localStorage.setItem('aos_lang', LANG); applyI18n(); }
-        save(); renderAll(); toast(t('restore'), 'Done', 'ok');
-      }, 'info');
-    } catch (err) { toast('Error', 'Invalid file', 'err'); } };
-  rd.readAsText(f); ev.target.value = '';
-}
-function confirmReset() { confirmD(t('reset_confirm'), t('reset_desc2'), () => { localStorage.clear(); location.reload(); }); }
-function showAbout() { confirmD('AcharyaOS Pro', 'Version 8.0.0\n\n' + t('about_desc') + '\n\n14+ Indian Languages\n100% Offline & Free\n\nMade with ❤️ in India 🇮🇳', () => {}, 'info'); }
-
-function updateGreet() {
-  const h = new Date().getHours(); const nm = S.profile.name || t('home');
-  let g = LANG === 'hi' ? 'नमस्ते' : 'Hello';
-  if (h < 12) g = LANG === 'hi' ? 'सुप्रभात' : 'Good Morning';
-  else if (h < 17) g = LANG === 'hi' ? 'नमस्ते' : 'Hello';
-  else g = LANG === 'hi' ? 'शुभ संध्या' : 'Good Evening';
-  $('greet-text').innerText = `${g}, ${nm}! 🙏`;
-  $('greet-sub').innerText = S.profile.school || (LANG === 'hi' ? 'आज का दिन शुभ हो' : 'Have a great day');
+function renderMini(key,arr,fn){
+  const el=$('mini-'+key);
+  if(!el)return;
+  if(!arr||!arr.length){el.innerHTML=`<div class="empty" style="padding:20px;"><div class="empty-ill" style="width:60px;height:60px;font-size:1.5rem;"><i class="fas fa-inbox"></i></div><p style="font-size:.75rem;">${t('empty_classes_d')}</p></div>`;return;}
+  el.innerHTML=arr.slice(0,5).map(fn).join('')+(arr.length>5?`<p style="text-align:center;font-size:.72rem;color:var(--text-3);margin-top:8px;font-weight:600;">+ ${arr.length-5} more</p>`:'');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const dOpt = {weekday:'long', year:'numeric', month:'long', day:'numeric'};
-  $('cur-date').innerText = new Date().toLocaleDateString(LANG === 'hi' ? 'hi-IN' : LANG, dOpt);
-  applyI18n(); renderAll();
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(); closeDialog(); closeSearch(); closeLangModal(); closeProfileModal(); }
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+function renderMiniDays(){
+  const el=$('mini-days');if(!el)return;
+  el.innerHTML=DAYS.map(d=>`<div class="tt-day ${d===selectedDay?'on':''}" onclick="selectMiniDay('${d}')">${d.slice(0,3)}</div>`).join('');
+  renderMiniPeriods();
+}
+function selectMiniDay(d){selectedDay=d;renderMiniDays();}
+function renderMiniPeriods(){
+  const el=$('mini-periods');if(!el)return;
+  const f=S.periods.filter(p=>p.day===selectedDay).sort((a,b)=>a.time.localeCompare(b.time));
+  if(!f.length){el.innerHTML=`<p style="text-align:center;font-size:.75rem;color:var(--text-3);padding:15px;">${t('empty_period')}</p>`;return;}
+  el.innerHTML=f.slice(0,5).map(p=>`<div class="tt-slot" style="margin-bottom:6px;"><div class="time">${p.time}</div><div class="sub">${p.sub}</div><div class="cls">${p.cls||''}</div></div>`).join('');
+}
+
+function renderProfileSub(){const el=$('prof-sub');if(el)el.innerText=S.profile.school||t('set_name_school');}
+
+/* ============ SEARCH ============ */
+function openSearch(){$('search-ov').classList.add('open');setTimeout(()=>$('search-inp').focus(),200);}
+function closeSearch(){$('search-ov').classList.remove('open');$('search-inp').value='';$('search-res').innerHTML='';}
+function doSearch(){
+  const q=$('search-inp').value.toLowerCase().trim();const r=$('search-res');
+  if(!q){r.innerHTML='<p style="text-align:center;color:var(--text-3);padding:40px;font-size:.84rem;">'+t('home')+'...</p>';return;}
+  let items=[];
+  S.classes.forEach(c=>{if(c.name.toLowerCase().includes(q)||(c.subject||'').toLowerCase().includes(q))items.push({i:'fa-users',t:c.name,s:t('class')+' • '+(c.subject||''),p:'classes'});});
+  S.students.forEach(s=>{if(s.name.toLowerCase().includes(q)||(s.roll||'').includes(q))items.push({i:'fa-user-graduate',t:s.name,s:t('student')+' • '+t('roll')+' '+(s.roll||'-'),p:'students'});});
+  S.diary.forEach(d=>{if(d.title.toLowerCase().includes(q)||(d.desc||'').toLowerCase().includes(q))items.push({i:'fa-book',t:d.title,s:t('diary')+' • '+d.date,p:'diary'});});
+  S.notes.forEach(n=>{if(n.title.toLowerCase().includes(q)||(n.desc||'').toLowerCase().includes(q))items.push({i:'fa-sticky-note',t:n.title,s:t('notes'),p:'notes'});});
+  if(!items.length){r.innerHTML=`<div class="empty"><div class="empty-ill"><i class="fas fa-search"></i></div><h4>—</h4><p>${t('home')}</p></div>`;return;}
+  r.innerHTML=items.map(x=>`<div class="li" onclick="closeSearch();switchPage('${x.p}')"><div class="li-icon"><i class="fas ${x.i}"></i></div><div class="li-body"><h4>${x.t}</h4><p>${x.s}</p></div><i class="fas fa-chevron-right" style="color:var(--text-4);"></i></div>`).join('');
+}
+
+function shareApp(){
+  const d={title:'AcharyaOS Pro',text:'A professional digital assistant for Indian teachers in 14+ languages.',url:window.location.href};
+  if(navigator.share)navigator.share(d).catch(()=>{});
+  else{navigator.clipboard.writeText(window.location.href);toast(t('share'),t('share_desc'),'ok');}
+}
+
+function exportData(){
+  const data={...S,version:'9.0.0',lang:LANG,exportedAt:new Date().toISOString()};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=url;a.download=`acharyaos-backup-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();URL.revokeObjectURL(url);toast(t('backup'),'Downloaded','ok');
+}
+function importData(ev){
+  const f=ev.target.files[0];if(!f)return;const rd=new FileReader();
+  rd.onload=e=>{try{const d=JSON.parse(e.target.result);
+      confirmD(t('restore'),'',()=>{
+        ['profile','classes','students','attendance','diary','marks','homework','periods','notes','fees','exams','lessons','reminders','holidays','syllabus','todos','seating'].forEach(k=>{if(d[k])S[k]=d[k];});
+        if(d.lang){LANG=d.lang;localStorage.setItem('aos_lang',LANG);applyI18n();}
+        save();renderAll();toast(t('restore'),'Done','ok');
+      },'info');
+    }catch(err){toast('Error','Invalid file','err');}};
+  rd.readAsText(f);ev.target.value='';
+}
+function confirmReset(){confirmD(t('reset_confirm'),t('reset_desc2'),()=>{localStorage.clear();location.reload();});}
+function showAbout(){confirmD('AcharyaOS Pro','Version 9.0.0\n\n'+t('about_desc')+'\n\n14+ Indian Languages\n100% Offline & Free\n\nMade with ❤️ in India 🇮🇳',()=>{},'info');}
+
+function updateGreet(){
+  const h=new Date().getHours();const nm=S.profile.name||t('home');
+  let g=LANG==='hi'?'नमस्ते':'Hello';
+  if(h<12)g=LANG==='hi'?'सुप्रभात':'Good Morning';
+  else if(h<17)g=LANG==='hi'?'नमस्ते':'Hello';
+  else g=LANG==='hi'?'शुभ संध्या':'Good Evening';
+  $('greet-text').innerText=`${g}, ${nm}! 🙏`;
+  $('greet-sub').innerText=S.profile.school||(LANG==='hi'?'आज का दिन शुभ हो':'Have a great day');
+}
+
+/* ============ SWIPE DOWN TO CLOSE MODALS ============ */
+function setupSwipeClose(){
+  document.querySelectorAll('.modal').forEach(modal=>{
+    const inner=modal.querySelector('.modal-inner');
+    if(!inner)return;
+    let startY=0,currentY=0,isDragging=false;
+    inner.addEventListener('touchstart',(e)=>{
+      startY=e.touches[0].clientY;isDragging=true;currentY=startY;
+    },{passive:true});
+    inner.addEventListener('touchmove',(e)=>{
+      if(!isDragging)return;
+      currentY=e.touches[0].clientY;
+      const diff=currentY-startY;
+      if(diff>0)inner.style.transform=`translateY(${diff}px)`;
+    },{passive:true});
+    inner.addEventListener('touchend',()=>{
+      if(!isDragging)return;isDragging=false;
+      const diff=currentY-startY;
+      inner.style.transform='';
+      if(diff>80)modal.classList.remove('open');
+    },{passive:true});
+  });
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const dOpt={weekday:'long',year:'numeric',month:'long',day:'numeric'};
+  $('cur-date').innerText=new Date().toLocaleDateString(LANG==='hi'?'hi-IN':LANG,dOpt);
+  applyI18n();renderAll();setupSwipeClose();
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){closeModal();closeDialog();closeSearch();closeLangModal();closeProfileModal();}
+    if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}
   });
 });
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
     $('splash').classList.add('hide');
-    if (!localStorage.getItem('aos_lang')) { setTimeout(() => openLangModal(), 400); }
-  }, 2300);
+    // Auto-detect language from browser, only ask if not detected
+    if(!localStorage.getItem('aos_lang')){
+      const bl=(navigator.language||navigator.userLanguage||'en').split('-')[0].toLowerCase();
+      const match=LANGS.find(l=>l.code===bl);
+      if(match){LANG=match.code;localStorage.setItem('aos_lang',match.code);applyI18n();}
+      else{setTimeout(()=>openLangModal(),400);}
+    }
+  },2300);
 });
 </script>
 </body>
