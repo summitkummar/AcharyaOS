@@ -129,6 +129,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .li-icon.g{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.1));color:var(--success);}
 .li-icon.o{background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(217,119,6,.1));color:var(--warning);}
 .li-icon.pk{background:linear-gradient(135deg,rgba(219,39,119,.1),rgba(244,63,94,.1));color:var(--pink);}
+.li-icon.cy{background:linear-gradient(135deg,rgba(6,182,212,.1),rgba(8,145,178,.1));color:var(--info);}
 .li-body{flex:1;min-width:0;}
 .li-body h4{font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .li-body p{font-size:.74rem;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;}
@@ -137,6 +138,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .li-chip.g{background:rgba(16,185,129,.1);color:var(--success);}
 .li-chip.o{background:rgba(245,158,11,.1);color:var(--warning);}
 .li-chip.r{background:rgba(239,68,68,.1);color:var(--danger);}
+.li-chip.pk{background:rgba(219,39,119,.1);color:var(--pink);}
 .li-arrow{color:var(--text-4);font-size:.85rem;flex-shrink:0;}
 
 /* BUTTONS */
@@ -298,8 +300,16 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
 
+/* INSTALL BANNER */
+.install-banner{background:linear-gradient(135deg,var(--primary),var(--primary-2));border-radius:var(--r-lg);padding:16px;display:flex;align-items:center;gap:14px;margin-bottom:16px;color:#fff;box-shadow:0 8px 24px rgba(79,70,229,.3);}
+.install-banner i{font-size:1.6rem;opacity:.9;}
+.install-banner .ib-body{flex:1;}
+.install-banner .ib-body h4{font-size:.9rem;font-weight:800;margin-bottom:2px;}
+.install-banner .ib-body p{font-size:.72rem;opacity:.9;}
+.install-banner button{background:#fff;color:var(--primary);padding:8px 14px;border-radius:10px;font-weight:800;font-size:.74rem;}
+
 /* PRINT */
-@media print{.app-bar,.nav,.fab,.toast-wrap,.modal,.dialog{display:none!important;}body{background:#fff;padding:0;}.wrap{margin:0;padding:16px;}}
+@media print{.app-bar,.nav,.fab,.toast-wrap,.modal,.dialog,.install-banner{display:none!important;}body{background:#fff;padding:0;}.wrap{margin:0;padding:16px;}}
 </style>
 </head>
 <body>
@@ -313,7 +323,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <div class="splash-made">Made with ❤️ for Indian Teachers</div>
 </div>
 
-<!-- LANGUAGE PICKER MODAL -->
+<!-- LANGUAGE MODAL -->
 <div class="modal" id="lang-modal">
   <div class="modal-inner">
     <div class="modal-head">
@@ -321,6 +331,17 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
       <button class="close-btn" onclick="closeLangModal()"><i class="fas fa-times"></i></button>
     </div>
     <div id="lang-list" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-bottom:20px;"></div>
+  </div>
+</div>
+
+<!-- STUDENT PROFILE MODAL -->
+<div class="modal" id="profile-modal">
+  <div class="modal-inner">
+    <div class="modal-head">
+      <div><h3 id="pm-name">Student</h3><p id="pm-sub">Profile</p></div>
+      <button class="close-btn" onclick="closeProfileModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="pm-content"></div>
   </div>
 </div>
 
@@ -332,6 +353,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
       <div class="brand-text">AcharyaOS<small>The Teacher's OS</small></div>
     </div>
     <div class="bar-actions">
+      <button class="icon-btn" onclick="installApp()" title="Install App"><i class="fas fa-download"></i></button>
       <button class="icon-btn" onclick="openLangModal()"><i class="fas fa-globe"></i></button>
       <button class="icon-btn" onclick="openSearch()"><i class="fas fa-search"></i></button>
       <button class="icon-btn" onclick="toggleTheme()" id="theme-btn"><i class="fas fa-moon"></i></button>
@@ -345,6 +367,16 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 
 <!-- HOME -->
 <div class="page active" id="pg-home">
+  <!-- Install Banner -->
+  <div class="install-banner" id="install-banner" style="display:none;">
+    <i class="fas fa-mobile-alt"></i>
+    <div class="ib-body">
+      <h4>Install AcharyaOS App</h4>
+      <p>Add to home screen for the best experience</p>
+    </div>
+    <button onclick="installApp()">Install</button>
+  </div>
+
   <div class="greet">
     <div>
       <h1 id="greet-text">नमस्ते 🙏</h1>
@@ -369,10 +401,10 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
       <div class="stat-label" data-t="present_today">PRESENT TODAY</div>
       <div class="stat-value" id="st-att">-</div>
     </div>
-    <div class="stat pk" onclick="switchPage('diary')">
-      <div class="stat-top"><div class="stat-icon"><i class="fas fa-book"></i></div></div>
-      <div class="stat-label" data-t="diary">DIARY</div>
-      <div class="stat-value" id="st-diary">0</div>
+    <div class="stat pk" onclick="switchPage('fees')">
+      <div class="stat-top"><div class="stat-icon"><i class="fas fa-file-invoice-dollar"></i></div></div>
+      <div class="stat-label" data-t="fees">FEES</div>
+      <div class="stat-value" id="st-fees">-</div>
     </div>
   </div>
   <div class="sec-head"><h3><i class="fas fa-bolt"></i> <span data-t="quick_actions">Quick Actions</span></h3></div>
@@ -384,9 +416,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   </div>
   <div class="sec-head"><h3><i class="fas fa-chart-line"></i> <span data-t="weekly_attendance">Weekly Attendance</span></h3><span class="link" onclick="switchPage('reports')"><i class="fas fa-file-alt"></i> <span data-t="reports">Reports</span></span></div>
   <div class="card">
-    <div class="chart-container" id="weekly-chart">
-      <!-- Chart will be rendered here -->
-    </div>
+    <div class="chart-container" id="weekly-chart"></div>
   </div>
   <div class="sec-head"><h3><i class="fas fa-clock"></i> <span data-t="recent">Recent Activity</span></h3></div>
   <div id="recent"></div>
@@ -441,6 +471,12 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <div id="list-periods"></div>
 </div>
 
+<!-- FEES -->
+<div class="page" id="pg-fees">
+  <div class="sec-head"><h3><i class="fas fa-file-invoice-dollar"></i> <span data-t="fee_tracker">Fee Tracker</span></h3><button class="link" onclick="openModal('fee')"><i class="fas fa-plus"></i> <span data-t="add_fee">Add Fee</span></button></div>
+  <div id="list-fees"></div>
+</div>
+
 <!-- NOTES -->
 <div class="page" id="pg-notes">
   <div class="sec-head"><h3><i class="fas fa-sticky-note"></i> <span data-t="notes">Notes</span></h3><button class="link" onclick="openModal('note')"><i class="fas fa-plus"></i> <span data-t="new_note">New Note</span></button></div>
@@ -468,7 +504,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <div class="card text-center" style="padding:24px 18px;">
     <div style="width:76px;height:76px;border-radius:22px;background:linear-gradient(135deg,var(--primary),var(--pink));color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px;box-shadow:0 10px 24px rgba(79,70,229,.4);"><i class="fas fa-graduation-cap"></i></div>
     <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;">AcharyaOS Pro</h3>
-    <p style="font-size:.78rem;color:var(--text-3);font-weight:600;">Version 4.0.0</p>
+    <p style="font-size:.78rem;color:var(--text-3);font-weight:600;">Version 5.0.0</p>
     <p style="font-size:.82rem;color:var(--text-2);margin-top:14px;line-height:1.6;" data-t="about_desc">A professional digital assistant for Indian teachers.</p>
     <p style="font-size:.72rem;color:var(--text-3);margin-top:12px;">Made with ❤️ in India 🇮🇳</p>
   </div>
@@ -491,6 +527,11 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     <div class="set-row" onclick="toggleTheme()">
       <div class="set-ic"><i class="fas fa-moon"></i></div>
       <div class="set-body"><h4 data-t="dark_mode">Dark Mode</h4><p data-t="dark_desc">Comfortable theme for eyes</p></div>
+      <i class="fas fa-chevron-right set-arrow"></i>
+    </div>
+    <div class="set-row" onclick="installApp()">
+      <div class="set-ic"><i class="fas fa-download"></i></div>
+      <div class="set-body"><h4 data-t="install_app">Install App</h4><p data-t="install_desc">Add AcharyaOS to your home screen</p></div>
       <i class="fas fa-chevron-right set-arrow"></i>
     </div>
   </div>
@@ -520,7 +561,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     </div>
     <div class="set-row" onclick="showAbout()">
       <div class="set-ic"><i class="fas fa-info-circle"></i></div>
-      <div class="set-body"><h4 data-t="about">About</h4><p>Version 4.0.0</p></div>
+      <div class="set-body"><h4 data-t="about">About</h4><p>Version 5.0.0</p></div>
       <i class="fas fa-chevron-right set-arrow"></i>
     </div>
   </div>
@@ -599,22 +640,22 @@ const LANGS = [
   {code:'ne',name:'Nepali',native:'नेपाली',num:'14'}
 ];
 
-/* ============ I18N ============ */
+/* ============ I18N (Extended) ============ */
 const T = {
-  hi: {home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'आपकी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lesson_plans:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',class_wise:'क्लास-वार स्टूडेंट्स',all_features:'सभी फीचर्स',about:'ऐप के बारे में',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',mark:'उपस्थिति',subject_lbl:'विषय'},
-  en: {home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',exams:'Exams',add_exam:'Add Exam',lesson_plans:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',class_wise:'Class-wise Students',all_features:'All Features',about:'About',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap the button above to add your first class.',empty_students:'No Students',empty_students_d:'Tap the button above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',mark:'Mark',subject_lbl:'Subject'},
-  bn: {home:'হোম',classes:'ক্লাস',students:'শিক্ষার্থী',attend:'উপস্থিতি',diary:'ডায়েরি',marks:'নম্বর',more:'আরও',class:'ক্লাস',student:'শিক্ষার্থী',present_today:'আজ উপস্থিত',quick_actions:'দ্রুত কাজ',weekly_attendance:'সাপ্তাহিক উপস্থিতি',reports:'রিপোর্ট',recent:'সাম্প্রতিক',my_classes:'আমার ক্লাস',all_students:'সব শিক্ষার্থী',add_class:'নতুন ক্লাস',add_student:'নতুন শিক্ষার্থী',attendance:'উপস্থিতি',new_entry:'নতুন এন্ট্রি',add_marks:'নম্বর যোগ করুন',homework:'হোমওয়ার্ক',new_hw:'নতুন HW',timetable:'সময়সূচি',add_period:'পিরিয়ড যোগ',notes:'নোট',new_note:'নতুন নোট',exams:'পরীক্ষা',add_exam:'পরীক্ষা যোগ',lesson_plans:'পাঠ পরিকল্পনা',add_lesson:'পাঠ যোগ',reminders:'রিমাইন্ডার',add_reminder:'রিমাইন্ডার যোগ',holidays:'ছুটি',add_holiday:'ছুটি যোগ',print:'প্রিন্ট',attendance_summary:'উপস্থিতি সারসংক্ষেপ',marks_summary:'নম্বর সারসংক্ষেপ',class_wise:'ক্লাস-ভিত্তিক',all_features:'সব ফিচার',about:'সম্পর্কে',about_desc:'ভারতীয় শিক্ষকদের জন্য একটি পেশাদার ডিজিটাল সহায়ক।',settings:'সেটিংস',profile:'প্রোফাইল',set_name_school:'নাম ও স্কুল সেট করুন',language:'ভাষা',dark_mode:'ডার্ক মোড',dark_desc:'চোখের জন্য আরামদায়ক',backup:'ডেটা ব্যাকআপ',backup_desc:'সব ডেটা JSON ফাইলে সেভ করুন',restore:'ডেটা রিস্টোর',restore_desc:'ব্যাকআপ ফাইল থেকে ফেরান',reset_data:'ডেটা রিসেট',reset_desc:'সব ডেটা মুছুন',share:'শেয়ার',share_desc:'WhatsApp-এ পাঠান',cancel:'বাতিল',save:'সেভ',confirm:'নিশ্চিত',delete:'মুছুন',name:'নাম',roll:'রোল',subject:'বিষয়',phone:'ফোন',room:'রুম',title:'শিরোনাম',desc:'বিবরণ',hw:'হোমওয়ার্ক',exam:'পরীক্ষা',score:'নম্বর',total:'মোট',time:'সময়',day:'দিন',date:'তারিখ',due:'শেষ তারিখ',school:'স্কুল',select_class:'ক্লাস নির্বাচন',select_student:'শিক্ষার্থী নির্বাচন',required:'আবশ্যক',empty_classes:'কোনো ক্লাস নেই',empty_classes_d:'উপরের বোতাম চাপুন।',empty_students:'কোনো শিক্ষার্থী নেই',empty_students_d:'উপরের বোতাম চাপুন।',empty_att:'কোনো শিক্ষার্থী নেই',empty_diary:'কোনো এন্ট্রি নেই',empty_marks:'কোনো নম্বর নেই',empty_hw:'কোনো হোমওয়ার্ক নেই',empty_period:'কোনো পিরিয়ড নেই',empty_note:'কোনো নোট নেই',mark_all:'সব উপস্থিত',del_confirm:'মুছবেন?',del_desc:'এটি স্থায়ীভাবে মুছে যাবে।',reset_confirm:'সব ডেটা মুছবেন?',reset_desc2:'এই কাজ ফেরানো যাবে না।',saved:'সেভ হয়েছে',deleted:'মুছে ফেলা হয়েছে',fill_required:'তথ্য পূরণ করুন',mark:'মার্ক',subject_lbl:'বিষয়'},
-  mr: {home:'होम',classes:'वर्ग',students:'विद्यार्थी',attend:'हजेरी',diary:'डायरी',marks:'गुण',more:'अधिक',class:'वर्ग',student:'विद्यार्थी',present_today:'आज उपस्थित',quick_actions:'त्वरित कार्य',weekly_attendance:'साप्ताहिक हजेरी',reports:'अहवाल',recent:'अलीकडील',my_classes:'माझे वर्ग',all_students:'सर्व विद्यार्थी',add_class:'नवीन वर्ग',add_student:'नवीन विद्यार्थी',attendance:'हजेरी',new_entry:'नवीन नोंद',add_marks:'गुण जोडा',homework:'गृहपाठ',new_hw:'नवीन HW',timetable:'वेळापत्रक',add_period:'तास जोडा',notes:'टिपा',new_note:'नवीन टीप',exams:'परीक्षा',add_exam:'परीक्षा जोडा',lesson_plans:'पाठ योजना',add_lesson:'पाठ जोडा',reminders:'स्मरण',add_reminder:'स्मरण जोडा',holidays:'सुट्ट्या',add_holiday:'सुट्टी जोडा',print:'प्रिंट',attendance_summary:'हजेरी सारांश',marks_summary:'गुण सारांश',class_wise:'वर्गानुसार',all_features:'सर्व वैशिष्ट्ये',about:'विषयी',about_desc:'भारतीय शिक्षकांसाठी व्यावसायिक डिजिटल सहाय्यक।',settings:'सेटिंग्ज',profile:'प्रोफाइल',set_name_school:'नाव व शाळा सेट करा',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'डोळ्यांसाठी आरामदायक',backup:'डेटा बॅकअप',backup_desc:'सर्व डेटा JSON मध्ये सेव्ह करा',restore:'डेटा रिस्टोअर',restore_desc:'बॅकअपमधून परत आणा',reset_data:'डेटा रीसेट',reset_desc:'सर्व डेटा कायमचा मिटवा',share:'शेअर',share_desc:'WhatsApp वर पाठवा',cancel:'रद्द',save:'सेव्ह',confirm:'पुष्टी',delete:'हटवा',name:'नाव',roll:'रोल',subject:'विषय',phone:'फोन',room:'खोली',title:'शीर्षक',desc:'वर्णन',hw:'गृहपाठ',exam:'परीक्षा',score:'गुण',total:'एकूण',time:'वेळ',day:'दिवस',date:'तारीख',due:'देय',school:'शाळा',select_class:'वर्ग निवडा',select_student:'विद्यार्थी निवडा',required:'आवश्यक',empty_classes:'वर्ग नाहीत',empty_classes_d:'वर बटण दाबा।',empty_students:'विद्यार्थी नाहीत',empty_students_d:'वर बटण दाबा।',empty_att:'विद्यार्थी नाहीत',empty_diary:'नोंदी नाहीत',empty_marks:'गुण नाहीत',empty_hw:'गृहपाठ नाही',empty_period:'तास नाहीत',empty_note:'टिपा नाहीत',mark_all:'सर्व उपस्थित',del_confirm:'हटवायचे?',del_desc:'कायमचे हटवले जाईल।',reset_confirm:'सर्व डेटा मिटवायचा?',reset_desc2:'परत करता येणार नाही।',saved:'सेव्ह झाले',deleted:'हटवले',fill_required:'माहिती भरा',mark:'मार्क',subject_lbl:'विषय'},
-  te: {home:'హోమ్',classes:'తరగతులు',students:'విద్యార్థులు',attend:'హాజరు',diary:'డైరీ',marks:'మార్కులు',more:'మరిన్ని',class:'తరగతి',student:'విద్యార్థి',present_today:'ఈరోజు హాజరు',quick_actions:'త్వరిత పనులు',weekly_attendance:'వారపు హాజరు',reports:'నివేదికలు',recent:'ఇటీవలి',my_classes:'నా తరగతులు',all_students:'విద్యార్థులు',add_class:'తరగతి జోడించు',add_student:'విద్యార్థి జోడించు',attendance:'హాజరు',new_entry:'కొత్త ఎంట్రీ',add_marks:'మార్కులు జోడించు',homework:'హోంవర్క్',new_hw:'కొత్త HW',timetable:'టైమ్టేబుల్',add_period:'పీరియడ్ జోడించు',notes:'నోట్స్',new_note:'కొత్త నోట్',exams:'పరీక్షలు',add_exam:'పరీక్ష జోడించు',lesson_plans:'పాఠ్య ప్రణాళిక',add_lesson:'పాఠం జోడించు',reminders:'రిమైండర్లు',add_reminder:'రిమైండర్ జోడించు',holidays:'సెలవులు',add_holiday:'సెలవు జోడించు',print:'ప్రింట్',attendance_summary:'హాజరు సారాంశం',marks_summary:'మార్కుల సారాంశం',class_wise:'తరగతి వారీగా',all_features:'అన్ని ఫీచర్లు',about:'గురించి',about_desc:'భారతీయ ఉపాధ్యాయుల కోసం వృత్తిపరమైన సహాయకుడు.',settings:'సెట్టింగ్స్',profile:'ప్రొఫైల్',set_name_school:'పేరు మరియు పాఠశాల',language:'భాష',dark_mode:'డార్క్ మోడ్',dark_desc:'కళ్ళకు ఆరామం',backup:'డేటా బ్యాకప్',backup_desc:'JSON ఫైల్‌లో సేవ్ చేయండి',restore:'డేటా రీస్టోర్',restore_desc:'బ్యాకప్ నుండి తిరిగి',reset_data:'డేటా రీసెట్',reset_desc:'అన్ని డేటా తొలగించు',share:'షేర్',share_desc:'WhatsAppలో పంపండి',cancel:'రద్దు',save:'సేవ్',confirm:'నిర్ధారించు',delete:'తొలగించు',name:'పేరు',roll:'రోల్',subject:'సబ్జెక్ట్',phone:'ఫోన్',room:'గది',title:'శీర్షిక',desc:'వివరణ',hw:'హోంవర్క్',exam:'పరీక్ష',score:'మార్కులు',total:'మొత్తం',time:'సమయం',day:'రోజు',date:'తేదీ',due:'గడువు',school:'పాఠశాల',select_class:'తరగతి ఎంచుకోండి',select_student:'విద్యార్థి ఎంచుకోండి',required:'అవసరం',empty_classes:'తరగతులు లేవు',empty_classes_d:'పైన బటన్ నొక్కండి।',empty_students:'విద్యార్థులు లేరు',empty_students_d:'పైన బటన్ నొక్కండి।',empty_att:'విద్యార్థులు లేరు',empty_diary:'ఎంట్రీలు లేవు',empty_marks:'మార్కులు లేవు',empty_hw:'హోంవర్క్ లేదు',empty_period:'పీరియడ్‌లు లేవు',empty_note:'నోట్స్ లేవు',mark_all:'అందరూ హాజరు',del_confirm:'తొలగించాలా?',del_desc:'శాశ్వతంగా తొలగించబడుతుంది।',reset_confirm:'డేటా రీసెట్?',reset_desc2:'తిరిగి పొందలేరు।',saved:'సేవ్ అయింది',deleted:'తొలగించబడింది',fill_required:'సమాచారం నింపండి',mark:'మార్క్',subject_lbl:'సబ్జెక్ట్'},
-  ta: {home:'முகப்பு',classes:'வகுப்புகள்',students:'மாணவர்கள்',attend:'வருகை',diary:'டைரி',marks:'மதிப்பெண்',more:'மேலும்',class:'வகுப்பு',student:'மாணவர்',present_today:'இன்று வருகை',quick_actions:'விரைவு',weekly_attendance:'வார வருகை',reports:'அறிக்கை',recent:'சமீபத்திய',my_classes:'என் வகுப்புகள்',all_students:'மாணவர்கள்',add_class:'வகுப்பு சேர்',add_student:'மாணவர் சேர்',attendance:'வருகை',new_entry:'புதிய',add_marks:'மதிப்பெண் சேர்',homework:'வீட்டுப்பாடம்',new_hw:'புதிய HW',timetable:'அட்டவணை',add_period:'பாடம் சேர்',notes:'குறிப்பு',new_note:'புதிய குறிப்பு',exams:'தேர்வுகள்',add_exam:'தேர்வு சேர்',lesson_plans:'பாட திட்டம்',add_lesson:'பாடம் சேர்',reminders:'நினைவூட்டல்',add_reminder:'சேர்',holidays:'விடுமுறை',add_holiday:'விடுமுறை சேர்',print:'அச்சிடு',attendance_summary:'வருகை சுருக்கம்',marks_summary:'மதிப்பெண் சுருக்கம்',class_wise:'வகுப்பு வாரியாக',all_features:'அனைத்து',about:'பற்றி',about_desc:'இந்திய ஆசிரியர்களுக்கான தொழில்முறை உதவியாளர்.',settings:'அமைப்பு',profile:'சுயவிவரம்',set_name_school:'பெயர் பள்ளி',language:'மொழி',dark_mode:'டார்க்',dark_desc:'கண்களுக்கு வசதி',backup:'காப்பு',backup_desc:'JSON இல் சேமி',restore:'மீட்டெடு',restore_desc:'காப்பிலிருந்து',reset_data:'மீட்டமை',reset_desc:'எல்லாம் அழி',share:'பகிர்',share_desc:'WhatsApp',cancel:'ரத்து',save:'சேமி',confirm:'உறுதி',delete:'அழி',name:'பெயர்',roll:'ரோல்',subject:'பாடம்',phone:'தொலைபேசி',room:'அறை',title:'தலைப்பு',desc:'விவரம்',hw:'HW',exam:'தேர்வு',score:'மதிப்பெண்',total:'மொத்தம்',time:'நேரம்',day:'நாள்',date:'தேதி',due:'கடைசி',school:'பள்ளி',select_class:'வகுப்பு',select_student:'மாணவர்',required:'தேவை',empty_classes:'வகுப்பு இல்லை',empty_classes_d:'மேலே அழுத்து।',empty_students:'மாணவர் இல்லை',empty_students_d:'மேலே அழுத்து।',empty_att:'மாணவர் இல்லை',empty_diary:'இல்லை',empty_marks:'இல்லை',empty_hw:'இல்லை',empty_period:'இல்லை',empty_note:'இல்லை',mark_all:'அனைவரும்',del_confirm:'அழிக்க?',del_desc:'நிரந்தரமாக அழிக்கப்படும்.',reset_confirm:'மீட்டமை?',reset_desc2:'மீட்க முடியாது.',saved:'சேமிக்கப்பட்டது',deleted:'அழிக்கப்பட்டது',fill_required:'விவரம் நிரப்பு',mark:'மார்க்',subject_lbl:'பாடம்'},
-  gu: {home:'હોમ',classes:'વર્ગો',students:'વિદ્યાર્થીઓ',attend:'હાજરી',diary:'ડાયરી',marks:'ગુણ',more:'વધુ',class:'વર્ગ',student:'વિદ્યાર્થી',present_today:'આજે હાજર',quick_actions:'ઝડપી',weekly_attendance:'સાપ્તાહિક',reports:'રિપોર્ટ',recent:'તાજેતર',my_classes:'મારા વર્ગો',all_students:'વિદ્યાર્થીઓ',add_class:'વર્ગ ઉમેરો',add_student:'વિદ્યાર્થી ઉમેરો',attendance:'હાજરી',new_entry:'નવી',add_marks:'ગુણ ઉમેરો',homework:'હોમવર્ક',new_hw:'નવું HW',timetable:'સમયપત્રક',add_period:'પીરિયડ',notes:'નોંધ',new_note:'નવી નોંધ',exams:'પરીક્ષા',add_exam:'પરીક્ષા ઉમેરો',lesson_plans:'પાઠ યોજના',add_lesson:'પાઠ ઉમેરો',reminders:'રિમાઇન્ડર',add_reminder:'ઉમેરો',holidays:'રજાઓ',add_holiday:'રજા ઉમેરો',print:'પ્રિન્ટ',attendance_summary:'હાજરી સારાંશ',marks_summary:'ગુણ સારાંશ',class_wise:'વર્ગ મુજબ',all_features:'બધા',about:'વિશે',about_desc:'ભારતીય શિક્ષકો માટે વ્યાવસાયિક સહાયક.',settings:'સેટિંગ',profile:'પ્રોફાઇલ',set_name_school:'નામ અને શાળા',language:'ભાષા',dark_mode:'ડાર્ક',dark_desc:'આંખો માટે',backup:'બેકઅપ',backup_desc:'JSON માં સેવ',restore:'રીસ્ટોર',restore_desc:'બેકઅપથી',reset_data:'રીસેટ',reset_desc:'બધું ભૂંસો',share:'શેર',share_desc:'WhatsApp',cancel:'રદ',save:'સેવ',confirm:'પુષ્ટિ',delete:'ભૂંસો',name:'નામ',roll:'રોલ',subject:'વિષય',phone:'ફોન',room:'રૂમ',title:'શીર્ષક',desc:'વર્ણન',hw:'HW',exam:'પરીક્ષા',score:'ગુણ',total:'કુલ',time:'સમય',day:'દિવસ',date:'તારીખ',due:'તારીખ',school:'શાળા',select_class:'વર્ગ',select_student:'વિદ્યાર્થી',required:'જરૂરી',empty_classes:'વર્ગ નથી',empty_classes_d:'ઉપર બટન દબાવો.',empty_students:'વિદ્યાર્થી નથી',empty_students_d:'ઉપર બટન દબાવો.',empty_att:'વિદ્યાર્થી નથી',empty_diary:'નથી',empty_marks:'નથી',empty_hw:'નથી',empty_period:'નથી',empty_note:'નથી',mark_all:'બધા હાજર',del_confirm:'ભૂંસવું?',del_desc:'કાયમી ભૂંસાશે.',reset_confirm:'રીસેટ?',reset_desc2:'પાછું નહીં આવે.',saved:'સેવ',deleted:'ભૂંસ્યું',fill_required:'માહિતી ભરો',mark:'માર્ક',subject_lbl:'વિષય'},
-  ur: {home:'ہوم',classes:'کلاسز',students:'طلباء',attend:'حاضری',diary:'ڈائری',marks:'نمبر',more:'مزید',class:'کلاس',student:'طالب علم',present_today:'آج حاضر',quick_actions:'فوری کام',weekly_attendance:'ہفتہ وار',reports:'رپورٹس',recent:'حالیہ',my_classes:'میری کلاسز',all_students:'تمام طلباء',add_class:'کلاس شامل',add_student:'طالب شامل',attendance:'حاضری',new_entry:'نئی',add_marks:'نمبر شامل',homework:'ہوم ورک',new_hw:'نیا HW',timetable:'ٹائم ٹیبل',add_period:'پیریڈ',notes:'نوٹس',new_note:'نیا نوٹ',exams:'امتحانات',add_exam:'امتحان شامل',lesson_plans:'اسباق',add_lesson:'سبق شامل',reminders:'یاد دہانی',add_reminder:'شامل',holidays:'چھٹیاں',add_holiday:'چھٹی شامل',print:'پرنٹ',attendance_summary:'حاضری خلاصہ',marks_summary:'نمبر خلاصہ',class_wise:'کلاس کے مطابق',all_features:'تمام',about:'متعلق',about_desc:'بھارتی اساتذہ کے لیے پیشہ ورانہ معاون۔',settings:'ترتیبات',profile:'پروفائل',set_name_school:'نام اور اسکول',language:'زبان',dark_mode:'ڈارک',dark_desc:'آنکھوں کے لیے',backup:'بیک اپ',backup_desc:'JSON میں محفوظ',restore:'بحالی',restore_desc:'بیک اپ سے',reset_data:'ری سیٹ',reset_desc:'سب مٹا دیں',share:'شیئر',share_desc:'WhatsApp',cancel:'منسوخ',save:'محفوظ',confirm:'تصدیق',delete:'حذف',name:'نام',roll:'رول',subject:'مضمون',phone:'فون',room:'کمرہ',title:'عنوان',desc:'تفصیل',hw:'HW',exam:'امتحان',score:'نمبر',total:'کل',time:'وقت',day:'دن',date:'تاریخ',due:'آخری تاریخ',school:'اسکول',select_class:'کلاس',select_student:'طالب',required:'ضروری',empty_classes:'کلاس نہیں',empty_classes_d:'اوپر بٹن دبائیں۔',empty_students:'طالب نہیں',empty_students_d:'اوپر بٹن دبائیں۔',empty_att:'طالب نہیں',empty_diary:'نہیں',empty_marks:'نہیں',empty_hw:'نہیں',empty_period:'نہیں',empty_note:'نہیں',mark_all:'سب حاضر',del_confirm:'حذف؟',del_desc:'ہمیشہ کے لیے۔',reset_confirm:'ری سیٹ؟',reset_desc2:'واپس نہیں آئے گا۔',saved:'محفوظ',deleted:'حذف',fill_required:'معلومات بھریں',mark:'مارک',subject_lbl:'مضمون'},
-  kn: {home:'ಮುಖಪುಟ',classes:'ತರಗತಿ',students:'ವಿದ್ಯಾರ್ಥಿ',attend:'ಹಾಜರಿ',diary:'ಡೈರಿ',marks:'ಅಂಕ',more:'ಇನ್ನಷ್ಟು',class:'ತರಗತಿ',student:'ವಿದ್ಯಾರ್ಥಿ',present_today:'ಇಂದು',quick_actions:'ತ್ವರಿತ',weekly_attendance:'ಸಾಪ್ತಾಹಿಕ',reports:'ವರದಿ',recent:'ಇತ್ತೀಚಿನ',my_classes:'ನನ್ನ ತರಗತಿ',all_students:'ಎಲ್ಲ ವಿದ್ಯಾರ್ಥಿ',add_class:'ತರಗತಿ ಸೇರಿಸು',add_student:'ವಿದ್ಯಾರ್ಥಿ ಸೇರಿಸು',attendance:'ಹಾಜರಿ',new_entry:'ಹೊಸ',add_marks:'ಅಂಕ ಸೇರಿಸು',homework:'ಮನೆಪಾಠ',new_hw:'ಹೊಸ HW',timetable:'ವೇಳಾಪಟ್ಟಿ',add_period:'ಅವಧಿ',notes:'ಟಿಪ್ಪಣಿ',new_note:'ಹೊಸ',exams:'ಪರೀಕ್ಷೆ',add_exam:'ಪರೀಕ್ಷೆ ಸೇರಿಸು',lesson_plans:'ಪಾಠ ಯೋಜನೆ',add_lesson:'ಪಾಠ ಸೇರಿಸು',reminders:'ಜ್ಞಾಪನೆ',add_reminder:'ಸೇರಿಸು',holidays:'ರಜೆ',add_holiday:'ರಜೆ ಸೇರಿಸು',print:'ಮುದ್ರಿಸು',attendance_summary:'ಹಾಜರಿ ಸಾರಾಂಶ',marks_summary:'ಅಂಕ ಸಾರಾಂಶ',class_wise:'ತರಗತಿ ಪ್ರಕಾರ',all_features:'ಎಲ್ಲ',about:'ಬಗ್ಗೆ',about_desc:'ಭಾರತೀಯ ಶಿಕ್ಷಕರಿಗಾಗಿ ವೃತ್ತಿಪರ ಸಹಾಯಕ.',settings:'ಸೆಟ್ಟಿಂಗ್ಸ್',profile:'ಪ್ರೊಫೈಲ್',set_name_school:'ಹೆಸರು ಶಾಲೆ',language:'ಭಾಷೆ',dark_mode:'ಡಾರ್ಕ್',dark_desc:'ಕಣ್ಣಿಗೆ ಆರಾಮ',backup:'ಬ್ಯಾಕಪ್',backup_desc:'JSON ನಲ್ಲಿ ಉಳಿಸಿ',restore:'ಮರುಸ್ಥಾಪಿಸು',restore_desc:'ಬ್ಯಾಕಪ್‌ನಿಂದ',reset_data:'ರೀಸೆಟ್',reset_desc:'ಎಲ್ಲ ಅಳಿಸಿ',share:'ಹಂಚಿಕೊಳ್ಳಿ',share_desc:'WhatsApp',cancel:'ರದ್ದು',save:'ಉಳಿಸು',confirm:'ದೃಢಪಡಿಸು',delete:'ಅಳಿಸು',name:'ಹೆಸರು',roll:'ರೋಲ್',subject:'ವಿಷಯ',phone:'ಫೋನ್',room:'ಕೊಠಡಿ',title:'ಶೀರ್ಷಿಕೆ',desc:'ವಿವರಣೆ',hw:'HW',exam:'ಪರೀಕ್ಷೆ',score:'ಅಂಕ',total:'ಒಟ್ಟು',time:'ಸಮಯ',day:'ದಿನ',date:'ದಿನಾಂಕ',due:'ಕೊನೆ',school:'ಶಾಲೆ',select_class:'ತರಗತಿ',select_student:'ವಿದ್ಯಾರ್ಥಿ',required:'ಅಗತ್ಯ',empty_classes:'ತರಗತಿ ಇಲ್ಲ',empty_classes_d:'ಮೇಲೆ ಬಟನ್ ಒತ್ತಿ.',empty_students:'ವಿದ್ಯಾರ್ಥಿ ಇಲ್ಲ',empty_students_d:'ಮೇಲೆ ಬಟನ್ ಒತ್ತಿ.',empty_att:'ವಿದ್ಯಾರ್ಥಿ ಇಲ್ಲ',empty_diary:'ಇಲ್ಲ',empty_marks:'ಇಲ್ಲ',empty_hw:'ಇಲ್ಲ',empty_period:'ಇಲ್ಲ',empty_note:'ಇಲ್ಲ',mark_all:'ಎಲ್ಲ ಹಾಜರು',del_confirm:'ಅಳಿಸುವುದೇ?',del_desc:'ಶಾಶ್ವತವಾಗಿ.',reset_confirm:'ರೀಸೆಟ್?',reset_desc2:'ಹಿಂತಿರುಗಿಸಲಾಗದು.',saved:'ಉಳಿಸಲಾಗಿದೆ',deleted:'ಅಳಿಸಲಾಗಿದೆ',fill_required:'ಮಾಹಿತಿ ತುಂಬಿ',mark:'ಮಾರ್ಕ್',subject_lbl:'ವಿಷಯ'},
-  or: {home:'ହୋମ',classes:'ଶ୍ରେଣୀ',students:'ଛାତ୍ର',attend:'ଉପସ୍ଥିତି',diary:'ଡାଏରୀ',marks:'ନମ୍ବର',more:'ଅଧିକ',class:'ଶ୍ରେଣୀ',student:'ଛାତ୍ର',present_today:'ଆଜି',quick_actions:'ଶୀଘ୍ର',weekly_attendance:'ସାପ୍ତାହିକ',reports:'ରିପୋର୍ଟ',recent:'ସାମ୍ପ୍ରତିକ',my_classes:'ମୋ ଶ୍ରେଣୀ',all_students:'ସମସ୍ତ ଛାତ୍ର',add_class:'ଶ୍ରେଣୀ ଯୋଡ଼ନ୍ତୁ',add_student:'ଛାତ୍ର ଯୋଡ଼ନ୍ତୁ',attendance:'ଉପସ୍ଥିତି',new_entry:'ନୂଆ',add_marks:'ନମ୍ବର ଯୋଡ଼ନ୍ତୁ',homework:'ଗୃହକାର୍ଯ୍ୟ',new_hw:'ନୂଆ HW',timetable:'ସମୟ ସାରଣୀ',add_period:'ପିରିଅଡ',notes:'ଟିପ୍ପଣୀ',new_note:'ନୂଆ',exams:'ପରୀକ୍ଷା',add_exam:'ପରୀକ୍ଷା ଯୋଡ଼ନ୍ତୁ',lesson_plans:'ପାଠ ଯୋଜନା',add_lesson:'ପାଠ ଯୋଡ଼ନ୍ତୁ',reminders:'ମନେ ପକାଇବା',add_reminder:'ଯୋଡ଼ନ୍ତୁ',holidays:'ଛୁଟି',add_holiday:'ଛୁଟି ଯୋଡ଼ନ୍ତୁ',print:'ପ୍ରିଣ୍ଟ',attendance_summary:'ଉପସ୍ଥିତି ସାରାଂଶ',marks_summary:'ନମ୍ବର ସାରାଂଶ',class_wise:'ଶ୍ରେଣୀ ଅନୁସାରେ',all_features:'ସମସ୍ତ',about:'ବିଷୟରେ',about_desc:'ଭାରତୀୟ ଶିକ୍ଷକଙ୍କ ପାଇଁ ବୃତ୍ତିଗତ ସହାୟକ।',settings:'ସେଟିଂସ',profile:'ପ୍ରୋଫାଇଲ',set_name_school:'ନାମ ଓ ବିଦ୍ୟାଳୟ',language:'ଭାଷା',dark_mode:'ଡାର୍କ',dark_desc:'ଆଖି ପାଇଁ',backup:'ବ୍ୟାକଅପ',backup_desc:'JSON ରେ ସେଭ',restore:'ରିଷ୍ଟୋର',restore_desc:'ବ୍ୟାକଅପରୁ',reset_data:'ରିସେଟ',reset_desc:'ସବୁ ଲିଭାନ୍ତୁ',share:'ସେୟାର',share_desc:'WhatsApp',cancel:'ବାତିଲ',save:'ସେଭ',confirm:'ନିଶ୍ଚିତ',delete:'ଲିଭାନ୍ତୁ',name:'ନାମ',roll:'ରୋଲ',subject:'ବିଷୟ',phone:'ଫୋନ',room:'କୋଠରୀ',title:'ଶୀର୍ଷକ',desc:'ବିବରଣୀ',hw:'HW',exam:'ପରୀକ୍ଷା',score:'ନମ୍ବର',total:'ମୋଟ',time:'ସମୟ',day:'ଦିନ',date:'ତାରିଖ',due:'ଶେଷ',school:'ବିଦ୍ୟାଳୟ',select_class:'ଶ୍ରେଣୀ',select_student:'ଛାତ୍ର',required:'ଆବଶ୍ୟକ',empty_classes:'ଶ୍ରେଣୀ ନାହିଁ',empty_classes_d:'ଉପର ବଟନ ଦବାନ୍ତୁ।',empty_students:'ଛାତ୍ର ନାହିଁ',empty_students_d:'ଉପର ବଟନ ଦବାନ୍ତୁ।',empty_att:'ଛାତ୍ର ନାହିଁ',empty_diary:'ନାହିଁ',empty_marks:'ନାହିଁ',empty_hw:'ନାହିଁ',empty_period:'ନାହିଁ',empty_note:'ନାହିଁ',mark_all:'ସମସ୍ତ ଉପସ୍ଥିତ',del_confirm:'ଲିଭାଇବେ?',del_desc:'ସ୍ଥାୟୀ ଭାବରେ।',reset_confirm:'ରିସେଟ?',reset_desc2:'ଫେରାଇ ଆଣିବେ ନାହିଁ।',saved:'ସେଭ ହେଲା',deleted:'ଲିଭିଗଲା',fill_required:'ସୂଚନା ଭରନ୍ତୁ',mark:'ମାର୍କ',subject_lbl:'ବିଷୟ'},
-  ml: {home:'ഹോം',classes:'ക്ലാസ്',students:'വിദ്യാർത്ഥി',attend:'ഹാജർ',diary:'ഡയറി',marks:'മാർക്ക്',more:'കൂടുതൽ',class:'ക്ലാസ്',student:'വിദ്യാർത്ഥി',present_today:'ഇന്ന് ഹാജർ',quick_actions:'പെട്ടെന്ന്',weekly_attendance:'പ്രതിവാര',reports:'റിപ്പോർട്ട്',recent:'സമീപകാല',my_classes:'എന്റെ ക്ലാസ്',all_students:'എല്ലാ വിദ്യാർത്ഥി',add_class:'ക്ലാസ് ചേർക്കുക',add_student:'വിദ്യാർത്ഥി ചേർക്കുക',attendance:'ഹാജർ',new_entry:'പുതിയ',add_marks:'മാർക്ക് ചേർക്കുക',homework:'ഹോംവർക്ക്',new_hw:'പുതിയ HW',timetable:'ടൈംടേബിൾ',add_period:'പിരീഡ്',notes:'കുറിപ്പ്',new_note:'പുതിയ',exams:'പരീക്ഷ',add_exam:'പരീക്ഷ ചേർക്കുക',lesson_plans:'പാഠ പദ്ധതി',add_lesson:'പാഠം ചേർക്കുക',reminders:'ഓർമ്മപ്പെടുത്തൽ',add_reminder:'ചേർക്കുക',holidays:'അവധി',add_holiday:'അവധി ചേർക്കുക',print:'പ്രിന്റ്',attendance_summary:'ഹാജർ സംഗ്രഹം',marks_summary:'മാർക്ക് സംഗ്രഹം',class_wise:'ക്ലാസ് അനുസരിച്ച്',all_features:'എല്ലാം',about:'കുറിച്ച്',about_desc:'ഇന്ത്യൻ അധ്യാപകർക്കുള്ള പ്രൊഫഷണൽ സഹായി.',settings:'സെറ്റിംഗ്സ്',profile:'പ്രൊഫൈൽ',set_name_school:'പേര് സ്കൂൾ',language:'ഭാഷ',dark_mode:'ഡാർക്ക്',dark_desc:'കണ്ണിന് സുഖം',backup:'ബാക്കപ്പ്',backup_desc:'JSON ൽ സേവ്',restore:'റീസ്റ്റോർ',restore_desc:'ബാക്കപ്പിൽ നിന്ന്',reset_data:'റീസെറ്റ്',reset_desc:'എല്ലാം മായ്ക്കുക',share:'ഷെയർ',share_desc:'WhatsApp',cancel:'റദ്ദാക്കുക',save:'സേവ്',confirm:'സ്ഥിരീകരിക്കുക',delete:'ഡിലീറ്റ്',name:'പേര്',roll:'റോൾ',subject:'വിഷയം',phone:'ഫോൺ',room:'മുറി',title:'ശീർഷകം',desc:'വിവരണം',hw:'HW',exam:'പരീക്ഷ',score:'മാർക്ക്',total:'ആകെ',time:'സമയം',day:'ദിവസം',date:'തീയതി',due:'അവസാന',school:'സ്കൂൾ',select_class:'ക്ലാസ്',select_student:'വിദ്യാർത്ഥി',required:'ആവശ്യം',empty_classes:'ക്ലാസ് ഇല്ല',empty_classes_d:'മുകളിലെ ബട്ടൺ അമർത്തുക.',empty_students:'വിദ്യാർത്ഥി ഇല്ല',empty_students_d:'മുകളിലെ ബട്ടൺ അമർത്തുക.',empty_att:'വിദ്യാർത്ഥി ഇല്ല',empty_diary:'ഇല്ല',empty_marks:'ഇല്ല',empty_hw:'ഇല്ല',empty_period:'ഇല്ല',empty_note:'ഇല്ല',mark_all:'എല്ലാം ഹാജർ',del_confirm:'ഡിലീറ്റ്?',del_desc:'സ്ഥിരമായി.',reset_confirm:'റീസെറ്റ്?',reset_desc2:'തിരികെ ലഭിക്കില്ല.',saved:'സേവ്',deleted:'ഡിലീറ്റ്',fill_required:'വിവരം നൽകുക',mark:'മാർക്ക്',subject_lbl:'വിഷയം'},
-  pa: {home:'ਹੋਮ',classes:'ਕਲਾਸਾਂ',students:'ਵਿਦਿਆਰਥੀ',attend:'ਹਾਜ਼ਰੀ',diary:'ਡਾਇਰੀ',marks:'ਅੰਕ',more:'ਹੋਰ',class:'ਕਲਾਸ',student:'ਵਿਦਿਆਰਥੀ',present_today:'ਅੱਜ ਹਾਜ਼ਰ',quick_actions:'ਤੁਰੰਤ',weekly_attendance:'ਹਫ਼ਤਾਵਾਰੀ',reports:'ਰਿਪੋਰਟਾਂ',recent:'ਤਾਜ਼ਾ',my_classes:'ਮੇਰੀਆਂ ਕਲਾਸਾਂ',all_students:'ਸਾਰੇ ਵਿਦਿਆਰਥੀ',add_class:'ਕਲਾਸ ਸ਼ਾਮਲ',add_student:'ਵਿਦਿਆਰਥੀ ਸ਼ਾਮਲ',attendance:'ਹਾਜ਼ਰੀ',new_entry:'ਨਵੀਂ',add_marks:'ਅੰਕ ਸ਼ਾਮਲ',homework:'ਹੋਮਵਰਕ',new_hw:'ਨਵਾਂ HW',timetable:'ਸਮਾਂ-ਸਾਰਣੀ',add_period:'ਪੀਰੀਅਡ',notes:'ਨੋਟਸ',new_note:'ਨਵਾਂ ਨੋਟ',exams:'ਪਰੀਖਿਆਵਾਂ',add_exam:'ਪਰੀਖਿਆ ਸ਼ਾਮਲ',lesson_plans:'ਪਾਠ ਯੋਜਨਾ',add_lesson:'ਪਾਠ ਸ਼ਾਮਲ',reminders:'ਰਿਮਾਈਂਡਰ',add_reminder:'ਸ਼ਾਮਲ',holidays:'ਛੁੱਟੀਆਂ',add_holiday:'ਛੁੱਟੀ ਸ਼ਾਮਲ',print:'ਪ੍ਰਿੰਟ',attendance_summary:'ਹਾਜ਼ਰੀ ਸਾਰ',marks_summary:'ਅੰਕ ਸਾਰ',class_wise:'ਕਲਾਸ ਅਨੁਸਾਰ',all_features:'ਸਾਰੇ',about:'ਬਾਰੇ',about_desc:'ਭਾਰਤੀ ਅਧਿਆਪਕਾਂ ਲਈ ਪੇਸ਼ੇਵਰ ਸਹਾਇਕ।',settings:'ਸੈਟਿੰਗਾਂ',profile:'ਪ੍ਰੋਫਾਈਲ',set_name_school:'ਨਾਮ ਅਤੇ ਸਕੂਲ',language:'ਭਾਸ਼ਾ',dark_mode:'ਡਾਰਕ',dark_desc:'ਅੱਖਾਂ ਲਈ',backup:'ਬੈਕਅੱਪ',backup_desc:'JSON ਵਿੱਚ ਸੇਵ',restore:'ਰੀਸਟੋਰ',restore_desc:'ਬੈਕਅੱਪ ਤੋਂ',reset_data:'ਰੀਸੈਟ',reset_desc:'ਸਭ ਮਿਟਾਓ',share:'ਸ਼ੇਅਰ',share_desc:'WhatsApp',cancel:'ਰੱਦ',save:'ਸੇਵ',confirm:'ਪੁਸ਼ਟੀ',delete:'ਮਿਟਾਓ',name:'ਨਾਮ',roll:'ਰੋਲ',subject:'ਵਿਸ਼ਾ',phone:'ਫੋਨ',room:'ਕਮਰਾ',title:'ਸਿਰਲੇਖ',desc:'ਵੇਰਵਾ',hw:'HW',exam:'ਪਰੀਖਿਆ',score:'ਅੰਕ',total:'ਕੁੱਲ',time:'ਸਮਾਂ',day:'ਦਿਨ',date:'ਤਾਰੀਖ',due:'ਆਖਰੀ',school:'ਸਕੂਲ',select_class:'ਕਲਾਸ',select_student:'ਵਿਦਿਆਰਥੀ',required:'ਜ਼ਰੂਰੀ',empty_classes:'ਕਲਾਸ ਨਹੀਂ',empty_classes_d:'ਉੱਪਰ ਬਟਨ ਦਬਾਓ।',empty_students:'ਵਿਦਿਆਰਥੀ ਨਹੀਂ',empty_students_d:'ਉੱਪਰ ਬਟਨ ਦਬਾਓ।',empty_att:'ਵਿਦਿਆਰਥੀ ਨਹੀਂ',empty_diary:'ਨਹੀਂ',empty_marks:'ਨਹੀਂ',empty_hw:'ਨਹੀਂ',empty_period:'ਨਹੀਂ',empty_note:'ਨਹੀਂ',mark_all:'ਸਾਰੇ ਹਾਜ਼ਰ',del_confirm:'ਮਿਟਾਉਣਾ?',del_desc:'ਪੱਕੇ ਤੌਰ ਤੇ।',reset_confirm:'ਰੀਸੈਟ?',reset_desc2:'ਵਾਪਸ ਨਹੀਂ।',saved:'ਸੇਵ',deleted:'ਮਿਟਾਇਆ',fill_required:'ਜਾਣਕਾਰੀ ਭਰੋ',mark:'ਮਾਰਕ',subject_lbl:'ਵਿਸ਼ਾ'},
-  as: {home:'হোম',classes:'শ্ৰেণী',students:'শিক্ষাৰ্থী',attend:'উপস্থিতি',diary:'ডায়েৰী',marks:'নম্বৰ',more:'অধিক',class:'শ্ৰেণী',student:'শিক্ষাৰ্থী',present_today:'আজি উপস্থিত',quick_actions:'দ্ৰুত',weekly_attendance:'সাপ্তাহিক',reports:'ৰিপৰ্ট',recent:'শেহতীয়া',my_classes:'মোৰ শ্ৰেণী',all_students:'সকলো শিক্ষাৰ্থী',add_class:'শ্ৰেণী যোগ',add_student:'শিক্ষাৰ্থী যোগ',attendance:'উপস্থিতি',new_entry:'নতুন',add_marks:'নম্বৰ যোগ',homework:'গৃহকৰ্ম',new_hw:'নতুন HW',timetable:'সময়সূচী',add_period:'পিৰিয়ড',notes:'টোকা',new_note:'নতুন টোকা',exams:'পৰীক্ষা',add_exam:'পৰীক্ষা যোগ',lesson_plans:'পাঠ পৰিকল্পনা',add_lesson:'পাঠ যোগ',reminders:'সোঁৱৰণী',add_reminder:'যোগ',holidays:'বন্ধ',add_holiday:'বন্ধ যোগ',print:'প্ৰিন্ট',attendance_summary:'উপস্থিতি সাৰাংশ',marks_summary:'নম্বৰ সাৰাংশ',class_wise:'শ্ৰেণী অনুসৰি',all_features:'সকলো',about:'বিষয়ে',about_desc:'ভাৰতীয় শিক্ষকৰ বাবে বৃত্তিগত সহায়ক।',settings:'ছেটিংছ',profile:'প্ৰফাইল',set_name_school:'নাম আৰু বিদ্যালয়',language:'ভাষা',dark_mode:'ডাৰ্ক',dark_desc:'চকুৰ বাবে',backup:'বেকআপ',backup_desc:'JSON ত সংৰক্ষণ',restore:'ৰিষ্টোৰ',restore_desc:'বেকআপৰ পৰা',reset_data:'ৰিচেট',reset_desc:'সকলো মচি পেলাওক',share:'শেয়াৰ',share_desc:'WhatsApp',cancel:'বাতিল',save:'সংৰক্ষণ',confirm:'নিশ্চিত',delete:'মচক',name:'নাম',roll:'ৰোল',subject:'বিষয়',phone:'ফোন',room:'কোঠা',title:'শিৰোনাম',desc:'বিৱৰণ',hw:'HW',exam:'পৰীক্ষা',score:'নম্বৰ',total:'মুঠ',time:'সময়',day:'দিন',date:'তাৰিখ',due:'শেষ',school:'বিদ্যালয়',select_class:'শ্ৰেণী',select_student:'শিক্ষাৰ্থী',required:'প্ৰয়োজন',empty_classes:'শ্ৰেণী নাই',empty_classes_d:'ওপৰত বুটাম টিপক।',empty_students:'শিক্ষাৰ্থী নাই',empty_students_d:'ওপৰত বুটাম টিপক।',empty_att:'শিক্ষাৰ্থী নাই',empty_diary:'নাই',empty_marks:'নাই',empty_hw:'নাই',empty_period:'নাই',empty_note:'নাই',mark_all:'সকলো উপস্থিত',del_confirm:'মচিব?',del_desc:'স্থায়ীভাৱে।',reset_confirm:'ৰিচেট?',reset_desc2:'ঘূৰাই নাপাব।',saved:'সংৰক্ষিত',deleted:'মচা হ’ল',fill_required:'তথ্য ভৰাওক',mark:'মাৰ্ক',subject_lbl:'বিষয়'},
-  ne: {home:'होम',classes:'कक्षा',students:'विद्यार्थी',attend:'उपस्थिति',diary:'डायरी',marks:'अंक',more:'अधिक',class:'कक्षा',student:'विद्यार्थी',present_today:'आज उपस्थित',quick_actions:'छिटो',weekly_attendance:'साप्ताहिक',reports:'रिपोर्ट',recent:'हालैको',my_classes:'मेरा कक्षा',all_students:'सबै विद्यार्थी',add_class:'कक्षा थप्नुहोस्',add_student:'विद्यार्थी थप्नुहोस्',attendance:'उपस्थिति',new_entry:'नयाँ',add_marks:'अंक थप्नुहोस्',homework:'गृहकार्य',new_hw:'नयाँ HW',timetable:'समयतालिका',add_period:'पिरियड',notes:'नोट',new_note:'नयाँ नोट',exams:'परीक्षा',add_exam:'परीक्षा थप्नुहोस्',lesson_plans:'पाठ योजना',add_lesson:'पाठ थप्नुहोस्',reminders:'रिमाइन्डर',add_reminder:'थप्नुहोस्',holidays:'बिदा',add_holiday:'बिदा थप्नुहोस्',print:'प्रिन्ट',attendance_summary:'उपस्थिति सारांश',marks_summary:'अंक सारांश',class_wise:'कक्षा अनुसार',all_features:'सबै',about:'बारेमा',about_desc:'भारतीय शिक्षकहरूका लागि व्यावसायिक सहायक।',settings:'सेटिङ',profile:'प्रोफाइल',set_name_school:'नाम र विद्यालय',language:'भाषा',dark_mode:'डार्क',dark_desc:'आँखाका लागि',backup:'ब्याकअप',backup_desc:'JSON मा बचत',restore:'रिस्टोर',restore_desc:'ब्याकअपबाट',reset_data:'रिसेट',reset_desc:'सबै मेटाउनुहोस्',share:'सेयर',share_desc:'WhatsApp',cancel:'रद्द',save:'बचत',confirm:'पुष्टि',delete:'मेट्नुहोस्',name:'नाम',roll:'रोल',subject:'विषय',phone:'फोन',room:'कोठा',title:'शीर्षक',desc:'विवरण',hw:'HW',exam:'परीक्षा',score:'अंक',total:'कुल',time:'समय',day:'दिन',date:'मिति',due:'अन्तिम',school:'विद्यालय',select_class:'कक्षा',select_student:'विद्यार्थी',required:'आवश्यक',empty_classes:'कक्षा छैन',empty_classes_d:'माथि बटन थिच्नुहोस्।',empty_students:'विद्यार्थी छैन',empty_students_d:'माथि बटन थिच्नुहोस्।',empty_att:'विद्यार्थी छैन',empty_diary:'छैन',empty_marks:'छैन',empty_hw:'छैन',empty_period:'छैन',empty_note:'छैन',mark_all:'सबै उपस्थित',del_confirm:'मेट्ने?',del_desc:'स्थायी रूपमा।',reset_confirm:'रिसेट?',reset_desc2:'फर्काउन सकिँदैन।',saved:'बचत भयो',deleted:'मेटियो',fill_required:'जानकारी भर्नुहोस्',mark:'मार्क',subject_lbl:'विषय'}
+  hi: {home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'आपकी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',all_features:'सभी फीचर्स',about:'ऐप के बारे में',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',mark:'उपस्थिति',subject_lbl:'विषय',fees:'फीस',fee_tracker:'फीस ट्रैकर',add_fee:'फीस जोड़ें',paid:'जमा',unpaid:'बकाया',month:'महीना',amount:'रकम',status:'स्थिति',student_profile:'स्टूडेंट प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'मार्क्स हिस्ट्री',install_app:'ऐप इंस्टॉल करें',install_desc:'होम स्क्रीन पर AcharyaOS जोड़ें',install_success:'ऐप इंस्टॉल हो गया!',install_already:'ऐप पहले से इंस्टॉल है या ब्राउज़र सपोर्ट नहीं करता।'},
+  en: {home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',all_features:'All Features',about:'About',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap the button above to add your first class.',empty_students:'No Students',empty_students_d:'Tap the button above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',mark:'Mark',subject_lbl:'Subject',fees:'Fees',fee_tracker:'Fee Tracker',add_fee:'Add Fee',paid:'Paid',unpaid:'Unpaid',month:'Month',amount:'Amount',status:'Status',student_profile:'Student Profile',attendance_pct:'Overall Attendance',marks_history:'Marks History',install_app:'Install App',install_desc:'Add AcharyaOS to your home screen',install_success:'App installed successfully!',install_already:'App is already installed or browser does not support auto-install.'},
+  bn: {home:'হোম',classes:'ক্লাস',students:'শিক্ষার্থী',attend:'উপস্থিতি',diary:'ডায়েরি',marks:'নম্বর',more:'আরও',class:'ক্লাস',student:'শিক্ষার্থী',present_today:'আজ উপস্থিত',quick_actions:'দ্রুত কাজ',weekly_attendance:'সাপ্তাহিক উপস্থিতি',reports:'রিপোর্ট',recent:'সাম্প্রতিক',my_classes:'আমার ক্লাস',all_students:'সব শিক্ষার্থী',add_class:'নতুন ক্লাস',add_student:'নতুন শিক্ষার্থী',attendance:'উপস্থিতি',new_entry:'নতুন এন্ট্রি',add_marks:'নম্বর যোগ করুন',homework:'হোমওয়ার্ক',new_hw:'নতুন HW',timetable:'সময়সূচি',add_period:'পিরিয়ড যোগ',notes:'নোট',new_note:'নতুন নোট',print:'প্রিন্ট',attendance_summary:'উপস্থিতি সারসংক্ষেপ',marks_summary:'নম্বর সারসংক্ষেপ',all_features:'সব ফিচার',about:'সম্পর্কে',about_desc:'ভারতীয় শিক্ষকদের জন্য একটি পেশাদার ডিজিটাল সহায়ক।',settings:'সেটিংস',profile:'প্রোফাইল',set_name_school:'নাম ও স্কুল সেট করুন',language:'ভাষা',dark_mode:'ডার্ক মোড',dark_desc:'চোখের জন্য আরামদায়ক',backup:'ডেটা ব্যাকআপ',backup_desc:'সব ডেটা JSON ফাইলে সেভ করুন',restore:'ডেটা রিস্টোর',restore_desc:'ব্যাকআপ ফাইল থেকে ফেরান',reset_data:'ডেটা রিসেট',reset_desc:'সব ডেটা মুছুন',share:'শেয়ার',share_desc:'WhatsApp-এ পাঠান',cancel:'বাতিল',save:'সেভ',confirm:'নিশ্চিত',delete:'মুছুন',name:'নাম',roll:'রোল',subject:'বিষয়',phone:'ফোন',room:'রুম',title:'শিরোনাম',desc:'বিবরণ',hw:'হোমওয়ার্ক',exam:'পরীক্ষা',score:'নম্বর',total:'মোট',time:'সময়',day:'দিন',date:'তারিখ',due:'শেষ তারিখ',school:'স্কুল',select_class:'ক্লাস নির্বাচন',select_student:'শিক্ষার্থী নির্বাচন',required:'আবশ্যক',empty_classes:'কোনো ক্লাস নেই',empty_classes_d:'উপরের বোতাম চাপুন।',empty_students:'কোনো শিক্ষার্থী নেই',empty_students_d:'উপরের বোতাম চাপুন।',empty_att:'কোনো শিক্ষার্থী নেই',empty_diary:'কোনো এন্ট্রি নেই',empty_marks:'কোনো নম্বর নেই',empty_hw:'কোনো হোমওয়ার্ক নেই',empty_period:'কোনো পিরিয়ড নেই',empty_note:'কোনো নোট নেই',mark_all:'সব উপস্থিত',del_confirm:'মুছবেন?',del_desc:'এটি স্থায়ীভাবে মুছে যাবে।',reset_confirm:'সব ডেটা মুছবেন?',reset_desc2:'এই কাজ ফেরানো যাবে না।',saved:'সেভ হয়েছে',deleted:'মুছে ফেলা হয়েছে',fill_required:'তথ্য পূরণ করুন',mark:'মার্ক',subject_lbl:'বিষয়',fees:'ফি',fee_tracker:'ফি ট্র্যাকার',add_fee:'ফি যোগ',paid:'পরিশোধিত',unpaid:'বাকি',month:'মাস',amount:'পরিমাণ',status:'অবস্থা',student_profile:'শিক্ষার্থী প্রোফাইল',attendance_pct:'উপস্থিতি %',marks_history:'নম্বর ইতিহাস',install_app:'অ্যাপ ইনস্টল',install_desc:'হোম স্ক্রিনে যোগ করুন',install_success:'অ্যাপ ইনস্টল হয়েছে!',install_already:'অ্যাপ ইতিমধ্যে ইনস্টল বা সমর্থিত নয়।'},
+  mr: {home:'होम',classes:'वर्ग',students:'विद्यार्थी',attend:'हजेरी',diary:'डायरी',marks:'गुण',more:'अधिक',class:'वर्ग',student:'विद्यार्थी',present_today:'आज उपस्थित',quick_actions:'त्वरित कार्य',weekly_attendance:'साप्ताहिक हजेरी',reports:'अहवाल',recent:'अलीकडील',my_classes:'माझे वर्ग',all_students:'सर्व विद्यार्थी',add_class:'नवीन वर्ग',add_student:'नवीन विद्यार्थी',attendance:'हजेरी',new_entry:'नवीन नोंद',add_marks:'गुण जोडा',homework:'गृहपाठ',new_hw:'नवीन HW',timetable:'वेळापत्रक',add_period:'तास जोडा',notes:'टिपा',new_note:'नवीन टीप',print:'प्रिंट',attendance_summary:'हजेरी सारांश',marks_summary:'गुण सारांश',all_features:'सर्व वैशिष्ट्ये',about:'विषयी',about_desc:'भारतीय शिक्षकांसाठी व्यावसायिक डिजिटल सहाय्यक।',settings:'सेटिंग्ज',profile:'प्रोफाइल',set_name_school:'नाव व शाळा सेट करा',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'डोळ्यांसाठी आरामदायक',backup:'डेटा बॅकअप',backup_desc:'सर्व डेटा JSON मध्ये सेव्ह करा',restore:'डेटा रिस्टोअर',restore_desc:'बॅकअपमधून परत आणा',reset_data:'डेटा रीसेट',reset_desc:'सर्व डेटा कायमचा मिटवा',share:'शेअर',share_desc:'WhatsApp वर पाठवा',cancel:'रद्द',save:'सेव्ह',confirm:'पुष्टी',delete:'हटवा',name:'नाव',roll:'रोल',subject:'विषय',phone:'फोन',room:'खोली',title:'शीर्षक',desc:'वर्णन',hw:'गृहपाठ',exam:'परीक्षा',score:'गुण',total:'एकूण',time:'वेळ',day:'दिवस',date:'तारीख',due:'देय',school:'शाळा',select_class:'वर्ग निवडा',select_student:'विद्यार्थी निवडा',required:'आवश्यक',empty_classes:'वर्ग नाहीत',empty_classes_d:'वर बटण दाबा।',empty_students:'विद्यार्थी नाहीत',empty_students_d:'वर बटण दाबा।',empty_att:'विद्यार्थी नाहीत',empty_diary:'नोंदी नाहीत',empty_marks:'गुण नाहीत',empty_hw:'गृहपाठ नाही',empty_period:'तास नाहीत',empty_note:'टिपा नाहीत',mark_all:'सर्व उपस्थित',del_confirm:'हटवायचे?',del_desc:'कायमचे हटवले जाईल।',reset_confirm:'सर्व डेटा मिटवायचा?',reset_desc2:'परत करता येणार नाही।',saved:'सेव्ह झाले',deleted:'हटवले',fill_required:'माहिती भरा',mark:'मार्क',subject_lbl:'विषय',fees:'फी',fee_tracker:'फी ट्रॅकर',add_fee:'फी जोडा',paid:'भरले',unpaid:'बाकी',month:'महिना',amount:'रक्कम',status:'स्थिती',student_profile:'विद्यार्थी प्रोफाइल',attendance_pct:'एकूण हजेरी',marks_history:'गुण इतिहास',install_app:'अॅप इन्स्टॉल',install_desc:'होम स्क्रीनवर जोडा',install_success:'अॅप इन्स्टॉल झाले!',install_already:'अॅप आधीच इन्स्टॉल आहे.'},
+  te: {home:'హోమ్',classes:'తరగతులు',students:'విద్యార్థులు',attend:'హాజరు',diary:'డైరీ',marks:'మార్కులు',more:'మరిన్ని',class:'తరగతి',student:'విద్యార్థి',present_today:'ఈరోజు హాజరు',quick_actions:'త్వరిత పనులు',weekly_attendance:'వారపు హాజరు',reports:'నివేదికలు',recent:'ఇటీవలి',my_classes:'నా తరగతులు',all_students:'విద్యార్థులు',add_class:'తరగతి జోడించు',add_student:'విద్యార్థి జోడించు',attendance:'హాజరు',new_entry:'కొత్త ఎంట్రీ',add_marks:'మార్కులు జోడించు',homework:'హోంవర్క్',new_hw:'కొత్త HW',timetable:'టైమ్టేబుల్',add_period:'పీరియడ్ జోడించు',notes:'నోట్స్',new_note:'కొత్త నోట్',print:'ప్రింట్',attendance_summary:'హాజరు సారాంశం',marks_summary:'మార్కుల సారాంశం',all_features:'అన్ని ఫీచర్లు',about:'గురించి',about_desc:'భారతీయ ఉపాధ్యాయుల కోసం వృత్తిపరమైన సహాయకుడు.',settings:'సెట్టింగ్స్',profile:'ప్రొఫైల్',set_name_school:'పేరు మరియు పాఠశాల',language:'భాష',dark_mode:'డార్క్ మోడ్',dark_desc:'కళ్ళకు ఆరామం',backup:'డేటా బ్యాకప్',backup_desc:'JSON ఫైల్‌లో సేవ్ చేయండి',restore:'డేటా రీస్టోర్',restore_desc:'బ్యాకప్ నుండి తిరిగి',reset_data:'డేటా రీసెట్',reset_desc:'అన్ని డేటా తొలగించు',share:'షేర్',share_desc:'WhatsAppలో పంపండి',cancel:'రద్దు',save:'సేవ్',confirm:'నిర్ధారించు',delete:'తొలగించు',name:'పేరు',roll:'రోల్',subject:'సబ్జెక్ట్',phone:'ఫోన్',room:'గది',title:'శీర్షిక',desc:'వివరణ',hw:'హోంవర్క్',exam:'పరీక్ష',score:'మార్కులు',total:'మొత్తం',time:'సమయం',day:'రోజు',date:'తేదీ',due:'గడువు',school:'పాఠశాల',select_class:'తరగతి ఎంచుకోండి',select_student:'విద్యార్థి ఎంచుకోండి',required:'అవసరం',empty_classes:'తరగతులు లేవు',empty_classes_d:'పైన బటన్ నొక్కండి।',empty_students:'విద్యార్థులు లేరు',empty_students_d:'పైన బటన్ నొక్కండి।',empty_att:'విద్యార్థులు లేరు',empty_diary:'ఎంట్రీలు లేవు',empty_marks:'మార్కులు లేవు',empty_hw:'హోంవర్క్ లేదు',empty_period:'పీరియడ్‌లు లేవు',empty_note:'నోట్స్ లేవు',mark_all:'అందరూ హాజరు',del_confirm:'తొలగించాలా?',del_desc:'శాశ్వతంగా తొలగించబడుతుంది।',reset_confirm:'డేటా రీసెట్?',reset_desc2:'తిరిగి పొందలేరు।',saved:'సేవ్ అయింది',deleted:'తొలగించబడింది',fill_required:'సమాచారం నింపండి',mark:'మార్క్',subject_lbl:'సబ్జెక్ట్',fees:'ఫీజు',fee_tracker:'ఫీజు ట్రాకర్',add_fee:'ఫీజు జోడించు',paid:'చెల్లించారు',unpaid:'బాకీ',month:'నెల',amount:'మొత్తం',status:'స్థితి',student_profile:'విద్యార్థి ప్రొఫైల్',attendance_pct:'మొత్తం హాజరు',marks_history:'మార్కుల చరిత్ర',install_app:'యాప్ ఇన్స్టాల్',install_desc:'హోమ్ స్క్రీన్కు జోడించండి',install_success:'యాప్ ఇన్స్టాల్ అయింది!',install_already:'యాప్ ఇప్పటికే ఇన్స్టాల్ చేయబడింది.'},
+  ta: {home:'முகப்பு',classes:'வகுப்புகள்',students:'மாணவர்கள்',attend:'வருகை',diary:'டைரி',marks:'மதிப்பெண்',more:'மேலும்',class:'வகுப்பு',student:'மாணவர்',present_today:'இன்று வருகை',quick_actions:'விரைவு',weekly_attendance:'வார வருகை',reports:'அறிக்கை',recent:'சமீபத்திய',my_classes:'என் வகுப்புகள்',all_students:'மாணவர்கள்',add_class:'வகுப்பு சேர்',add_student:'மாணவர் சேர்',attendance:'வருகை',new_entry:'புதிய',add_marks:'மதிப்பெண் சேர்',homework:'வீட்டுப்பாடம்',new_hw:'புதிய HW',timetable:'அட்டவணை',add_period:'பாடம் சேர்',notes:'குறிப்பு',new_note:'புதிய குறிப்பு',print:'அச்சிடு',attendance_summary:'வருகை சுருக்கம்',marks_summary:'மதிப்பெண் சுருக்கம்',all_features:'அனைத்து',about:'பற்றி',about_desc:'இந்திய ஆசிரியர்களுக்கான தொழில்முறை உதவியாளர்.',settings:'அமைப்பு',profile:'சுயவிவரம்',set_name_school:'பெயர் பள்ளி',language:'மொழி',dark_mode:'டார்க்',dark_desc:'கண்களுக்கு வசதி',backup:'காப்பு',backup_desc:'JSON இல் சேமி',restore:'மீட்டெடு',restore_desc:'காப்பிலிருந்து',reset_data:'மீட்டமை',reset_desc:'எல்லாம் அழி',share:'பகிர்',share_desc:'WhatsApp',cancel:'ரத்து',save:'சேமி',confirm:'உறுதி',delete:'அழி',name:'பெயர்',roll:'ரோல்',subject:'பாடம்',phone:'தொலைபேசி',room:'அறை',title:'தலைப்பு',desc:'விவரம்',hw:'HW',exam:'தேர்வு',score:'மதிப்பெண்',total:'மொத்தம்',time:'நேரம்',day:'நாள்',date:'தேதி',due:'கடைசி',school:'பள்ளி',select_class:'வகுப்பு',select_student:'மாணவர்',required:'தேவை',empty_classes:'வகுப்பு இல்லை',empty_classes_d:'மேலே அழுத்து।',empty_students:'மாணவர் இல்லை',empty_students_d:'மேலே அழுத்து।',empty_att:'மாணவர் இல்லை',empty_diary:'இல்லை',empty_marks:'இல்லை',empty_hw:'இல்லை',empty_period:'இல்லை',empty_note:'இல்லை',mark_all:'அனைவரும்',del_confirm:'அழிக்க?',del_desc:'நிரந்தரமாக அழிக்கப்படும்.',reset_confirm:'மீட்டமை?',reset_desc2:'மீட்க முடியாது.',saved:'சேமிக்கப்பட்டது',deleted:'அழிக்கப்பட்டது',fill_required:'விவரம் நிரப்பு',mark:'மார்க்',subject_lbl:'பாடம்',fees:'கட்டணம்',fee_tracker:'கட்டண டிராக்கர்',add_fee:'கட்டணம் சேர்',paid:'செலுத்தப்பட்டது',unpaid:'நிலுவை',month:'மாதம்',amount:'தொகை',status:'நிலை',student_profile:'மாணவர் சுயவிவரம்',attendance_pct:'மொத்த வருகை',marks_history:'மதிப்பெண் வரலாறு',install_app:'ஆப் நிறுவு',install_desc:'முகப்பு திரையில் சேர்',install_success:'ஆப் நிறுவப்பட்டது!',install_already:'ஏற்கனவே நிறுவப்பட்டது.'},
+  gu: {home:'હોમ',classes:'વર્ગો',students:'વિદ્યાર્થીઓ',attend:'હાજરી',diary:'ડાયરી',marks:'ગુણ',more:'વધુ',class:'વર્ગ',student:'વિદ્યાર્થી',present_today:'આજે હાજર',quick_actions:'ઝડપી',weekly_attendance:'સાપ્તાહિક',reports:'રિપોર્ટ',recent:'તાજેતર',my_classes:'મારા વર્ગો',all_students:'વિદ્યાર્થીઓ',add_class:'વર્ગ ઉમેરો',add_student:'વિદ્યાર્થી ઉમેરો',attendance:'હાજરી',new_entry:'નવી',add_marks:'ગુણ ઉમેરો',homework:'હોમવર્ક',new_hw:'નવું HW',timetable:'સમયપત્રક',add_period:'પીરિયડ',notes:'નોંધ',new_note:'નવી નોંધ',print:'પ્રિન્ટ',attendance_summary:'હાજરી સારાંશ',marks_summary:'ગુણ સારાંશ',all_features:'બધા',about:'વિશે',about_desc:'ભારતીય શિક્ષકો માટે વ્યાવસાયિક સહાયક.',settings:'સેટિંગ',profile:'પ્રોફાઇલ',set_name_school:'નામ અને શાળા',language:'ભાષા',dark_mode:'ડાર્ક',dark_desc:'આંખો માટે',backup:'બેકઅપ',backup_desc:'JSON માં સેવ',restore:'રીસ્ટોર',restore_desc:'બેકઅપથી',reset_data:'રીસેટ',reset_desc:'બધું ભૂંસો',share:'શેર',share_desc:'WhatsApp',cancel:'રદ',save:'સેવ',confirm:'પુષ્ટિ',delete:'ભૂંસો',name:'નામ',roll:'રોલ',subject:'વિષય',phone:'ફોન',room:'રૂમ',title:'શીર્ષક',desc:'વર્ણન',hw:'HW',exam:'પરીક્ષા',score:'ગુણ',total:'કુલ',time:'સમય',day:'દિવસ',date:'તારીખ',due:'તારીખ',school:'શાળા',select_class:'વર્ગ',select_student:'વિદ્યાર્થી',required:'જરૂરી',empty_classes:'વર્ગ નથી',empty_classes_d:'ઉપર બટન દબાવો.',empty_students:'વિદ્યાર્થી નથી',empty_students_d:'ઉપર બટન દબાવો.',empty_att:'વિદ્યાર્થી નથી',empty_diary:'નથી',empty_marks:'નથી',empty_hw:'નથી',empty_period:'નથી',empty_note:'નથી',mark_all:'બધા હાજર',del_confirm:'ભૂંસવું?',del_desc:'કાયમી ભૂંસાશે.',reset_confirm:'રીસેટ?',reset_desc2:'પાછું નહીં આવે.',saved:'સેવ',deleted:'ભૂંસ્યું',fill_required:'માહિતી ભરો',mark:'માર્ક',subject_lbl:'વિષય',fees:'ફી',fee_tracker:'ફી ટ્રેકર',add_fee:'ફી ઉમેરો',paid:'ચૂકવેલ',unpaid:'બાકી',month:'મહિનો',amount:'રકમ',status:'સ્થિતિ',student_profile:'વિદ્યાર્થી પ્રોફાઇલ',attendance_pct:'કુલ હાજરી',marks_history:'ગુણ ઇતિહાસ',install_app:'એપ ઇન્સ્ટોલ',install_desc:'હોમ સ્ક્રીન પર ઉમેરો',install_success:'એપ ઇન્સ્ટોલ થઈ!',install_already:'એપ પહેલેથી ઇન્સ્ટોલ છે.'},
+  ur: {home:'ہوم',classes:'کلاسز',students:'طلباء',attend:'حاضری',diary:'ڈائری',marks:'نمبر',more:'مزید',class:'کلاس',student:'طالب علم',present_today:'آج حاضر',quick_actions:'فوری کام',weekly_attendance:'ہفتہ وار',reports:'رپورٹس',recent:'حالیہ',my_classes:'میری کلاسز',all_students:'تمام طلباء',add_class:'کلاس شامل',add_student:'طالب شامل',attendance:'حاضری',new_entry:'نئی',add_marks:'نمبر شامل',homework:'ہوم ورک',new_hw:'نیا HW',timetable:'ٹائم ٹیبل',add_period:'پیریڈ',notes:'نوٹس',new_note:'نیا نوٹ',print:'پرنٹ',attendance_summary:'حاضری خلاصہ',marks_summary:'نمبر خلاصہ',all_features:'تمام',about:'متعلق',about_desc:'بھارتی اساتذہ کے لیے پیشہ ورانہ معاون۔',settings:'ترتیبات',profile:'پروفائل',set_name_school:'نام اور اسکول',language:'زبان',dark_mode:'ڈارک',dark_desc:'آنکھوں کے لیے',backup:'بیک اپ',backup_desc:'JSON میں محفوظ',restore:'بحالی',restore_desc:'بیک اپ سے',reset_data:'ری سیٹ',reset_desc:'سب مٹا دیں',share:'شیئر',share_desc:'WhatsApp',cancel:'منسوخ',save:'محفوظ',confirm:'تصدیق',delete:'حذف',name:'نام',roll:'رول',subject:'مضمون',phone:'فون',room:'کمرہ',title:'عنوان',desc:'تفصیل',hw:'HW',exam:'امتحان',score:'نمبر',total:'کل',time:'وقت',day:'دن',date:'تاریخ',due:'آخری تاریخ',school:'اسکول',select_class:'کلاس',select_student:'طالب',required:'ضروری',empty_classes:'کلاس نہیں',empty_classes_d:'اوپر بٹن دبائیں۔',empty_students:'طالب نہیں',empty_students_d:'اوپر بٹن دبائیں۔',empty_att:'طالب نہیں',empty_diary:'نہیں',empty_marks:'نہیں',empty_hw:'نہیں',empty_period:'نہیں',empty_note:'نہیں',mark_all:'سب حاضر',del_confirm:'حذف؟',del_desc:'ہمیشہ کے لیے۔',reset_confirm:'ری سیٹ؟',reset_desc2:'واپس نہیں آئے گا۔',saved:'محفوظ',deleted:'حذف',fill_required:'معلومات بھریں',mark:'مارک',subject_lbl:'مضمون',fees:'فیس',fee_tracker:'فیس ٹریکر',add_fee:'فیس شامل',paid:'ادا',unpaid:'باقی',month:'مہینہ',amount:'رقم',status:'حالت',student_profile:'طالب علم پروفائل',attendance_pct:'کل حاضری',marks_history:'نمبروں کی تاریخ',install_app:'ایپ انسٹال',install_desc:'ہوم اسکرین پر شامل کریں',install_success:'ایپ انسٹال ہو گئی!',install_already:'ایپ پہلے سے انسٹال ہے۔'},
+  kn: {home:'ಮುಖಪುಟ',classes:'ತರಗತಿ',students:'ವಿದ್ಯಾರ್ಥಿ',attend:'ಹಾಜರಿ',diary:'ಡೈರಿ',marks:'ಅಂಕ',more:'ಇನ್ನಷ್ಟು',class:'ತರಗತಿ',student:'ವಿದ್ಯಾರ್ಥಿ',present_today:'ಇಂದು',quick_actions:'ತ್ವರಿತ',weekly_attendance:'ಸಾಪ್ತಾಹಿಕ',reports:'ವರದಿ',recent:'ಇತ್ತೀಚಿನ',my_classes:'ನನ್ನ ತರಗತಿ',all_students:'ಎಲ್ಲ ವಿದ್ಯಾರ್ಥಿ',add_class:'ತರಗತಿ ಸೇರಿಸು',add_student:'ವಿದ್ಯಾರ್ಥಿ ಸೇರಿಸು',attendance:'ಹಾಜರಿ',new_entry:'ಹೊಸ',add_marks:'ಅಂಕ ಸೇರಿಸು',homework:'ಮನೆಪಾಠ',new_hw:'ಹೊಸ HW',timetable:'ವೇಳಾಪಟ್ಟಿ',add_period:'ಅವಧಿ',notes:'ಟಿಪ್ಪಣಿ',new_note:'ಹೊಸ',print:'ಮುದ್ರಿಸು',attendance_summary:'ಹಾಜರಿ ಸಾರಾಂಶ',marks_summary:'ಅಂಕ ಸಾರಾಂಶ',all_features:'ಎಲ್ಲ',about:'ಬಗ್ಗೆ',about_desc:'ಭಾರತೀಯ ಶಿಕ್ಷಕರಿಗಾಗಿ ವೃತ್ತಿಪರ ಸಹಾಯಕ.',settings:'ಸೆಟ್ಟಿಂಗ್ಸ್',profile:'ಪ್ರೊಫೈಲ್',set_name_school:'ಹೆಸರು ಶಾಲೆ',language:'ಭಾಷೆ',dark_mode:'ಡಾರ್ಕ್',dark_desc:'ಕಣ್ಣಿಗೆ ಆರಾಮ',backup:'ಬ್ಯಾಕಪ್',backup_desc:'JSON ನಲ್ಲಿ ಉಳಿಸಿ',restore:'ಮರುಸ್ಥಾಪಿಸು',restore_desc:'ಬ್ಯಾಕಪ್‌ನಿಂದ',reset_data:'ರೀಸೆಟ್',reset_desc:'ಎಲ್ಲ ಅಳಿಸಿ',share:'ಹಂಚಿಕೊಳ್ಳಿ',share_desc:'WhatsApp',cancel:'ರದ್ದು',save:'ಉಳಿಸು',confirm:'ದೃಢಪಡಿಸು',delete:'ಅಳಿಸು',name:'ಹೆಸರು',roll:'ರೋಲ್',subject:'ವಿಷಯ',phone:'ಫೋನ್',room:'ಕೊಠಡಿ',title:'ಶೀರ್ಷಿಕೆ',desc:'ವಿವರಣೆ',hw:'HW',exam:'ಪರೀಕ್ಷೆ',score:'ಅಂಕ',total:'ಒಟ್ಟು',time:'ಸಮಯ',day:'ದಿನ',date:'ದಿನಾಂಕ',due:'ಕೊನೆ',school:'ಶಾಲೆ',select_class:'ತರಗತಿ',select_student:'ವಿದ್ಯಾರ್ಥಿ',required:'ಅಗತ್ಯ',empty_classes:'ತರಗತಿ ಇಲ್ಲ',empty_classes_d:'ಮೇಲೆ ಬಟನ್ ಒತ್ತಿ.',empty_students:'ವಿದ್ಯಾರ್ಥಿ ಇಲ್ಲ',empty_students_d:'ಮೇಲೆ ಬಟನ್ ಒತ್ತಿ.',empty_att:'ವಿದ್ಯಾರ್ಥಿ ಇಲ್ಲ',empty_diary:'ಇಲ್ಲ',empty_marks:'ಇಲ್ಲ',empty_hw:'ಇಲ್ಲ',empty_period:'ಇಲ್ಲ',empty_note:'ಇಲ್ಲ',mark_all:'ಎಲ್ಲ ಹಾಜರು',del_confirm:'ಅಳಿಸುವುದೇ?',del_desc:'ಶಾಶ್ವತವಾಗಿ.',reset_confirm:'ರೀಸೆಟ್?',reset_desc2:'ಹಿಂತಿರುಗಿಸಲಾಗದು.',saved:'ಉಳಿಸಲಾಗಿದೆ',deleted:'ಅಳಿಸಲಾಗಿದೆ',fill_required:'ಮಾಹಿತಿ ತುಂಬಿ',mark:'ಮಾರ್ಕ್',subject_lbl:'ವಿಷಯ',fees:'ಶುಲ್ಕ',fee_tracker:'ಶುಲ್ಕ ಟ್ರ್ಯಾಕರ್',add_fee:'ಶುಲ್ಕ ಸೇರಿಸು',paid:'ಪಾವತಿಸಲಾಗಿದೆ',unpaid:'ಬಾಕಿ',month:'ತಿಂಗಳು',amount:'ಮೊತ್ತ',status:'ಸ್ಥಿತಿ',student_profile:'ವಿದ್ಯಾರ್ಥಿ ಪ್ರೊಫೈಲ್',attendance_pct:'ಒಟ್ಟು ಹಾಜರಿ',marks_history:'ಅಂಕಗಳ ಇತಿಹಾಸ',install_app:'ಆ್ಯಪ್ ಇನ್ಸ್ಟಾಲ್',install_desc:'ಹೋಮ್ ಸ್ಕ್ರೀನ್ಗೆ ಸೇರಿಸಿ',install_success:'ಆ್ಯಪ್ ಇನ್ಸ್ಟಾಲ್ ಆಗಿದೆ!',install_already:'ಈಗಾಗಲೇ ಇನ್ಸ್ಟಾಲ್ ಆಗಿದೆ.'},
+  or: {home:'ହୋମ',classes:'ଶ୍ରେଣୀ',students:'ଛାତ୍ର',attend:'ଉପସ୍ଥିତି',diary:'ଡାଏରୀ',marks:'ନମ୍ବର',more:'ଅଧିକ',class:'ଶ୍ରେଣୀ',student:'ଛାତ୍ର',present_today:'ଆଜି',quick_actions:'ଶୀଘ୍ର',weekly_attendance:'ସାପ୍ତାହିକ',reports:'ରିପୋର୍ଟ',recent:'ସାମ୍ପ୍ରତିକ',my_classes:'ମୋ ଶ୍ରେଣୀ',all_students:'ସମସ୍ତ ଛାତ୍ର',add_class:'ଶ୍ରେଣୀ ଯୋଡ଼ନ୍ତୁ',add_student:'ଛାତ୍ର ଯୋଡ଼ନ୍ତୁ',attendance:'ଉପସ୍ଥିତି',new_entry:'ନୂଆ',add_marks:'ନମ୍ବର ଯୋଡ଼ନ୍ତୁ',homework:'ଗୃହକାର୍ଯ୍ୟ',new_hw:'ନୂଆ HW',timetable:'ସମୟ ସାରଣୀ',add_period:'ପିରିଅଡ',notes:'ଟିପ୍ପଣୀ',new_note:'ନୂଆ',print:'ପ୍ରିଣ୍ଟ',attendance_summary:'ଉପସ୍ଥିତି ସାରାଂଶ',marks_summary:'ନମ୍ବର ସାରାଂଶ',all_features:'ସମସ୍ତ',about:'ବିଷୟରେ',about_desc:'ଭାରତୀୟ ଶିକ୍ଷକଙ୍କ ପାଇଁ ବୃତ୍ତିଗତ ସହାୟକ।',settings:'ସେଟିଂସ',profile:'ପ୍ରୋଫାଇଲ',set_name_school:'ନାମ ଓ ବିଦ୍ୟାଳୟ',language:'ଭାଷା',dark_mode:'ଡାର୍କ',dark_desc:'ଆଖି ପାଇଁ',backup:'ବ୍ୟାକଅପ',backup_desc:'JSON ରେ ସେଭ',restore:'ରିଷ୍ଟୋର',restore_desc:'ବ୍ୟାକଅପରୁ',reset_data:'ରିସେଟ',reset_desc:'ସବୁ ଲିଭାନ୍ତୁ',share:'ସେୟାର',share_desc:'WhatsApp',cancel:'ବାତିଲ',save:'ସେଭ',confirm:'ନିଶ୍ଚିତ',delete:'ଲିଭାନ୍ତୁ',name:'ନାମ',roll:'ରୋଲ',subject:'ବିଷୟ',phone:'ଫୋନ',room:'କୋଠରୀ',title:'ଶୀର୍ଷକ',desc:'ବିବରଣୀ',hw:'HW',exam:'ପରୀକ୍ଷା',score:'ନମ୍ବର',total:'ମୋଟ',time:'ସମୟ',day:'ଦିନ',date:'ତାରିଖ',due:'ଶେଷ',school:'ବିଦ୍ୟାଳୟ',select_class:'ଶ୍ରେଣୀ',select_student:'ଛାତ୍ର',required:'ଆବଶ୍ୟକ',empty_classes:'ଶ୍ରେଣୀ ନାହିଁ',empty_classes_d:'ଉପର ବଟନ ଦବାନ୍ତୁ।',empty_students:'ଛାତ୍ର ନାହିଁ',empty_students_d:'ଉପର ବଟନ ଦବାନ୍ତୁ।',empty_att:'ଛାତ୍ର ନାହିଁ',empty_diary:'ନାହିଁ',empty_marks:'ନାହିଁ',empty_hw:'ନାହିଁ',empty_period:'ନାହିଁ',empty_note:'ନାହିଁ',mark_all:'ସମସ୍ତ ଉପସ୍ଥିତ',del_confirm:'ଲିଭାଇବେ?',del_desc:'ସ୍ଥାୟୀ ଭାବରେ।',reset_confirm:'ରିସେଟ?',reset_desc2:'ଫେରାଇ ଆଣିବେ ନାହିଁ।',saved:'ସେଭ ହେଲା',deleted:'ଲିଭିଗଲା',fill_required:'ସୂଚନା ଭରନ୍ତୁ',mark:'ମାର୍କ',subject_lbl:'ବିଷୟ',fees:'ଫି',fee_tracker:'ଫି ଟ୍ରାକର',add_fee:'ଫି ଯୋଡ଼ନ୍ତୁ',paid:'ଦିଆଯାଇଛି',unpaid:'ବାକି',month:'ମାସ',amount:'ରାଶି',status:'ସ୍ଥିତି',student_profile:'ଛାତ୍ର ପ୍ରୋଫାଇଲ',attendance_pct:'ମୋଟ ଉପସ୍ଥିତି',marks_history:'ନମ୍ବର ଇତିହାସ',install_app:'ଆପ୍ ଇନଷ୍ଟଲ',install_desc:'ହୋମ ସ୍କ୍ରିନରେ ଯୋଡ଼ନ୍ତୁ',install_success:'ଆପ୍ ଇନଷ୍ଟଲ ହେଲା!',install_already:'ପୂର୍ବରୁ ଇନଷ୍ଟଲ ଅଛି।'},
+  ml: {home:'ഹോം',classes:'ക്ലാസ്',students:'വിദ്യാർത്ഥി',attend:'ഹാജർ',diary:'ഡയറി',marks:'മാർക്ക്',more:'കൂടുതൽ',class:'ക്ലാസ്',student:'വിദ്യാർത്ഥി',present_today:'ഇന്ന് ഹാജർ',quick_actions:'പെട്ടെന്ന്',weekly_attendance:'പ്രതിവാര',reports:'റിപ്പോർട്ട്',recent:'സമീപകാല',my_classes:'എന്റെ ക്ലാസ്',all_students:'എല്ലാ വിദ്യാർത്ഥി',add_class:'ക്ലാസ് ചേർക്കുക',add_student:'വിദ്യാർത്ഥി ചേർക്കുക',attendance:'ഹാജർ',new_entry:'പുതിയ',add_marks:'മാർക്ക് ചേർക്കുക',homework:'ഹോംവർക്ക്',new_hw:'പുതിയ HW',timetable:'ടൈംടേബിൾ',add_period:'പിരീഡ്',notes:'കുറിപ്പ്',new_note:'പുതിയ',print:'പ്രിന്റ്',attendance_summary:'ഹാജർ സംഗ്രഹം',marks_summary:'മാർക്ക് സംഗ്രഹം',all_features:'എല്ലാം',about:'കുറിച്ച്',about_desc:'ഇന്ത്യൻ അധ്യാപകർക്കുള്ള പ്രൊഫഷണൽ സഹായി.',settings:'സെറ്റിംഗ്സ്',profile:'പ്രൊഫൈൽ',set_name_school:'പേര് സ്കൂൾ',language:'ഭാഷ',dark_mode:'ഡാർക്ക്',dark_desc:'കണ്ണിന് സുഖം',backup:'ബാക്കപ്പ്',backup_desc:'JSON ൽ സേവ്',restore:'റീസ്റ്റോർ',restore_desc:'ബാക്കപ്പിൽ നിന്ന്',reset_data:'റീസെറ്റ്',reset_desc:'എല്ലാം മായ്ക്കുക',share:'ഷെയർ',share_desc:'WhatsApp',cancel:'റദ്ദാക്കുക',save:'സേവ്',confirm:'സ്ഥിരീകരിക്കുക',delete:'ഡിലീറ്റ്',name:'പേര്',roll:'റോൾ',subject:'വിഷയം',phone:'ഫോൺ',room:'മുറി',title:'ശീർഷകം',desc:'വിവരണം',hw:'HW',exam:'പരീക്ഷ',score:'മാർക്ക്',total:'ആകെ',time:'സമയം',day:'ദിവസം',date:'തീയതി',due:'അവസാന',school:'സ്കൂൾ',select_class:'ക്ലാസ്',select_student:'വിദ്യാർത്ഥി',required:'ആവശ്യം',empty_classes:'ക്ലാസ് ഇല്ല',empty_classes_d:'മുകളിലെ ബട്ടൺ അമർത്തുക.',empty_students:'വിദ്യാർത്ഥി ഇല്ല',empty_students_d:'മുകളിലെ ബട്ടൺ അമർത്തുക.',empty_att:'വിദ്യാർത്ഥി ഇല്ല',empty_diary:'ഇല്ല',empty_marks:'ഇല്ല',empty_hw:'ഇല്ല',empty_period:'ഇല്ല',empty_note:'ഇല്ല',mark_all:'എല്ലാം ഹാജർ',del_confirm:'ഡിലീറ്റ്?',del_desc:'സ്ഥിരമായി.',reset_confirm:'റീസെറ്റ്?',reset_desc2:'തിരികെ ലഭിക്കില്ല.',saved:'സേവ്',deleted:'ഡിലീറ്റ്',fill_required:'വിവരം നൽകുക',mark:'മാർക്ക്',subject_lbl:'വിഷയം',fees:'ഫീസ്',fee_tracker:'ഫീസ് ട്രാക്കർ',add_fee:'ഫീസ് ചേർക്കുക',paid:'അടച്ചു',unpaid:'ബാക്കി',month:'മാസം',amount:'തുക',status:'നില',student_profile:'വിദ്യാർത്ഥി പ്രൊഫൈൽ',attendance_pct:'ആകെ ഹാജർ',marks_history:'മാർക്ക് ചരിത്രം',install_app:'ആപ്പ് ഇൻസ്റ്റാൾ',install_desc:'ഹോം സ്ക്രീനിൽ ചേർക്കുക',install_success:'ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്തു!',install_already:'ഇതിനകം ഇൻസ്റ്റാൾ ചെയ്തു.'},
+  pa: {home:'ਹੋਮ',classes:'ਕਲਾਸਾਂ',students:'ਵਿਦਿਆਰਥੀ',attend:'ਹਾਜ਼ਰੀ',diary:'ਡਾਇਰੀ',marks:'ਅੰਕ',more:'ਹੋਰ',class:'ਕਲਾਸ',student:'ਵਿਦਿਆਰਥੀ',present_today:'ਅੱਜ ਹਾਜ਼ਰ',quick_actions:'ਤੁਰੰਤ',weekly_attendance:'ਹਫ਼ਤਾਵਾਰੀ',reports:'ਰਿਪੋਰਟਾਂ',recent:'ਤਾਜ਼ਾ',my_classes:'ਮੇਰੀਆਂ ਕਲਾਸਾਂ',all_students:'ਸਾਰੇ ਵਿਦਿਆਰਥੀ',add_class:'ਕਲਾਸ ਸ਼ਾਮਲ',add_student:'ਵਿਦਿਆਰਥੀ ਸ਼ਾਮਲ',attendance:'ਹਾਜ਼ਰੀ',new_entry:'ਨਵੀਂ',add_marks:'ਅੰਕ ਸ਼ਾਮਲ',homework:'ਹੋਮਵਰਕ',new_hw:'ਨਵਾਂ HW',timetable:'ਸਮਾਂ-ਸਾਰਣੀ',add_period:'ਪੀਰੀਅਡ',notes:'ਨੋਟਸ',new_note:'ਨਵਾਂ ਨੋਟ',print:'ਪ੍ਰਿੰਟ',attendance_summary:'ਹਾਜ਼ਰੀ ਸਾਰ',marks_summary:'ਅੰਕ ਸਾਰ',all_features:'ਸਾਰੇ',about:'ਬਾਰੇ',about_desc:'ਭਾਰਤੀ ਅਧਿਆਪਕਾਂ ਲਈ ਪੇਸ਼ੇਵਰ ਸਹਾਇਕ।',settings:'ਸੈਟਿੰਗਾਂ',profile:'ਪ੍ਰੋਫਾਈਲ',set_name_school:'ਨਾਮ ਅਤੇ ਸਕੂਲ',language:'ਭਾਸ਼ਾ',dark_mode:'ਡਾਰਕ',dark_desc:'ਅੱਖਾਂ ਲਈ',backup:'ਬੈਕਅੱਪ',backup_desc:'JSON ਵਿੱਚ ਸੇਵ',restore:'ਰੀਸਟੋਰ',restore_desc:'ਬੈਕਅੱਪ ਤੋਂ',reset_data:'ਰੀਸੈਟ',reset_desc:'ਸਭ ਮਿਟਾਓ',share:'ਸ਼ੇਅਰ',share_desc:'WhatsApp',cancel:'ਰੱਦ',save:'ਸੇਵ',confirm:'ਪੁਸ਼ਟੀ',delete:'ਮਿਟਾਓ',name:'ਨਾਮ',roll:'ਰੋਲ',subject:'ਵਿਸ਼ਾ',phone:'ਫੋਨ',room:'ਕਮਰਾ',title:'ਸਿਰਲੇਖ',desc:'ਵੇਰਵਾ',hw:'HW',exam:'ਪਰੀਖਿਆ',score:'ਅੰਕ',total:'ਕੁੱਲ',time:'ਸਮਾਂ',day:'ਦਿਨ',date:'ਤਾਰੀਖ',due:'ਆਖਰੀ',school:'ਸਕੂਲ',select_class:'ਕਲਾਸ',select_student:'ਵਿਦਿਆਰਥੀ',required:'ਜ਼ਰੂਰੀ',empty_classes:'ਕਲਾਸ ਨਹੀਂ',empty_classes_d:'ਉੱਪਰ ਬਟਨ ਦਬਾਓ।',empty_students:'ਵਿਦਿਆਰਥੀ ਨਹੀਂ',empty_students_d:'ਉੱਪਰ ਬਟਨ ਦਬਾਓ।',empty_att:'ਵਿਦਿਆਰਥੀ ਨਹੀਂ',empty_diary:'ਨਹੀਂ',empty_marks:'ਨਹੀਂ',empty_hw:'ਨਹੀਂ',empty_period:'ਨਹੀਂ',empty_note:'ਨਹੀਂ',mark_all:'ਸਾਰੇ ਹਾਜ਼ਰ',del_confirm:'ਮਿਟਾਉਣਾ?',del_desc:'ਪੱਕੇ ਤੌਰ ਤੇ।',reset_confirm:'ਰੀਸੈਟ?',reset_desc2:'ਵਾਪਸ ਨਹੀਂ।',saved:'ਸੇਵ',deleted:'ਮਿਟਾਇਆ',fill_required:'ਜਾਣਕਾਰੀ ਭਰੋ',mark:'ਮਾਰਕ',subject_lbl:'ਵਿਸ਼ਾ',fees:'ਫੀਸ',fee_tracker:'ਫੀਸ ਟਰੈਕਰ',add_fee:'ਫੀਸ ਸ਼ਾਮਲ',paid:'ਭਰੀ',unpaid:'ਬਾਕੀ',month:'ਮਹੀਨਾ',amount:'ਰਕਮ',status:'ਸਥਿਤੀ',student_profile:'ਵਿਦਿਆਰਥੀ ਪ੍ਰੋਫਾਈਲ',attendance_pct:'ਕੁੱਲ ਹਾਜ਼ਰੀ',marks_history:'ਅੰਕ ਇਤਿਹਾਸ',install_app:'ਐਪ ਇੰਸਟਾਲ',install_desc:'ਹੋਮ ਸਕਰੀਨ ਤੇ ਸ਼ਾਮਲ',install_success:'ਐਪ ਇੰਸਟਾਲ ਹੋ ਗਈ!',install_already:'ਪਹਿਲਾਂ ਹੀ ਇੰਸਟਾਲ ਹੈ।'},
+  as: {home:'হোম',classes:'শ্ৰেণী',students:'শিক্ষাৰ্থী',attend:'উপস্থিতি',diary:'ডায়েৰী',marks:'নম্বৰ',more:'অধিক',class:'শ্ৰেণী',student:'শিক্ষাৰ্থী',present_today:'আজি উপস্থিত',quick_actions:'দ্ৰুত',weekly_attendance:'সাপ্তাহিক',reports:'ৰিপৰ্ট',recent:'শেহতীয়া',my_classes:'মোৰ শ্ৰেণী',all_students:'সকলো শিক্ষাৰ্থী',add_class:'শ্ৰেণী যোগ',add_student:'শিক্ষাৰ্থী যোগ',attendance:'উপস্থিতি',new_entry:'নতুন',add_marks:'নম্বৰ যোগ',homework:'গৃহকৰ্ম',new_hw:'নতুন HW',timetable:'সময়সূচী',add_period:'পিৰিয়ড',notes:'টোকা',new_note:'নতুন টোকা',print:'প্ৰিন্ট',attendance_summary:'উপস্থিতি সাৰাংশ',marks_summary:'নম্বৰ সাৰাংশ',all_features:'সকলো',about:'বিষয়ে',about_desc:'ভাৰতীয় শিক্ষকৰ বাবে বৃত্তিগত সহায়ক।',settings:'ছেটিংছ',profile:'প্ৰফাইল',set_name_school:'নাম আৰু বিদ্যালয়',language:'ভাষা',dark_mode:'ডাৰ্ক',dark_desc:'চকুৰ বাবে',backup:'বেকআপ',backup_desc:'JSON ত সংৰক্ষণ',restore:'ৰিষ্টোৰ',restore_desc:'বেকআপৰ পৰা',reset_data:'ৰিচেট',reset_desc:'সকলো মচি পেলাওক',share:'শেয়াৰ',share_desc:'WhatsApp',cancel:'বাতিল',save:'সংৰক্ষণ',confirm:'নিশ্চিত',delete:'মচক',name:'নাম',roll:'ৰোল',subject:'বিষয়',phone:'ফোন',room:'কোঠা',title:'শিৰোনাম',desc:'বিৱৰণ',hw:'HW',exam:'পৰীক্ষা',score:'নম্বৰ',total:'মুঠ',time:'সময়',day:'দিন',date:'তাৰিখ',due:'শেষ',school:'বিদ্যালয়',select_class:'শ্ৰেণী',select_student:'শিক্ষাৰ্থী',required:'প্ৰয়োজন',empty_classes:'শ্ৰেণী নাই',empty_classes_d:'ওপৰত বুটাম টিপক।',empty_students:'শিক্ষাৰ্থী নাই',empty_students_d:'ওপৰত বুটাম টিপক।',empty_att:'শিক্ষাৰ্থী নাই',empty_diary:'নাই',empty_marks:'নাই',empty_hw:'নাই',empty_period:'নাই',empty_note:'নাই',mark_all:'সকলো উপস্থিত',del_confirm:'মচিব?',del_desc:'স্থায়ীভাৱে।',reset_confirm:'ৰিচেট?',reset_desc2:'ঘূৰাই নাপাব।',saved:'সংৰক্ষিত',deleted:'মচা হ’ল',fill_required:'তথ্য ভৰাওক',mark:'মাৰ্ক',subject_lbl:'বিষয়',fees:'মাচুল',fee_tracker:'মাচুল ট্ৰেকাৰ',add_fee:'মাচুল যোগ',paid:'পৰিশোধিত',unpaid:'বাকী',month:'মাহ',amount:'পৰিমাণ',status:'অৱস্থা',student_profile:'শিক্ষাৰ্থী প্ৰফাইল',attendance_pct:'মুঠ উপস্থিতি',marks_history:'নম্বৰ ইতিহাস',install_app:'এপ ইনষ্টল',install_desc:'হোম স্ক্ৰীনত যোগ কৰক',install_success:'এপ ইনষ্টল হ’ল!',install_already:'ইতিমধ্যে ইনষ্টল আছে।'},
+  ne: {home:'होम',classes:'कक्षा',students:'विद्यार्थी',attend:'उपस्थिति',diary:'डायरी',marks:'अंक',more:'अधिक',class:'कक्षा',student:'विद्यार्थी',present_today:'आज उपस्थित',quick_actions:'छिटो',weekly_attendance:'साप्ताहिक',reports:'रिपोर्ट',recent:'हालैको',my_classes:'मेरा कक्षा',all_students:'सबै विद्यार्थी',add_class:'कक्षा थप्नुहोस्',add_student:'विद्यार्थी थप्नुहोस्',attendance:'उपस्थिति',new_entry:'नयाँ',add_marks:'अंक थप्नुहोस्',homework:'गृहकार्य',new_hw:'नयाँ HW',timetable:'समयतालिका',add_period:'पिरियड',notes:'नोट',new_note:'नयाँ नोट',print:'प्रिन्ट',attendance_summary:'उपस्थिति सारांश',marks_summary:'अंक सारांश',all_features:'सबै',about:'बारेमा',about_desc:'भारतीय शिक्षकहरूका लागि व्यावसायिक सहायक।',settings:'सेटिङ',profile:'प्रोफाइल',set_name_school:'नाम र विद्यालय',language:'भाषा',dark_mode:'डार्क',dark_desc:'आँखाका लागि',backup:'ब्याकअप',backup_desc:'JSON मा बचत',restore:'रिस्टोर',restore_desc:'ब्याकअपबाट',reset_data:'रिसेट',reset_desc:'सबै मेटाउनुहोस्',share:'सेयर',share_desc:'WhatsApp',cancel:'रद्द',save:'बचत',confirm:'पुष्टि',delete:'मेट्नुहोस्',name:'नाम',roll:'रोल',subject:'विषय',phone:'फोन',room:'कोठा',title:'शीर्षक',desc:'विवरण',hw:'HW',exam:'परीक्षा',score:'अंक',total:'कुल',time:'समय',day:'दिन',date:'मिति',due:'अन्तिम',school:'विद्यालय',select_class:'कक्षा',select_student:'विद्यार्थी',required:'आवश्यक',empty_classes:'कक्षा छैन',empty_classes_d:'माथि बटन थिच्नुहोस्।',empty_students:'विद्यार्थी छैन',empty_students_d:'माथि बटन थिच्नुहोस्।',empty_att:'विद्यार्थी छैन',empty_diary:'छैन',empty_marks:'छैन',empty_hw:'छैन',empty_period:'छैन',empty_note:'छैन',mark_all:'सबै उपस्थित',del_confirm:'मेट्ने?',del_desc:'स्थायी रूपमा।',reset_confirm:'रिसेट?',reset_desc2:'फर्काउन सकिँदैन।',saved:'बचत भयो',deleted:'मेटियो',fill_required:'जानकारी भर्नुहोस्',mark:'मार्क',subject_lbl:'विषय',fees:'शुल्क',fee_tracker:'शुल्क ट्र्याकर',add_fee:'शुल्क थप्नुहोस्',paid:'तिरेको',unpaid:'बाँकी',month:'महिना',amount:'रकम',status:'स्थिति',student_profile:'विद्यार्थी प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'अंक इतिहास',install_app:'एप इन्स्टल',install_desc:'होम स्क्रिनमा थप्नुहोस्',install_success:'एप इन्स्टल भयो!',install_already:'पहिले नै इन्स्टल छ।'}
 };
 
 let LANG = localStorage.getItem('aos_lang') || 'hi';
@@ -630,7 +671,8 @@ let S = {
   marks: JSON.parse(localStorage.getItem('aos_marks')) || [],
   homework: JSON.parse(localStorage.getItem('aos_hw')) || [],
   periods: JSON.parse(localStorage.getItem('aos_periods')) || [],
-  notes: JSON.parse(localStorage.getItem('aos_notes')) || []
+  notes: JSON.parse(localStorage.getItem('aos_notes')) || [],
+  fees: JSON.parse(localStorage.getItem('aos_fees')) || []
 };
 function save() {
   Object.keys(S).forEach(k => localStorage.setItem('aos_' + k, JSON.stringify(S[k])));
@@ -639,10 +681,35 @@ function save() {
 let currentModal = 'class';
 let currentPage = 'home';
 let selectedDay = 'Monday';
+let deferredPrompt = null;
 
 /* ============ UTIL ============ */
 function $(id) { return document.getElementById(id); }
 function val(id) { const e = $(id); return e ? e.value.trim() : ''; }
+
+/* ============ PWA INSTALL ============ */
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const banner = $('install-banner');
+  if (banner) banner.style.display = 'flex';
+});
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        toast(t('install_success'), 'AcharyaOS added to home screen', 'ok');
+      }
+      deferredPrompt = null;
+      const banner = $('install-banner');
+      if (banner) banner.style.display = 'none';
+    });
+  } else {
+    toast(t('install_app'), t('install_already'), 'info');
+  }
+}
 
 /* ============ TOAST ============ */
 function toast(title, msg, type) {
@@ -722,9 +789,75 @@ function switchPage(p, btn) {
 }
 
 function smartFab() {
-  const map = { home:'class', classes:'class', students:'student', attendance:'student', diary:'diary', marks:'marks', homework:'homework', timetable:'period', notes:'note' };
+  const map = { home:'class', classes:'class', students:'student', attendance:'student', diary:'diary', marks:'marks', homework:'homework', timetable:'period', fees:'fee', notes:'note' };
   openModal(map[currentPage] || 'class');
 }
+
+/* ============ STUDENT PROFILE ============ */
+function openStudentProfile(id) {
+  const s = S.students.find(x => x.id === id);
+  if (!s) return;
+  
+  // Calculate Attendance
+  let totalDays = 0, presentDays = 0;
+  Object.values(S.attendance).forEach(day => {
+    if (day[s.id]) {
+      totalDays++;
+      if (day[s.id] === 'P') presentDays++;
+    }
+  });
+  const attPct = totalDays > 0 ? Math.round((presentDays / totalDays) * 100) : 0;
+  const attCls = attPct >= 75 ? 'g' : attPct >= 50 ? 'o' : 'r';
+  
+  // Get Marks
+  const studentMarks = S.marks.filter(m => m.name === s.name);
+  
+  $('pm-name').innerText = s.name;
+  $('pm-sub').innerText = `${t('roll')}: ${s.roll || '-'} • ${s.cls || ''}`;
+  
+  let marksHtml = '';
+  if (studentMarks.length === 0) {
+    marksHtml = `<p style="font-size:.8rem;color:var(--text-3);text-align:center;padding:10px 0;">${t('marks_history')}: —</p>`;
+  } else {
+    marksHtml = studentMarks.map(m => {
+      const pct = Math.round((m.score / m.total) * 100);
+      const cls = pct >= 75 ? 'g' : pct >= 40 ? 'o' : 'r';
+      return `<div class="li" style="margin-bottom:8px;padding:10px;">
+        <div class="li-body">
+          <h4>${m.exam || t('exam')} <span style="font-size:.7rem;font-weight:500;color:var(--text-3);">${m.subject || ''}</span></h4>
+          <div class="li-meta"><span class="li-chip ${cls}">${m.score}/${m.total} • ${pct}%</span></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  
+  $('pm-content').innerHTML = `
+    <div class="card" style="margin-bottom:14px;background:var(--bg-2);">
+      <div class="flex justify-between items-center mb-2">
+        <span style="font-size:.8rem;font-weight:700;color:var(--text-2);">${t('attendance_pct')}</span>
+        <span style="font-size:1.1rem;font-weight:800;color:var(--${attCls === 'g' ? 'success' : attCls === 'o' ? 'warning' : 'danger'});">${attPct}%</span>
+      </div>
+      <div class="progress"><div class="progress-inner ${attCls}" style="width:${attPct}%"></div></div>
+      <p style="font-size:.68rem;color:var(--text-3);margin-top:6px;">${presentDays} / ${totalDays} days</p>
+    </div>
+    
+    <div class="card" style="margin-bottom:14px;background:var(--bg-2);">
+      <div class="flex justify-between items-center">
+        <div>
+          <p style="font-size:.68rem;color:var(--text-3);font-weight:700;">${t('phone')}</p>
+          <p style="font-size:.85rem;font-weight:700;color:var(--text-1);">${s.phone || '—'}</p>
+        </div>
+        ${s.phone ? `<a href="https://wa.me/91${s.phone}" target="_blank" class="btn g sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>` : ''}
+      </div>
+    </div>
+    
+    <div class="sec-head"><h3><i class="fas fa-star"></i> ${t('marks_history')}</h3></div>
+    ${marksHtml}
+  `;
+  
+  $('profile-modal').classList.add('open');
+}
+function closeProfileModal() { $('profile-modal').classList.remove('open'); }
 
 /* ============ MODAL ============ */
 function openModal(type) {
@@ -732,7 +865,7 @@ function openModal(type) {
   const fields = $('m-fields');
   let html = '';
   const tt = (key) => t(key);
-  const titleMap = { class:'add_class', student:'add_student', diary:'new_entry', marks:'add_marks', homework:'new_hw', period:'add_period', note:'new_note', profile:'profile' };
+  const titleMap = { class:'add_class', student:'add_student', diary:'new_entry', marks:'add_marks', homework:'new_hw', period:'add_period', note:'new_note', profile:'profile', fee:'add_fee' };
   $('m-title').innerText = tt(titleMap[type] || 'add');
 
   if (type === 'class') {
@@ -779,6 +912,14 @@ function openModal(type) {
   } else if (type === 'profile') {
     html = `<div class="field"><label>${tt('name')}</label><input type="text" id="f-name" class="inp" value="${S.profile.name}" placeholder="Your Name"></div>
       <div class="field"><label>${tt('school')}</label><input type="text" id="f-school" class="inp" value="${S.profile.school}" placeholder="School Name"></div>`;
+  } else if (type === 'fee') {
+    const opts = S.students.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
+    html = `<div class="field"><label>${tt('select_student')} <span class="req">*</span></label><select id="f-name" class="sel"><option value="">--</option>${opts}</select></div>
+      <div class="grid-2">
+        <div class="field"><label>${tt('month')} <span class="req">*</span></label><input type="month" id="f-month" class="inp" value="${new Date().toISOString().slice(0,7)}"></div>
+        <div class="field"><label>${tt('amount')} <span class="req">*</span></label><input type="number" id="f-amount" class="inp" placeholder="500"></div>
+      </div>
+      <div class="field"><label>${tt('status')}</label><select id="f-status" class="sel"><option value="Paid">${tt('paid')}</option><option value="Unpaid">${tt('unpaid')}</option></select></div>`;
   }
   fields.innerHTML = html;
   $('modal').classList.add('open');
@@ -817,6 +958,10 @@ function saveData() {
     if (!v('f-title')) return toast(t('fill_required'), '', 'err');
     S.notes.unshift({ id: Date.now(), title: v('f-title'), desc: v('f-desc'), date: new Date().toLocaleDateString() });
     toast(t('saved'), v('f-title'), 'ok');
+  } else if (currentModal === 'fee') {
+    if (!v('f-name') || !v('f-amount')) return toast(t('fill_required'), '', 'err');
+    S.fees.unshift({ id: Date.now(), name: v('f-name'), month: v('f-month'), amount: parseInt(v('f-amount')), status: v('f-status') });
+    toast(t('saved'), v('f-name'), 'ok');
   } else if (currentModal === 'profile') {
     S.profile.name = v('f-name') || S.profile.name || 'Teacher';
     S.profile.school = v('f-school');
@@ -828,7 +973,7 @@ function saveData() {
 /* ============ DELETE ============ */
 function del(type, id) {
   confirmD(t('del_confirm'), t('del_desc'), () => {
-    const map = { class:'classes', student:'students', diary:'diary', marks:'marks', homework:'homework', period:'periods', note:'notes' };
+    const map = { class:'classes', student:'students', diary:'diary', marks:'marks', homework:'homework', period:'periods', note:'notes', fee:'fees' };
     const k = map[type]; if (k) S[k] = S[k].filter(x => x.id !== id);
     save(); renderAll();
     toast(t('deleted'), '', 'ok');
@@ -839,7 +984,7 @@ function del(type, id) {
 function renderAll() {
   renderStats(); renderChart(); renderRecent(); renderClasses(); renderStudents(); renderAttendance();
   renderDiary(); renderMarks(); renderHomework(); renderDays(); renderPeriods(); renderNotes();
-  renderReports(); renderMore(); renderProfileSub();
+  renderFees(); renderReports(); renderMore(); renderProfileSub();
 }
 
 /* ============ HOME ============ */
@@ -851,6 +996,9 @@ function renderStats() {
   const a = S.attendance[today] || {};
   const p = Object.values(a).filter(v => v === 'P').length;
   $('st-att').innerText = p > 0 ? p : '-';
+  // Fees stat
+  const unpaid = S.fees.filter(f => f.status === 'Unpaid').length;
+  $('st-fees').innerText = S.fees.length > 0 ? (unpaid > 0 ? unpaid + ' ' + t('unpaid') : t('paid')) : '-';
 }
 
 function renderChart() {
@@ -881,6 +1029,7 @@ function renderRecent() {
   S.diary.slice(0, 2).forEach(d => items.push({ i:'fa-book', c:'', t:d.title, s:t('diary') + ' • ' + d.date, p:'diary' }));
   S.marks.slice(0, 2).forEach(m => items.push({ i:'fa-star', c:'pk', t:m.name + ' — ' + m.score, s:(m.exam || t('exam')) + ' • ' + (m.subject || ''), p:'marks' }));
   S.homework.slice(0, 2).forEach(h => items.push({ i:'fa-pencil-alt', c:'o', t:h.title, s:t('homework'), p:'homework' }));
+  S.fees.slice(0, 2).forEach(f => items.push({ i:'fa-file-invoice-dollar', c:'g', t:f.name, s:t('fees') + ' • ' + f.month + ' • ' + (f.status === 'Paid' ? t('paid') : t('unpaid')), p:'fees' }));
   if (!items.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-seedling"></i></div><h4>${t('recent')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
   e.innerHTML = items.slice(0, 4).map(x => `<div class="li" onclick="switchPage('${x.p}')"><div class="li-icon ${x.c}"><i class="fas ${x.i}"></i></div><div class="li-body"><h4>${x.t}</h4><p>${x.s}</p></div><i class="fas fa-chevron-right li-arrow"></i></div>`).join('');
 }
@@ -899,7 +1048,7 @@ function renderClasses() {
 function renderStudents() {
   const e = $('list-students');
   if (!S.students.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-users"></i></div><h4>${t('empty_students')}</h4><p>${t('empty_students_d')}</p></div>`; return; }
-  e.innerHTML = S.students.map(s => `<div class="li"><div class="li-icon g">${s.name.charAt(0).toUpperCase()}</div><div class="li-body"><h4>${s.name}</h4><p>${t('roll')}: ${s.roll || '-'} ${s.cls ? '• ' + s.cls : ''}</p>${s.phone ? `<div class="li-meta"><span class="li-chip"><i class="fas fa-phone" style="font-size:.6rem;"></i> ${s.phone}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('student',${s.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
+  e.innerHTML = S.students.map(s => `<div class="li" onclick="openStudentProfile(${s.id})" style="cursor:pointer;"><div class="li-icon g">${s.name.charAt(0).toUpperCase()}</div><div class="li-body"><h4>${s.name}</h4><p>${t('roll')}: ${s.roll || '-'} ${s.cls ? '• ' + s.cls : ''}</p>${s.phone ? `<div class="li-meta"><span class="li-chip"><i class="fas fa-phone" style="font-size:.6rem;"></i> ${s.phone}</span></div>` : ''}</div><button onclick="event.stopPropagation();del('student',${s.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`).join('');
 }
 
 /* ============ ATTENDANCE ============ */
@@ -965,6 +1114,16 @@ function renderPeriods() {
   e.innerHTML = f.map(p => `<div class="tt-slot"><div class="flex justify-between items-center"><div><div class="time">${p.time}</div><div class="sub">${p.sub}</div><div class="cls">${p.cls || ''}</div></div><button onclick="del('period',${p.id})" style="color:var(--danger);padding:6px;"><i class="fas fa-trash"></i></button></div></div>`).join('');
 }
 
+/* ============ FEES ============ */
+function renderFees() {
+  const e = $('list-fees');
+  if (!S.fees.length) { e.innerHTML = `<div class="empty"><div class="empty-ill"><i class="fas fa-file-invoice-dollar"></i></div><h4>${t('fee_tracker')}</h4><p>${t('empty_classes_d')}</p></div>`; return; }
+  e.innerHTML = S.fees.map(f => {
+    const isPaid = f.status === 'Paid';
+    return `<div class="li"><div class="li-icon ${isPaid ? 'g' : 'r'}"><i class="fas ${isPaid ? 'check' : 'exclamation'}"></i></div><div class="li-body"><h4>${f.name}</h4><p>${t('month')}: ${f.month} • ${t('amount')}: ₹${f.amount}</p><div class="li-meta"><span class="li-chip ${isPaid ? 'g' : 'r'}">${isPaid ? t('paid') : t('unpaid')}</span></div></div><button onclick="event.stopPropagation();del('fee',${f.id})" style="width:36px;height:36px;border-radius:11px;background:rgba(239,68,68,.06);color:var(--danger);border:1px solid rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-trash"></i></button></div>`;
+  }).join('');
+}
+
 /* ============ NOTES ============ */
 function renderNotes() {
   const e = $('list-notes');
@@ -998,13 +1157,13 @@ function renderReports() {
 const MORE_FEATURES = [
   { k:'homework', i:'fa-pencil-alt', c:'' },
   { k:'timetable', i:'fa-calendar-alt', c:'g' },
+  { k:'fees', i:'fa-file-invoice-dollar', c:'pk' },
   { k:'notes', i:'fa-sticky-note', c:'o' },
-  { k:'reports', i:'fa-chart-bar', c:'pk' },
-  { k:'settings', i:'fa-cog', c:'' },
-  { k:'share', i:'fa-share-alt', c:'g' }
+  { k:'reports', i:'fa-chart-bar', c:'' },
+  { k:'settings', i:'fa-cog', c:'cy' }
 ];
 function renderMore() {
-  $('more-grid').innerHTML = MORE_FEATURES.map(f => `<button class="quick ${f.c}" style="padding:20px 10px;" onclick="${f.k === 'settings' ? "switchPage('settings')" : f.k === 'share' ? 'shareApp()' : "switchPage('" + f.k + "')"}"><i class="fas ${f.i}"></i> ${t(f.k)}</button>`).join('');
+  $('more-grid').innerHTML = MORE_FEATURES.map(f => `<button class="quick ${f.c}" style="padding:20px 10px;" onclick="${f.k === 'settings' ? "switchPage('settings')" : "switchPage('" + f.k + "')"}"><i class="fas ${f.i}"></i> ${t(f.k)}</button>`).join('');
 }
 function renderProfileSub() { $('prof-sub').innerText = S.profile.school || t('set_name_school'); }
 
@@ -1033,7 +1192,7 @@ function shareApp() {
 
 /* ============ BACKUP ============ */
 function exportData() {
-  const data = { ...S, version:'4.0.0', lang: LANG, exportedAt: new Date().toISOString() };
+  const data = { ...S, version:'5.0.0', lang: LANG, exportedAt: new Date().toISOString() };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -1048,7 +1207,7 @@ function importData(ev) {
     try {
       const d = JSON.parse(e.target.result);
       confirmD(t('restore'), '', () => {
-        ['profile','classes','students','attendance','diary','marks','homework','periods','notes'].forEach(k => { if (d[k]) S[k] = d[k]; });
+        ['profile','classes','students','attendance','diary','marks','homework','periods','notes','fees'].forEach(k => { if (d[k]) S[k] = d[k]; });
         if (d.lang) { LANG = d.lang; localStorage.setItem('aos_lang', LANG); applyI18n(); }
         save(); renderAll(); toast(t('restore'), 'Done', 'ok');
       }, 'info');
@@ -1061,7 +1220,7 @@ function confirmReset() {
 }
 
 /* ============ ABOUT ============ */
-function showAbout() { confirmD('AcharyaOS Pro', 'Version 4.0.0\n\n' + t('about_desc') + '\n\n14+ Indian Languages\n100% Offline & Free\n\nMade with ❤️ in India 🇮🇳', () => {}, 'info'); }
+function showAbout() { confirmD('AcharyaOS Pro', 'Version 5.0.0\n\n' + t('about_desc') + '\n\n14+ Indian Languages\n100% Offline & Free\n\nMade with ❤️ in India 🇮🇳', () => {}, 'info'); }
 
 /* ============ GREET ============ */
 function updateGreet() {
@@ -1083,7 +1242,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAll();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(); closeDialog(); closeSearch(); closeLangModal(); }
+    if (e.key === 'Escape') { closeModal(); closeDialog(); closeSearch(); closeLangModal(); closeProfileModal(); }
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
   });
 });
