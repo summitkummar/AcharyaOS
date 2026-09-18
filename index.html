@@ -45,7 +45,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 
 .splash{position:fixed;inset:0;background:linear-gradient(135deg,#FF9933 0%,#FFFFFF 50%,#138808 100%);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;}
 .splash.hide{opacity:0;visibility:hidden;pointer-events:none;}
-.splash-logo{width:120px;height:120px;border-radius:32px;background:rgba(200,230,201,.9);display:flex;align-items:center;justify-content:center;font-size:3.2rem;color:#138808;box-shadow:0 24px 60px rgba(0,0,0,.15);animation:splIn 1s cubic-bezier(.16,1,.3,1) forwards;opacity:0;transform:scale(.5);}
+.splash-logo{width:120px;height:120px;border-radius:32px;background:#C8E6C9;display:flex;align-items:center;justify-content:center;font-size:3.2rem;color:#138808;box-shadow:0 24px 60px rgba(0,0,0,.15);animation:splIn 1s cubic-bezier(.16,1,.3,1) forwards;opacity:0;transform:scale(.5);}
 @keyframes splIn{to{opacity:1;transform:scale(1);}}
 .splash-name{margin-top:26px;font-size:2rem;font-weight:800;color:#000080;letter-spacing:-.8px;animation:splIn .8s .2s cubic-bezier(.16,1,.3,1) forwards;opacity:0;}
 .splash-tag{font-size:.72rem;color:#000080;margin-top:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;animation:splIn .8s .35s cubic-bezier(.16,1,.3,1) forwards;opacity:0;}
@@ -54,22 +54,19 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 @keyframes splBar{to{width:100%;}}
 .splash-made{position:absolute;bottom:38px;color:#000080;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
 
-/* APP BAR - Light green icon buttons */
 .app-bar{background:linear-gradient(135deg,#FF9933 0%,#E65100 100%);padding:14px 14px 68px;position:relative;border-radius:0 0 32px 32px;box-shadow:0 12px 40px rgba(255,153,51,.4);overflow:hidden;padding-top:calc(14px + env(safe-area-inset-top));}
 .app-bar::before{content:'';position:absolute;top:-80px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%);border-radius:50%;pointer-events:none;}
 .app-bar::after{content:'';position:absolute;bottom:-100px;left:-50px;width:220px;height:220px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%;pointer-events:none;}
 .bar-row{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;gap:8px;}
 .brand{display:flex;align-items:center;gap:9px;color:#fff;min-width:0;flex:1;}
-
-/* Logo with light green bg + dark green icon (matching screenshot 2) */
 .brand-icon{width:40px;height:40px;background:#C8E6C9;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;color:#138808;box-shadow:inset 0 1px 0 rgba(255,255,255,.5);}
 .brand-text{font-weight:800;font-size:1.05rem;letter-spacing:-.4px;line-height:1.1;color:#FFFFFF;text-shadow:0 1px 3px rgba(0,0,0,.15);}
 .brand-text small{display:block;font-size:.5rem;font-weight:700;opacity:.95;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;color:#FFFFFF;}
 .bar-actions{display:flex;gap:5px;flex-shrink:0;}
 
-/* Light green icon buttons with white icons */
-.icon-btn{width:36px;height:36px;border-radius:10px;background:#8BC34A;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#FFFFFF;transition:transform .15s,background .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.35);}
-.icon-btn:active{transform:scale(.92);background:#7CB342;}
+/* Icon buttons now use SK-like gradient (orange → green) */
+.icon-btn{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#FF9933 0%,#B8860B 45%,#138808 100%);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#FFFFFF;transition:transform .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 2px 6px rgba(0,0,0,.15);border:1px solid rgba(255,255,255,.35);}
+.icon-btn:active{transform:scale(.92);}
 
 .wrap{padding:0 14px;max-width:720px;margin:-52px auto 0;position:relative;z-index:2;}
 
@@ -259,25 +256,16 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .note p{font-size:.78rem;color:var(--text-2);line-height:1.55;font-weight:500;}
 .note .date{font-size:.65rem;color:var(--text-3);margin-top:8px;font-weight:600;}
 
-.more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:8px;}
-.more-card{background:var(--card);border-radius:var(--r-lg);padding:18px 14px;box-shadow:var(--sh-sm);border:1px solid var(--border);display:flex;flex-direction:column;align-items:flex-start;gap:12px;transition:transform .15s;text-align:left;}
-.more-card:active{transform:scale(.97);}
-.more-card .mc-icon{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
-.more-card.g .mc-icon{background:linear-gradient(135deg,rgba(19,136,8,.15),rgba(13,94,5,.15));color:var(--green);}
-.more-card.pk .mc-icon{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--navy);}
-.more-card.o .mc-icon{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);}
-.more-card .mc-title{font-size:.88rem;font-weight:800;color:var(--text);line-height:1.2;}
-.more-card .mc-desc{font-size:.68rem;color:var(--text-3);font-weight:600;margin-top:2px;}
-
 .about-profile{text-align:center;padding:16px 0 8px;}
-.about-avatar{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#FF9933,#138808);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:800;margin:0 auto 14px;box-shadow:0 12px 32px rgba(255,153,51,.4);border:4px solid var(--card);}
+.about-avatar{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#FF9933,#B8860B,#138808);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:800;margin:0 auto 14px;box-shadow:0 12px 32px rgba(255,153,51,.4);border:4px solid var(--card);letter-spacing:-1px;}
 .about-name{font-size:1.4rem;font-weight:800;color:var(--text);letter-spacing:-.4px;}
 .about-role{font-size:.82rem;color:var(--text-3);font-weight:600;margin-top:4px;}
-.social-row{display:flex;gap:12px;justify-content:center;margin:18px 0 8px;}
-.social-btn{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;text-decoration:none;transition:transform .15s;box-shadow:0 6px 16px rgba(0,0,0,.15);}
+.social-row{display:flex;gap:14px;justify-content:center;margin:20px 0 8px;}
+.social-btn{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:transform .15s;box-shadow:0 8px 20px rgba(0,0,0,.2);}
 .social-btn:active{transform:scale(.92);}
-.social-btn.fb{background:linear-gradient(135deg,#1877F2,#0C63D4);}
-.social-btn.ig{background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF,#515BD4);}
+.social-btn svg{width:26px;height:26px;fill:#fff;}
+.social-btn.fb{background:#1877F2;}
+.social-btn.ig{background:linear-gradient(45deg,#F58529 0%,#DD2A7B 35%,#8134AF 70%,#515BD4 100%);}
 
 .hidden{display:none!important;}
 .text-center{text-align:center;}
@@ -496,12 +484,12 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   <div class="card mb-3"><div class="card-h"><h4><i class="fas fa-star"></i> <span data-t="marks_summary">Marks Summary</span></h4></div><div id="rep-marks"></div></div>
 </div>
 
-<!-- ABOUT PAGE (Replaced "More") -->
+<!-- ABOUT PAGE (Only Developer info, no features grid) -->
 <div class="page" id="pg-about">
   <div class="sec-head"><h3><i class="fas fa-user-circle"></i> <span data-t="about">About</span></h3></div>
 
   <!-- Developer Card -->
-  <div class="card" style="padding:24px 18px;text-align:center;">
+  <div class="card" style="padding:26px 18px;text-align:center;">
     <div class="about-profile">
       <div class="about-avatar">SK</div>
       <div class="about-name">Summit Kummar</div>
@@ -510,13 +498,13 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 
       <div class="social-row">
         <a href="https://www.facebook.com/share/1EvemNMEzf/" target="_blank" rel="noopener" class="social-btn fb" title="Facebook">
-          <i class="fab fa-facebook-f"></i>
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
         <a href="https://www.instagram.com/summitkummar?stkn=MTY1ZTJkbmp5ZG5pag==" target="_blank" rel="noopener" class="social-btn ig" title="Instagram">
-          <i class="fab fa-instagram"></i>
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         </a>
       </div>
-      <p style="font-size:.68rem;color:var(--text-3);font-weight:600;">Follow for updates & new features</p>
+      <p style="font-size:.7rem;color:var(--text-3);font-weight:600;letter-spacing:.3px;">Follow for updates & new features</p>
     </div>
   </div>
 
@@ -528,10 +516,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
     <p style="font-size:.82rem;color:var(--text-2);margin-top:14px;line-height:1.6;" data-t="about_desc">A professional digital assistant for Indian teachers.</p>
     <p style="font-size:.72rem;color:var(--text-3);margin-top:12px;">Made with ❤️ in India 🇮🇳</p>
   </div>
-
-  <!-- All Features Grid -->
-  <div class="sec-head"><h3><i class="fas fa-th-large"></i> <span>All Features</span></h3></div>
-  <div class="more-grid" id="more-grid"></div>
 </div>
 
 <div class="page" id="pg-settings">
@@ -645,8 +629,8 @@ const LANGS=[
 ];
 
 const T={
-  hi:{home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',about:'परिचय',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'मेरी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',empty_exam:'कोई परीक्षा नहीं',empty_lesson:'कोई पाठ नहीं',empty_rem:'कोई रिमाइंडर नहीं',empty_hol:'कोई छुट्टी नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',fees:'फीस',fee_tracker:'फीस ट्रैकर',add_fee:'फीस जोड़ें',paid:'जमा',unpaid:'बकाया',month:'महीना',amount:'रकम',status:'स्थिति',student_profile:'स्टूडेंट प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'मार्क्स हिस्ट्री',install_app:'ऐप इंस्टॉल',install_desc:'होम स्क्रीन पर जोड़ें',install_success:'ऐप इंस्टॉल हो गया!',install_already:'ऐप पहले से इंस्टॉल है या ब्राउज़र सपोर्ट नहीं करता।',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lessons:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',syllabus:'पाठ्यक्रम ट्रैकर',add_syllabus:'अध्याय जोड़ें',chapter:'अध्याय',completed:'पूरा हुआ',pending:'बाकी',todo:'कार्य सूची',add_todo:'कार्य जोड़ें',task:'कार्य',priority:'प्राथमिकता',high:'उच्च',medium:'मध्यम',low:'निम्न',seating:'बैठने की व्यवस्था',add_seat:'सीट असाइन करें',seat_no:'सीट नंबर',row:'पंक्ति',col:'स्तंभ',report_cards:'रिपोर्ट कार्ड',analytics:'क्लास एनालिटिक्स'},
-  en:{home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',about:'About',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap above to add your first class.',empty_students:'No Students',empty_students_d:'Tap above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',empty_exam:'No Exams',empty_lesson:'No Lessons',empty_rem:'No Reminders',empty_hol:'No Holidays',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',fees:'Fees',fee_tracker:'Fee Tracker',add_fee:'Add Fee',paid:'Paid',unpaid:'Unpaid',month:'Month',amount:'Amount',status:'Status',student_profile:'Student Profile',attendance_pct:'Overall Attendance',marks_history:'Marks History',install_app:'Install App',install_desc:'Add to home screen',install_success:'App installed!',install_already:'App already installed or not supported.',exams:'Exams',add_exam:'Add Exam',lessons:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',syllabus:'Syllabus Tracker',add_syllabus:'Add Chapter',chapter:'Chapter',completed:'Completed',pending:'Pending',todo:'To-Do List',add_todo:'Add Task',task:'Task',priority:'Priority',high:'High',medium:'Medium',low:'Low',seating:'Seating Plan',add_seat:'Assign Seat',seat_no:'Seat No.',row:'Row',col:'Column',report_cards:'Report Cards',analytics:'Class Analytics'}
+  hi:{home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',about:'परिचय',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'मेरी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',empty_exam:'कोई परीक्षा नहीं',empty_lesson:'कोई पाठ नहीं',empty_rem:'कोई रिमाइंडर नहीं',empty_hol:'कोई छुट्टी नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',fees:'फीस',fee_tracker:'फीस ट्रैकर',add_fee:'फीस जोड़ें',paid:'जमा',unpaid:'बकाया',month:'महीना',amount:'रकम',status:'स्थिति',student_profile:'स्टूडेंट प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'मार्क्स हिस्ट्री',install_app:'ऐप इंस्टॉल',install_desc:'होम स्क्रीन पर जोड़ें',install_success:'ऐप इंस्टॉल हो गया!',install_already:'ऐप पहले से इंस्टॉल है या ब्राउज़र सपोर्ट नहीं करता।',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lessons:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',syllabus:'पाठ्यक्रम ट्रैकर',add_syllabus:'अध्याय जोड़ें',chapter:'अध्याय',completed:'पूरा हुआ',pending:'बाकी',todo:'कार्य सूची',add_todo:'कार्य जोड़ें',task:'कार्य',priority:'प्राथमिकता',high:'उच्च',medium:'मध्यम',low:'निम्न',seating:'बैठने की व्यवस्था',add_seat:'सीट असाइन करें',seat_no:'सीट नंबर',row:'पंक्ति',col:'स्तंभ'},
+  en:{home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',about:'About',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap above to add your first class.',empty_students:'No Students',empty_students_d:'Tap above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',empty_exam:'No Exams',empty_lesson:'No Lessons',empty_rem:'No Reminders',empty_hol:'No Holidays',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',fees:'Fees',fee_tracker:'Fee Tracker',add_fee:'Add Fee',paid:'Paid',unpaid:'Unpaid',month:'Month',amount:'Amount',status:'Status',student_profile:'Student Profile',attendance_pct:'Overall Attendance',marks_history:'Marks History',install_app:'Install App',install_desc:'Add to home screen',install_success:'App installed!',install_already:'App already installed or not supported.',exams:'Exams',add_exam:'Add Exam',lessons:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',syllabus:'Syllabus Tracker',add_syllabus:'Add Chapter',chapter:'Chapter',completed:'Completed',pending:'Pending',todo:'To-Do List',add_todo:'Add Task',task:'Task',priority:'Priority',high:'High',medium:'Medium',low:'Low',seating:'Seating Plan',add_seat:'Assign Seat',seat_no:'Seat No.',row:'Row',col:'Column'}
 };
 
 let LANG=localStorage.getItem('aos_lang')||'hi';
@@ -813,7 +797,7 @@ function renderAll(){
   renderStats();renderChart();renderRecent();renderClasses();renderStudents();renderAttendance();
   renderDiary();renderMarks();renderHomework();renderDays();renderPeriods();renderNotes();
   renderFees();renderExams();renderLessons();renderReminders();renderHolidays();
-  renderSyllabus();renderTodos();renderSeating();renderReports();renderMore();renderProfileSub();
+  renderSyllabus();renderTodos();renderSeating();renderReports();renderProfileSub();
 }
 
 function renderStats(){
@@ -974,28 +958,6 @@ function renderReports(){
   }
 }
 
-const MORE_FEATURES=[
-  {k:'homework',i:'fa-pencil-alt',c:'',p:'homework',d:'Assignments tracker'},
-  {k:'timetable',i:'fa-calendar-alt',c:'g',p:'timetable',d:'Weekly class schedule'},
-  {k:'fees',i:'fa-file-invoice-dollar',c:'pk',p:'fees',d:'Fee collection status'},
-  {k:'exams',i:'fa-file-alt',c:'o',p:'exams',d:'Exam planner'},
-  {k:'lessons',i:'fa-chalkboard',c:'',p:'lessons',d:'Daily lesson plans'},
-  {k:'reminders',i:'fa-bell',c:'g',p:'reminders',d:'Important alerts'},
-  {k:'holidays',i:'fa-umbrella-beach',c:'pk',p:'holidays',d:'Holiday calendar'},
-  {k:'syllabus',i:'fa-book-reader',c:'o',p:'syllabus',d:'Course completion'},
-  {k:'todo',i:'fa-tasks',c:'',p:'todo',d:'Daily task manager'},
-  {k:'seating',i:'fa-chair',c:'g',p:'seating',d:'Classroom seating plan'},
-  {k:'notes',i:'fa-sticky-note',c:'pk',p:'notes',d:'Quick notes & ideas'},
-  {k:'settings',i:'fa-cog',c:'o',p:'settings',d:'App preferences'}
-];
-
-function renderMore(){
-  $('more-grid').innerHTML=MORE_FEATURES.map(f=>`
-    <button class="more-card ${f.c}" onclick="switchPage('${f.p}')">
-      <div class="mc-icon"><i class="fas ${f.i}"></i></div>
-      <div><div class="mc-title">${t(f.k)}</div><div class="mc-desc">${f.d}</div></div>
-    </button>`).join('');
-}
 function renderProfileSub(){$('prof-sub').innerText=S.profile.school||t('set_name_school');}
 
 function openSearch(){$('search-ov').classList.add('open');setTimeout(()=>$('search-inp').focus(),200);}
