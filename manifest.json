@@ -1,21 +1,15 @@
 {
-  "name": "AcharyaOS — The Teacher's OS",
+  "name": "AcharyaOS - The Teacher's OS",
   "short_name": "AcharyaOS",
-  "description": "Professional digital assistant for Indian teachers. Manage classes, students, attendance, marks, diary, syllabus — 100% offline, free forever.",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": "/",
   "display": "standalone",
-  "orientation": "any",
-  "background_color": "#6366f1",
-  "theme_color": "#6366f1",
-  "categories": ["education", "productivity"],
-  "lang": "hi",
+  "background_color": "#ffffff",
+  "theme_color": "#6a0dad",
   "icons": [
     {
-      "src": "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='.5' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='26' fill='url(%23g)'/%3E%3Cpath d='M32 34 L50 24 L68 34 L68 62 L50 72 L32 62 Z' fill='white' opacity='.95'/%3E%3Ccircle cx='50' cy='48' r='5' fill='%236366f1'/%3E%3Cpath d='M44 48 L34 68 M56 48 L66 68' stroke='%236366f1' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E",
-      "sizes": "192x192 512x512 any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "https://cdn-icons-png.flaticon.com/512/3976/3976606.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
