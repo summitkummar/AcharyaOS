@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AcharyaOS - The Teacher's OS</title>
     
-    <!-- 🔥 ब्रांडिंग और शेयरिंग के लिए (WhatsApp पर लिंक भेजने पर यह दिखेगा) 🔥 -->
+    <!-- ब्रांडिंग और शेयरिंग (WhatsApp प्रीव्यू के लिए) -->
     <meta property="og:title" content="AcharyaOS - The Teacher's OS">
     <meta property="og:description" content="शिक्षकों के लिए एक आधुनिक डिजिटल सहायक। क्लास, स्टूडेंट्स और अटेंडेंस को मैनेज करें आसानी से।">
     <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/3976/3976606.png">
     <meta property="og:url" content="https://summitkummar.github.io/">
     <meta name="theme-color" content="#6a0dad">
 
-    <!-- Tailwind CSS (डिज़ाइन के लिए) -->
+    <!-- Tailwind CSS (डिज़ाइन) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome (आइकॉन के लिए) -->
+    <!-- Font Awesome (आइकॉन) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts (सुंदर अक्षर) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -30,11 +30,11 @@
         .screen.active { display: block; }
     </style>
 </head>
-<body class="pb-20">
+<body class="pb-24">
 
-    <!-- ================== 1. हेडर (Branding + Share Button) ================== -->
+    <!-- ================== 1. हेडर (Header + Share) ================== -->
     <div class="bg-gradient-to-r from-purple-700 to-indigo-600 text-white p-5 pt-8 rounded-b-[2.5rem] shadow-lg relative z-10">
-        <div class="flex justify-between items-center mb-4">
+        <div class="flex justify-between items-center mb-6">
             <div class="flex items-center gap-3">
                 <div class="bg-white/20 p-2 rounded-xl">
                     <i class="fas fa-graduation-cap text-xl"></i>
@@ -44,10 +44,12 @@
                     <p class="text-[10px] tracking-widest opacity-80 uppercase">The Teacher's OS</p>
                 </div>
             </div>
-            <!-- शेयर बटन -->
-            <button onclick="shareApp()" class="bg-white/20 w-10 h-10 rounded-xl flex items-center justify-center active:scale-95 transition">
-                <i class="fas fa-share-alt text-lg"></i>
-            </button>
+            <div class="flex gap-2">
+                <!-- शेयर बटन -->
+                <button onclick="shareApp()" class="bg-white/20 w-10 h-10 rounded-xl flex items-center justify-center active:scale-95 transition">
+                    <i class="fas fa-share-alt text-lg"></i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -71,21 +73,39 @@
                 </div>
             </div>
 
-            <!-- स्टैट्स कार्ड्स -->
+            <!-- 4 स्टैट्स कार्ड्स (Stats Cards) -->
             <div class="grid grid-cols-2 gap-4 mb-6">
+                <!-- Classes -->
                 <div class="bg-white rounded-3xl p-4 shadow-sm border border-gray-100">
                     <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600 mb-3">
                         <i class="fas fa-users text-lg"></i>
                     </div>
-                    <p class="text-xs text-gray-500 font-bold tracking-wider mb-1">TOTAL CLASSES</p>
-                    <p class="text-3xl font-bold text-gray-800" id="home-classes-count">0</p>
+                    <p class="text-xs text-gray-500 font-bold tracking-wider mb-1">CLASSES</p>
+                    <p class="text-3xl font-bold text-gray-800" id="stat-classes">0</p>
                 </div>
+                <!-- Students -->
                 <div class="bg-white rounded-3xl p-4 shadow-sm border border-gray-100">
                     <div class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center text-green-600 mb-3">
                         <i class="fas fa-user-graduate text-lg"></i>
                     </div>
-                    <p class="text-xs text-gray-500 font-bold tracking-wider mb-1">TOTAL STUDENTS</p>
-                    <p class="text-3xl font-bold text-gray-800" id="home-students-count">0</p>
+                    <p class="text-xs text-gray-500 font-bold tracking-wider mb-1">STUDENTS</p>
+                    <p class="text-3xl font-bold text-gray-800" id="stat-students">0</p>
+                </div>
+                <!-- Attendance -->
+                <div class="bg-white rounded-3xl p-4 shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-orange-500 mb-3">
+                        <i class="fas fa-user-check text-lg"></i>
+                    </div>
+                    <p class="text-xs text-gray-500 font-bold tracking-wider mb-1">आज उपस्थित</p>
+                    <p class="text-3xl font-bold text-gray-800" id="stat-attendance">-</p>
+                </div>
+                <!-- Diary -->
+                <div class="bg-white rounded-3xl p-4 shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600 mb-3">
+                        <i class="fas fa-book text-lg"></i>
+                    </div>
+                    <p class="text-xs text-gray-500 font-bold tracking-wider mb-1">DIARY</p>
+                    <p class="text-3xl font-bold text-gray-800" id="stat-diary">0</p>
                 </div>
             </div>
 
@@ -97,15 +117,19 @@
             <div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
                 <button onclick="openAddModal('class')" class="flex-shrink-0 w-24 bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col items-center justify-center gap-2">
                     <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center"><i class="fas fa-plus"></i></div>
-                    <span class="text-xs font-semibold text-gray-700">Add Class</span>
+                    <span class="text-xs font-semibold text-gray-700">Class</span>
                 </button>
                 <button onclick="openAddModal('student')" class="flex-shrink-0 w-24 bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col items-center justify-center gap-2">
-                    <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center"><i class="fas fa-user-plus"></i></div>
-                    <span class="text-xs font-semibold text-gray-700">Add Student</span>
+                    <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center"><i class="fas fa-user-check"></i></div>
+                    <span class="text-xs font-semibold text-gray-700">Attend</span>
                 </button>
-                <button onclick="shareApp()" class="flex-shrink-0 w-24 bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col items-center justify-center gap-2">
-                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center"><i class="fas fa-share-alt"></i></div>
-                    <span class="text-xs font-semibold text-gray-700">Share App</span>
+                <button onclick="openAddModal('diary')" class="flex-shrink-0 w-24 bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col items-center justify-center gap-2">
+                    <div class="w-10 h-10 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center"><i class="fas fa-book-open"></i></div>
+                    <span class="text-xs font-semibold text-gray-700">Diary</span>
+                </button>
+                <button onclick="openAddModal('marks')" class="flex-shrink-0 w-24 bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col items-center justify-center gap-2">
+                    <div class="w-10 h-10 rounded-xl bg-pink-50 text-pink-500 flex items-center justify-center"><i class="fas fa-star"></i></div>
+                    <span class="text-xs font-semibold text-gray-700">Marks</span>
                 </button>
             </div>
         </div>
@@ -118,29 +142,50 @@
                     <i class="fas fa-plus mr-1"></i> नई क्लास
                 </button>
             </div>
-            <div id="classes-list" class="space-y-3">
-                <!-- क्लासेज की लिस्ट यहाँ आएगी -->
-                <p class="text-gray-400 text-center py-10 text-sm">अभी कोई क्लास नहीं जोड़ी गई है।</p>
-            </div>
+            <div id="list-classes" class="space-y-3"></div>
         </div>
 
-        <!-- ================== स्क्रीन 3: स्टूडेंट्स (Students) ================== -->
-        <div id="screen-students" class="screen">
+        <!-- ================== स्क्रीन 3: अटेंडेंस (Attend) ================== -->
+        <div id="screen-attend" class="screen">
             <div class="flex justify-between items-center mb-4 mt-2">
-                <h2 class="text-xl font-bold text-gray-800">सभी स्टूडेंट्स</h2>
+                <h2 class="text-xl font-bold text-gray-800">आज की उपस्थिति</h2>
                 <button onclick="openAddModal('student')" class="bg-green-600 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-md active:scale-95 transition">
-                    <i class="fas fa-plus mr-1"></i> नया स्टूडेंट
+                    <i class="fas fa-plus mr-1"></i> स्टूडेंट जोड़ें
                 </button>
             </div>
-            <div id="students-list" class="space-y-3">
-                <!-- स्टूडेंट्स की लिस्ट यहाँ आएगी -->
-                <p class="text-gray-400 text-center py-10 text-sm">अभी कोई स्टूडेंट नहीं जोड़ा गया है।</p>
+            <div id="list-students" class="space-y-3"></div>
+        </div>
+
+        <!-- ================== स्क्रीन 4: डायरी (Diary) ================== -->
+        <div id="screen-diary" class="screen">
+            <div class="flex justify-between items-center mb-4 mt-2">
+                <h2 class="text-xl font-bold text-gray-800">डायरी एंट्रीज़</h2>
+                <button onclick="openAddModal('diary')" class="bg-orange-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-md active:scale-95 transition">
+                    <i class="fas fa-plus mr-1"></i> नई एंट्री
+                </button>
             </div>
+            <div id="list-diary" class="space-y-3"></div>
+        </div>
+
+        <!-- ================== स्क्रीन 5: मार्क्स (Marks) ================== -->
+        <div id="screen-marks" class="screen">
+            <div class="flex justify-between items-center mb-4 mt-2">
+                <h2 class="text-xl font-bold text-gray-800">मार्क्स</h2>
+                <button onclick="openAddModal('marks')" class="bg-pink-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-md active:scale-95 transition">
+                    <i class="fas fa-plus mr-1"></i> मार्क्स जोड़ें
+                </button>
+            </div>
+            <div id="list-marks" class="space-y-3"></div>
         </div>
 
     </div>
 
-    <!-- ================== 2. बॉटम नेविगेशन (Professional Navigation) ================== -->
+    <!-- ================== 2. फ्लोटिंग एक्शन बटन (FAB) ================== -->
+    <button onclick="openAddModal('class')" class="fixed bottom-24 right-4 w-14 h-14 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full shadow-lg flex items-center justify-center text-2xl z-40 active:scale-95 transition">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- ================== 3. बॉटम नेविगेशन (Bottom Nav) ================== -->
     <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 flex justify-around items-center py-3 pb-safe z-50 rounded-t-2xl shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
         <button onclick="switchTab('home')" id="nav-home" class="flex flex-col items-center gap-1 text-purple-600 transition">
             <i class="fas fa-home text-lg"></i>
@@ -150,13 +195,21 @@
             <i class="fas fa-users text-lg"></i>
             <span class="text-[10px] font-medium">Classes</span>
         </button>
-        <button onclick="switchTab('students')" id="nav-students" class="flex flex-col items-center gap-1 text-gray-400 hover:text-purple-600 transition">
-            <i class="fas fa-user-graduate text-lg"></i>
-            <span class="text-[10px] font-medium">Students</span>
+        <button onclick="switchTab('attend')" id="nav-attend" class="flex flex-col items-center gap-1 text-gray-400 hover:text-purple-600 transition">
+            <i class="fas fa-user-check text-lg"></i>
+            <span class="text-[10px] font-medium">Attend</span>
+        </button>
+        <button onclick="switchTab('diary')" id="nav-diary" class="flex flex-col items-center gap-1 text-gray-400 hover:text-purple-600 transition">
+            <i class="fas fa-book text-lg"></i>
+            <span class="text-[10px] font-medium">Diary</span>
+        </button>
+        <button onclick="switchTab('marks')" id="nav-marks" class="flex flex-col items-center gap-1 text-gray-400 hover:text-purple-600 transition">
+            <i class="fas fa-star text-lg"></i>
+            <span class="text-[10px] font-medium">Marks</span>
         </button>
     </div>
 
-    <!-- ================== 3. डेटा जोड़ने का पॉपअप (Modal) ================== -->
+    <!-- ================== 4. पॉपअप (Modal for Input) ================== -->
     <div id="add-modal" class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl w-full max-w-sm p-6 shadow-2xl">
             <h3 id="modal-title" class="text-xl font-bold text-gray-800 mb-4">नई क्लास जोड़ें</h3>
@@ -168,21 +221,20 @@
         </div>
     </div>
 
-    <!-- ================== जावास्क्रिप्ट कोड (पूरा लॉजिक) ================== -->
+    <!-- ================== 5. जावास्क्रिप्ट (पूरा लॉजिक) ================== -->
     <script>
-        // --- 1. डेटा सेटअप (Local Storage) ---
-        let classes = JSON.parse(localStorage.getItem('acharya_classes_list')) || [];
-        let students = JSON.parse(localStorage.getItem('acharya_students_list')) || [];
+        // डेटा स्टोर करने के लिए वेरिएबल्स
+        let classes = JSON.parse(localStorage.getItem('acharya_classes')) || [];
+        let students = JSON.parse(localStorage.getItem('acharya_students')) || [];
+        let diaries = JSON.parse(localStorage.getItem('acharya_diaries')) || [];
+        let marksData = JSON.parse(localStorage.getItem('acharya_marks')) || [];
         let currentAddType = 'class';
 
-        // --- 2. नेविगेशन लॉजिक ---
+        // --- 1. नेविगेशन लॉजिक ---
         function switchTab(tabId) {
-            // सभी स्क्रीन छुपाएं
-            document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
-            // चुनी हुई स्क्रीन दिखाएं
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById('screen-' + tabId).classList.add('active');
-
-            // नेविगेशन बटन का रंग बदलें
+            
             document.querySelectorAll('button[id^="nav-"]').forEach(btn => {
                 btn.classList.remove('text-purple-600', 'font-semibold');
                 btn.classList.add('text-gray-400');
@@ -192,13 +244,21 @@
                 activeNav.classList.remove('text-gray-400');
                 activeNav.classList.add('text-purple-600', 'font-semibold');
             }
+            renderAll(); // हर बार टैब बदलने पर डेटा रिफ्रेश करें
         }
 
-        // --- 3. मोडल (Popup) लॉजिक ---
+        // --- 2. मोडल (Popup) लॉजिक ---
         function openAddModal(type) {
             currentAddType = type;
-            document.getElementById('modal-title').innerText = type === 'class' ? 'नई क्लास जोड़ें' : 'नया स्टूडेंट जोड़ें';
+            let titles = {
+                'class': 'नई क्लास जोड़ें',
+                'student': 'नया स्टूडेंट जोड़ें',
+                'diary': 'नई डायरी एंट्री',
+                'marks': 'नए मार्क्स जोड़ें'
+            };
+            document.getElementById('modal-title').innerText = titles[type] || 'जोड़ें';
             document.getElementById('modal-input').value = '';
+            document.getElementById('modal-input').placeholder = type === 'diary' ? 'आज का काम लिखें...' : 'नाम यहाँ लिखें...';
             document.getElementById('add-modal').classList.remove('hidden');
             document.getElementById('modal-input').focus();
         }
@@ -207,80 +267,99 @@
             document.getElementById('add-modal').classList.add('hidden');
         }
 
-        // --- 4. डेटा सेव करने का लॉजिक ---
+        // --- 3. डेटा सेव करने का लॉजिक ---
         function saveData() {
             let value = document.getElementById('modal-input').value.trim();
             if (!value) {
-                alert("कृपया नाम लिखें!");
+                alert("कृपया कुछ लिखें!");
                 return;
             }
 
             if (currentAddType === 'class') {
                 classes.push({ id: Date.now(), name: value });
-                localStorage.setItem('acharya_classes_list', JSON.stringify(classes));
-            } else {
+                localStorage.setItem('acharya_classes', JSON.stringify(classes));
+            } else if (currentAddType === 'student') {
                 students.push({ id: Date.now(), name: value });
-                localStorage.setItem('acharya_students_list', JSON.stringify(students));
+                localStorage.setItem('acharya_students', JSON.stringify(students));
+            } else if (currentAddType === 'diary') {
+                diaries.push({ id: Date.now(), text: value, date: new Date().toLocaleDateString('hi-IN') });
+                localStorage.setItem('acharya_diaries', JSON.stringify(diaries));
+            } else if (currentAddType === 'marks') {
+                marksData.push({ id: Date.now(), text: value });
+                localStorage.setItem('acharya_marks', JSON.stringify(marksData));
             }
             closeModal();
-            renderData();
+            renderAll();
         }
 
-        // --- 5. डेटा को स्क्रीन पर दिखाने का लॉजिक ---
-        function renderData() {
-            // क्लासेज अपडेट करें
-            let classListDiv = document.getElementById('classes-list');
-            let classCountSpan = document.getElementById('home-classes-count');
-            classCountSpan.innerText = classes.length;
-            
-            if (classes.length === 0) {
-                classListDiv.innerHTML = '<p class="text-gray-400 text-center py-10 text-sm">अभी कोई क्लास नहीं जोड़ी गई है।</p>';
-            } else {
-                classListDiv.innerHTML = classes.map((c, index) => `
-                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold">${index + 1}</div>
-                            <span class="font-semibold text-gray-800">${c.name}</span>
-                        </div>
-                        <button onclick="deleteItem('class', ${c.id})" class="text-red-400 hover:text-red-600 p-2"><i class="fas fa-trash"></i></button>
-                    </div>
-                `).join('');
-            }
+        // --- 4. डेटा दिखाने का लॉजिक (सबसे महत्वपूर्ण) ---
+        function renderAll() {
+            // होम स्क्रीन के नंबर अपडेट करें
+            document.getElementById('stat-classes').innerText = classes.length;
+            document.getElementById('stat-students').innerText = students.length;
+            document.getElementById('stat-diary').innerText = diaries.length;
+            // अटेंडेंस के लिए फिलहाल स्टूडेंट्स की संख्या दिखा रहे हैं
+            document.getElementById('stat-attendance').innerText = students.length > 0 ? students.length : '-';
 
-            // स्टूडेंट्स अपडेट करें
-            let studentListDiv = document.getElementById('students-list');
-            let studentCountSpan = document.getElementById('home-students-count');
-            studentCountSpan.innerText = students.length;
-
-            if (students.length === 0) {
-                studentListDiv.innerHTML = '<p class="text-gray-400 text-center py-10 text-sm">अभी कोई स्टूडेंट नहीं जोड़ा गया है।</p>';
-            } else {
-                studentListDiv.innerHTML = students.map((s, index) => `
-                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-bold"><i class="fas fa-user"></i></div>
-                            <span class="font-semibold text-gray-800">${s.name}</span>
-                        </div>
-                        <button onclick="deleteItem('student', ${s.id})" class="text-red-400 hover:text-red-600 p-2"><i class="fas fa-trash"></i></button>
+            // क्लासेज की लिस्ट
+            let classListDiv = document.getElementById('list-classes');
+            if (classes.length === 0) classListDiv.innerHTML = '<p class="text-gray-400 text-center py-10 text-sm">अभी कोई क्लास नहीं जोड़ी गई है।</p>';
+            else classListDiv.innerHTML = classes.map((c, i) => `
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold">${i+1}</div>
+                        <span class="font-semibold text-gray-800">${c.name}</span>
                     </div>
-                `).join('');
-            }
+                    <button onclick="deleteItem('class', ${c.id})" class="text-red-400 p-2"><i class="fas fa-trash"></i></button>
+                </div>
+            `).join('');
+
+            // स्टूडेंट्स की लिस्ट
+            let studentListDiv = document.getElementById('list-students');
+            if (students.length === 0) studentListDiv.innerHTML = '<p class="text-gray-400 text-center py-10 text-sm">अभी कोई स्टूडेंट नहीं जोड़ा गया है।</p>';
+            else studentListDiv.innerHTML = students.map((s, i) => `
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center"><i class="fas fa-user"></i></div>
+                        <span class="font-semibold text-gray-800">${s.name}</span>
+                    </div>
+                    <button onclick="deleteItem('student', ${s.id})" class="text-red-400 p-2"><i class="fas fa-trash"></i></button>
+                </div>
+            `).join('');
+
+            // डायरी की लिस्ट
+            let diaryListDiv = document.getElementById('list-diary');
+            if (diaries.length === 0) diaryListDiv.innerHTML = '<p class="text-gray-400 text-center py-10 text-sm">अभी कोई डायरी एंट्री नहीं है।</p>';
+            else diaryListDiv.innerHTML = diaries.map((d) => `
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                    <p class="text-sm text-gray-800 font-medium">${d.text}</p>
+                    <p class="text-[10px] text-gray-400 mt-2"><i class="far fa-clock mr-1"></i>${d.date}</p>
+                    <button onclick="deleteItem('diary', ${d.id})" class="text-red-400 mt-2 text-xs"><i class="fas fa-trash"></i> डिलीट करें</button>
+                </div>
+            `).join('');
+
+            // मार्क्स की लिस्ट
+            let marksListDiv = document.getElementById('list-marks');
+            if (marksData.length === 0) marksListDiv.innerHTML = '<p class="text-gray-400 text-center py-10 text-sm">अभी कोई मार्क्स नहीं जोड़े गए हैं।</p>';
+            else marksListDiv.innerHTML = marksData.map((m) => `
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center">
+                    <span class="font-semibold text-gray-800">${m.text}</span>
+                    <button onclick="deleteItem('marks', ${m.id})" class="text-red-400 p-2"><i class="fas fa-trash"></i></button>
+                </div>
+            `).join('');
         }
 
-        // --- 6. आइटम डिलीट करने का लॉजिक ---
+        // --- 5. डिलीट करने का लॉजिक ---
         function deleteItem(type, id) {
             if (!confirm("क्या आप इसे डिलीट करना चाहते हैं?")) return;
-            if (type === 'class') {
-                classes = classes.filter(c => c.id !== id);
-                localStorage.setItem('acharya_classes_list', JSON.stringify(classes));
-            } else {
-                students = students.filter(s => s.id !== id);
-                localStorage.setItem('acharya_students_list', JSON.stringify(students));
-            }
-            renderData();
+            if (type === 'class') classes = classes.filter(c => c.id !== id), localStorage.setItem('acharya_classes', JSON.stringify(classes));
+            else if (type === 'student') students = students.filter(s => s.id !== id), localStorage.setItem('acharya_students', JSON.stringify(students));
+            else if (type === 'diary') diaries = diaries.filter(d => d.id !== id), localStorage.setItem('acharya_diaries', JSON.stringify(diaries));
+            else if (type === 'marks') marksData = marksData.filter(m => m.id !== id), localStorage.setItem('acharya_marks', JSON.stringify(marksData));
+            renderAll();
         }
 
-        // --- 7. ऐप शेयर करने का लॉजिक (WhatsApp, Insta, etc.) ---
+        // --- 6. शेयर करने का लॉजिक ---
         function shareApp() {
             if (navigator.share) {
                 navigator.share({
@@ -289,20 +368,19 @@
                     url: window.location.href
                 }).catch((err) => console.log('Error sharing', err));
             } else {
-                // अगर मोबाइल में शेयर सपोर्ट नहीं है, तो लिंक कॉपी करें
                 navigator.clipboard.writeText(window.location.href);
                 alert("लिंक कॉपी हो गया है! अब आप इसे WhatsApp पर भेज सकते हैं।");
             }
         }
 
-        // --- 8. ऐप शुरू होने पर सब कुछ लोड करें ---
+        // --- 7. ऐप शुरू होने पर सब लोड करें ---
         document.addEventListener('DOMContentLoaded', () => {
-            // आज की तारीख
+            // आज की तारीख सेट करें
             const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('current-date').innerText = new Date().toLocaleDateString('hi-IN', dateOptions);
             
             // डेटा रेंडर करें
-            renderData();
+            renderAll();
 
             // PWA (Service Worker) रजिस्टर करें
             if ('serviceWorker' in navigator) {
