@@ -1,15 +1,39 @@
+const CACHE_NAME = 'acharya-os-v4';
+const ASSETS = [
+  '/',
+  '/index.html',
+  '/manifest.json'
+];
+
+// Install Event
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open('acharya-store').then((cache) => cache.addAll([
-      '/',
-      '/index.html',
-      '/script.js'
-    ])),
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(ASSETS);
+    }).then(() => self.skipWaiting())
   );
 });
 
+// Activate Event (Cleanup old caches)
+self.addEventListener('activate', (e) => {
+  e.waitUntil(
+    caches.keys().then((keys) => {
+      return Promise.all(
+        keys.map((key) => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
+  );
+});
+
+// Fetch Event (Network first, fallback to cache)
 self.addEventListener('fetch', (e) => {
   e.respondWith(
-    caches.match(e.request).then((response) => response || fetch(e.request)),
+    fetch(e.request).catch(() => {
+      return caches.match(e.request);
+    })
   );
 });
