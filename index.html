@@ -43,23 +43,12 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 ::selection{background:var(--primary);color:#fff;}
 ::-webkit-scrollbar{width:0;height:0;}
 
-/* ============ BLINK & GLOW ANIMATIONS ============ */
 @keyframes blinkGreen {
   0%, 100% { color: #FFFFFF; text-shadow: 0 1px 3px rgba(0,0,0,.2); }
   50% { color: #C8FACC; text-shadow: 0 0 12px #138808, 0 0 22px rgba(19,136,8,.7); }
 }
-@keyframes blinkOrange {
-  0%, 100% { box-shadow: 0 4px 12px rgba(255,153,51,.35); }
-  50% { box-shadow: 0 4px 22px rgba(255,153,51,.95), 0 0 0 5px rgba(255,153,51,.12); }
-}
-@keyframes blinkNav {
-  0%, 100% { opacity: 1; transform: translateY(0); }
-  50% { opacity: .7; transform: translateY(-2px); }
-}
 .blink-green { animation: blinkGreen 1.8s ease-in-out infinite; }
-.blink-orange { animation: blinkOrange 2s ease-in-out infinite; }
 
-/* ============ SPLASH ============ */
 .splash{position:fixed;inset:0;background:linear-gradient(135deg,#FF9933 0%,#FFFFFF 50%,#138808 100%);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;}
 .splash.hide{opacity:0;visibility:hidden;pointer-events:none;}
 .splash-logo{width:120px;height:120px;border-radius:32px;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;font-size:3.2rem;color:#000080;backdrop-filter:blur(20px);box-shadow:0 24px 60px rgba(0,0,0,.15);animation:splIn 1s cubic-bezier(.16,1,.3,1) forwards;opacity:0;transform:scale(.5);}
@@ -71,7 +60,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 @keyframes splBar{to{width:100%;}}
 .splash-made{position:absolute;bottom:38px;color:#000080;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
 
-/* ============ APP BAR ============ */
 .app-bar{background:linear-gradient(135deg,#FF9933 0%,#E65100 100%);padding:14px 14px 68px;position:relative;border-radius:0 0 32px 32px;box-shadow:0 12px 40px rgba(255,153,51,.4);overflow:hidden;padding-top:calc(14px + env(safe-area-inset-top));}
 .app-bar::before{content:'';position:absolute;top:-80px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%);border-radius:50%;pointer-events:none;}
 .app-bar::after{content:'';position:absolute;bottom:-100px;left:-50px;width:220px;height:220px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%;pointer-events:none;}
@@ -81,20 +69,17 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .brand-text{font-weight:800;font-size:1.05rem;letter-spacing:-.4px;line-height:1.1;color:#FFFFFF;text-shadow:0 1px 3px rgba(0,0,0,.15);}
 .brand-text small{display:block;font-size:.5rem;font-weight:700;opacity:.95;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;color:#FFFFFF;}
 .bar-actions{display:flex;gap:5px;flex-shrink:0;}
-.icon-btn{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#FFFFFF;backdrop-filter:blur(10px);transition:transform .15s,background .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.25);}
-.icon-btn:active{transform:scale(.92);background:rgba(255,255,255,.4);}
+.icon-btn{width:36px;height:36px;border-radius:10px;background:#138808;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#FFFFFF;transition:transform .15s,background .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.25);}
+.icon-btn:active{transform:scale(.92);background:#0D5E05;}
 
-/* ============ WRAP ============ */
 .wrap{padding:0 14px;max-width:720px;margin:-52px auto 0;position:relative;z-index:2;}
 
-/* ============ SECTION HEAD (white card always readable) ============ */
 .sec-head{background:var(--card);padding:12px 16px;border-radius:16px;box-shadow:var(--sh-md);border:1px solid var(--border);margin:16px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
 .sec-head h3{font-size:.98rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:9px;flex:1;min-width:0;}
 .sec-head h3 i{color:var(--primary);font-size:.85rem;width:30px;height:30px;border-radius:9px;background:rgba(255,153,51,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .sec-head .link{font-size:.72rem;font-weight:800;color:#FFFFFF;padding:9px 14px;border-radius:11px;background:linear-gradient(135deg,#FF9933,#E65100);display:flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(255,153,51,.4);white-space:nowrap;border:1px solid rgba(255,255,255,.3);}
 .sec-head .link:active{transform:scale(.96);}
 
-/* ============ GREETING ============ */
 .greet{background:var(--card);border-radius:var(--r-xl);padding:22px;box-shadow:var(--sh-lg);margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;border:1px solid var(--border);}
 .greet h1{font-size:1.22rem;font-weight:800;letter-spacing:-.4px;color:var(--text);margin-bottom:6px;line-height:1.25;}
 .greet p{font-size:.84rem;color:var(--text-2);font-weight:500;}
@@ -103,7 +88,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .greet-avatar{width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,#FF9933,#138808);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;box-shadow:0 10px 24px rgba(255,153,51,.4);position:relative;cursor:pointer;}
 .greet-avatar::after{content:'';position:absolute;bottom:2px;right:2px;width:15px;height:15px;background:#138808;border-radius:50%;border:3px solid var(--card);}
 
-/* ============ STATS ============ */
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;}
 .stat{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--sh-sm);border:1px solid var(--border);transition:transform .15s;cursor:pointer;}
 .stat:active{transform:scale(.98);}
@@ -115,7 +99,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .stat-label{font-size:.66rem;color:var(--text-3);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
 .stat-value{font-size:1.75rem;font-weight:800;color:var(--text);line-height:1;letter-spacing:-1px;}
 
-/* ============ QUICK ACTIONS ============ */
 .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px;}
 .quick{background:var(--card);border-radius:var(--r);padding:14px 6px 12px;box-shadow:var(--sh-sm);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.64rem;font-weight:800;color:var(--text-2);text-align:center;transition:transform .15s;letter-spacing:-.1px;}
 .quick:active{transform:scale(.94);}
@@ -124,13 +107,11 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .quick.o i{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);}
 .quick.pk i{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--navy);}
 
-/* ============ CARDS ============ */
 .card{background:var(--card);border-radius:var(--r-lg);padding:18px;box-shadow:var(--sh-sm);border:1px solid var(--border);margin-bottom:14px;}
 .card-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
 .card-h h4{font-size:.95rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px;}
 .card-h h4 i{color:var(--primary);}
 
-/* ============ LIST ITEM ============ */
 .li{background:var(--card);border-radius:var(--r);padding:14px;border:1px solid var(--border);margin-bottom:10px;display:flex;align-items:center;gap:13px;box-shadow:var(--sh-xs);transition:transform .15s;}
 .li:active{transform:scale(.99);}
 .li-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(255,153,51,.12),rgba(230,81,0,.12));color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;font-weight:800;}
@@ -148,7 +129,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .li-chip.r{background:rgba(239,68,68,.12);color:var(--danger);}
 .li-chip.pk{background:rgba(0,0,128,.12);color:var(--navy);}
 
-/* ============ BUTTONS ============ */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:13px;font-weight:700;font-size:.86rem;background:linear-gradient(135deg,#FF9933,#E65100);color:#FFFFFF;transition:transform .15s;box-shadow:0 6px 16px rgba(255,153,51,.35);white-space:nowrap;}
 .btn:active{transform:scale(.97);}
 .btn.full{width:100%;}
@@ -157,25 +137,21 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .btn.r{background:linear-gradient(135deg,#EF4444,#DC2626);box-shadow:0 6px 16px rgba(239,68,68,.35);}
 .btn.gray{background:var(--bg-2);color:var(--text-2);box-shadow:none;}
 
-/* ============ FAB ============ */
 .fab{position:fixed;bottom:calc(var(--nav-h) + 16px + env(safe-area-inset-bottom));right:18px;width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,#FF9933,#E65100);color:#fff;font-size:1.4rem;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 36px rgba(255,153,51,.55);z-index:150;transition:transform .2s;}
 .fab:active{transform:scale(.9) rotate(45deg);}
 
-/* ============ NAV ============ */
 .nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(24px) saturate(180%);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:10px 6px calc(12px + env(safe-area-inset-bottom));z-index:200;box-shadow:0 -8px 30px rgba(0,0,0,.06);}
 [data-theme="dark"] .nav{background:rgba(26,35,50,.95);}
 .nav-btn{flex:1;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--text-3);border-radius:12px;transition:color .2s;position:relative;}
 .nav-btn i{font-size:1.15rem;transition:transform .2s;}
 .nav-btn.active{color:var(--primary);}
-.nav-btn.active i{transform:translateY(-2px);animation:blinkNav 2s ease-in-out infinite;}
+.nav-btn.active i{transform:translateY(-2px);}
 .nav-btn.active::before{content:'';position:absolute;top:2px;width:22px;height:3px;background:linear-gradient(90deg,#FF9933,#138808);border-radius:0 0 4px 4px;left:50%;transform:translateX(-50%);}
 
-/* ============ PAGE ============ */
 .page{display:none;animation:fade .35s cubic-bezier(.16,1,.3,1);}
 .page.active{display:block;}
 @keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
-/* ============ FORM ============ */
 .field{margin-bottom:15px;}
 .field label{display:block;font-size:.76rem;font-weight:700;color:var(--text-2);margin-bottom:8px;}
 .field label .req{color:var(--danger);}
@@ -185,13 +161,11 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .txa{resize:vertical;min-height:88px;line-height:1.6;font-weight:500;}
 .inp::placeholder,.txa::placeholder{color:var(--text-4);font-weight:500;}
 
-/* ============ EMPTY ============ */
 .empty{text-align:center;padding:40px 20px;color:var(--text-3);}
 .empty-ill{width:92px;height:92px;margin:0 auto 18px;border-radius:28px;background:linear-gradient(135deg,rgba(255,153,51,.1),rgba(19,136,8,.1));display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:var(--primary);opacity:.85;}
 .empty h4{font-size:.98rem;font-weight:800;color:var(--text-2);margin-bottom:6px;}
 .empty p{font-size:.78rem;line-height:1.6;max-width:260px;margin:0 auto;}
 
-/* ============ MODAL ============ */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1000;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);}
 .modal.open{display:flex;animation:fade .2s;}
 .modal-inner{background:var(--card);border-radius:28px 28px 0 0;padding:24px 20px 28px;width:100%;max-width:720px;max-height:92vh;overflow-y:auto;animation:slideUp .35s cubic-bezier(.16,1,.3,1);padding-bottom:calc(28px + env(safe-area-inset-bottom));transition:transform .2s;}
@@ -204,7 +178,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .modal-btns{display:flex;gap:10px;margin-top:8px;}
 .modal-btns .btn{flex:1;}
 
-/* ============ TOAST ============ */
 .toast-wrap{position:fixed;top:calc(16px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:10000;display:flex;flex-direction:column;gap:8px;width:calc(100% - 32px);max-width:400px;pointer-events:none;}
 .toast{background:var(--card);border-radius:14px;padding:13px 16px;box-shadow:var(--sh-xl);border:1px solid var(--border);display:flex;align-items:center;gap:12px;animation:toastIn .3s cubic-bezier(.16,1,.3,1);pointer-events:auto;}
 @keyframes toastIn{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
@@ -217,7 +190,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .toast-body h5{font-size:.84rem;font-weight:700;}
 .toast-body p{font-size:.72rem;color:var(--text-3);margin-top:2px;font-weight:500;}
 
-/* ============ DIALOG ============ */
 .dialog{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:10001;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px);}
 .dialog.open{display:flex;animation:fade .2s;}
 .dialog-inner{background:var(--card);border-radius:24px;padding:26px 22px 22px;width:100%;max-width:360px;box-shadow:var(--sh-xl);animation:popIn .3s cubic-bezier(.16,1,.3,1);text-align:center;}
@@ -228,7 +200,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .dialog h3{font-size:1.08rem;font-weight:800;margin-bottom:8px;}
 .dialog p{font-size:.82rem;color:var(--text-2);line-height:1.6;margin-bottom:22px;font-weight:500;white-space:pre-line;}
 
-/* ============ SEARCH ============ */
 .search-overlay{position:fixed;inset:0;background:var(--bg);z-index:9997;display:none;flex-direction:column;padding:16px;padding-top:calc(16px + env(safe-area-inset-top));}
 .search-overlay.open{display:flex;animation:fade .2s;}
 .search-bar{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
@@ -237,13 +208,11 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .search-wrap .inp{padding-left:44px;background:var(--card);}
 .search-results{flex:1;overflow-y:auto;}
 
-/* ============ PROGRESS ============ */
 .progress{width:100%;height:8px;background:var(--bg-2);border-radius:100px;overflow:hidden;}
 .progress-inner{height:100%;background:linear-gradient(90deg,#FF9933,#E65100);border-radius:100px;transition:width .4s cubic-bezier(.16,1,.3,1);}
 .progress-inner.g{background:linear-gradient(90deg,#138808,#0D5E05);}
 .progress-inner.r{background:linear-gradient(90deg,#EF4444,#DC2626);}
 
-/* ============ ATTENDANCE ============ */
 .att{display:flex;align-items:center;padding:12px;border-radius:14px;background:var(--bg);border:1px solid var(--border);margin-bottom:9px;gap:10px;}
 [data-theme="dark"] .att{background:var(--bg-2);}
 .att-btns{display:flex;gap:5px;flex-shrink:0;}
@@ -252,7 +221,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .att-b.A.on{background:linear-gradient(135deg,#EF4444,#DC2626);color:#fff;border-color:var(--danger);box-shadow:0 6px 14px rgba(239,68,68,.35);}
 .att-b.L.on{background:linear-gradient(135deg,#FF9933,#E65100);color:#fff;border-color:var(--primary);box-shadow:0 6px 14px rgba(255,153,51,.35);}
 
-/* ============ DIARY ============ */
 .d-item{padding:15px;border-radius:14px;background:var(--card);border:1px solid var(--border);margin-bottom:11px;position:relative;box-shadow:var(--sh-xs);}
 .d-item::before{content:'';position:absolute;left:0;top:15px;bottom:15px;width:3.5px;border-radius:0 4px 4px 0;background:linear-gradient(180deg,#FF9933,#138808);}
 .d-head{display:flex;align-items:center;gap:8px;margin-bottom:9px;flex-wrap:wrap;padding-left:10px;}
@@ -263,7 +231,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .d-hw i{color:var(--primary);font-size:.8rem;margin-top:2px;}
 .d-hw div{font-size:.76rem;color:var(--text-2);font-weight:600;line-height:1.4;}
 
-/* ============ SETTINGS ROW ============ */
 .set-row{display:flex;align-items:center;gap:14px;padding:15px 4px;border-bottom:1px solid var(--border);cursor:pointer;}
 .set-row:last-child{border-bottom:none;}
 .set-ic{width:42px;height:42px;border-radius:13px;background:var(--bg-2);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
@@ -272,7 +239,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .set-body p{font-size:.72rem;color:var(--text-3);font-weight:500;}
 .set-arrow{color:var(--text-4);font-size:.8rem;}
 
-/* ============ CHART ============ */
 .chart-container{width:100%;height:180px;padding:10px 0;position:relative;}
 .chart-bars{display:flex;align-items:flex-end;justify-content:space-around;height:140px;gap:8px;}
 .chart-col{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;}
@@ -281,7 +247,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .chart-label{font-size:.62rem;font-weight:700;color:var(--text-3);}
 .chart-value{font-size:.68rem;font-weight:800;color:var(--primary);}
 
-/* ============ TIMETABLE ============ */
 .tt-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:14px;}
 .tt-day{text-align:center;padding:9px 3px;border-radius:10px;font-size:.68rem;font-weight:800;color:var(--text-3);background:var(--bg-2);cursor:pointer;transition:all .15s;}
 .tt-day.on{background:linear-gradient(135deg,#FF9933,#E65100);color:#fff;box-shadow:0 4px 12px rgba(255,153,51,.35);}
@@ -290,29 +255,21 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .tt-slot .sub{font-size:.88rem;font-weight:700;margin-top:4px;color:var(--text);}
 .tt-slot .cls{font-size:.72rem;color:var(--text-3);margin-top:3px;font-weight:500;}
 
-/* ============ NOTE ============ */
 .note{padding:15px;border-radius:14px;background:linear-gradient(135deg,rgba(255,153,51,.08),rgba(230,81,0,.08));border:1px solid rgba(255,153,51,.2);margin-bottom:10px;}
 .note h5{font-size:.9rem;font-weight:700;margin-bottom:6px;color:var(--text);}
 .note p{font-size:.78rem;color:var(--text-2);line-height:1.55;font-weight:500;}
 .note .date{font-size:.65rem;color:var(--text-3);margin-top:8px;font-weight:600;}
 
-/* ============ ACCORDION (More page) ============ */
-.acc-item{background:var(--card);border-radius:16px;border:1px solid var(--border);margin-bottom:10px;box-shadow:var(--sh-sm);overflow:hidden;}
-.acc-head{width:100%;padding:16px;display:flex;align-items:center;gap:13px;text-align:left;transition:background .15s;}
-.acc-head:active{background:var(--bg-2);}
-.acc-head i.acc-icon{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;}
-.acc-head.g i.acc-icon{background:linear-gradient(135deg,rgba(19,136,8,.15),rgba(13,94,5,.15));color:var(--green);}
-.acc-head.pk i.acc-icon{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--navy);}
-.acc-head.o i.acc-icon{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);}
-.acc-title{flex:1;min-width:0;}
-.acc-title h4{font-size:.92rem;font-weight:800;color:var(--text);}
-.acc-title p{font-size:.7rem;color:var(--text-3);font-weight:500;margin-top:2px;}
-.acc-chev{color:var(--text-3);font-size:.85rem;transition:transform .3s;}
-.acc-item.open .acc-chev{transform:rotate(180deg);}
-.acc-body{display:none;padding:0 16px 16px;}
-.acc-item.open .acc-body{display:block;animation:fade .3s;}
+.more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:8px;}
+.more-card{background:var(--card);border-radius:var(--r-lg);padding:18px 14px;box-shadow:var(--sh-sm);border:1px solid var(--border);display:flex;flex-direction:column;align-items:flex-start;gap:12px;transition:transform .15s;text-align:left;}
+.more-card:active{transform:scale(.97);}
+.more-card .mc-icon{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.more-card.g .mc-icon{background:linear-gradient(135deg,rgba(19,136,8,.15),rgba(13,94,5,.15));color:var(--green);}
+.more-card.pk .mc-icon{background:linear-gradient(135deg,rgba(0,0,128,.12),rgba(0,0,80,.12));color:var(--navy);}
+.more-card.o .mc-icon{background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(230,81,0,.15));color:var(--primary);}
+.more-card .mc-title{font-size:.88rem;font-weight:800;color:var(--text);line-height:1.2;}
+.more-card .mc-desc{font-size:.68rem;color:var(--text-3);font-weight:600;margin-top:2px;}
 
-/* ============ UTILS ============ */
 .hidden{display:none!important;}
 .text-center{text-align:center;}
 .mb-2{margin-bottom:8px;}.mb-3{margin-bottom:12px;}.mt-2{margin-top:8px;}.mt-3{margin-top:12px;}
@@ -320,7 +277,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
 
-/* ============ INSTALL BANNER ============ */
 .install-banner{background:linear-gradient(135deg,#FF9933,#138808);border-radius:var(--r-lg);padding:16px;display:flex;align-items:center;gap:14px;margin-bottom:16px;color:#fff;box-shadow:0 8px 24px rgba(255,153,51,.35);}
 .install-banner i{font-size:1.6rem;}
 .install-banner .ib-body{flex:1;}
@@ -328,7 +284,6 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 .install-banner .ib-body p{font-size:.72rem;opacity:.95;}
 .install-banner button{background:#fff;color:#E65100;padding:8px 14px;border-radius:10px;font-weight:800;font-size:.74rem;}
 
-/* ============ LANGUAGE CARD ============ */
 .lang-card{background:var(--card);border-radius:14px;padding:14px 12px;border:1.5px solid var(--border);display:flex;align-items:center;gap:11px;cursor:pointer;transition:all .2s;}
 .lang-card:active{transform:scale(.97);}
 .lang-card.on{border-color:var(--primary);background:linear-gradient(135deg,rgba(255,153,51,.08),rgba(230,81,0,.08));}
@@ -432,7 +387,7 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
   </div>
   <div class="sec-head">
     <h3><i class="fas fa-chart-line"></i> <span data-t="weekly_attendance">Weekly Attendance</span></h3>
-    <span class="link blink-orange" onclick="switchPage('reports')"><i class="fas fa-file-alt"></i> <span data-t="reports">Reports</span></span>
+    <span class="link blink-green" onclick="switchPage('reports')"><i class="fas fa-file-alt"></i> <span data-t="reports">Reports</span></span>
   </div>
   <div class="card"><div class="chart-container" id="weekly-chart"></div></div>
   <div class="sec-head"><h3><i class="fas fa-clock"></i> <span data-t="recent">Recent Activity</span></h3></div>
@@ -440,17 +395,17 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 </div>
 
 <div class="page" id="pg-classes">
-  <div class="sec-head"><h3><i class="fas fa-users"></i> <span data-t="my_classes">My Classes</span></h3><button class="link blink-orange" onclick="openModal('class')"><i class="fas fa-plus"></i> <span data-t="add_class">Add Class</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-users"></i> <span data-t="my_classes">My Classes</span></h3><button class="link blink-green" onclick="openModal('class')"><i class="fas fa-plus"></i> <span data-t="add_class">Add Class</span></button></div>
   <div id="list-classes"></div>
 </div>
 
 <div class="page" id="pg-students">
-  <div class="sec-head"><h3><i class="fas fa-user-graduate"></i> <span data-t="all_students">All Students</span></h3><button class="link blink-orange" onclick="openModal('student')"><i class="fas fa-plus"></i> <span data-t="add_student">Add Student</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-user-graduate"></i> <span data-t="all_students">All Students</span></h3><button class="link blink-green" onclick="openModal('student')"><i class="fas fa-plus"></i> <span data-t="add_student">Add Student</span></button></div>
   <div id="list-students"></div>
 </div>
 
 <div class="page" id="pg-attendance">
-  <div class="sec-head"><h3><i class="fas fa-user-check"></i> <span data-t="attendance">Attendance</span></h3><span class="link blink-orange" onclick="switchPage('reports')"><i class="fas fa-chart-pie"></i> <span data-t="reports">Reports</span></span></div>
+  <div class="sec-head"><h3><i class="fas fa-user-check"></i> <span data-t="attendance">Attendance</span></h3><span class="link blink-green" onclick="switchPage('reports')"><i class="fas fa-chart-pie"></i> <span data-t="reports">Reports</span></span></div>
   <div class="card mb-3">
     <div class="flex gap-2 items-center">
       <input type="date" id="att-date" class="inp" style="flex:1;" onchange="renderAttendance()">
@@ -461,80 +416,80 @@ input,select,textarea{font-family:inherit;font-size:.95rem;color:inherit;}
 </div>
 
 <div class="page" id="pg-diary">
-  <div class="sec-head"><h3><i class="fas fa-book"></i> <span data-t="diary">Diary</span></h3><button class="link blink-orange" onclick="openModal('diary')"><i class="fas fa-plus"></i> <span data-t="new_entry">New Entry</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-book"></i> <span data-t="diary">Diary</span></h3><button class="link blink-green" onclick="openModal('diary')"><i class="fas fa-plus"></i> <span data-t="new_entry">New Entry</span></button></div>
   <div id="list-diary"></div>
 </div>
 
 <div class="page" id="pg-marks">
-  <div class="sec-head"><h3><i class="fas fa-star"></i> <span data-t="marks">Marks</span></h3><button class="link blink-orange" onclick="openModal('marks')"><i class="fas fa-plus"></i> <span data-t="add_marks">Add Marks</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-star"></i> <span data-t="marks">Marks</span></h3><button class="link blink-green" onclick="openModal('marks')"><i class="fas fa-plus"></i> <span data-t="add_marks">Add Marks</span></button></div>
   <div id="list-marks"></div>
 </div>
 
 <div class="page" id="pg-homework">
-  <div class="sec-head"><h3><i class="fas fa-pencil-alt"></i> <span data-t="homework">Homework</span></h3><button class="link blink-orange" onclick="openModal('homework')"><i class="fas fa-plus"></i> <span data-t="new_hw">New HW</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-pencil-alt"></i> <span data-t="homework">Homework</span></h3><button class="link blink-green" onclick="openModal('homework')"><i class="fas fa-plus"></i> <span data-t="new_hw">New HW</span></button></div>
   <div id="list-hw"></div>
 </div>
 
 <div class="page" id="pg-timetable">
-  <div class="sec-head"><h3><i class="fas fa-calendar-alt"></i> <span data-t="timetable">Timetable</span></h3><button class="link blink-orange" onclick="openModal('period')"><i class="fas fa-plus"></i> <span data-t="add_period">Add Period</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-calendar-alt"></i> <span data-t="timetable">Timetable</span></h3><button class="link blink-green" onclick="openModal('period')"><i class="fas fa-plus"></i> <span data-t="add_period">Add Period</span></button></div>
   <div class="tt-grid" id="tt-days"></div>
   <div id="list-periods"></div>
 </div>
 
 <div class="page" id="pg-fees">
-  <div class="sec-head"><h3><i class="fas fa-file-invoice-dollar"></i> <span data-t="fee_tracker">Fee Tracker</span></h3><button class="link blink-orange" onclick="openModal('fee')"><i class="fas fa-plus"></i> <span data-t="add_fee">Add Fee</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-file-invoice-dollar"></i> <span data-t="fee_tracker">Fee Tracker</span></h3><button class="link blink-green" onclick="openModal('fee')"><i class="fas fa-plus"></i> <span data-t="add_fee">Add Fee</span></button></div>
   <div id="list-fees"></div>
 </div>
 
 <div class="page" id="pg-exams">
-  <div class="sec-head"><h3><i class="fas fa-file-alt"></i> <span data-t="exams">Exams</span></h3><button class="link blink-orange" onclick="openModal('exam')"><i class="fas fa-plus"></i> <span data-t="add_exam">Add Exam</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-file-alt"></i> <span data-t="exams">Exams</span></h3><button class="link blink-green" onclick="openModal('exam')"><i class="fas fa-plus"></i> <span data-t="add_exam">Add Exam</span></button></div>
   <div id="list-exams"></div>
 </div>
 
 <div class="page" id="pg-lessons">
-  <div class="sec-head"><h3><i class="fas fa-chalkboard"></i> <span data-t="lessons">Lesson Plans</span></h3><button class="link blink-orange" onclick="openModal('lesson')"><i class="fas fa-plus"></i> <span data-t="add_lesson">Add Lesson</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-chalkboard"></i> <span data-t="lessons">Lesson Plans</span></h3><button class="link blink-green" onclick="openModal('lesson')"><i class="fas fa-plus"></i> <span data-t="add_lesson">Add Lesson</span></button></div>
   <div id="list-lessons"></div>
 </div>
 
 <div class="page" id="pg-reminders">
-  <div class="sec-head"><h3><i class="fas fa-bell"></i> <span data-t="reminders">Reminders</span></h3><button class="link blink-orange" onclick="openModal('reminder')"><i class="fas fa-plus"></i> <span data-t="add_reminder">Add Reminder</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-bell"></i> <span data-t="reminders">Reminders</span></h3><button class="link blink-green" onclick="openModal('reminder')"><i class="fas fa-plus"></i> <span data-t="add_reminder">Add Reminder</span></button></div>
   <div id="list-reminders"></div>
 </div>
 
 <div class="page" id="pg-holidays">
-  <div class="sec-head"><h3><i class="fas fa-umbrella-beach"></i> <span data-t="holidays">Holidays</span></h3><button class="link blink-orange" onclick="openModal('holiday')"><i class="fas fa-plus"></i> <span data-t="add_holiday">Add Holiday</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-umbrella-beach"></i> <span data-t="holidays">Holidays</span></h3><button class="link blink-green" onclick="openModal('holiday')"><i class="fas fa-plus"></i> <span data-t="add_holiday">Add Holiday</span></button></div>
   <div id="list-holidays"></div>
 </div>
 
 <div class="page" id="pg-syllabus">
-  <div class="sec-head"><h3><i class="fas fa-book-reader"></i> <span data-t="syllabus">Syllabus Tracker</span></h3><button class="link blink-orange" onclick="openModal('syllabus')"><i class="fas fa-plus"></i> <span data-t="add_syllabus">Add Chapter</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-book-reader"></i> <span data-t="syllabus">Syllabus Tracker</span></h3><button class="link blink-green" onclick="openModal('syllabus')"><i class="fas fa-plus"></i> <span data-t="add_syllabus">Add Chapter</span></button></div>
   <div id="list-syllabus"></div>
 </div>
 
 <div class="page" id="pg-todo">
-  <div class="sec-head"><h3><i class="fas fa-tasks"></i> <span data-t="todo">To-Do List</span></h3><button class="link blink-orange" onclick="openModal('todo')"><i class="fas fa-plus"></i> <span data-t="add_todo">Add Task</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-tasks"></i> <span data-t="todo">To-Do List</span></h3><button class="link blink-green" onclick="openModal('todo')"><i class="fas fa-plus"></i> <span data-t="add_todo">Add Task</span></button></div>
   <div id="list-todo"></div>
 </div>
 
 <div class="page" id="pg-seating">
-  <div class="sec-head"><h3><i class="fas fa-chair"></i> <span data-t="seating">Seating Plan</span></h3><button class="link blink-orange" onclick="openModal('seating')"><i class="fas fa-plus"></i> <span data-t="add_seat">Assign Seat</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-chair"></i> <span data-t="seating">Seating Plan</span></h3><button class="link blink-green" onclick="openModal('seating')"><i class="fas fa-plus"></i> <span data-t="add_seat">Assign Seat</span></button></div>
   <div id="list-seating"></div>
 </div>
 
 <div class="page" id="pg-notes">
-  <div class="sec-head"><h3><i class="fas fa-sticky-note"></i> <span data-t="notes">Notes</span></h3><button class="link blink-orange" onclick="openModal('note')"><i class="fas fa-plus"></i> <span data-t="new_note">New Note</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-sticky-note"></i> <span data-t="notes">Notes</span></h3><button class="link blink-green" onclick="openModal('note')"><i class="fas fa-plus"></i> <span data-t="new_note">New Note</span></button></div>
   <div id="list-notes"></div>
 </div>
 
 <div class="page" id="pg-reports">
-  <div class="sec-head"><h3><i class="fas fa-chart-bar"></i> <span data-t="reports">Reports</span></h3><button class="link blink-orange" onclick="window.print()"><i class="fas fa-print"></i> <span data-t="print">Print</span></button></div>
+  <div class="sec-head"><h3><i class="fas fa-chart-bar"></i> <span data-t="reports">Reports</span></h3><button class="link blink-green" onclick="window.print()"><i class="fas fa-print"></i> <span data-t="print">Print</span></button></div>
   <div class="card mb-3"><div class="card-h"><h4><i class="fas fa-user-check"></i> <span data-t="attendance_summary">Attendance Summary</span></h4></div><div id="rep-att"></div></div>
   <div class="card mb-3"><div class="card-h"><h4><i class="fas fa-star"></i> <span data-t="marks_summary">Marks Summary</span></h4></div><div id="rep-marks"></div></div>
 </div>
 
 <div class="page" id="pg-more">
-  <div class="sec-head"><h3><i class="fas fa-th-large"></i> <span data-t="all_features">All Features</span></h3></div>
-  <div id="more-acc"></div>
+  <div class="sec-head"><h3><i class="fas fa-th-large"></i> <span>More Tools</span></h3></div>
+  <div class="more-grid" id="more-grid"></div>
   <div class="sec-head"><h3><i class="fas fa-info-circle"></i> <span data-t="about">About</span></h3></div>
   <div class="card text-center" style="padding:24px 18px;">
     <div style="width:76px;height:76px;border-radius:22px;background:linear-gradient(135deg,#FF9933,#138808);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px;box-shadow:0 10px 24px rgba(255,153,51,.4);"><i class="fas fa-graduation-cap"></i></div>
@@ -656,8 +611,8 @@ const LANGS=[
 ];
 
 const T={
-  hi:{home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'मेरी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',all_features:'सभी फीचर्स',about:'ऐप के बारे में',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',empty_exam:'कोई परीक्षा नहीं',empty_lesson:'कोई पाठ नहीं',empty_rem:'कोई रिमाइंडर नहीं',empty_hol:'कोई छुट्टी नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',fees:'फीस',fee_tracker:'फीस ट्रैकर',add_fee:'फीस जोड़ें',paid:'जमा',unpaid:'बकाया',month:'महीना',amount:'रकम',status:'स्थिति',student_profile:'स्टूडेंट प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'मार्क्स हिस्ट्री',install_app:'ऐप इंस्टॉल',install_desc:'होम स्क्रीन पर जोड़ें',install_success:'ऐप इंस्टॉल हो गया!',install_already:'ऐप पहले से इंस्टॉल है या ब्राउज़र सपोर्ट नहीं करता।',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lessons:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',syllabus:'पाठ्यक्रम ट्रैकर',add_syllabus:'अध्याय जोड़ें',chapter:'अध्याय',completed:'पूरा हुआ',pending:'बाकी',todo:'कार्य सूची',add_todo:'कार्य जोड़ें',task:'कार्य',priority:'प्राथमिकता',high:'उच्च',medium:'मध्यम',low:'निम्न',seating:'बैठने की व्यवस्था',add_seat:'सीट असाइन करें',seat_no:'सीट नंबर',row:'पंक्ति',col:'स्तंभ',tap_expand:'देखने के लिए दबाएँ'},
-  en:{home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',all_features:'All Features',about:'About',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap above to add your first class.',empty_students:'No Students',empty_students_d:'Tap above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',empty_exam:'No Exams',empty_lesson:'No Lessons',empty_rem:'No Reminders',empty_hol:'No Holidays',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',fees:'Fees',fee_tracker:'Fee Tracker',add_fee:'Add Fee',paid:'Paid',unpaid:'Unpaid',month:'Month',amount:'Amount',status:'Status',student_profile:'Student Profile',attendance_pct:'Overall Attendance',marks_history:'Marks History',install_app:'Install App',install_desc:'Add to home screen',install_success:'App installed!',install_already:'App already installed or not supported.',exams:'Exams',add_exam:'Add Exam',lessons:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',syllabus:'Syllabus Tracker',add_syllabus:'Add Chapter',chapter:'Chapter',completed:'Completed',pending:'Pending',todo:'To-Do List',add_todo:'Add Task',task:'Task',priority:'Priority',high:'High',medium:'Medium',low:'Low',seating:'Seating Plan',add_seat:'Assign Seat',seat_no:'Seat No.',row:'Row',col:'Column',tap_expand:'Tap to view'}
+  hi:{home:'होम',classes:'क्लासेज',students:'स्टूडेंट्स',attend:'उपस्थिति',diary:'डायरी',marks:'मार्क्स',more:'और',class:'क्लास',student:'स्टूडेंट',present_today:'आज उपस्थित',quick_actions:'तुरंत काम',weekly_attendance:'साप्ताहिक उपस्थिति',reports:'रिपोर्ट्स',recent:'हाल की गतिविधि',my_classes:'मेरी क्लासेज',all_students:'सभी स्टूडेंट्स',add_class:'नई क्लास',add_student:'नया स्टूडेंट',attendance:'उपस्थिति',new_entry:'नई एंट्री',add_marks:'मार्क्स जोड़ें',homework:'होमवर्क',new_hw:'नया होमवर्क',timetable:'टाइमटेबल',add_period:'पीरियड जोड़ें',notes:'नोट्स',new_note:'नया नोट',print:'प्रिंट',attendance_summary:'उपस्थिति सारांश',marks_summary:'मार्क्स सारांश',about:'ऐप के बारे में',about_desc:'भारतीय शिक्षकों के लिए बना एक प्रोफेशनल डिजिटल सहायक।',settings:'सेटिंग्स',profile:'प्रोफाइल',set_name_school:'अपना नाम और स्कूल सेट करें',language:'भाषा',dark_mode:'डार्क मोड',dark_desc:'आँखों के लिए आरामदायक',backup:'डेटा बैकअप',backup_desc:'सारा डेटा JSON फाइल में सेव करें',restore:'डेटा रीस्टोर',restore_desc:'बैकअप फाइल से डेटा वापस लाएँ',reset_data:'डेटा रीसेट',reset_desc:'सारा डेटा हमेशा के लिए मिटाएँ',share:'ऐप शेयर करें',share_desc:'WhatsApp पर दोस्तों को भेजें',cancel:'रद्द करें',save:'सेव करें',confirm:'पुष्टि करें',delete:'डिलीट',name:'नाम',roll:'रोल नंबर',subject:'विषय',phone:'मोबाइल',room:'कमरा',title:'टाइटल',desc:'विवरण',hw:'होमवर्क',exam:'परीक्षा',score:'प्राप्तांक',total:'कुल अंक',time:'समय',day:'दिन',date:'तारीख',due:'देय तिथि',school:'स्कूल',select_class:'क्लास चुनें',select_student:'स्टूडेंट चुनें',required:'जरूरी',empty_classes:'कोई क्लास नहीं',empty_classes_d:'नई क्लास जोड़ने के लिए ऊपर बटन दबाएँ।',empty_students:'कोई स्टूडेंट नहीं',empty_students_d:'नया स्टूडेंट जोड़ने के लिए ऊपर बटन दबाएँ।',empty_att:'कोई स्टूडेंट नहीं',empty_diary:'कोई एंट्री नहीं',empty_marks:'कोई मार्क्स नहीं',empty_hw:'कोई होमवर्क नहीं',empty_period:'कोई पीरियड नहीं',empty_note:'कोई नोट नहीं',empty_exam:'कोई परीक्षा नहीं',empty_lesson:'कोई पाठ नहीं',empty_rem:'कोई रिमाइंडर नहीं',empty_hol:'कोई छुट्टी नहीं',mark_all:'सभी उपस्थित',del_confirm:'डिलीट करें?',del_desc:'यह आइटम हमेशा के लिए हट जाएगा।',reset_confirm:'सारा डेटा मिटाएँ?',reset_desc2:'यह कार्रवाई वापस नहीं ली जा सकती।',saved:'सेव हो गया',deleted:'डिलीट हो गया',fill_required:'जानकारी भरें',fees:'फीस',fee_tracker:'फीस ट्रैकर',add_fee:'फीस जोड़ें',paid:'जमा',unpaid:'बकाया',month:'महीना',amount:'रकम',status:'स्थिति',student_profile:'स्टूडेंट प्रोफाइल',attendance_pct:'कुल उपस्थिति',marks_history:'मार्क्स हिस्ट्री',install_app:'ऐप इंस्टॉल',install_desc:'होम स्क्रीन पर जोड़ें',install_success:'ऐप इंस्टॉल हो गया!',install_already:'ऐप पहले से इंस्टॉल है या ब्राउज़र सपोर्ट नहीं करता।',exams:'परीक्षाएँ',add_exam:'परीक्षा जोड़ें',lessons:'पाठ योजना',add_lesson:'पाठ जोड़ें',reminders:'रिमाइंडर',add_reminder:'रिमाइंडर जोड़ें',holidays:'छुट्टियाँ',add_holiday:'छुट्टी जोड़ें',syllabus:'पाठ्यक्रम ट्रैकर',add_syllabus:'अध्याय जोड़ें',chapter:'अध्याय',completed:'पूरा हुआ',pending:'बाकी',todo:'कार्य सूची',add_todo:'कार्य जोड़ें',task:'कार्य',priority:'प्राथमिकता',high:'उच्च',medium:'मध्यम',low:'निम्न',seating:'बैठने की व्यवस्था',add_seat:'सीट असाइन करें',seat_no:'सीट नंबर',row:'पंक्ति',col:'स्तंभ',report_cards:'रिपोर्ट कार्ड',analytics:'क्लास एनालिटिक्स'},
+  en:{home:'Home',classes:'Classes',students:'Students',attend:'Attend',diary:'Diary',marks:'Marks',more:'More',class:'Class',student:'Student',present_today:'PRESENT TODAY',quick_actions:'Quick Actions',weekly_attendance:'Weekly Attendance',reports:'Reports',recent:'Recent Activity',my_classes:'My Classes',all_students:'All Students',add_class:'Add Class',add_student:'Add Student',attendance:'Attendance',new_entry:'New Entry',add_marks:'Add Marks',homework:'Homework',new_hw:'New HW',timetable:'Timetable',add_period:'Add Period',notes:'Notes',new_note:'New Note',print:'Print',attendance_summary:'Attendance Summary',marks_summary:'Marks Summary',about:'About',about_desc:'A professional digital assistant for Indian teachers.',settings:'Settings',profile:'Profile',set_name_school:'Set your name and school',language:'Language',dark_mode:'Dark Mode',dark_desc:'Comfortable theme for eyes',backup:'Backup Data',backup_desc:'Save all data to a JSON file',restore:'Restore Data',restore_desc:'Restore from backup file',reset_data:'Reset Data',reset_desc:'Delete all data permanently',share:'Share App',share_desc:'Send to friends on WhatsApp',cancel:'Cancel',save:'Save',confirm:'Confirm',delete:'Delete',name:'Name',roll:'Roll No.',subject:'Subject',phone:'Phone',room:'Room',title:'Title',desc:'Description',hw:'Homework',exam:'Exam',score:'Score',total:'Total',time:'Time',day:'Day',date:'Date',due:'Due Date',school:'School',select_class:'Select Class',select_student:'Select Student',required:'Required',empty_classes:'No Classes',empty_classes_d:'Tap above to add your first class.',empty_students:'No Students',empty_students_d:'Tap above to add your first student.',empty_att:'No Students',empty_diary:'No Entries',empty_marks:'No Marks',empty_hw:'No Homework',empty_period:'No Periods',empty_note:'No Notes',empty_exam:'No Exams',empty_lesson:'No Lessons',empty_rem:'No Reminders',empty_hol:'No Holidays',mark_all:'Mark All Present',del_confirm:'Delete this item?',del_desc:'This item will be permanently removed.',reset_confirm:'Reset all data?',reset_desc2:'This action cannot be undone.',saved:'Saved',deleted:'Deleted',fill_required:'Please fill required fields',fees:'Fees',fee_tracker:'Fee Tracker',add_fee:'Add Fee',paid:'Paid',unpaid:'Unpaid',month:'Month',amount:'Amount',status:'Status',student_profile:'Student Profile',attendance_pct:'Overall Attendance',marks_history:'Marks History',install_app:'Install App',install_desc:'Add to home screen',install_success:'App installed!',install_already:'App already installed or not supported.',exams:'Exams',add_exam:'Add Exam',lessons:'Lesson Plans',add_lesson:'Add Lesson',reminders:'Reminders',add_reminder:'Add Reminder',holidays:'Holidays',add_holiday:'Add Holiday',syllabus:'Syllabus Tracker',add_syllabus:'Add Chapter',chapter:'Chapter',completed:'Completed',pending:'Pending',todo:'To-Do List',add_todo:'Add Task',task:'Task',priority:'Priority',high:'High',medium:'Medium',low:'Low',seating:'Seating Plan',add_seat:'Assign Seat',seat_no:'Seat No.',row:'Row',col:'Column',report_cards:'Report Cards',analytics:'Class Analytics'}
 };
 
 let LANG=localStorage.getItem('aos_lang')||'hi';
@@ -985,98 +940,32 @@ function renderReports(){
   }
 }
 
-/* ============ MORE PAGE WITH INLINE ACCORDIONS ============ */
 const MORE_FEATURES=[
-  {k:'homework',i:'fa-pencil-alt',c:'',d:'Assignments tracker',render:'renderHomework'},
-  {k:'timetable',i:'fa-calendar-alt',c:'g',d:'Weekly class schedule',render:'renderPeriods'},
-  {k:'fees',i:'fa-file-invoice-dollar',c:'pk',d:'Fee collection status',render:'renderFees'},
-  {k:'exams',i:'fa-file-alt',c:'',d:'Exam planner & records',render:'renderExams'},
-  {k:'lessons',i:'fa-chalkboard',c:'o',d:'Daily lesson plans',render:'renderLessons'},
-  {k:'reminders',i:'fa-bell',c:'g',d:'Important alerts',render:'renderReminders'},
-  {k:'holidays',i:'fa-umbrella-beach',c:'pk',d:'Holiday calendar',render:'renderHolidays'},
-  {k:'syllabus',i:'fa-book-reader',c:'o',d:'Course completion',render:'renderSyllabus'},
-  {k:'todo',i:'fa-tasks',c:'',d:'Daily task manager',render:'renderTodos'},
-  {k:'seating',i:'fa-chair',c:'pk',d:'Classroom seating plan',render:'renderSeating'},
-  {k:'notes',i:'fa-sticky-note',c:'g',d:'Quick notes & ideas',render:'renderNotes'},
-  {k:'settings',i:'fa-cog',c:'o',d:'App preferences',render:'settings',isPage:true}
+  {k:'homework',i:'fa-pencil-alt',c:'',p:'homework',d:'Assignments tracker'},
+  {k:'timetable',i:'fa-calendar-alt',c:'g',p:'timetable',d:'Weekly class schedule'},
+  {k:'fees',i:'fa-file-invoice-dollar',c:'pk',p:'fees',d:'Fee collection status'},
+  {k:'exams',i:'fa-file-alt',c:'o',p:'exams',d:'Exam planner'},
+  {k:'lessons',i:'fa-chalkboard',c:'cy',p:'lessons',d:'Daily lesson plans'},
+  {k:'reminders',i:'fa-bell',c:'',p:'reminders',d:'Important alerts'},
+  {k:'holidays',i:'fa-umbrella-beach',c:'g',p:'holidays',d:'Holiday calendar'},
+  {k:'syllabus',i:'fa-book-reader',c:'pk',p:'syllabus',d:'Course completion'},
+  {k:'todo',i:'fa-tasks',c:'o',p:'todo',d:'Daily task manager'},
+  {k:'seating',i:'fa-chair',c:'cy',p:'seating',d:'Classroom seating plan'},
+  {k:'notes',i:'fa-sticky-note',c:'',p:'notes',d:'Quick notes & ideas'},
+  {k:'report_cards',i:'fa-id-card',c:'g',p:'report_cards',d:'Student report cards'},
+  {k:'analytics',i:'fa-chart-pie',c:'pk',p:'analytics',d:'Class performance'},
+  {k:'settings',i:'fa-cog',c:'o',p:'settings',d:'App preferences'}
 ];
 
 function renderMore(){
-  const el=$('more-acc');
-  el.innerHTML=MORE_FEATURES.map(f=>`
-    <div class="acc-item" id="acc-${f.k}">
-      <button class="acc-head ${f.c}" onclick="toggleAcc('${f.k}')">
-        <i class="fas ${f.i} acc-icon"></i>
-        <div class="acc-title"><h4>${t(f.k)}</h4><p>${f.d}</p></div>
-        <i class="fas fa-chevron-down acc-chev"></i>
-      </button>
-      <div class="acc-body" id="acc-body-${f.k}"></div>
-    </div>
-  `).join('');
+  $('more-grid').innerHTML=MORE_FEATURES.map(f=>`
+    <button class="more-card ${f.c}" onclick="switchPage('${f.p}')">
+      <div class="mc-icon"><i class="fas ${f.i}"></i></div>
+      <div><div class="mc-title">${t(f.k)}</div><div class="mc-desc">${f.d}</div></div>
+    </button>`).join('');
 }
+function renderProfileSub(){$('prof-sub').innerText=S.profile.school||t('set_name_school');}
 
-function toggleAcc(key){
-  const item=$('acc-'+key);
-  if(!item)return;
-  const wasOpen=item.classList.contains('open');
-  // Close all
-  document.querySelectorAll('.acc-item').forEach(x=>x.classList.remove('open'));
-  if(wasOpen)return;
-  // Open this one
-  item.classList.add('open');
-  // Render content
-  const body=$('acc-body-'+key);
-  if(!body||body.dataset.loaded==='1')return;
-  const f=MORE_FEATURES.find(x=>x.k===key);
-  if(f&&f.render==='settings'){
-    body.innerHTML=`<div style="padding:8px 0;">
-      <div class="set-row" onclick="openModal('profile')"><div class="set-ic"><i class="fas fa-user"></i></div><div class="set-body"><h4>${t('profile')}</h4><p>${t('set_name_school')}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
-      <div class="set-row" onclick="openLangModal()"><div class="set-ic"><i class="fas fa-globe"></i></div><div class="set-body"><h4>${t('language')}</h4><p id="lang-sub2">${LANGS.find(l=>l.code===LANG).native}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
-      <div class="set-row" onclick="toggleTheme()"><div class="set-ic"><i class="fas fa-moon"></i></div><div class="set-body"><h4>${t('dark_mode')}</h4><p>${t('dark_desc')}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
-      <div class="set-row" onclick="exportData()"><div class="set-ic"><i class="fas fa-download"></i></div><div class="set-body"><h4>${t('backup')}</h4><p>${t('backup_desc')}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
-      <div class="set-row" onclick="document.getElementById('imp-file').click()"><div class="set-ic"><i class="fas fa-upload"></i></div><div class="set-body"><h4>${t('restore')}</h4><p>${t('restore_desc')}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
-      <div class="set-row" onclick="confirmReset()"><div class="set-ic" style="background:rgba(239,68,68,.1);color:var(--danger);"><i class="fas fa-trash"></i></div><div class="set-body"><h4 style="color:var(--danger);">${t('reset_data')}</h4><p>${t('reset_desc')}</p></div><i class="fas fa-chevron-right set-arrow"></i></div>
-    </div>`;
-    body.dataset.loaded='1';
-    return;
-  }
-  if(f&&f.render==='renderHomework'){body.innerHTML='<div id="mini-hw"></div>';renderMini('hw',S.homework,(h)=>`<div class="li"><div class="li-icon o"><i class="fas fa-pencil-alt"></i></div><div class="li-body"><h4>${h.title}</h4><p>${h.cls||''} ${h.due?'• '+h.due:''}</p></div></div>`);}
-  if(f&&f.render==='renderPeriods'){body.innerHTML='<div class="tt-grid" id="mini-days"></div><div id="mini-periods"></div>';renderMiniDays();}
-  if(f&&f.render==='renderFees'){body.innerHTML='<div id="mini-fees"></div>';renderMini('fees',S.fees,(x)=>{const isPaid=x.status==='Paid';return `<div class="li"><div class="li-icon ${isPaid?'g':'r'}"><i class="fas ${isPaid?'check':'exclamation'}"></i></div><div class="li-body"><h4>${x.name}</h4><p>${x.month} • ₹${x.amount} • ${isPaid?t('paid'):t('unpaid')}</p></div></div>`;});}
-  if(f&&f.render==='renderExams'){body.innerHTML='<div id="mini-exams"></div>';renderMini('exams',S.exams,(x)=>`<div class="li"><div class="li-icon"><i class="fas fa-file-alt"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.sub||''} ${x.date?'• '+x.date:''}</p></div></div>`);}
-  if(f&&f.render==='renderLessons'){body.innerHTML='<div id="mini-lessons"></div>';renderMini('lessons',S.lessons,(x)=>`<div class="li"><div class="li-icon"><i class="fas fa-chalkboard"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.sub||''} • ${x.date}</p></div></div>`);}
-  if(f&&f.render==='renderReminders'){body.innerHTML='<div id="mini-rem"></div>';renderMini('rem',S.reminders,(x)=>`<div class="li"><div class="li-icon o"><i class="fas fa-bell"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.date?new Date(x.date).toLocaleString():''}</p></div></div>`);}
-  if(f&&f.render==='renderHolidays'){body.innerHTML='<div id="mini-hol"></div>';renderMini('hol',S.holidays,(x)=>`<div class="li"><div class="li-icon pk"><i class="fas fa-umbrella-beach"></i></div><div class="li-body"><h4>${x.title}</h4><p>${x.date||''} ${x.date2?'→ '+x.date2:''}</p></div></div>`);}
-  if(f&&f.render==='renderSyllabus'){body.innerHTML='<div id="mini-syl"></div>';renderMini('syl',S.syllabus,(s)=>{const pct=Math.round((s.done/s.total)*100);const cls=pct>=75?'g':pct>=40?'o':'r';return `<div style="margin-bottom:12px;"><div class="flex justify-between" style="font-size:.8rem;font-weight:700;margin-bottom:6px;color:var(--text);"><span>${s.title}</span><span>${pct}%</span></div><div class="progress"><div class="progress-inner ${cls}" style="width:${pct}%"></div></div></div>`;});}
-  if(f&&f.render==='renderTodos'){body.innerHTML='<div id="mini-todo"></div>';renderMini('todo',S.todos,(x)=>{const pCls=x.priority==='High'?'r':x.priority==='Medium'?'o':'g';return `<div class="li"><div class="li-icon ${pCls}"><i class="fas fa-tasks"></i></div><div class="li-body"><h4 style="${x.done?'text-decoration:line-through;opacity:.6;':''}">${x.title}</h4><p>${x.date||''} • ${x.priority}</p></div></div>`;});}
-  if(f&&f.render==='renderSeating'){body.innerHTML='<div id="mini-seat"></div>';renderMini('seat',[...S.seating].sort((a,b)=>a.row-b.row||a.col-b.col),(x)=>`<div class="li"><div class="li-icon pk"><i class="fas fa-chair"></i></div><div class="li-body"><h4>${x.name}</h4><p>${t('row')}: ${x.row} • ${t('col')}: ${x.col}</p></div></div>`);}
-  if(f&&f.render==='renderNotes'){body.innerHTML='<div id="mini-notes"></div>';renderMini('notes',S.notes,(n)=>`<div class="note" style="margin-bottom:8px;"><h5>${n.title}</h5>${n.desc?`<p>${n.desc}</p>`:''}<div class="date">${n.date}</div></div>`);}
-  body.dataset.loaded='1';
-}
-
-function renderMini(key,arr,fn){
-  const el=$('mini-'+key);
-  if(!el)return;
-  if(!arr||!arr.length){el.innerHTML=`<div class="empty" style="padding:20px;"><div class="empty-ill" style="width:60px;height:60px;font-size:1.5rem;"><i class="fas fa-inbox"></i></div><p style="font-size:.75rem;">${t('empty_classes_d')}</p></div>`;return;}
-  el.innerHTML=arr.slice(0,5).map(fn).join('')+(arr.length>5?`<p style="text-align:center;font-size:.72rem;color:var(--text-3);margin-top:8px;font-weight:600;">+ ${arr.length-5} more</p>`:'');
-}
-
-function renderMiniDays(){
-  const el=$('mini-days');if(!el)return;
-  el.innerHTML=DAYS.map(d=>`<div class="tt-day ${d===selectedDay?'on':''}" onclick="selectMiniDay('${d}')">${d.slice(0,3)}</div>`).join('');
-  renderMiniPeriods();
-}
-function selectMiniDay(d){selectedDay=d;renderMiniDays();}
-function renderMiniPeriods(){
-  const el=$('mini-periods');if(!el)return;
-  const f=S.periods.filter(p=>p.day===selectedDay).sort((a,b)=>a.time.localeCompare(b.time));
-  if(!f.length){el.innerHTML=`<p style="text-align:center;font-size:.75rem;color:var(--text-3);padding:15px;">${t('empty_period')}</p>`;return;}
-  el.innerHTML=f.slice(0,5).map(p=>`<div class="tt-slot" style="margin-bottom:6px;"><div class="time">${p.time}</div><div class="sub">${p.sub}</div><div class="cls">${p.cls||''}</div></div>`).join('');
-}
-
-function renderProfileSub(){const el=$('prof-sub');if(el)el.innerText=S.profile.school||t('set_name_school');}
-
-/* ============ SEARCH ============ */
 function openSearch(){$('search-ov').classList.add('open');setTimeout(()=>$('search-inp').focus(),200);}
 function closeSearch(){$('search-ov').classList.remove('open');$('search-inp').value='';$('search-res').innerHTML='';}
 function doSearch(){
@@ -1128,27 +1017,14 @@ function updateGreet(){
   $('greet-sub').innerText=S.profile.school||(LANG==='hi'?'आज का दिन शुभ हो':'Have a great day');
 }
 
-/* ============ SWIPE DOWN TO CLOSE MODALS ============ */
 function setupSwipeClose(){
   document.querySelectorAll('.modal').forEach(modal=>{
     const inner=modal.querySelector('.modal-inner');
     if(!inner)return;
     let startY=0,currentY=0,isDragging=false;
-    inner.addEventListener('touchstart',(e)=>{
-      startY=e.touches[0].clientY;isDragging=true;currentY=startY;
-    },{passive:true});
-    inner.addEventListener('touchmove',(e)=>{
-      if(!isDragging)return;
-      currentY=e.touches[0].clientY;
-      const diff=currentY-startY;
-      if(diff>0)inner.style.transform=`translateY(${diff}px)`;
-    },{passive:true});
-    inner.addEventListener('touchend',()=>{
-      if(!isDragging)return;isDragging=false;
-      const diff=currentY-startY;
-      inner.style.transform='';
-      if(diff>80)modal.classList.remove('open');
-    },{passive:true});
+    inner.addEventListener('touchstart',(e)=>{startY=e.touches[0].clientY;isDragging=true;currentY=startY;},{passive:true});
+    inner.addEventListener('touchmove',(e)=>{if(!isDragging)return;currentY=e.touches[0].clientY;const diff=currentY-startY;if(diff>0)inner.style.transform=`translateY(${diff}px)`;},{passive:true});
+    inner.addEventListener('touchend',()=>{if(!isDragging)return;isDragging=false;const diff=currentY-startY;inner.style.transform='';if(diff>80)modal.classList.remove('open');},{passive:true});
   });
 }
 
@@ -1166,7 +1042,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 window.addEventListener('load',()=>{
   setTimeout(()=>{
     $('splash').classList.add('hide');
-    // Auto-detect language from browser, only ask if not detected
     if(!localStorage.getItem('aos_lang')){
       const bl=(navigator.language||navigator.userLanguage||'en').split('-')[0].toLowerCase();
       const match=LANGS.find(l=>l.code===bl);
